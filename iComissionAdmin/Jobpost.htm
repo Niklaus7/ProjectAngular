@@ -1,0 +1,729 @@
+﻿<html>
+
+<head>
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+</head>
+
+<body>
+
+
+    <div class="container" ng-controller="JobpostController" id="JobpostController">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-box">
+                    <ol class="breadcrumb pull-right mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">Ubold</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Post Job</a>
+                        </li>
+                    </ol>
+                    <h4 class="page-title">Post Job</h4>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Wizard with Validation -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+                    <h4 class="m-t-0 header-title">
+                        <b>Post Job</b>
+                    </h4>
+                    <!--<p class="text-muted m-b-30 font-13">
+                        Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+                    </p>-->
+                    <form id="wizard-validation-form" action="#">
+                        <div>
+                            <h3>Job Details</h3>
+                            <section>
+                                <div class="form-group clearfix">
+                                    <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label class="control-label " for="userName2">
+                                            <b>Job Title/Designation(*)</b>
+                                        </label>
+                                        <div class="">
+
+                                            <input class="required form-control" id="jobtitle" ng-model="jobtitle" name="jobtitle" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label class="control-label " for="password2">
+                                            <b>Number of Vacancies</b>
+                                        </label>
+                                        <div class="">
+                                            <input id="vacancies" name="vacancies" type="number" ng-model="vacancies" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label class="control-label " for="password2">
+                                            <b>Job Description(*)</b>
+                                        </label>
+                                        <div id="jobdesc" class="summernote">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label " for="confirm2">
+                                        <b>Keywords(*)</b>
+                                    </label>
+                                    <tags-input ng-model="skillSet" display-property="SkillSetName" placeholder="Add Skill" replace-spaces-with-dashes="false">
+                                        <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                            template="my-custom-template1"></auto-complete>
+                                    </tags-input>
+                                </div>
+
+                                <label class="control-label" for="confirm2">
+                                    <b>Work Experience(*)</b>
+                                </label>
+                                <div class="row">
+                                    <div class="col-sm-5">
+
+                                        <select class="required selectpicker" id="minexp" name="minexp" data-style="btn-white">
+                                            <option selected="selected" value="">Minimum Experience(in Year)
+                                                <option>0
+                                                    <option>1
+                                                        <option>2
+                                                            <option>3
+                                                                    <option>4
+                                                                        <option>6
+                                                                            <option>7
+                                                                                <option>8
+                                                                                    <option>9
+                                                                                        <option>10
+                                                                                            <option>11
+                                                                                                <option>12
+                                                                                                    <option>13
+                                                                                                        <option>14
+                                                                                                            <option>15
+                                                                                                                <option>16
+                                                                                                                    <option>17
+                                                                                                                        <option>18
+                                                                                                                            <option>19
+                                                                                                                                <option>20
+                                                                                                                                    <option>21
+                                                                                                                                        <option>22
+                                                                                                                                            <option>23
+                                                                                                                                                <option>24
+                                                                                                                                                    <option>25
+                                                                                                                                                        <option>26
+                                                                                                                                                                <option>27
+                                                                                                                                                                        <option>28
+                                                                                                                                                                                <option>29
+                                                                                                                                                                                        <option>30
+                                                                                                                                                                                                <option>31
+                                                                                                                                                                                                        <option>32
+                                                                                                                                                                                                                <option>33
+                                                                                                                                                                                                                        <option>34
+                                                                                                                                                                                                                                <option>35
+                                                                                                                                                                                                                                        <option>36
+                                                                                                                                                                                                                                                <option>37
+                                                                                                                                                                                                                                                        <option>38
+                                                                                                                                                                                                                                                                <option>39
+                                                                                                                                                                                                                                                                        <option>40
+                                                                                                                                                                                                                                                                                <option>41
+                                                                                                                                                                                                                                                                                        <option>42
+                                                                                                                                                                                                                                                                                                <option>43
+                                                                                                                                                                                                                                                                                                        <option>44
+                                                                                                                                                                                                                                                                                                                <option>45
+                                                                                                                                                                                                                                                                                                                        <option>46
+                                                                                                                                                                                                                                                                                                                                <option>47
+                                                                                                                                                                                                                                                                                                                                        <option>48
+                                                                                                                                                                                                                                                                                                                                                <option>49
+                                                                                                                                                                                                                                                                                                                                                        <option>50
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" align="center">
+                                        <span class="input-group-addon bg-custom text-white b-0">To</span>
+
+                                    </div>
+                                    <div class="col-sm-5 pull-left">
+                                        <select class="required selectpicker" id="maxexp" name="maxexp" data-style="btn-white">
+                                            <option selected="selected" value="">Maximum Experience(in Year)
+                                                    <option>0
+                                                            <option>1
+                                                                <option>2
+                                                                    <option>3
+                                                                        <option>4
+                                                                            <option>4
+                                                                                <option>6
+                                                                                    <option>7
+                                                                                        <option>8
+                                                                                            <option>9
+                                                                                                <option>10
+                                                                                                    <option>11
+                                                                                                        <option>12
+                                                                                                            <option>13
+                                                                                                                <option>14
+                                                                                                                    <option>15
+                                                                                                                        <option>16
+                                                                                                                            <option>17
+                                                                                                                                <option>18
+                                                                                                                                    <option>19
+                                                                                                                                        <option>20
+                                                                                                                                            <option>21
+                                                                                                                                                <option>22
+                                                                                                                                                    <option>23
+                                                                                                                                                        <option>24
+                                                                                                                                                            <option>25
+                                                                                                                                                                <option>26
+                                                                                                                                                                        <option>27
+                                                                                                                                                                                <option>28
+                                                                                                                                                                                        <option>29
+                                                                                                                                                                                                <option>30
+                                                                                                                                                                                                        <option>31
+                                                                                                                                                                                                                <option>32
+                                                                                                                                                                                                                        <option>33
+                                                                                                                                                                                                                                <option>34
+                                                                                                                                                                                                                                        <option>35
+                                                                                                                                                                                                                                                <option>36
+                                                                                                                                                                                                                                                        <option>37
+                                                                                                                                                                                                                                                                <option>38
+                                                                                                                                                                                                                                                                        <option>39
+                                                                                                                                                                                                                                                                                <option>40
+                                                                                                                                                                                                                                                                                        <option>41
+                                                                                                                                                                                                                                                                                                <option>42
+                                                                                                                                                                                                                                                                                                        <option>43
+                                                                                                                                                                                                                                                                                                                <option>44
+                                                                                                                                                                                                                                                                                                                        <option>45
+                                                                                                                                                                                                                                                                                                                                <option>46
+                                                                                                                                                                                                                                                                                                                                        <option>47
+                                                                                                                                                                                                                                                                                                                                                <option>48
+                                                                                                                                                                                                                                                                                                                                                        <option>49
+                                                                                                                                                                                                                                                                                                                                                                <option>50
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <label class="control-label" for="confirm2">
+                                    <b>CTC(*)</b>
+                                </label>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <select class="required selectpicker" id="currency" name="currency" data-style="btn-white">
+                                            <option selected="selected" value="">Currency
+                                                <option>Rs
+                                                    <option>$
+
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="required selectpicker" id="minsalary" name="minsalary" data-style="btn-white">
+                                            <option selected="selected" value="">Minimum Salary
+                                                    <option>0
+                                                            <option>1
+                                                                <option>2
+                                                                    <option>3
+                                                                        <option>4
+                                                                            <option>4
+                                                                                <option>6
+                                                                                    <option>7
+                                                                                        <option>8
+                                                                                            <option>9
+                                                                                                <option>10
+                                                                                                    <option>11
+                                                                                                        <option>12
+                                                                                                            <option>13
+                                                                                                                <option>14
+                                                                                                                    <option>15
+                                                                                                                        <option>16
+                                                                                                                            <option>17
+                                                                                                                                <option>18
+                                                                                                                                    <option>19
+                                                                                                                                        <option>20
+                                                                                                                                            <option>21
+                                                                                                                                                <option>22
+                                                                                                                                                    <option>23
+                                                                                                                                                        <option>24
+                                                                                                                                                            <option>25
+                                                                                                                                                                <option>26
+                                                                                                                                                                        <option>27
+                                                                                                                                                                                <option>28
+                                                                                                                                                                                        <option>29
+                                                                                                                                                                                                <option>30
+                                                                                                                                                                                                        <option>31
+                                                                                                                                                                                                                <option>32
+                                                                                                                                                                                                                        <option>33
+                                                                                                                                                                                                                                <option>34
+                                                                                                                                                                                                                                        <option>35
+                                                                                                                                                                                                                                                <option>36
+                                                                                                                                                                                                                                                        <option>37
+                                                                                                                                                                                                                                                                <option>38
+                                                                                                                                                                                                                                                                        <option>39
+                                                                                                                                                                                                                                                                                <option>40
+                                                                                                                                                                                                                                                                                        <option>41
+                                                                                                                                                                                                                                                                                                <option>42
+                                                                                                                                                                                                                                                                                                        <option>43
+                                                                                                                                                                                                                                                                                                                <option>44
+                                                                                                                                                                                                                                                                                                                        <option>45
+                                                                                                                                                                                                                                                                                                                                <option>46
+                                                                                                                                                                                                                                                                                                                                        <option>47
+                                                                                                                                                                                                                                                                                                                                                <option>48
+                                                                                                                                                                                                                                                                                                                                                        <option>49
+                                                                                                                                                                                                                                                                                                                                                                <option>50
+                                                                                                                                                                                                                                                                                                                                                                        <option>51
+                                                                                                                                                                                                                                                                                                                                                                                <option>52
+                                                                                                                                                                                                                                                                                                                                                                                        <option>53
+                                                                                                                                                                                                                                                                                                                                                                                                <option>54
+                                                                                                                                                                                                                                                                                                                                                                                                        <option>55
+                                                                                                                                                                                                                                                                                                                                                                                                                <option>56
+                                                                                                                                                                                                                                                                                                                                                                                                                        <option>57
+                                                                                                                                                                                                                                                                                                                                                                                                                                <option>58
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>59
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>60
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>61
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>62
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>63
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>64
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>65
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>66
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>67
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>68
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>69
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>70
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>71
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>72
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>73
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>74
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>75
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>76
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>77
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>78
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>79
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>80
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1" align="center">
+                                        <span class="input-group-addon bg-custom text-white b-0">To</span>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="required selectpicker" id="maxsalary" name="maxsalary" data-style="btn-white">
+                                            <option selected="selected" value="">Maximun Salary
+                                                    <option>0
+                                                            <option>1
+                                                                <option>2
+                                                                    <option>3
+                                                                        <option>4
+                                                                            <option>4
+                                                                                <option>6
+                                                                                    <option>7
+                                                                                        <option>8
+                                                                                            <option>9
+                                                                                                <option>10
+                                                                                                    <option>11
+                                                                                                        <option>12
+                                                                                                            <option>13
+                                                                                                                <option>14
+                                                                                                                    <option>15
+                                                                                                                        <option>16
+                                                                                                                            <option>17
+                                                                                                                                <option>18
+                                                                                                                                    <option>19
+                                                                                                                                        <option>20
+                                                                                                                                            <option>21
+                                                                                                                                                <option>22
+                                                                                                                                                    <option>23
+                                                                                                                                                        <option>24
+                                                                                                                                                            <option>25
+                                                                                                                                                                <option>26
+                                                                                                                                                                        <option>27
+                                                                                                                                                                                <option>28
+                                                                                                                                                                                        <option>29
+                                                                                                                                                                                                <option>30
+                                                                                                                                                                                                        <option>31
+                                                                                                                                                                                                                <option>32
+                                                                                                                                                                                                                        <option>33
+                                                                                                                                                                                                                                <option>34
+                                                                                                                                                                                                                                        <option>35
+                                                                                                                                                                                                                                                <option>36
+                                                                                                                                                                                                                                                        <option>37
+                                                                                                                                                                                                                                                                <option>38
+                                                                                                                                                                                                                                                                        <option>39
+                                                                                                                                                                                                                                                                                <option>40
+                                                                                                                                                                                                                                                                                        <option>41
+                                                                                                                                                                                                                                                                                                <option>42
+                                                                                                                                                                                                                                                                                                        <option>43
+                                                                                                                                                                                                                                                                                                                <option>44
+                                                                                                                                                                                                                                                                                                                        <option>45
+                                                                                                                                                                                                                                                                                                                                <option>46
+                                                                                                                                                                                                                                                                                                                                        <option>47
+                                                                                                                                                                                                                                                                                                                                                <option>48
+                                                                                                                                                                                                                                                                                                                                                        <option>49
+                                                                                                                                                                                                                                                                                                                                                                <option>50
+                                                                                                                                                                                                                                                                                                                                                                        <option>51
+                                                                                                                                                                                                                                                                                                                                                                                <option>52
+                                                                                                                                                                                                                                                                                                                                                                                        <option>53
+                                                                                                                                                                                                                                                                                                                                                                                                <option>54
+                                                                                                                                                                                                                                                                                                                                                                                                        <option>55
+                                                                                                                                                                                                                                                                                                                                                                                                                <option>56
+                                                                                                                                                                                                                                                                                                                                                                                                                        <option>57
+                                                                                                                                                                                                                                                                                                                                                                                                                                <option>58
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>59
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>60
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>61
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>62
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>63
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>64
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>65
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>66
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>67
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>68
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>69
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>70
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>71
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>72
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>73
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>74
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>75
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>76
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>77
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>78
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <option>79
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <option>80
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label " for="password2">
+                                            <b>Other Salary Details</b>
+                                        </label>
+                                        <div class="">
+                                            <input id="saldetails" name="saldetails" type="text" ng-model="saldetails" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="control-label" for="confirm2">
+                                            <b>Job Locations(*)</b>
+                                        </label>
+
+                                        <div class="radio radio-pink">
+                                            <input type="radio" name="optradio" id="radio19" onclick="checkclick()" value="option9" checked>
+                                            <label for="radio19">
+                                                Same as office location
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label" for="confirm2">
+                                        </label>
+                                        <div class="radio radio-pink">
+                                            <input type="radio" name="optradio" ng-click="show()" id="radio20" value="option9">
+                                            <label for="radio20">
+                                                Pick location on map
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="mapdiv" class="row" style="display: none">
+                                    <div class="col-sm-12">
+                                        <div class="input-field animated fadeinright delay-2">
+                                            <div class="input-field animated fadeinright delay-2">
+                                                <input type="text" id="joblocation" onclick="call()" class="form-control" placeholder="City" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label " for="password2">
+                                                    <b>Job Location</b>
+                                                </label>
+                                                <p class="text-danger" style="text-align:center">Drag marker to job location.</p>
+                                                <input id="pac-input" data-validate="required" name="pac-input" class="controls form-control" type="text" placeholder="Location">
+                                                <div id="map_canvas" style="width: 100%; height: 300px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="control-label" for="confirm2">
+                                            <b>Industry(*)</b>
+                                        </label>
+                                        <select class="required selectpicker" id="industry" name="industry" data-live-search="true" data-style="btn-white">
+                                            <option selected="selected" value="">Choose Industry
+                                                <option>Drilling/Rig
+                                                    <option>Production
+                                                        <option>Oilfield Services
+                                                            <option>Production&Construction
+                                                                <option>Engineering & Science
+                                                                    <option>Geosciences
+                                                                        <option>Maintenance & Inspection
+                                                                            <option>Refining & Petrochem
+                                                                                <option>Maritime
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="control-label" for="confirm2">
+                                            <b>Functional area(*)</b>
+                                        </label>
+                                        <select class="required selectpicker" id="functionalarea" name="functionalarea" data-live-search="true" data-style="btn-white">
+                                            <option selected="selected" value="">Functional area
+                                                <option>NDT
+                                                    <option>Piping
+                                                        <option>Pipeline
+                                                            <option>Safety
+                                                                <option>Driller
+                                                                    <option>Sales
+                                                                        <option>Procurement
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <br />
+
+
+                            </section>
+                            <h3>Desired candidate profile</h3>
+                            <section>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label " for="password2">
+                                            <b>Specify UG Qaulifications(*)</b>
+                                        </label>
+
+                                        <tags-input ng-model="UGQual" display-property="JobQualification" placeholder="Add UG Qaulifications" replace-spaces-with-dashes="false">
+                                            <auto-complete source="loadCountries($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                                template="my-custom-template"></auto-complete>
+                                        </tags-input>
+
+
+                                        <!--<label class="control-label " for="password2"> Selected UG Qaulifications *</label>
+                                        <div class="tags-default">
+                                            <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                        </div>-->
+                                    </div>
+
+                                    <!-- <div class="col-md-1 form-group">
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="radio radio-info">
+                                                <input type="radio" name="radio" id="radio5" value="option5">
+                                                <label for="radio5">
+                                                and
+                                            </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 form-group">
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="radio radio-info">
+                                                <input type="radio" name="radio" id="radio5" value="option5">
+                                                <label for="radio5">
+                                                or
+                                            </label>
+                                            </div>
+                                        </div>-->
+
+                                    <div class="col-md-12 form-group">
+                                        <label class="control-label " for="password2">
+                                            <b>Specify PG Qaulifications(*)</b>
+                                        </label>
+                                        <tags-input ng-model="PGQual" display-property="Qualification" placeholder="Add PG Qaulifications" replace-spaces-with-dashes="false">
+                                            <auto-complete source="loadJobMasterQualification($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                                template="my-custom-template1"></auto-complete>
+                                        </tags-input>
+
+
+
+
+                                        <!--<label class="control-label " for="password2"> Selected PG Qaulifications *</label>
+                                        <div class="tags-default">
+                                            <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                        </div>-->
+                                    </div>
+                                </div>
+
+
+                            </section>
+                            <!-- <h3>Employer/recruiter details</h3>
+                            <section>
+                                <div class="form-group clearfix">
+                                    <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label " for="userName2">
+                                        <b>Company Name(*)</b>
+                                    </label>
+                                    <div class="">
+                                        <input class="required form-control" id="companynm" ng-model="companynm" name="companynm" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label " for="userName2">
+                                        <b>About Company(*)</b>
+                                    </label>
+                                    <div class="">
+                                        <textarea class="required form-control" id="aboutcompany" ng-model="aboutcompany" name="aboutcompany"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 clearfix">
+                                        <label class="control-label " for="userName2">
+                                            <b>Company Website(*)</b>
+                                        </label>
+                                        <div class="">
+                                            <input class="required form-control" id="companyweb" parsley-type="url" ng-model="companyweb" name="companyweb" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 clearfix">
+                                        <label class="control-label " for="userName2">
+                                            <b>Contact Person</b>
+                                        </label>
+                                        <div class="">
+                                            <input class="form-control" id="contactper" ng-model="contactper" name="contactper" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 clearfix">
+                                        <label class="control-label " for="userName2">
+                                            <b>Address</b>
+                                        </label>
+                                        <div class="">
+                                            <textarea class="form-control" id="address" ng-model="address" name="address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 clearfix">
+                                        <label class="control-label" for="userName2">
+                                            <b>Contact Number</b>
+                                        </label>
+                                        <div class="">
+
+                                            <input type="text" placeholder="" data-mask="(999) 999-9999" class="form-control" id="contactnum" ng-model="contactnum" name="contactnum"
+                                            />
+                                            <span class="font-13 text-muted">(999) 999-9999</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section> -->
+                            <h3>Save</h3>
+                            <section>
+                                <div class="form-group clearfix">
+                                    <div class="col-lg-12">
+                                        <input id="acceptTerms-2" name="acceptTerms2" type="checkbox" class="required">
+                                        <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End row -->
+        <!--Form Wizard-->
+    </div>
+
+
+
+    <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+
+
+    <script src="assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+
+    <!--wizard initialization-->
+    <script src="assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+
+    <!--summernote js-->
+    <script src="assets\plugins\summernote\summernote.min.js"></script>
+
+    <script type="text/ng-template" id="my-custom-template">
+
+        <div>
+            <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="my-custom-template1">
+
+        <div>
+            <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+        </div>
+    </script>
+
+    <script>
+        jQuery(document).ready(function () {
+
+            $('.summernote').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false                 // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        function call() {
+            var places = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                // var place = places.getPlace();
+                // var address = place.formatted_address;
+                // var latitude = place.geometry.location.lat();
+                // var longitude = place.geometry.location.lng();
+                // var mesg = "Address: " + address;
+                // mesg += "\nLatitude: " + latitude;
+                // mesg += "\nLongitude: " + longitude;
+                // alert(mesg);
+            });
+        }
+    </script>
+
+
+    <script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+    <script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>
+    <script>
+        function call() {
+
+            var options = {
+                types: ['(cities)']
+            };
+
+            var input = document.getElementById('joblocation');
+
+            var places = new google.maps.places.Autocomplete(input, options);
+            google.maps.event.addListener(places, 'place_changed', function () {
+
+            });
+        }
+
+        function checkclick() {
+            if ($('#radio19').prop('checked')) {
+                $("#mapdiv").hide();
+            }
+        }
+    </script>
+</body>
+
+</html>

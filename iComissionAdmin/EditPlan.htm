@@ -1,0 +1,151 @@
+<html>
+    
+    <head>
+        <link href="assets\plugins\multiselect\css\multi-select.css" rel="stylesheet" type="text/css">
+        <link href="assets\plugins\select2\css\select2.min.css" rel="stylesheet" type="text/css">
+        <link href="assets\plugins\bootstrap-select\css\bootstrap-select.min.css" rel="stylesheet">
+    </head>
+    
+    <body>
+    
+        <div class="container" ng-controller="EditPlanController" id="EditPlanController" ng-init="showdiv()">
+    
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header-box">
+                        <ol class="breadcrumb pull-right mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="">Ubold</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="">Edit Plan</a>
+                            </li>
+                        </ol>
+                        <h4 class="page-title">Edit Plan</h4>
+                        <div class="clearfix"></div>
+                    </div>
+    
+                </div>
+            </div>
+    
+            
+    
+            
+    
+            <div class="col-xl-12 col-lg-8" id="div_Intro" style="display: none">
+                <div class="card-box">
+                        <label class="control-label " for="password2">
+                            <b>{{i.PlanDesc.PlanName}}</b>
+                        </label>
+                        <hr/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+    
+    
+                            <input id="bids" name="bids" type="number" ng-value="noOfBids_I" ng-model="noOfBids_I" class="form-control">
+    
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+    
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_I" class="form-control">
+                            </div>
+                        </div>
+    
+                    </div>
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox1">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+    
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+    
+                                    <input id="checkbox1" type="checkbox" ng-model="checkbox1" ng-true-value="1" ng-false-value="0">
+    
+                                </div>
+                            </div>
+    
+    
+    
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox2">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+                                   
+                                    <input id="checkbox2" type="checkbox" ng-model="checkbox2" ng-true-value="1" ng-false-value="0" ng-checked="{{i.PlanFeatures.UnlimitedProjectBookmarks}}">
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox3">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+    
+                                    <input id="checkbox3" type="checkbox" ng-model="checkbox3" ng-true-value="1" ng-false-value="0"  ng-checked="{{i.PlanFeatures.CustomCoverPhoto}}">
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                    </ul>
+    
+    
+                    <div class="row">
+                        <div class="col-md-4">
+    
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createIntoPlan()">Update Plan</button>
+    
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            <!-- 1 to 3 -->
+           
+    
+    
+    
+        </div>
+        <!-- End row -->
+    
+        </div>
+        <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+        <script src="assets\plugins\select2\js\select2.min.js" type="text/javascript"></script>
+    
+        <script src="assets\pages\datatables.editable.init.js"></script>
+    
+        <script src="assets\plugins\bootstrap-select\js\bootstrap-select.min.js" type="text/javascript"></script>
+    </body>
+    
+    </html>

@@ -1,0 +1,652 @@
+<div class="container" ng-controller="SkillsetController">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="portlet">
+                <!-- /primary heading -->
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Pricing Plans
+                    </h3>
+                    <div class="portlet-widgets">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2">
+                            <i class="ion-minus-round"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="nav nav-tabs tabs">
+                    <li class="tab">
+                        <a href="#home-2" data-toggle="tab" aria-expanded="false">
+                            Assignment seeker
+                        </a>
+                    </li>
+                    <li class="tab">
+                        <a href="#profile-2" data-toggle="tab" aria-expanded="false">
+                            Job seeker
+                        </a>
+                    </li>
+                    <li class="tab">
+                        <a href="#messages-2" data-toggle="tab" aria-expanded="true">
+                            Client
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home-2">
+                        <div class="box box-info">
+                            <div class="box-header">
+
+                                <a href="#addf" class="btn btn-success pull-right" data-toggle="modal">Add Freelancer Membership</a>
+                            </div>
+                            <!-- /.box-header -->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h4 class="box-title">Freelancer Membership List</h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable">
+                                            <tr id="4">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Basic</td>
+                                                <td>0</td>
+                                                <td>40</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a onclick="getFDetails(4)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="4" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr id="5">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Plus</td>
+                                                <td>10</td>
+                                                <td>40</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>No</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a onclick="getFDetails(5)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="5" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile-2">
+                        <div class="box box-info">
+                            <div class="box-header">
+
+                                <a href="#addf" class="btn btn-success pull-right" data-toggle="modal">Add Freelancer Membership</a>
+                            </div>
+                            <!-- /.box-header -->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h4 class="box-title">Assignmentseeker Membership List</h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable">
+                                            <tr id="4">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Basic</td>
+                                                <td>0</td>
+                                                <td>40</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a onclick="getFDetails(4)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="4" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr id="5">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Plus</td>
+                                                <td>10</td>
+                                                <td>40</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>No</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a onclick="getFDetails(5)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="5" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="messages-2">
+                        <div class="box box-info">
+                            <div class="box-header">
+
+                                <a href="#addf" class="btn btn-success pull-right" data-toggle="modal">Add Freelancer Membership</a>
+                            </div>
+                            <!-- /.box-header -->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h4 class="box-title">Jobseeker Membership List</h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable">
+                                            <tr id="4">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Basic</td>
+                                                <td>0</td>
+                                                <td>40</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a onclick="getFDetails(4)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="4" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr id="5">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Plus</td>
+                                                <td>10</td>
+                                                <td>40</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>No</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a onclick="getFDetails(5)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="5" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="settings-2">
+                        <div class="box box-info">
+                            <div class="box-header">
+
+                                <a href="#addf" class="btn btn-success pull-right" data-toggle="modal">Add Freelancer Membership</a>
+                            </div>
+                            <!-- /.box-header -->
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h4 class="box-title">Client Membership List</h4>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="sortable">
+                                            <tr id="4">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Basic</td>
+                                                <td>0</td>
+                                                <td>40</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>No</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a onclick="getFDetails(4)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="4" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr id="5">
+                                                <td class="drag-handle">
+                                                    <i class="fa fa-reorder"></i>
+                                                </td>
+                                                <td>Freelancer Plus</td>
+                                                <td>10</td>
+                                                <td>40</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>Yes</td>
+                                                <td>No</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a onclick="getFDetails(5)" class="btn btn-success btn-sm" data-toggle="tooltip" title="Edit">
+                                                        <span class="fa fa-edit"></span>
+                                                    </a>
+                                                    <a id="5" class="btn btn-danger btn-f btn-sm" data-toggle="tooltip" title="Delete">
+                                                        <span class="fa fa-trash"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Drag and Drop</th>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Bids</th>
+                                                <th>Rollover of Bids</th>
+                                                <th>Buy additional Bids</th>
+                                                <th>see Other Bids</th>
+                                                <th>Team</th>
+                                                <th>Item Order</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addf" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Freelancer Membership</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="post" id="addform">
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info"></i>
+                            </span>
+                            <input type="text" id="name" class="form-control" placeholder="e.g Freelancer Basic" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Membership Price</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-usd"></i>
+                            </span>
+                            <input type="text" id="price" class="form-control" placeholder="e.g 20" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bids</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info"></i>
+                            </span>
+                            <input type="text" id="bids" class="form-control" placeholder="e.g 50" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rolloverof Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="rollover" name="rollover" type="checkbox" />
+                                    <label for="rollover" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to Buy additional Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="buy" name="rollover" type="checkbox" />
+                                    <label for="buy" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to see Other Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="see" name="rollover" type="checkbox" />
+                                    <label for="see" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to Add Team members</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="team" name="rollover" type="checkbox" />
+                                    <label for="team" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button onclick="addf()" class="btn btn-success">Submit</button>
+                    </div>
+
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="editf" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Freelancer Membership</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" method="post" id="addform">
+                    <input type="hidden" id="update_fid" />
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info"></i>
+                            </span>
+                            <input type="text" id="update_name" class="form-control" placeholder="e.g Freelancer Basic" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Membership Price</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-usd"></i>
+                            </span>
+                            <input type="text" id="update_price" class="form-control" placeholder="e.g 20" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bids</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info"></i>
+                            </span>
+                            <input type="text" id="update_bids" class="form-control" placeholder="e.g 50" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rolloverof Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="update_rollover" name="rollover" type="checkbox" />
+                                    <label for="update_rollover" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to Buy additional Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="update_buy" name="rollover" type="checkbox" />
+                                    <label for="update_buy" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to see Other Bids</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="update_see" name="rollover" type="checkbox" />
+                                    <label for="update_see" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="form-group">
+                        <label>Can Be able to Add Team members</label>
+                        <ul class="list-group">
+                            <li class="list-group-item flr">
+                                <div class="material-switch text-center">
+                                    <span class="pull-left">No</span>
+                                    <input id="update_team" name="rollover" type="checkbox" />
+                                    <label for="update_team" class="label-mint"></label>
+                                    <span class="pull-right">Yes</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.form-row -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button onclick="updatef()" class="btn btn-success">Update</button>
+                    </div>
+
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="assets\js\waves.js"></script>

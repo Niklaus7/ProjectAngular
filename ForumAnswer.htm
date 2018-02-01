@@ -1,0 +1,180 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+    <style>
+        .section {
+            padding-top: 20px !Important;
+        }
+
+        label {
+            font-size: 14px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="ForumAnswerController" ng-init="getForumQuestion();getForumAnswer()">
+
+        <div class="section lb">
+            <div class="container">
+
+
+
+                <div class="row">
+
+                    <div class="content col-md-12" ng-repeat="x in QuestionList">
+
+
+                       
+                            <div class="row">
+                            
+                                        <h3>
+                                            <a href="" ng-click="getAnswerList(x.ForumQuestionID)">{{x.QuestionTitle}}</a>
+
+                                        </h3>
+                                    <hr/>
+                                    <div class="post-padding">
+                                            <div class="row">
+                                                    <div class="col-md-9">
+                                                            {{x.QuestionDesc}}
+                                                            <br/>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                            asked:{{x.QuestionDate}}
+                                                            <br/>
+                                                            <a ng-click="getLikeCount(x.ForumQuestionID)">Like:</a> {{x.LikeCount}} <br/>
+                                                            Viewed: {{x.ViewCount}} times
+                                                            
+                                                            <br/><br/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                        <div class="col-md-9">
+                                                                Keywords:
+                                                                <h5>{{x.TagKeyword}}</h5>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                                <a class="waves-effect waves-light nav-user">
+                                                                        <img src="iComissionAdmin/PHP/{{x.profileimage}}" alt="" class="rounded-circle" style="width: 40px;height: 40px">
+                                                                    </a>
+                                                                    <a class="email-name">{{x.UserName}}</a>
+                                                                
+                                                        </div>
+                                                 </div>
+                                    </div>
+                                   
+                                    
+                            </div>
+
+                       
+                        <b> {{x.NumberOFAnswer}} Answer:</b>
+                     
+                        <div class="post-padding" id="main_content_div" ng-repeat="x in AnswerList">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a class="waves-effect waves-light nav-user">
+                                        <img src="iComissionAdmin/PHP/{{x.AnswerUserprofileimage}}" alt="" class="rounded-circle" style="width: 40px;height: 40px">
+                                    </a>
+                                    <a class="email-name"><b>{{x.AnswerUserName}}</b></a>
+                                   
+                                    <br/> {{x.Date}}
+                                </div>
+                                <div class="col-md-10">
+                                    <p>
+                                        {{x.AnswerDesc}}
+                                    </p>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row" ng-repeat="y in x">
+                                <div class="col-md-8">
+
+                                </div>
+                                <div class="col-md-4">
+                                   
+                                       {{y.AnswerComment}}
+                                      <b> {{y.CommnetUserName}}</b>
+                                        {{y.CommentDate}}
+                                        
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="row" id="Commentdiv">
+                                    
+                                <input type="text" ng-model="commentText" placeholder="Write Your Commnet here..!" class="form-control">
+                                <br/>
+                                <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="postComment(x.ForumAnswerID,x.ForumQuestionID)">Add Comment</button>
+                                
+                                    
+                            </div>
+
+                        </div>
+                    
+                                                           
+                        <div class="post-padding" id="ask_question_div">
+                            <div class="row">
+
+                                <label>Your Answer</label>
+                                <div id="Answerdesc" class="summernote">
+                                </div>
+
+                                <br/>
+                                <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="postAnswer()">Post Answer</button>
+                                
+
+                            </div>
+
+                        </div>
+
+                        <!-- end post-padding -->
+                    </div>
+
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+    </div>
+
+
+    <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+
+    <script src="assets\plugins\summernote\summernote.min.js"></script>
+
+    <script type="text/ng-template" id="my-custom-template1">
+                            
+                                    <div>
+                                        <span ng-bind-html="$highlight($getDisplayText())"></span>
+                            
+                            
+                                    </div>
+    </script>
+    <script>
+
+        function ShowCommentDiv()
+        {
+            document.getElementById("Commentdiv").style.display="block";
+        }
+
+        jQuery(document).ready(function () {
+
+            $('.summernote').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false                 // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+    </script>
+</body>
+
+</html>

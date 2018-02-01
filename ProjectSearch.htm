@@ -1,0 +1,245 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    .radio {
+        padding-left: 30px !important;
+    }
+
+    .typewriter h2 {
+        font-size: 20px !important;
+        color: #3498db !important;
+    }
+
+    .job-meta input {
+        width: min-content !important;
+    }
+
+    .input-group{
+        padding-left: 1px;
+    }
+    .bootstrap-select{
+        padding-left: 1px;
+    }
+    .typewriter h2 {
+        font-size: 20px !important;
+        color: #8a1f11 !important;
+    }
+</style>
+<div ng-controller="ProjectSearchController" ng-init="GetSearchedProject()">
+
+    <div class="section lb">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="text-center">
+                    <div class="col-md-12 text-center">
+                        <div class="sectionnr nopadding wb SearchProj">
+                            <form id="DefaultSearch" class="submit-form customform">
+                                <div class="row typewriter">
+                                    <h2>Search Assignments</h2>
+                                    <br />
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon2">
+                                                    <i class="fa fa-search"></i>
+                                                </span>
+                                                <input type="text" class="form-control" ng-model="Keywords" placeholder="Assignment Name" typeahead="item for item in items1 | filter:$viewValue | limitTo:8">
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="input-groupp">
+                                                <input type="text" id="Serach_Projlocation" onclick="call()" class="form-control" placeholder="Job location" />
+                                                <!-- <select class="required" multiple="" data-selected-text-format="count > 5" id="Serach_Projlocation" name="Serach_Projlocation"
+                                                        data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="Locations">Locations
+                                                    <option ng-repeat="data in ProjectLocationList" value="{{data.ProjectLocation}}">{{data.ProjectLocation}}</option>
+                                                </select> -->
+                                            </div>
+                                        </div>
+                                    <!-- end col -->
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="input-groupp">
+                                        <select class="required selectpicker" multiple="" data-selected-text-format="count > 5" id="ProjectType" name="ProjectType" data-live-search="true"
+                                            data-style="btn-white">
+                                            <option selected="selected" value="">Assignment Type</option>
+                                            <option ng-repeat="data in ProjectTypeList" value="{{data.ProjectType}}">{{data.ProjectType}}</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="input-groupp">
+                                        <select id="Budget" style="width: 100%;" class="selectpicker">
+                                            <option>Bidding Amount</option>
+                                            <option value="Less than $500">
+                                                Less than $500</option>
+                                            <option value="$501 to $5000">$501 to $5000</option>
+                                            <option value="$5001-$10000">$5001-$10000</option>
+                                            <option value="Above">Above</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <!-- end col -->
+                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <button class="btn btn-primary" ng-click="search_Project()">Search Assignment</button>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="section lb">
+                    <div class="container">
+                        <!-- <div class="section-title text-center clearfix">
+                            <h4>Featured Jobs</h4>
+                            <hr>
+                            <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                        </div> -->
+
+                        <div class="all-jobs job-listing clearfix">
+                            <!-- <div class="job-title hidden-sm hidden-xs">
+                                <h5>Featured</h5>
+                            </div> -->
+                            <div id="FeaturedProjects" class="job-tab" ng-repeat="Project in ProjectList">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="post-media">
+                                            <a href="job-single.htm">
+                                                <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                            </a>
+                                        </div>
+                                        <!-- end media -->
+                                    </div>
+                                    <!-- end col -->
+
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div class="badge freelancer-badge">Project</div>
+                                        <h3>
+                                            <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
+                                        </h3>
+                                        <small>
+                                            <span>Company :
+                                                <a href="#">Amanda Sun</a>
+                                            </span>
+                                            <span>Start Date : {{Project.ProjectStartDate}}</span>
+                                            <span>End Date : {{Project.ProjectEndDate}}</span>
+                                        </small>
+                                        <br>
+                                        <small>
+                                            <span>Description :
+                                                <span ng-bind-html="{{Project.ProjectDesc}}"></span>
+                                            </span>
+                                        </small>
+                                    </div>
+                                    <!-- end col -->
+
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="job-meta">
+                                            <p>{{Project.ProjectLocation | split:',':0}}</p>
+                                            <small>India</small>
+                                        </div>
+                                        <!-- end meta -->
+                                    </div>
+                                    <!-- end col -->
+
+                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                        <div class="job-meta text-center">
+                                            <h4>${{Project.ProjectBudget}}</h4>
+                                            <a href class="btn btn-primary btn-sm" ng-click="openmodal(Project.ProjectPostID)">Apply</a>
+                                            <a href class="btn btn-info btn-sm" ng-click="getProjectID(Project.ProjectPostID)">View</a>
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                                <!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end alljobs -->
+
+                        <!-- <div class="loadmorebutton text-center clearfix">
+                            <a href="#" class="btn btn-primary" id="loadMore">Load More Jobs</a>
+                        </div> -->
+                        <!-- end loadmore -->
+                    </div>
+                    <!-- end container -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    <!-- end section -->
+
+    <div id="ProjectApply" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                            <h4 class="modal-title mt-0 text-center">Bidd Description</h4>
+                    </div>
+                    <div class="modal-body submit-form">
+    
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="Bidding" ng-form="Bidding" name="Bidding" style="padding: 20px !Important"
+                            novalidate>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group" ng-class="{ 'has-error' : Bidding.biddamount.$invalid && !Bidding.biddamount.$pristine }">
+                                                <input type="text" class="form-control" ng-pattern="onlynumber" id="biddamount" name="biddamount" ng-model="biddamount"
+                                                    placeholder="Bidd amount" required>
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : Bidding.biddesr.$invalid && !Bidding.biddesr.$pristine }">
+                                                    <textarea type="text" class="form-control" ng-pattern="onlytext" id="biddesr" name="biddesr" ng-model="biddesr"
+                                                        placeholder="Description" required></textarea>
+                                                </div>
+                                    </div>
+                                </div>
+    
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label id="errormsgg" class="help-block" style="color: #a94442"></label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-info waves-effect waves-light" ng-click="applytoproject(Bidding.$valid)">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#div_login input').focus(function (index) {
+            document.getElementById('errormsg').innerHTML = "";
+        });
+    });
+    setTimeout(function () {
+        // $("#Serach_Projlocation").selectpicker('refresh');
+        $("#ProjectType").selectpicker('refresh');
+    }, 5000);
+
+    $(document).ready(function () {
+        $("#DefaultSearch .input-group, .input-groupp").hover(function (index) {
+            $("#DefaultSearch .input-group, .input-groupp").css('border', 'none');
+        });
+    });
+
+    function call(){
+        var places2 = new google.maps.places.Autocomplete(document.getElementById('Serach_Projlocation'));
+        google.maps.event.addListener(places2, 'place_changed', function () {
+        });
+    }
+    
+</script>

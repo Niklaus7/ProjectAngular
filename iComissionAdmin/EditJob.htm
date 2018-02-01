@@ -1,0 +1,400 @@
+<style>
+        td {
+            text-align: left !important;
+        }
+    </style>
+        <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+        <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+    <div class="container" ng-controller="EditJobController" ng-init="viewdescription()">
+            <div id="edit_job" class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title">
+                                <b>Edit Job</b>
+                            </h4>
+                            <!--<p class="text-muted m-b-30 font-13">
+                                    Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+                                </p>-->
+                            <form id="wizard-validation-form" action="#">
+                                <div>
+                                    <h3>Job Details</h3>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label class="control-label " for="userName2">Job Title/Designation *</label>
+                                                <div class="">
+            
+                                                    <input class="required form-control" id="jobtitle" ng-model="jobtitle" name="jobtitle" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label class="control-label " for="password2"> Number of vacancies </label>
+                                                <div class="">
+                                                    <input id="vacancies" name="vacancies" type="text" ng-model="vacancies" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="control-label " for="password2"> Job Description *</label>
+                                                <div id="jobdesc" class="summernote">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <label class="control-label " for="confirm2">Keywords *</label>
+                                            <!-- <div class="">
+                                                <input id="Keywords" name="Keywords" ng-model="Keywords" type="text" class="required form-control">
+                                            </div> -->
+                                            <tags-input ng-model="skillSet" display-property="SkillSetName" placeholder="Add Skill" replace-spaces-with-dashes="false">
+                                                    <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                                        template="my-custom-template1"></auto-complete>
+                                                </tags-input>
+                                        </div>
+            
+                                        <label class="control-label" for="confirm2">Work Experience *</label>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <select class="required form-control" id="minexp" name="minexp" data-style="btn-white">
+                                                    <option selected="selected" value="">-- Minimum --
+                                                        <option value="0">0
+                                                            <option value="1">1
+                                                                <option value="2">
+                                                                    2
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-1" align="center">
+                                                to
+                                            </div>
+                                            <div class="col-sm-5 pull-left">
+                                                <select class="required form-control" id="maxexp" name="maxexp" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -Maximun --
+                                                            <option value="0">0
+                                                                    <option value="1">1
+                                                                        <option value="2">
+                                                                            2
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        <label class="control-label" for="confirm2">CTC *</label>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <select class="required form-control" id="currency" name="currency" data-style="btn-white">
+                                                    <option value="">-- Currency --
+                                                        <option>Rs
+                                                            <option selected="selected">$
+            
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <select class="required form-control" id="minsalary" name="minsalary" data-style="btn-white">
+                                                    <option selected="selected" value="">-- Minimum Salary--
+                                                        <option value="1">1
+                                                            <option value="2">2
+                                                                <option value="3">
+                                                                    3
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-1" align="center">
+                                                to
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <select class="required form-control" id="maxsalary" name="maxsalary" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -Maximun Salary--
+                                                            <option value="1">1
+                                                                    <option value="2">2
+                                                                        <option value="3">
+                                                                            3
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        <div class="row">
+                                            <div class="col-md-12 form-group">
+                                                <label class="control-label " for="password2"> Other Salary Details </label>
+                                                <div class="">
+                                                    <input id="saldetails" name="saldetails" type="text" ng-model="saldetails" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+            
+            
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="control-label" for="confirm2">Job Location (*)</label>
+                                                <!-- <select class="required selectpicker" id="joblocation" name="joblocation" data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="">-- Job Locations --
+                                                        <option>Pune
+                                                            <option>Mumbai
+                                                                <option>
+                                                                    Bangolre
+                                                </select> -->
+                                                <input type="text" id="joblocation" onclick="call()" class="form-control" placeholder="Job location" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" for="confirm2">Industry *</label>
+                                                <select class="required form-control" id="industry" name="industry" data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -Industry --
+                                                        <option value="IT hardware/software">IT hardware/software
+                                                            <option value="Db Design">Db Design
+                                                                <option value="DB Architecture">
+                                                                    DB Architecture
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="control-label" for="confirm2">Functional area *</label>
+                                                <select class="required form-control" id="functionalarea" name="functionalarea" data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -Maximun --
+                                                        <option value="Programming">
+                                                            Programming
+            
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                        </div>
+                                    </section>
+                                    <h3>Desired candidate profile</h3>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-5 form-group">
+                                                <label class="control-label " for="userName2">Specify Qaulifications *</label>
+                                                <select class="required form-control" id="upspec" name="upspec" style="z-index: 9999" data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -UG --
+                                                        <option value="B.E">B.E
+                                                            <option value="B.Sc">B.Sc
+            
+                                                </select>
+                                                <!--<label class="control-label " for="password2"> Selected UG Qaulifications *</label>
+                                                    <div class="tags-default">
+                                                        <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                                    </div>-->
+                                            </div>
+            
+                                            <div class="col-md-1 form-group">
+                                                <div class="clearfix">&nbsp;</div>
+                                                <div class="clearfix">&nbsp;</div>
+                                                <div class="radio radio-info">
+                                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                                    <label for="radio5">
+                                                        and
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <div class="clearfix">&nbsp;</div>
+                                                <div class="clearfix">&nbsp;</div>
+                                                <div class="radio radio-info">
+                                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                                    <label for="radio5">
+                                                        or
+                                                    </label>
+                                                </div>
+                                            </div>
+            
+                                            <div class="col-md-5 form-group">
+                                                <label class="control-label " for="password2"> Specify PG Qaulifications *</label>
+                                                <select class="required form-control" id="pgspec" name="pgspec" data-live-search="true" data-style="btn-white">
+                                                    <option selected="selected" value="">-- -PG --
+                                                        <option value="M.tech">M.tech
+            
+                                                </select>
+                                                <!--<label class="control-label " for="password2"> Selected PG Qaulifications *</label>
+                                                    <div class="tags-default">
+                                                        <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                                    </div>-->
+                                            </div>
+                                        </div>
+            
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                        </div>
+                                    </section>
+                                    <h3>Employer/recruiter details</h3>
+                                    <section>
+                                        <div class="form-group clearfix">
+                                            <label class="control-label " for="userName2">Company Name *</label>
+                                            <div class="">
+                                                <input class="required form-control" id="companynm" ng-model="companynm" name="companynm" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <label class="control-label " for="userName2">About Company *</label>
+                                            <div class="">
+                                                <textarea class="required form-control" id="aboutcompany" ng-model="aboutcompany" name="aboutcompany"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 clearfix">
+                                                <label class="control-label " for="userName2">Company Website </label>
+                                                <div class="">
+                                                    <input class="form-control" id="companyweb" ng-model="companyweb" name="companyweb" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 clearfix">
+                                                <label class="control-label " for="userName2">Contact Person </label>
+                                                <div class="">
+                                                    <input class="form-control" id="contactper" ng-model="contactper" name="contactper" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 clearfix">
+                                                <label class="control-label " for="userName2">Address </label>
+                                                <div class="">
+                                                    <textarea class="form-control" id="address" ng-model="address" name="address"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 clearfix">
+                                                <label class="control-label " for="userName2">Contact Number </label>
+                                                <div class="">
+                                                    <input class="form-control" id="contactnum" ng-model="contactnum" name="contactnum" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                        </div>
+                                    </section>
+                                    <h3>Step Final</h3>
+                                    <section>
+                                        <div class="form-group clearfix">
+                                            <div class="col-lg-12">
+                                                <input id="acceptTerms-2" name="acceptTerms2" type="checkbox" class="required">
+                                                <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+
+    
+<script src="assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+<!--wizard initialization-->
+<script src="assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+<script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>
+
+<!-- Required datatable js -->
+<script src="assets\plugins\datatables\jquery.dataTables.min.js"></script>
+<script src="assets\plugins\datatables\dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets\plugins\datatables\dataTables.buttons.min.js"></script>
+<script src="assets\plugins\datatables\buttons.bootstrap4.min.js"></script>
+<script src="assets\plugins\datatables\jszip.min.js"></script>
+<script src="assets\plugins\datatables\pdfmake.min.js"></script>
+<script src="assets\plugins\datatables\vfs_fonts.js"></script>
+<script src="assets\plugins\datatables\buttons.html5.min.js"></script>
+<script src="assets\plugins\datatables\buttons.print.min.js"></script>
+<script src="assets\plugins\datatables\buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="assets\plugins\datatables\dataTables.responsive.min.js"></script>
+<script src="assets\plugins\datatables\responsive.bootstrap4.min.js"></script>
+
+<!-- XEditable Plugin -->
+<script src="assets\plugins\moment\moment.js"></script>
+<script type="text/javascript" src="assets\plugins\x-editable\js\bootstrap-editable.min.js"></script>
+<script type="text/javascript" src="assets\pages\jquery.xeditable.js"></script>
+
+<!-- Bootsrap table js -->
+<script src="assets\plugins\bootstrap-table\js\bootstrap-table.js"></script>
+<script src="assets\pages\jquery.bs-table.js"></script>
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+<!--<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "ordering": false,
+            "bFilter": false,
+            "bLengthChange": false,
+            "buttons": ['copy', 'excel', 'pdf']
+        });
+
+        //table.buttons().container()
+        //        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+    });
+
+</script>-->
+<script>
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#datatable').DataTable();
+
+        //Buttons examples
+        var table = $('#datatable').DataTable({
+            "ordering": false,
+            "info": false,
+            "pageLength": 5,
+            "bFilter": false,
+            "bLengthChange": false,
+        });
+
+    });
+
+    jQuery(document).ready(function () {
+
+        $('.summernote').summernote({
+            height: 200,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+
+    });
+
+    function call(){
+            var places = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                // var place = places.getPlace();
+                // var address = place.formatted_address;
+                // var latitude = place.geometry.location.lat();
+                // var longitude = place.geometry.location.lng();
+                // var mesg = "Address: " + address;
+                // mesg += "\nLatitude: " + latitude;
+                // mesg += "\nLongitude: " + longitude;
+                // alert(mesg);
+            });
+        }
+
+</script>
+  <script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+  <script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>

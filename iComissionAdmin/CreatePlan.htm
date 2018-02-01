@@ -1,0 +1,895 @@
+<html>
+
+<head>
+    <link href="assets\plugins\multiselect\css\multi-select.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\select2\css\select2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\bootstrap-select\css\bootstrap-select.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" ng-controller="CreatePlanController" id="CreatePlanController">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-box">
+                    <ol class="breadcrumb pull-right mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">Ubold</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Create Plan</a>
+                        </li>
+                    </ol>
+                    <h4 class="page-title">Create Plan</h4>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+
+
+            <div class="col-xl-12 col-lg-8">
+
+
+                <div class="card-box">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Select Membership plan:</b>
+                            </label>
+
+                        </div>
+                        <div class="col-md-6">
+                            <select ng-change="getSelectedValue()" ng-model="myPlan" id="Membership">
+                                <option selected="selected" value="">Membership Plan
+                                    <option value="Intro">Intro</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Plus">Plus</option>
+                                    <option value="Professional">Professional</option>
+                                    <option value="Premier">Premier</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                </div>
+                <!-- panel -->
+            </div>
+
+            <div class="col-xl-12 col-lg-8" id="div_Intro">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="noOfBids_I" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_I" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox1">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox1" type="checkbox" ng-model="checkbox1"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox2">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox2" type="checkbox" ng-model="checkbox2"  ng-true-value="1" ng-false-value="0" >
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox3">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox3" type="checkbox" ng-model="checkbox3"  ng-true-value="1" ng-false-value="0" >
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createIntoPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 1 to 3 -->
+            <div class="col-xl-12 col-lg-8" id="div_Basic" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="noOfBids_B" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_B" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Employer Followings</b>
+                            </label>
+
+
+                            <input id="empFollowings" name="empFollowings" type="number" ng-model="empFollowings_B" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox4">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox4" type="checkbox" ng-model="checkbox4"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox5">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox5" type="checkbox" ng-model="checkbox5"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox6">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox6" type="checkbox" ng-model="checkbox6"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createBasicPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 4 to 6 -->
+            <div class="col-xl-12 col-lg-8" id="div_Plus" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="noOfBids_P" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_P" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Employer Followings</b>
+                            </label>
+
+
+                            <input id="empFollowings" name="empFollowings" type="number" ng-model="empFollowings_P" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <label class="control-label " for="password2">
+                                <b>External Invoicings</b>
+                            </label>
+
+
+                            <input id="extInvoice" name="extInvoice" type="number" ng-model="extInvoice_P" class="form-control">
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox7">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox7" type="checkbox" ng-model="checkbox7"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox8">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox8" type="checkbox" ng-model="checkbox8"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox9">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox9" type="checkbox" ng-model="checkbox9"  ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox10">
+                                    Daily Withdrawals
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox10" type="checkbox" ng-model="checkbox10" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox11">
+                                    Free Project Extensions
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox11" type="checkbox" ng-model="checkbox11" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox12">
+                                    High Value Project Bidding*
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox12" type="checkbox" ng-model="checkbox12" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox13">
+                                    Preferred Assignment Seeker Eligible*
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox13" type="checkbox" ng-model="checkbox13" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createPlusPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 7 to 13 -->/
+            <div class="col-xl-12 col-lg-8" id="div_Professional" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="noOfBids_Pro" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_Pro" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Employer Followings</b>
+                            </label>
+
+
+                            <input id="empFollowings" name="empFollowings" type="number" ng-model="empFollowings_Pro" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <label class="control-label " for="password2">
+                                <b>External Invoicings</b>
+                            </label>
+
+
+                            <input id="extInvoice" name="extInvoice" type="number" ng-model="extInvoice_Pro" class="form-control">
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox14">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox14" type="checkbox" ng-model="checkbox14" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox15">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox15" type="checkbox" ng-model="checkbox15" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox16">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox16" type="checkbox" ng-model="checkbox16" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox17">
+                                    Daily Withdrawals
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox17" type="checkbox" ng-model="checkbox17" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox18">
+                                    Free Project Extensions
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox18" type="checkbox" ng-model="checkbox18" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox19">
+                                    High Value Project Bidding*
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox19" type="checkbox" ng-model="checkbox19" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox20">
+                                    Preferred Assignment Seeker Eligible*
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox20" type="checkbox" ng-model="checkbox20" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox21">
+                                    Free Sealed Projects
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox21" type="checkbox" ng-model="checkbox21" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createProPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 14 to 21 -->
+            <div class="col-xl-12 col-lg-8" id="div_Premier" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Bid's Per Month </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="noOfBids_Pre" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> No.Of Skills</b>
+                            </label>
+
+                            <div class="">
+                                <input id="skills" name="skills" type="number" ng-model="noOFSkills_Pre" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr/>
+                    <label class="control-label " for="password2">
+                        <b>Other Feature's </b>
+                    </label>
+                    <ul>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox22">
+                                    Unlock Rewards
+                                </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox22" type="checkbox" ng-model="checkbox22" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox23">
+                                    Unlimited Project Bookmarks
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox23" type="checkbox" ng-model="checkbox23" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox24">
+                                    Custom Cover Photo
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox24" type="checkbox" ng-model="checkbox24" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox25">
+                                    Daily Withdrawals
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox25" type="checkbox" ng-model="checkbox25" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox26">
+                                    Free Project Extensions
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox26" type="checkbox" ng-model="checkbox26" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox27">
+                                    High Value Project Bidding*
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox27" type="checkbox" ng-model="checkbox27" ng-true-value="1" ng-false-value="0" >
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox28">
+                                    Preferred Assignment Seeker Eligible*
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox28" type="checkbox" ng-model="checkbox28" ng-true-value="1" ng-false-value="0"> 
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox29">
+                                    Free Sealed Projects
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox29" type="checkbox" ng-model="checkbox29" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <li></li>
+                            <div class="col-md-3">
+                                <label for="checkbox30">
+                                    Free NDA Projects
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="checkbox checkbox-warning">
+
+                                    <input id="checkbox30" type="checkbox" ng-model="checkbox30" ng-true-value="1" ng-false-value="0">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                                <li></li>
+                                <div class="col-md-3">
+                                    <label for="checkbox31">
+                                            Unlimited External Invoicings
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="checkbox checkbox-warning">
+    
+                                        <input id="checkbox31" type="checkbox" ng-model="checkbox31" ng-true-value="1" ng-false-value="0">
+    
+                                    </div>
+                                </div>
+    
+                            </div>
+                            <div class="row">
+                                    <li></li>
+                                    <div class="col-md-3">
+                                        <label for="checkbox32">
+                                                Unlimited Employer Followings 
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox checkbox-warning">
+        
+                                            <input id="checkbox32" type="checkbox" ng-model="checkbox32" ng-true-value="1" ng-false-value="0">
+        
+                                        </div>
+                                    </div>
+        
+                                </div>
+
+
+                    </ul>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" ng-click="createPrePlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 22 to 32 -->
+
+        </div>
+
+
+    </div>
+    <!-- End row -->
+
+    </div>
+    <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+    <script src="assets\plugins\select2\js\select2.min.js" type="text/javascript"></script>
+
+
+    <script src="assets\plugins\bootstrap-select\js\bootstrap-select.min.js" type="text/javascript"></script>
+</body>
+
+</html>

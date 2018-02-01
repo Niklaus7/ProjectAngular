@@ -1,0 +1,989 @@
+<style>
+    .radio {
+        padding-left: 30px !important;
+    }
+
+    .typewriter h2 {
+        font-size: 20px !important;
+        color: #2f2a2c !important;
+    }
+
+    .job-meta input {
+        width: min-content !important;
+    }
+
+    .carousel-control.right {
+        background-image: none !important;
+    }
+
+    .carousel-control.left {
+        background-image: none !important;
+    }
+
+    .has-error {
+        border: 1px solid #8a1f11 !important;
+    }
+
+    .input-group {
+        padding-left: 1px;
+    }
+
+    .bootstrap-select {
+        padding-left: 1px;
+    }
+
+    .md-padding {
+        padding: 6px !important;
+    }
+
+    md-autocomplete input:not(.md-input) {
+        background: #f3f6f9 !important
+    }
+
+    md-autocomplete.md-default-theme,
+    md-autocomplete {
+        background: #f3f6f9 !important
+    }
+
+    #cstmautocomplete .dropdown-menu,
+    #KeywordsAdauto .dropdown-menu {
+        width: 87% !important;
+    }
+
+    /* .topbar{
+        padding: 5px 0 !important;
+    }
+    .header{
+        padding: 10px 0 !important;
+    }
+    .nopadding .customform{
+        padding: 10px 20px 10px 20px !important;
+    } */
+
+    
+/* a {color:red;} */
+/* a:hover {color:#f1f1f1;} */
+.infobox {
+  background: none repeat scroll 0 0 #fff;
+  /* color: #F1F1F1; */
+  font-family: arial;
+  line-height: 20px;
+  position: absolute;
+}
+.infobox:before, .infobox:after {
+  border-color: transparent transparent transparent #ff6700 ;
+  border-style: solid;
+  border-width: 20px 20px 0;
+  bottom: -1px;
+  content: "";
+  display: block;
+  height: 0;
+  left: -1px;
+  position: absolute;
+  width: 0;
+  z-index:2
+}
+.infobox .closecstm {
+/* background: none repeat scroll 0 0 #fff; */
+cursor: pointer;
+float: right;
+font-size: 17px;
+height: 25px;
+line-height: 22px;
+position: relative;
+right: -25px;
+text-align: center;
+top: 0;
+width: 25px;
+}
+
+.infobox .content {
+  margin:10px 10px 10px 10px;
+}
+
+.infobox .closecstm{
+    color: #fff !important;
+    background-color: #2f2a2c !important;
+}
+.text-wrapp {
+    white-space: nowrap; 
+    width: 10em; 
+    font-size: 18px !important;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    padding-bottom: 3px;
+}
+
+.cstmbtncls{
+    color: #fff !important;
+    padding-right: 5px;
+    font-size: 12px;
+    max-height: 24px !important;
+    line-height: 1;
+    font-weight: 600 !important;
+    padding-left: 5px;
+}
+.gm-style-iw div{
+    overflow: none !important;
+}
+</style>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<div ng-controller="IndexController" ng-init="GetJobProjecfrmCurrntlocation('No')">
+    <!-- Carousel -->
+    <div class="sectionnr nopadding wb">
+        <div class="container" style="padding-top: 10px">
+            <form id="DefaultSearch" name="DefaultSearch" class="submit-form customform" novalidate style="padding-top: 0px !important; padding-bottom: 10px !important;padding-left: 10px !important; padding-right: 10px !important">
+                <div class="row typewriter">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px !important">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2" style="padding: 0px;">
+                                <button class="btn btn-primary" type="button" ng-click="GetJobProjecfrmCurrntlocation('No')">
+                                    <i class="ion-android-locate" style="color: #fff !important"></i>
+                                </button>
+                            </span>
+                            <input type="text" id="Serach_joblocation" data-step="1" data-intro="Enter country, city, locality, landmark to search jobs and assignments" class="form-control" placeholder="Enter country, locality to search job's / assignment's" />
+
+                            <span class="input-group-addon" id="basic-addon2" style="padding: 0px;">
+                                <button class="btn btn-primary" type="button" ng-click="searchdata()"><img src="images/magnifier.png" style="width: 25%; padding-right: 5px">Search</button>
+                                <button id="avnce" class="btn btn-info"  data-step="2" data-intro="Search jobs and assingmnets by skills, experience, salary, budget and type" type="button">
+                                    <img src="images/advanced.png" style="width: 15%; padding-right: 5px">Advance Search
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- data-step="1" data-intro="Click to change your locality/city..." -->
+
+                    <div id="searchdiv" align="right" style="display: none">
+                        <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
+
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
+                            <select class="form-control tofind">
+                                <option>Find</option>
+                                <option>Jobs</option>
+                                <option>Assignments</option>
+                            </select>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $("select.tofind").change(function () {
+                                    var selectedCountry = $(".tofind option:selected").val();
+                                    if (selectedCountry == "Jobs") {
+                                        $("#searchdivjob").show();
+                                        $("#searchprojdiv").hide();
+                                    }
+                                    else if (selectedCountry == "Assignments") {
+                                        $("#searchprojdiv").show();
+                                        $("#searchdivjob").hide();
+                                    }
+                                });
+                            });
+                        </script>
+                        <div id="searchdivjob">
+                            <div id="cstmautocomplete" class="col-md-3 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-group" ng-class="{ 'has-error' : DefaultSearch.Keywords.$invalid && !DefaultSearch.Keywords.$pristine }">
+                                    <span class="input-group-addon" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                    <input type="text" ng-model="Keywords" placeholder="Job Skills" typeahead="item for item in items | filter:$viewValue | limitTo:8"
+                                        class="form-control">
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="input-groupp">                                                
+                            <input type="text" id="Serach_joblocation" class="form-control" onclick="call()" placeholder="Job location" />
+                            <!-- <select class="required selectpicker" data-style="btn-default" multiple="" data-selected-text-format="count > 5" id="Serach_joblocation"
+                                    name="Serach_joblocation" data-live-search="true" data-style="btn-white" required>
+                                <option selected="selected" value="Job Locations">Job Locations
+                                <option ng-repeat="Location in JobLocationList" value="{{Location.JobLocation}}">{{Location.JobLocation}}</option>
+                            </select> 
+                        </div>
+                    </div> -->
+
+                            <!-- end col -->
+                            <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-groupp">
+                                    <select id="Experience" class="selectpicker" required>
+                                        <option selected value="Exp">Exp in Year</option>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-groupp">
+                                    <select id="Salary" class="required selectpicker" required>
+                                        <option>Salary in Lakh</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-5 col-sm-5 col-xs-12" style="top:16px; font-size: 12px;">
+                            <div class="text-left">
+                                <a href class="readmore" ng-click="AdvanceSearch()">Advanced Search</a>
+                            </div>
+                        </div> -->
+                            <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <button class="btn btn-primary cstmcls pull-left" ng-click="serch_job()">Search</button>
+                                <!-- <a href ng-click="AdvanceSearch()">Advanced Search</a> -->
+                            </div>
+                        </div>
+
+                        <div id="searchprojdiv" style="display: none">
+                            <div class="col-md-3 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon2">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control" ng-model="Keywords" placeholder="Assignment Name" typeahead="item for item in items1 | filter:$viewValue | limitTo:8">
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <div class="input-groupp">
+                                            <!-- <input type="text" id="Serach_Projlocation" onclick="call2()" class="form-control" placeholder="Job location" /> -->
+                            <!-- <select class="required" multiple="" data-selected-text-format="count > 5" id="Serach_Projlocation" name="Serach_Projlocation"
+                                                    data-live-search="true" data-style="btn-white">
+                                                <option selected="selected" value="Locations">Locations
+                                                <option ng-repeat="data in ProjectLocationList" value="{{data.ProjectLocation}}">{{data.ProjectLocation}}</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                            <!-- end col -->
+                            <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-groupp">
+                                    <select class="required" multiple="" data-selected-text-format="count > 5" id="ProjectType" name="ProjectType" data-live-search="true"
+                                        data-style="btn-white">
+                                        <option selected="selected" value="Assignment Type">Assignment Type</option>
+                                        <option ng-repeat="data in ProjectTypeList" value="{{data.ProjectType}}">{{data.ProjectType}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
+                                <div class="input-groupp">
+                                    <select id="Budget" style="width: 100%;" class="selectpicker">
+                                        <option>Bidding Amount</option>
+                                        <option value="Less than $500">
+                                            Less than $500
+                                        </option>
+                                        <option value="$501 to $5000">$501 to $5000</option>
+                                        <option value="$5001-$10000">$5001-$10000</option>
+                                        <option value="Above">Above</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-1 col-sm-12 col-xs-12 text-center" style="padding-top: 10px">
+                                <button class="btn btn-primary cstmcls" ng-click="search_Project()">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </form>
+        </div>
+        <!-- end container -->
+        <div id="overl" style="position: absolute; height: 100%; z-index: 1; width: 100%; display: none; background-color: rgba(0,0,0,0.5);">
+
+        </div>
+        <div id="map_canvas" style="height: 520px !important;">
+
+        </div>
+    </div>
+    <!-- end section -->
+    <!-- /carousel -->
+
+    <div class="section lb">
+        <div class="container">
+            <!-- <skype-ui id="SkypeButton_Call_mike_1" participants="participants">
+                    </skype-ui> -->
+            <div class="section-title text-center clearfix">
+                <h4>Featured {{Type}}</h4>
+                <hr>
+                <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
+                    iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+            </div>
+
+            <div class="all-jobs job-listing clearfix">
+                <div class="job-title hidden-sm ">
+                    <h5>Featured</h5>
+                </div>
+                <div id="FeaturedJobs">
+                    <div class="job-tab" ng-repeat="Job in All_JobList">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="post-media">
+                                    <a href="job-single.htm">
+                                        <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                    </a>
+                                </div>
+                                <!-- end media -->
+                            </div>
+                            <!-- end col -->
+                
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a href="job-single.htm" title="">{{Job.JobTitle}}</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span>Posted Date : {{Job.JobPostDate}}</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+                
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p>{{Job.JobLocation | split:',':0}}</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+                
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>${{Job.MinSal}} - ${{Job.MaxSal}}</h4>
+                                    <a href class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>
+                <div id="FeaturedProjects">
+                    <div class="job-tab" ng-repeat="Project in All_ProjectList">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="post-media">
+                                    <a href="job-single.htm">
+                                        <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                    </a>
+                                </div>
+                                <!-- end media -->
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Project</div>
+                                <h3>
+                                    <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>Start Date : {{Project.ProjectStartDate}}</span>
+                                    <span>End Date : {{Project.ProjectEndDate}}</span>
+                                </small>
+                                <br>
+                                <small>
+                                    <span>Description :
+                                        <span ng-bind-html="{{Project.ProjectDesc}}"></span>
+                                    </span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p>{{Project.ProjectLocation | split:',':0}}</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>${{Project.ProjectBudget}}</h4>
+                                    <a href class="btn btn-primary btn-sm" ng-click="openmodal(Project.ProjectPostID)">Apply</a>
+                                    <a href class="btn btn-info btn-sm" ng-click="getProjectID(Project.ProjectPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            <!-- end alljobs -->
+
+            <!-- <div class="loadmorebutton text-center clearfix">
+                <a href="#" class="btn btn-primary" id="loadMore">Load More Jobs</a>
+            </div> -->
+            <!-- end loadmore -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <div class="section wb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="upload\about.jpg" alt="" class="img-responsive img-rounded">
+                </div>
+
+                <div class="col-md-6">
+                    <div class="section-title m20b text-left clearfix">
+                        <h4>Why Choose Us?</h4>
+                        <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
+                            nulla.
+                        </p>
+                    </div>
+
+                    <div class="about-widget">
+                        <h5>How do earn money?</h5>
+                        <ul class="customlist">
+                            <li>Donec venenatis ante a imperdiet maximus. Sed in justo porta, rutrum velit non, blandit lorem.</li>
+                            <li>Aenean pretium tortor eget nisl accumsan posuere. Aliquam congue metus eget quam scelerisque
+                                rhoncus.
+                            </li>
+                            <li>Donec vestibulum lectus a nisi vestibulum, sed vehicula est finibus. Proin facilisis tortor sed
+                                leo suscipit, quis pellentesque dui luctus.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <hr class="largeinvis1">
+
+            <div class="row whoweare">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="upload\about_01.jpg" alt="" class="img-responsive img-rounded">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="upload\about_02.jpg" alt="" class="img-responsive img-rounded">
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="about-widget">
+                        <h5>Who We Are?</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
+                            nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="upload\about_03.jpg" alt="" class="img-responsive img-rounded">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="upload\about_04.jpg" alt="" class="img-responsive img-rounded">
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="about-widget">
+                        <h5>What We Do?</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam
+                            nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <div class="section-title text-center clearfix">
+                <h4>Looking for Experts?</h4>
+                <hr>
+                <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
+                    iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+            </div>
+
+            <div class="row freelancer-list">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_09.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Jenny Lisbon</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>Graphic Designer</small>
+                                </li>
+                                <li>
+                                    <small>21 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_08.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Amanda Martin</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>Blogger (Article Writer)</small>
+                                </li>
+                                <li>
+                                    <small>33 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_07.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Semanta Klores</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>Web Developer</small>
+                                </li>
+                                <li>
+                                    <small>51 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_06.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Martin Ands</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>Web Anaylzer</small>
+                                </li>
+                                <li>
+                                    <small>77 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_05.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Seden Golcek</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>Web Designer</small>
+                                </li>
+                                <li>
+                                    <small>12 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="freelancer-wrap row-fluid clearfix">
+                        <div class="col-md-3 text-center">
+                            <div class="post-media">
+                                <img class="img-responsive" src="upload\testi_04.png" alt="">
+                            </div>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-9">
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <h4>
+                                <a href="#">Aziz Martines</a>
+                            </h4>
+                            <ul class="list-inline">
+                                <li>
+                                    <small>SEO Expert</small>
+                                </li>
+                                <li>
+                                    <small>42 Jobs Done</small>
+                                </li>
+                            </ul>
+                            <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed
+                                quam nulla mauris iaculis.</p>
+                        </div>
+                        <!-- end col -->
+                        <a href="#" class="btn btn-primary">
+                            <span class="oi" data-glyph="link-intact"></span>
+                        </a>
+                    </div>
+                    <!-- end freelancer-wrap -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+            <div class="loadmorebutton margintop text-center clearfix">
+                <a href="#" class="btn btn-default">View All Freelancers</a>
+            </div>
+            <!-- end loadmore -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <style>
+        #JobAlert input {
+            margin-bottom: 0px !important;
+        }
+    </style>
+    <!-- create job alert -->
+    <div id="JobAlert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0 text-center">Tell Us What Kind of Job you want?</h4>
+                </div>
+                <div class="modal-body submit-form">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="CreateJobAlert" ng-form="CreateJobAlert" name="CreateJobAlert" style="padding: 20px !Important"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.JobalertName.$invalid && !CreateJobAlert.JobalertName.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlytext" id="JobalertName" name="JobalertName" ng-model="JobalertName"
+                                        placeholder="Name of Job Alert" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.skills.$invalid && !CreateJobAlert.skills.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlytext" id="skills" name="skills" ng-model="skills" placeholder="Skills"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.location.$invalid && !CreateJobAlert.location.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlytext" id="location" name="location" ng-model="location" placeholder="Location"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.MinExp.$invalid && !CreateJobAlert.MinExp.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlynumber" id="MinExp" name="MinExp" ng-model="MinExp" placeholder="Min Experience"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.MaxExp.$invalid && !CreateJobAlert.MaxExp.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlynumber" id="MaxExp" name="MaxExp" ng-model="MaxExp" placeholder="Max Experience"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.salary.$invalid && !CreateJobAlert.salary.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlynumber" id="salary" name="salary" ng-model="salary" placeholder="Salary"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.industry.$invalid && !CreateJobAlert.industry.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlytext" id="industry" name="industry" ng-model="industry" placeholder="Industry"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <select id="alertpreference" class="form-control">
+                                        <option value="Select alert Preference">Select alert Preference</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label id="errormsg" class="help-block" style="color: #a94442"></label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="div_success" style="padding: 20px !Important; display:none">
+                        <div class="text-center">
+                            <img src="assets/images/checkmark.ico" style="width:30%" />
+                            <h4>Job alert created Successfully!</h4>
+                            <p>We will sen you the job relevant to your job alert!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info waves-effect waves-light" ng-click="create_JobAlert(CreateJobAlert.$valid)">Create Job Alert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+
+    <div id="ProjectApply" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0 text-center">Bidd Description</h4>
+                </div>
+                <div class="modal-body submit-form">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="Bidding" ng-form="Bidding" name="Bidding" style="padding: 20px !Important"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : Bidding.biddamount.$invalid && !Bidding.biddamount.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlynumber" id="biddamount" name="biddamount" ng-model="biddamount" placeholder="Bidd amount"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : Bidding.biddesr.$invalid && !Bidding.biddesr.$pristine }">
+                                    <textarea type="text" class="form-control" ng-pattern="onlytext" id="biddesr" name="biddesr" ng-model="biddesr" placeholder="Description"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label id="errormsgg" class="help-block" style="color: #a94442"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect waves-light" ng-click="applytoproject(Bidding.$valid)">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="snackbar">Some text some message..</div>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script>
+
+        setTimeout(function () {
+            // $("#Serach_Projlocation").selectpicker('refresh');
+            $("#ProjectType").selectpicker('refresh');
+            // $("#Serach_joblocation").selectpicker('refresh');
+            // $("#joblocation").selectpicker('refresh');
+            $("#jobindustry").selectpicker('refresh');
+        }, 5000);
+
+        $(document).ready(function () {
+            $('#JobAlert input').focus(function (index) {
+                document.getElementById('errormsg').innerHTML = "";
+            });
+            $('#carousel-example-generic').carousel({
+                interval: false
+            });
+        });
+
+        $(document).ready(function () {
+            $("#DefaultSearch .input-group, .input-groupp").hover(function (index) {
+                $("#DefaultSearch .input-group, .input-groupp, #DefaultSearch .bootstrap-select").css('border', 'none');
+            });
+            $("#AdvanceSearch .cstm").hover(function (index) {
+                $("#AdvanceSearch .cstm, #AdvanceSearch .bootstrap-select").css('border', 'none');
+            });
+
+            $("#projectSearch .input-group, .input-groupp").hover(function (index) {
+                $("#projectSearch .input-group, .input-groupp, #projectSearch .bootstrap-select").css('border', 'none');
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function call() {
+            var places = new google.maps.places.Autocomplete(document.getElementById('Serach_joblocation'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                // var place = places.getPlace();
+                // var address = place.formatted_address;
+                // var latitude = place.geometry.location.lat();
+                // var longitude = place.geometry.location.lng();
+                // var mesg = "Address: " + address;
+                // mesg += "\nLatitude: " + latitude;
+                // mesg += "\nLongitude: " + longitude;
+                // alert(mesg);
+            });
+        }
+
+        function call1() {
+            var places1 = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
+            google.maps.event.addListener(places1, 'place_changed', function () {
+            });
+        }
+
+        function call2() {
+            var places2 = new google.maps.places.Autocomplete(document.getElementById('Serach_Projlocation'));
+            google.maps.event.addListener(places2, 'place_changed', function () {
+            });
+        }
+
+        $("#avnce").click(function () {
+            $("#searchdiv").toggle();
+        });
+
+    </script>

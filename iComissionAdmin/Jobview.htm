@@ -1,0 +1,945 @@
+﻿<style>
+    td {
+        text-align: left !important;
+    }
+</style>
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+<div class="container" ng-controller="JobviewController" id="JobviewController" ng-init="applyCandidate()">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-sm-5 col-md-5 col-xs-12 text-left">
+                                <h3 ng-click="viewjobsingle()">Job Title {{JobTitle}}</h3>
+                                <h5><b>Posted Date: </b>13/09/2017</h5>
+                                <hr>
+                                <div class="row">
+                                <div class="col-md-4 col-sm-12 col-xs-12 text-center"><a style="width: 50%; text-align: center; font-size: 20px" href ng-click="viewdescription()"><i class="ion-information-circled"></i><p style="font-size: 16px">Description</p></a></div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 text-center"><a style="width: 50%; text-align: center; font-size: 20px" href ng-click="deletejob()"><i class="ion-trash-a"></i><p style="font-size: 16px">Delete</p></a></div>
+                            </div>
+                                
+                            </div>
+
+
+                            <div class="col-sm-4 col-md-4 col-xs-12 text-center">
+                                <h6><b>Applied Candidates</b></h6>
+                                <p><span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="appliedcount">0</span></p>
+                                <hr>
+                                <h6><b>Selected Candidates</b></h6>
+                                <p><span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="selectedcount">0</span></p>
+                            </div>
+
+                            <div class="col-sm-3 col-md-3 col-xs-12 text-center">
+                                <a><i class="ion-android-textsms fa-5x" aria-hidden="true" style="color: #292b2c"></i>
+                                    <br/>
+                                    <p><span class="badge badge-pink noti-icon-badge" style="font-size: 30px;">4</span></p>
+                                </a>
+                                    
+                            </div>
+
+                            <!-- <div class="col-sm-3 text-left">
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+
+                                        <button type="button" id="BtnID_EditJob" onclick="show(this.id)" class="btn btn-info btn-rounded waves-effect waves-light"
+                                            style="width: 100%">Edit Job</button>
+
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%">Message &nbsp;&nbsp;
+                                            <span class="badge badge-pill badge-pink">7</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%">Delete Job</button>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%">Status</button>
+                                    </div>
+                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%" ng-click="applyCandidate()">
+                                        Candidate list </button>
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%" ng-click="jobdescription()">Job Description</button>
+
+                                    </div>
+                                </div>
+                                <div class="clearfix">&nbsp;</div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wizard with Validation -->
+    <div id="maindiv" class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <form id="basic-form" action="#">
+                    <div>
+                        <h3>Interested Candidates</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-box">
+                                        <h4 class="header-title m-t-0 text-center">
+                                            <b>List Of Candidates</b>
+                                        </h4>
+                                        <div class="table-responsive">
+                                            <table id="datatable" class="table table-hover mails m-0 table table-actions-bar">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Candidate Name</th>
+                                                        <th>Action</th>
+                                                        <th data-checkbox="true">
+                                                            <input type="checkbox" id="checkAll" ng-click="selectedcandidatelist()">
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="active" ng-repeat="x in ApplyCandiateList">
+                                                        <td>
+                                                            <img src="{{x.ProfileImage}}" alt="img" title="contact-img" class="rounded-circle thumb-sm">
+                                                        </td>
+                                                        <td>
+                                                            {{x.UserEncodedName}}***
+                                                            <div class="row text-muted">
+                                                                <div class="col-md-3">
+                                                                    <label class="text-left text-sucess">{{x.JobSeekerType}}</label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="pull-left text-info">CTC: {{x.Salary}}&nbsp;
+                                                                        <i class="ion-social-usd"></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label class="pull-left text-warning">Experience: {{x.TotalExp_Year}}.{{x.TotalExp_Month}}</label>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#ViewProfile" class="table-action-btn btn-info" title="View Profile" ng-click="viewcandidateProfile(x.JobSeekerID)">
+                                                                <i class="ion-eye"></i>
+                                                            </a>
+                                                            <a href class="table-action-btn btn-pink" title="Select Candidate" ng-click="selectcandidate()">
+                                                                <i class="ion-checkmark-round"></i>
+                                                            </a>
+
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="checkItem" id="checkItem" ng-click="selectedcandidatelist()" value="{{x.JobSeekerID}}">
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Interview Schedule</h3>
+                        <section>
+                            <div class="row">
+                                <style>
+                                    #SelectedCandiateList ul>li {
+                                        padding: 0 11px !important;
+                                    }
+
+                                    #SelectedCandiateList .card-block {
+                                        padding: 0.30rem 0.80rem !important
+                                    }
+                                </style>
+                                <div id="SelectedCandiateList" class="col-sm-4 col-lg-4 col-xs-12" ng-repeat="Candidate in SelectedCandiateList">
+                                    <div class="card m-b-20">
+                                        <div class="card-block">
+                                            <h4 class="card-title font-18 mt-0">Name: {{Candidate.FirstName}}</h4>
+                                            <p class="card-text">
+                                                <b>Location: </b>{{Candidate.Location}}</p>
+                                            <p class="card-text">
+                                                <b>Contact: </b> {{ Candidate.Contact | limitTo:6 }}XXXX</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" ng-show="Candidate.JobSeekerType == 'Experience'">
+                                                <b>Experience: </b> {{Candidate.TotalExp_Year}} - {{Candidate.TotalExp_Month}}
+                                                yrs</li>
+                                            <li class="list-group-item" ng-show="Candidate.JobSeekerType == 'Freshers'">
+                                                <b>Experience: </b> Freshers</li>
+                                            <li class="list-group-item">
+                                                <b>Email: </b>{{Candidate.Email | limitTo: 5 }}XXXX.com</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" id="BtnID_createInterview" class="btn btn-info btn-rounded waves-effect waves-light pull-left" data-toggle="modal" data-target="#ScheduleMail">
+                            Create Interview Schedule </button>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="jobdescription" class="row" style="display: none">
+        <div class="col-sm-12">
+            <div class="card-box" ng-repeat="x in jobdetails">
+                <h4>Job Details</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>
+                            <b> Job Description </b> {{x.JobDescription}}</h5>
+                        <h5>
+                            <b> FunctionalArea </b> {{x.JobFunctionalArea}}</h5>
+                        <h5>
+                            <b> Industry </b> {{x.JobIndustry}}</h5>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h5>
+                            <b>No Of Vacancy</b> {{x.NoOfVacancy}} </h5>
+                        <h5>
+                            <b>Location</b> {{x.JobLocation}}</h5>
+                        <h5>
+                            <b>Qaulifications</b> {{x.UGQual}},{{x.PGQual}}</h5>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>
+                            <b>Experience</b> {{x.MinExp}}-{{x.MaxExp}} in Year</h5>
+
+                        <h5>
+                            <b>Salary</b> {{x.MinSal}}-{{x.MaxSal}} in Lakh</h5>
+
+                        <h5>
+                            <b>Skill</b> {{x.Skillset}} </h5>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h5>
+                            <b>Company Name</b> {{x.CompanyName}}</h5>
+                        <h5>
+                            <b>Company WebSite</b> {{x.CompanyWebSite}} </h5>
+                        <h5>
+                            <b>Company Address</b> {{x.CompanyAddress}} </h5>
+                        <h5>
+                            <b>About Company</b> {{x.AboutCompany}} </h5>
+                        <h5>
+                            <b>Contact Person Name</b> {{x.ContactPersonName}} </h5>
+                        <h5>
+                            <b>Contact Person Ph No</b> {{x.ContactPersonPhNo}} </h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="edit_job" class="row" style="display: none">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <h4 class="m-t-0 header-title">
+                    <b>Edit Job</b>
+                </h4>
+                <!--<p class="text-muted m-b-30 font-13">
+                        Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+                    </p>-->
+                <form id="wizard-validation-form" action="#">
+                    <div>
+                        <h3>Job Details</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label class="control-label " for="userName2">Job Title/Designation *</label>
+                                    <div class="">
+
+                                        <input class="required form-control" id="jobtitle" ng-model="jobtitle" name="jobtitle" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="control-label " for="password2"> Number of vacancies </label>
+                                    <div class="">
+                                        <input id="vacancies" name="vacancies" type="text" ng-model="vacancies" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="control-label " for="password2"> Job Description *</label>
+                                    <div id="jobdesc" class="summernote">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="control-label " for="confirm2">Keywords *</label>
+                                <!-- <div class="">
+                                    <input id="Keywords" name="Keywords" ng-model="Keywords" type="text" class="required form-control">
+                                </div> -->
+                                <tags-input ng-model="skillSet" display-property="SkillSetName" placeholder="Add Skill" replace-spaces-with-dashes="false">
+                                        <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                            template="my-custom-template1"></auto-complete>
+                                    </tags-input>
+                            </div>
+
+                            <label class="control-label" for="confirm2">Work Experience *</label>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <select class="required form-control" id="minexp" name="minexp" data-style="btn-white">
+                                        <option selected="selected" value="">-- Minimum --
+                                            <option value="0">0
+                                                <option value="1">1
+                                                    <option value="2">
+                                                        2
+                                    </select>
+                                </div>
+                                <div class="col-sm-1" align="center">
+                                    to
+                                </div>
+                                <div class="col-sm-5 pull-left">
+                                    <select class="required form-control" id="maxexp" name="maxexp" data-style="btn-white">
+                                        <option selected="selected" value="">-- -Maximun --
+                                                <option value="0">0
+                                                        <option value="1">1
+                                                            <option value="2">
+                                                                2
+                                    </select>
+                                </div>
+                            </div>
+
+                            <label class="control-label" for="confirm2">CTC *</label>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <select class="required form-control" id="currency" name="currency" data-style="btn-white">
+                                        <option value="">-- Currency --
+                                            <option>Rs
+                                                <option selected="selected">$
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="required form-control" id="minsalary" name="minsalary" data-style="btn-white">
+                                        <option selected="selected" value="">-- Minimum Salary--
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">
+                                                        3
+                                    </select>
+                                </div>
+                                <div class="col-sm-1" align="center">
+                                    to
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="required form-control" id="maxsalary" name="maxsalary" data-style="btn-white">
+                                        <option selected="selected" value="">-- -Maximun Salary--
+                                                <option value="1">1
+                                                        <option value="2">2
+                                                            <option value="3">
+                                                                3
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label class="control-label " for="password2"> Other Salary Details </label>
+                                    <div class="">
+                                        <input id="saldetails" name="saldetails" type="text" ng-model="saldetails" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label" for="confirm2">Job Location (*)</label>
+                                    <!-- <select class="required selectpicker" id="joblocation" name="joblocation" data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">-- Job Locations --
+                                            <option>Pune
+                                                <option>Mumbai
+                                                    <option>
+                                                        Bangolre
+                                    </select> -->
+                                    <input type="text" id="joblocation" onclick="call()" class="form-control" placeholder="Job location" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label" for="confirm2">Industry *</label>
+                                    <select class="required form-control" id="industry" name="industry" data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">-- -Industry --
+                                            <option value="IT hardware/software">IT hardware/software
+                                                <option value="Db Design">Db Design
+                                                    <option value="DB Architecture">
+                                                        DB Architecture
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label" for="confirm2">Functional area *</label>
+                                    <select class="required form-control" id="functionalarea" name="functionalarea" data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">-- -Maximun --
+                                            <option value="Programming">
+                                                Programming
+
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="form-group clearfix">
+                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                            </div>
+                        </section>
+                        <h3>Desired candidate profile</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-5 form-group">
+                                    <label class="control-label " for="userName2">Specify Qaulifications *</label>
+                                    <select class="required form-control" id="upspec" name="upspec" style="z-index: 9999" data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">-- -UG --
+                                            <option value="B.E">B.E
+                                                <option value="B.Sc">B.Sc
+
+                                    </select>
+                                    <!--<label class="control-label " for="password2"> Selected UG Qaulifications *</label>
+                                        <div class="tags-default">
+                                            <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                        </div>-->
+                                </div>
+
+                                <div class="col-md-1 form-group">
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="radio radio-info">
+                                        <input type="radio" name="radio" id="radio5" value="option5">
+                                        <label for="radio5">
+                                            and
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 form-group">
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="radio radio-info">
+                                        <input type="radio" name="radio" id="radio5" value="option5">
+                                        <label for="radio5">
+                                            or
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 form-group">
+                                    <label class="control-label " for="password2"> Specify PG Qaulifications *</label>
+                                    <select class="required form-control" id="pgspec" name="pgspec" data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">-- -PG --
+                                            <option value="M.tech">M.tech
+
+                                    </select>
+                                    <!--<label class="control-label " for="password2"> Selected PG Qaulifications *</label>
+                                        <div class="tags-default">
+                                            <input type="text" value="Amsterdam,Washington,Sydney" data-role="tagsinput" placeholder="add tags">
+                                        </div>-->
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                            </div>
+                        </section>
+                        <h3>Employer/recruiter details</h3>
+                        <section>
+                            <div class="form-group clearfix">
+                                <label class="control-label " for="userName2">Company Name *</label>
+                                <div class="">
+                                    <input class="required form-control" id="companynm" ng-model="companynm" name="companynm" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="control-label " for="userName2">About Company *</label>
+                                <div class="">
+                                    <textarea class="required form-control" id="aboutcompany" ng-model="aboutcompany" name="aboutcompany"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 clearfix">
+                                    <label class="control-label " for="userName2">Company Website </label>
+                                    <div class="">
+                                        <input class="form-control" id="companyweb" ng-model="companyweb" name="companyweb" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 clearfix">
+                                    <label class="control-label " for="userName2">Contact Person </label>
+                                    <div class="">
+                                        <input class="form-control" id="contactper" ng-model="contactper" name="contactper" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 clearfix">
+                                    <label class="control-label " for="userName2">Address </label>
+                                    <div class="">
+                                        <textarea class="form-control" id="address" ng-model="address" name="address"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 clearfix">
+                                    <label class="control-label " for="userName2">Contact Number </label>
+                                    <div class="">
+                                        <input class="form-control" id="contactnum" ng-model="contactnum" name="contactnum" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                            </div>
+                        </section>
+                        <h3>Step Final</h3>
+                        <section>
+                            <div class="form-group clearfix">
+                                <div class="col-lg-12">
+                                    <input id="acceptTerms-2" name="acceptTerms2" type="checkbox" class="required">
+                                    <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ScheduleMail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+        style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" ng-form="interviewschedule" naame="interviewschedule" novalidate>
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0">Create Interview Schedule</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group" ng-class="{ 'has-error' : interviewschedule.mailsubject.$invalid && !interviewschedule.mailsubject.$pristine }">
+                                <label for="field-1" class="control-label">Mail Subject</label>
+                                <input type="text" class="form-control" id="mailsubject" name="mailsubject" ng-model="mailsubject" placeholder="Mail Subject" required>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                                <div class="form-group" ng-class="{ 'has-error' : interviewschedule.skypeid.$invalid && !interviewschedule.skypeid.$pristine }">
+                                    <input type="text" class="form-control" id="skypeid" name="skypeid" ng-model="skypeid" placeholder="Your Skype ID" required>
+                                </div>
+                            </div> -->
+                        <div class="col-sm-12">
+                            <div id="MailBody" class="summernote">
+                                <div lang="EN-US" link="#0563C1" vlink="#954F72">
+                                    <div class="m_-8995023913745657632adM">
+                                    </div>
+                                    <div class="m_-8995023913745657632m_3281513960757668955WordSection1">
+                                        <span class="im">
+                                            <div class="m_-8995023913745657632adM">
+                                            </div>
+                                            <p class="MsoNormal">
+                                                <span style="color:rgb(31,73,125)">As discussed your F2F interview is scheduled on
+                                                </span>
+                                                <b>
+                                                    <span class="aBn" data-term="goog_1457043647" tabindex="0">
+                                                        <span class="aQJ">Day</span>
+                                                    </span>
+                                                    <span style="color:#002060"> </span>Date
+                                                    <sup>th</sup>
+                                                    <span style="color:#002060">
+                                                        &nbsp;Time:</span>0
+                                                    <span style="color:#002060">AM/PM</span>
+                                                </b>
+                                                <span style="color:rgb(0,32,96)"> for
+                                                </span>Job Post
+                                                <span style="color:rgb(0,32,96)"> role</span>.</p>
+                                            <p class="MsoNormal">
+                                                <span style="color:#1f497d">Kindly find the details given below and revert back with your confirmation.</span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <span style="color:#1f497d">
+                                                    <u></u>&nbsp;
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <b>
+                                                    <span style="background:yellow">Person to Meet :</span>
+                                                </b>
+                                                <span style="background:yellow"> Person Name</span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <b>
+                                                    <span style="background:yellow">Date of Interview :</span>
+                                                </b>
+                                                <span style="background:yellow"> Date
+                                                    <sup>th</sup> Month year</span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <b>
+                                                    <span style="background:yellow">Time</span>
+                                                </b>
+                                                <span style="background:yellow"> :
+                                                    <span class="aBn" data-term="goog_1457043648" tabindex="0">
+                                                        <span class="aQJ">Time AM/PM</span>
+                                                    </span>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <span style="background:yellow">
+                                                    <br>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal" style="line-height:150%">
+                                                <b>
+                                                    <span lang="FR" style="color:#002060;background:yellow">Venue:
+                                                        <u></u>
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="line-height:150%">
+                                                <font color="#c00000" face="Arial, sans-serif">
+                                                    <span style="font-size:13.3333px;background-color:rgb(255,255,0)">Company Name</span>
+                                                </font>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <span style="color:rgb(51,51,51);font-family:Roboto;font-size:13px;background-color:rgb(255,255,0)">Company Address</span>
+                                                <b>
+                                                    <span style="font-size:9pt;font-family:Arial,sans-serif;color:black;background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-origin:initial;background-clip:initial">
+                                                        <span style="background-color:rgb(255,255,0)">,
+                                                        </span>
+                                                        <span style="background-color:yellow">
+                                                            <u></u>
+                                                            <u></u>
+                                                        </span>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black;background:yellow">City – Pin Code</span>
+                                                </b>
+                                                <b>
+                                                    <span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">
+                                                        <u></u>
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <u></u>&nbsp;</b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:black">
+                                                        <u></u>&nbsp;
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="m_-8995023913745657632m_3281513960757668955MsoPlainText">
+                                                <span style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#1f497d">Landmark: Near Landmark.
+                                                    <u></u>
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <span style="color:rgb(0,32,96)">Do visit the website before attending the interview.</span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <span style="color:rgb(31,73,125)">Note: Bring 3 months’ Salary Slip</span>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <u></u>&nbsp;&nbsp;</p>
+                                            <p class="MsoNormal">
+                                                <u></u>
+                                            </p>
+                                            <p class="MsoNormal">
+                                                <u></u>&nbsp;</p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <span lang="EN-IN" style="color:#595959">Regards,
+                                                    <u></u>
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                        </span>
+                                        <p class="MsoNormal" style="margin-top:1.0pt">
+                                            <img style="width:151px">
+                                            <br>
+                                        </p>
+                                        <span class="im">
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <u></u>
+                                                <u></u>
+                                                <span lang="EN-IN" style="color:#5f5f5f">
+                                                    <u></u>
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">Name –
+                                                    </span>
+                                                    <span style="color:#336699">Your post Name</span>
+                                                </b>
+                                                <span style="color:#1f497d">
+                                                    <u></u>
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:#c00000">Company Name
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">Company Address</span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:#c00000">
+                                                        <u></u>
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">City – Pincode
+                                                        <u></u>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">Ph No:&nbsp; Mobile Number</span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">Email:
+                                                    </span>
+                                                </b>
+                                                <b>
+                                                    <span style="color:blue">
+                                                        <span class="m_-8995023913745657632il">
+                                                            <a target="_blank">youremail@email.com</a></span>
+                                                    </span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <b>
+                                                    <span style="color:black">Website:
+                                                    </span>
+                                                </b>
+                                                <b>
+                                                    <span style="color:blue">
+                                                        <a target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://www.indecomm.net/&amp;source=gmail&amp;ust=1510985094007000&amp;usg=AFQjCNFQxbxVmgWr0kI8LypaDuvZzokoVw">www.companywebsite.com</a></span>
+                                                </b>
+                                                <b>
+                                                    <span style="color:white">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<wbr>&nbsp;&nbsp;&nbsp;
+                                                        &nbsp; &nbsp; &nbsp;</span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-right:.1in;margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt">
+                                                <b>
+                                                    <span style="color:white">
+                                                        <u></u>&nbsp;</span>
+                                                </b>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt;background:white">
+                                                <span lang="EN-IN" style="color:#595959">
+                                                    <u></u>&nbsp;
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                            <p class="MsoNormal" style="margin-top:1.0pt">
+                                                <span lang="EN-IN" style="font-size:10.0pt;color:#595959">This e-mail and any files transmitted with it are for the sole use of the intended
+                                                    recipient(s) and may contain confidential and privileged information. If
+                                                    you are not the intended recipient, please contact the sender by reply e-mail
+                                                    and destroy all copies of the original message. Any unauthorized&nbsp;review,
+                                                    use, disclosure, dissemination, forwarding, printing or copying of this email
+                                                    or any action taken in reliance on this e-mail is strictly prohibited and
+                                                    may be unlawful</span>
+                                                <span style="font-size:10.0pt">
+                                                    <u></u>
+                                                    <u></u>
+                                                </span>
+                                            </p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label id="errormsg" class="help-block" style="color: #a94442"></label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect waves-light" ng-click="SendInterviewScheduleToSelectedCandidate(interviewschedule.$valid)">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="cldashboard" style="display: none" href="#clientdashboard"></a>
+</div>
+
+<script>
+    function show(id) {
+        if (id == "BtnID_EditJob") {
+            document.getElementById("maindiv").style.display = "none";
+            document.getElementById("edit_job").style.display = "block";
+            document.getElementById("jobdescription").style.display = "none";
+
+        }
+    }
+</script>
+
+<script src="assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+<!--wizard initialization-->
+<script src="assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+<script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>
+
+<!-- Required datatable js -->
+<script src="assets\plugins\datatables\jquery.dataTables.min.js"></script>
+<script src="assets\plugins\datatables\dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets\plugins\datatables\dataTables.buttons.min.js"></script>
+<script src="assets\plugins\datatables\buttons.bootstrap4.min.js"></script>
+<script src="assets\plugins\datatables\jszip.min.js"></script>
+<script src="assets\plugins\datatables\pdfmake.min.js"></script>
+<script src="assets\plugins\datatables\vfs_fonts.js"></script>
+<script src="assets\plugins\datatables\buttons.html5.min.js"></script>
+<script src="assets\plugins\datatables\buttons.print.min.js"></script>
+<script src="assets\plugins\datatables\buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="assets\plugins\datatables\dataTables.responsive.min.js"></script>
+<script src="assets\plugins\datatables\responsive.bootstrap4.min.js"></script>
+
+<!-- XEditable Plugin -->
+<script src="assets\plugins\moment\moment.js"></script>
+<script type="text/javascript" src="assets\plugins\x-editable\js\bootstrap-editable.min.js"></script>
+<script type="text/javascript" src="assets\pages\jquery.xeditable.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<!-- Bootsrap table js -->
+<script src="assets\plugins\bootstrap-table\js\bootstrap-table.js"></script>
+<script src="assets\pages\jquery.bs-table.js"></script>
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+<!--<script type="text/javascript">
+    $(document).ready(function () {
+        $('#datatable').DataTable({
+            "ordering": false,
+            "bFilter": false,
+            "bLengthChange": false,
+            "buttons": ['copy', 'excel', 'pdf']
+        });
+
+        //table.buttons().container()
+        //        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+    });
+
+</script>-->
+<script>
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#datatable').DataTable();
+
+        //Buttons examples
+        var table = $('#datatable').DataTable({
+            "ordering": false,
+            "info": false,
+            "pageLength": 5,
+            "bFilter": false,
+            "bLengthChange": false,
+        });
+
+    });
+
+    jQuery(document).ready(function () {
+
+        $('.summernote').summernote({
+            height: 200,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+
+    });
+
+    function call(){
+            var places = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                // var place = places.getPlace();
+                // var address = place.formatted_address;
+                // var latitude = place.geometry.location.lat();
+                // var longitude = place.geometry.location.lng();
+                // var mesg = "Address: " + address;
+                // mesg += "\nLatitude: " + latitude;
+                // mesg += "\nLongitude: " + longitude;
+                // alert(mesg);
+            });
+        }
+
+</script>
+  <script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+  <script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>

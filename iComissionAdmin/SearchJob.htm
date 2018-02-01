@@ -1,0 +1,417 @@
+﻿<div class="container" ng-controller="SearchJobController" ng-init="GetJobList()">
+
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header-box">
+                <ol class="breadcrumb pull-right mb-0">
+                    <li class="breadcrumb-item"><a href="#Dashboard">Ubold</a></li>
+                    <li class="breadcrumb-item"><a href="#joblist">Job List</a></li>
+                </ol>
+                <h4 class="page-title">View Job</h4>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- search box -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="Keywords" ng-model="Keywords" placeholder="Enter Skill,company Name">
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <select class="required selectpicker" multiple="" data-selected-text-format="count > 5" id="Serach_joblocation" name="Serach_joblocation"
+                                data-live-search="true" data-style="btn-white">
+                                        <option selected="selected" value="">Job Locations
+                                        <option>Pune
+                                        <option>Mumbai
+                                        <option>Bangolre
+                                        
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <select id="Experience" class="form-control">
+                                    <option>Experience in Year</option>
+                                    <option>0</option> 
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <select id="Salary" class="form-control">
+                                        <option>Salary in Lakhs</option>
+                                        <option>0</option> 
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-white dropdown-toggle  waves-effect" data-toggle="dropdown" aria-expanded="false"> Date Posted <span class="caret"></span> </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                                    Past 24 Hours
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Past Week
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Past Month
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Any Time
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-5">
+
+                    </div>
+                    <div class="col-md-2">
+
+                        <div class="row">
+                            <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%" ng-click="serch_job()">Search </button>
+                            <br/><br/>
+                            <a href="" onclick="show_AdvanceSearch()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Advance Search</a>
+                            
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-2">
+                            <button type="button" class="btn btn-default btn-custom waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal" style="width: 100%">Create Job Alert</button>
+                            
+                            
+                    </div>
+
+                </div>
+
+
+                <div id="AdvanceSearch_div" class="row" style="display: none">
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-1" class="control-label">Kewords</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-1" placeholder="Skills">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-2" class="control-label">Location</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <select class="required selectpicker" multiple="" data-selected-text-format="count > 5" id="joblocation" name="joblocation"
+                                    data-live-search="true" data-style="btn-white">
+                                            <option selected="selected" value="">Job Locations
+                                            <option>Pune
+                                            <option>Mumbai
+                                            <option>Bangolre
+                                            
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-3" class="control-label">Industry</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-3" placeholder="Industry">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-4" class="control-label">Experience</label>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-4" placeholder="Experience">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="field-5" class="control-label">Expected Salary</label>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-5" placeholder="Salary">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Job Type</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <input type="radio" name="radioB1" value="All Jobs"> All Jobs &nbsp;&nbsp;
+                            <input type="radio" name="radioB1" value="Company Jobs"> Company Jobs &nbsp;&nbsp;
+                            <input type="radio" name="radioB1" value="Consultant Jobs"> Consultant Jobs &nbsp;&nbsp;
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Sort By</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <input type="radio" name="radioB2" value="Relevance"> Relevance &nbsp;&nbsp;
+                            <input type="radio" name="radioB2" value="Date"> Date &nbsp;&nbsp;
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class=" btn btn-secondary waves-effect" onclick="hide_AdvanceSearch()">Close</button>
+                            <button type="button" class="btn btn-info waves-effect waves-light" ng-click="Advanceserch_job()">Search</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Nodata_div" style="display: none">
+        <h4>no data found</h4>
+    </div>
+
+    <!-- job list -->
+    <div class="row" id="job_data">
+        <div class="col-sm-12">
+            <div class="card-box" ng-repeat="x in All_JobList">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>{{x.JobTitle}}({{x.MinExp}}-{{x.MaxExp}}Yr)</h3>
+                        <h6>{{x.JobPostDate}}</h6>
+                        <hr/>
+
+                        <h5>Job Location-{{x.JobLocation}}</h5>
+                        <br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%" ng-click="applytojob(x.JobPostID)"> Apply to Job </button>
+
+                    </div>
+                    <div class="col-md-2">
+                        <a href ng-click="getJobID(x.JobPostID)">
+                                    <button type="button" class=" pull-right btn btn-info btn-rounded waves-effect waves-light" style="width: 100%">Job Description</button>
+                        </a>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- end: col -->
+    </div>
+
+</div>
+
+<!-- create job alert -->
+<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title mt-0">Tell Us What Kind of Job you want?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="field-1" class="control-label">Kewords</label>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="field-1" placeholder="Skills">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="field-2" class="control-label">Location</label>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="field-2" placeholder="Location">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="field-3" class="control-label">Industry</label>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="field-3" placeholder="Industry">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="field-4" class="control-label">Experience</label>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="field-4" placeholder="Experience">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="field-5" class="control-label">Expected Salary</label>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="field-5" placeholder="Salary">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="field-7" class="control-label">Job Role</label>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group no-margin">
+                            <input type="text" class="form-control" id="field-7" placeholder="Job Role">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label for="field-7" class="control-label">Name of Job Alert</label>
+
+                            <input type="text" class="form-control" id="field-8" placeholder="Name of Job Alert">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" ng-click="create_JobAlert()">Create Job Alert</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+<script>
+    function show_AdvanceSearch() {
+        document.getElementById("AdvanceSearch_div").style.display = "block";
+    }
+    function hide_AdvanceSearch() {
+        document.getElementById("AdvanceSearch_div").style.display = "none";
+
+    }
+
+</script>
+
+<script src="assets\plugins\magnific-popup\js\jquery.magnific-popup.min.js"></script>
+<script src="assets\plugins\datatables\dataTables.bootstrap4.min.js"></script>
+
+
+<script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+
+
+
+<!--wizard initialization-->
+
+<!--summernote js-->
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+
+
+
+<script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+<script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>

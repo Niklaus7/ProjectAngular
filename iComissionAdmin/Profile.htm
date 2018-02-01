@@ -1,0 +1,244 @@
+<style>
+     .pac-container {
+                    z-index: 9999 !important;
+                }
+
+
+                #pac-input {
+                    background-color: #fff;
+                    margin-left: 12px;
+                    margin-top: 12px;
+                    text-overflow: ellipsis;
+                    width: 400px;
+                }
+                #pac-input {
+                    background-color: #fff;
+                    margin-left: 12px;
+                    margin-top: 12px;
+                    text-overflow: ellipsis;
+                    width: 400px;
+                }
+</style>
+<div class="container" ng-controller="ProfileController" ng-init="getmap()">
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header-box">
+                <ol class="breadcrumb pull-right mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">ProcStart</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Profile</a>
+                    </li>
+                </ol>
+                <h4 class="page-title">Profile</h4>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Wizard with Validation -->
+
+    <form role="form">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box" ng-form="OtherRegistration" name="OtherRegistration" novalidate>
+                    <h4><b>Company Details</b></h4>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CName.$invalid && !OtherRegistration.CName.$pristine }">
+                                <input type="text" class="form-control" ng-model="CName" ng-pattern="onlytext" name="CName" placeholder="Company Name" required> </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CEmail.$invalid && !OtherRegistration.CEmail.$pristine }">
+                                <input type="email" class="form-control" ng-model="CEmail" name="CEmail" placeholder="Comapny Email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAddress.$invalid && !OtherRegistration.CAddress.$pristine }">
+                                <input type="text" class="form-control" ng-model="CAddress" name="CAddress" placeholder="Company Address" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPhone.$invalid && !OtherRegistration.CPhone.$pristine }">
+                                <input type="text" class="form-control" ng-model="CPhone" ng-pattern="Mobilenumber" name="CPhone" placeholder="Compnay Phone"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CWebsite.$invalid && !OtherRegistration.CWebsite.$pristine }">
+                                <input type="text" class="form-control" ng-model="CWebsite" ng-pattern="onlytext" name="CWebsite" placeholder="Company Website"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CRegNo.$invalid && !OtherRegistration.CRegNo.$pristine }">
+                                <input type="text" class="form-control" ng-model="CRegNo" name="CRegNo" placeholder="Company Registration No" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CIndustry.$invalid && !OtherRegistration.CIndustry.$pristine }">
+                                <input type="text" class="form-control" ng-model="CIndustry" ng-pattern="onlytext" name="CIndustry" placeholder="Industry Type"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#MapModal">Office Location</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <label class="control-label " for="password2">
+                                    <b>About Company(*)</b>
+                                </label>
+                                <div id="aboutcompany" class="summernote">
+                                </div>
+                            </div>
+                        </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CLogo.$invalid && !OtherRegistration.CLogo.$pristine }">
+                                <label class="lblclass">Comapny Logo</label>
+                                <input type="file" class="form-control" id="CLogo" accept="image/*" name="CLogo" placeholder="Compnay Logo" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label class="lblclass">Incorporation Certificate</label>
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCertificate.$invalid && !OtherRegistration.CCertificate.$pristine }">
+                                <input type="file" class="form-control" id="CCertificate" accept=".pdf,.doc,.docx" ng-pattern="onlytext" name="CCertificate"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label class="lblclass">Incorporation Date</label>
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CDate.$invalid && !OtherRegistration.CDate.$pristine }">
+                                    <input type="date" class="form-control" ng-model="CDate" name="CDate" required>
+                                <!-- <md-datepicker ng-model="CDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4><b>Other Details</b></h4>
+                    <div class="clearfix">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCountry.$invalid && !OtherRegistration.CCountry.$pristine }">
+                                <input type="text" class="form-control" ng-model="CCountry" ng-pattern="onlytext" name="CCountry" placeholder="Country" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CState.$invalid && !OtherRegistration.CState.$pristine }">
+                                <input type="text" class="form-control" ng-model="CState" ng-pattern="onlytext" name="CState" placeholder="State" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPAN.$invalid && !OtherRegistration.CPAN.$pristine }">
+                                <input type="text" class="form-control" ng-model="CPAN" name="CPAN" placeholder="PAN No" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CTAN.$invalid && !OtherRegistration.CTAN.$pristine }">
+                                <input type="text" class="form-control" ng-model="CTAN" name="CTAN" placeholder="TAN No" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group has-error" style="margin-bottom: 0px">
+                        <label id="errormsg" class="help-block"></label>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <button class="btn btn-primary" style="margin-top: 0px" ng-click="GetOtherFileData(OtherRegistration.$valid)">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- io.cordova.myapp54413f -->
+    <div id="MapModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Office Location</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                                
+                            <div class="form-group">
+                                    <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="map_canvas" style="height: 300px; width: 100%"></div>
+                                                <input type="hidden" id="hidden_lat" ng-model="hidden_lat" value="" />
+                                                <input type="hidden" id="hidden_lang" ng-model="hidden_lang" value="" />
+                                                <input id="pac-input" data-validate="required" name="pac-input" class="controls form-control" type="text" placeholder="Search Box">
+    
+                                            </div>
+                                        </div>
+                               
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- End row -->
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+<script>
+    function initialize3() {
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('pac-input')),
+                 { types: ['(cities)'], componentRestrictions: { country: "in" } });
+           google.maps.event.addListener(autocomplete, 'place_changed', function () {
+           });
+        }
+
+        jQuery(document).ready(function () {
+
+            $('.summernote').summernote({
+                height: 150,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false                 // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+        
+</script>

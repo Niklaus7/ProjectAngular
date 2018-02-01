@@ -1,0 +1,428 @@
+<div class="container" ng-controller="ProjectPostController">
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header-box">
+                <ol class="breadcrumb pull-right mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Ubold</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Post Project</a>
+                    </li>
+                </ol>
+                <h4 class="page-title">Post Project</h4>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Wizard with Validation -->
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <h4 class="m-t-0 header-title">
+                    <b>Post Assignment</b>
+                </h4>
+                <form id="wizard-validation-form" action="#">
+                    <div>
+                        <h3>Assignment Information</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">
+                                            <b>Assignment Name(*)</b>
+                                        </label>
+                                        <input type="text" class="form-control" id="pName" parsley-trigger="change" required="" placeholder="Enter Assignment Name"
+                                            ng-model="projectName">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">
+                                            <b>Assignment Type(*)</b>
+                                        </label>
+                                        <input type="text" class="form-control" id="ptype" placeholder="Enter Assignment Type" ng-model="projectType" parsley-trigger="change"
+                                            required="">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-sm-6">
+                                    <label class="control-label " for="password2">
+                                        <b>Assignment Location(*)</b>
+                                    </label>
+                                    <div class="radio radio-pink">
+                                        <input type="radio" name="optradio" id="radio19" onclick="checkclick()" value="option9" checked>
+                                        <label for="radio19">
+                                            Same as office location
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label " for="password2">
+
+                                    </label>
+                                    <div class="radio radio-pink">
+                                        <input type="radio" name="optradio" ng-click="show()" id="radio20" value="option9">
+                                        <label for="radio20">
+                                            Pick location on map
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mapdiv" class="row" style="display: none">
+                                <div class="col-sm-12">
+                                    <div class="input-field animated fadeinright delay-2">
+                                        <div class="input-field animated fadeinright delay-2">
+                                            <input type="text" id="projectLocation" onclick="call()" class="form-control" placeholder="City" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="clearfix">&nbsp;</div>
+                                            <p class="text-danger" style="text-align:center">Drag marker to assignment location.</p>
+                                            <input id="pac-input" data-validate="required" name="pac-input" class="controls form-control" type="text" placeholder="Location">
+                                            <div id="map_canvas" style="width: 100%; height: 300px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label " for="password2">
+                                        <b>Job Description(*)</b>
+                                    </label>
+                                    <div id="projdesc" class="summernote">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Budget/Cost Details</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">
+                                            <b>Assignment Budget(*)</b>
+                                        </label>
+                                        <input type="text" class="form-control" id="pbudget" placeholder="Enter Assignment Budget" ng-model="projectBudget" parsley-trigger="change"
+                                            required="">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Timeline and Milestone</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <b>Assignment Duration</b>
+                                        </label>
+                                        <div>
+                                            <div class="input-daterange input-group" id="date-range">
+                                                <input type="text" class="form-control" name="start" ng-model="project_startDate" placeholder="Start Date" parsley-trigger="change"
+                                                    required="">
+                                                <span class="input-group-addon bg-custom text-white b-0">To</span>
+                                                <input type="text" class="form-control" name="end" ng-model="project_endDate" placeholder="End Date" parsley-trigger="change"
+                                                    required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <label>
+                                        <b>Assignment Milestone</b>
+                                    </label>
+                                    <div class="row">
+
+                                        <div class="col-md-2 text-center">
+                                            Milestone No.
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            Milestone Name
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            Milestone Schedule
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            Milestone Cost
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div id="NewMilestone_div">
+                                        <input type="hidden" id="hidden_Milestone" value="2">
+                                        <div class="row">
+                                            <div class="col-md-2 text-center">
+                                                <span>1</span>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <div class="form-group">
+
+                                                    <input type="text" class="form-control" id="MilestoneName_1" placeholder="Enter Milestone Name" required>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <div>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose" name="MilestoneDate_1">
+                                                        <span class="input-group-addon bg-custom b-0">
+                                                            <i class="md md-event-note text-white"></i>
+                                                        </span>
+                                                    </div>
+                                                    <!-- input-group -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="MilestoneBudget_1" placeholder="Enter Milestone Budget" required>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <table style="width: 100%">
+                                            <td style="width: 80%">
+                                                <label onclick="addNewMilestone()" style="color:#209eff" align="center">
+                                                    <a href=""> +Add Milestone</a>
+                                                </label>
+                                            </td>
+                                            <td style="width: 20%">
+                                                <label onclick="removeMilestone()" style="color:#209eff" align="center">
+                                                    <a href="">-Remove Milestone</a>
+                                                </label>
+                                            </td>
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Supporting Files</h3>
+                        <section>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label for="file_media"></label>
+                                        <label for="file_media" class="btn btn-primary">
+                                            Upload document
+                                        </label>
+                                        <input multiple type="file" onchange="javascript:updateList()" style="display:none" multiple type="file" class="form-control"
+                                            name="file" id="file_media">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <br />Selected files:
+                                        <div id="fileList"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-4">
+
+                                </div>
+                                <div class="col-md-8">
+                                    <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" ng-click="postProject()">Post Project</button>
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- End row -->
+<!--Form Wizard-->
+
+
+
+<script type="text/javascript" src="assets\plugins\parsleyjs\parsley.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form').parsley();
+    });
+
+</script>
+
+
+<script>
+    var btnproductlogo = $("#btnproductlogo"),
+        btnCrop = $("#btnCrop"),
+        submitButt = $("#Bid_createProject");
+
+    btnCrop.prop("disabled", true);
+    submitButt.prop("disabled", true);
+
+    btnproductlogo.on("click", function (e) {
+        btnCrop.prop("disabled", false);
+        btnCrop.on("click", function (e) {
+
+            submitButt.prop("disabled", false); // NOT a toggle
+
+
+        });
+    });
+
+</script>
+
+<script>
+    var output = document.getElementById('fileList');
+    output.innerHTML += '<li>' + "No file selected" + '</li>';
+    updateList = function () {
+        var input = document.getElementById('file_media');
+        var output = document.getElementById('fileList');
+        if (input.files.length == 0) {
+
+            output.innerHTML += '<li>' + "No file selected" + '</li>';
+        }
+        else {
+            output.innerHTML = '<ul>';
+            for (var i = 0; i < input.files.length; ++i) {
+
+                output.innerHTML += '<li>' + input.files.item(i).name + '</li>';
+
+            }
+            output.innerHTML += '</ul>';
+        }
+    }
+
+</script>
+
+
+<!-- addNewMilestone -->
+<script>
+    id = 2;
+    function addNewMilestone() {
+
+        if (id < 10) {
+            $('#NewMilestone_div').append('<content><div class="row">\
+                <div class="col-md-2 text-center">\
+                                    <span>'+ id + '</span>\
+                                </div>\
+                               \
+                                <div class="col-md-4 text-center">\
+                                    <div class="form-group">\
+                                                    \
+                                        <input type="text" class="form-control" id="MilestoneName_' + id + '"   placeholder="Enter Milestone Name"\
+                                            required>\
+                                                \
+                                    </div>\
+                                </div>\
+                                <div class="col-md-3 text-center">\
+                                    <div>\
+                                        <div class="input-group">\
+                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker-autoclose" name="MilestoneDate_' + id + '">\
+                                            <span class="input-group-addon bg-custom b-0"><i class="md md-event-note text-white"></i></span>\
+                                        </div>\
+                                        <!-- input-group -->\
+                                    </div>\
+                                </div>\
+                                <div class="col-md-3 text-center">\
+                                    <div class="form-group">\
+                                        <input type="text" class="form-control" id="MilestoneBudget_' + id + '"   placeholder="Enter Milestone Budget"\
+                                             required>\
+                                        \
+                                    </div>\
+                                </div>\
+                            </div></content>');
+
+            id++;
+        }
+        document.getElementById("hidden_Milestone").value = id;
+
+    }
+
+    function removeMilestone() {
+        if (id > 2) {
+            $('#NewMilestone_div').find('input').last().closest('content').remove();
+            id--;
+
+        }
+        document.getElementById("hidden_Milestone").value = id;
+    }
+
+</script>
+
+
+<script src="assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+
+<!--wizard initialization-->
+<script src="assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+<script src="assets\plugins\moment\moment.js"></script>
+<script src="assets\plugins\timepicker\bootstrap-timepicker.js"></script>
+<script src="assets\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js"></script>
+<script src="assets\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js"></script>
+<script src="assets\plugins\clockpicker\js\bootstrap-clockpicker.min.js"></script>
+<script src="assets\pages\jquery.form-pickers.init.js"></script>
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+<script>
+    jQuery(document).ready(function () {
+
+        $('.summernote').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+
+    });
+
+    function call() {
+        var places = new google.maps.places.Autocomplete(document.getElementById('projectLocation'));
+        google.maps.event.addListener(places, 'place_changed', function () {
+            // var place = places.getPlace();
+            // var address = place.formatted_address;
+            // var latitude = place.geometry.location.lat();
+            // var longitude = place.geometry.location.lng();
+            // var mesg = "Address: " + address;
+            // mesg += "\nLatitude: " + latitude;
+            // mesg += "\nLongitude: " + longitude;
+            // alert(mesg);
+        });
+    }
+</script>
+<script>
+    function call() {
+
+        var options = {
+            types: ['(cities)']
+        };
+
+        var input = document.getElementById('projectLocation');
+
+        var places = new google.maps.places.Autocomplete(input, options);
+        google.maps.event.addListener(places, 'place_changed', function () {
+
+        });
+    }
+
+    function checkclick() {
+        if ($('#radio19').prop('checked')) {
+            $("#mapdiv").hide();
+        }
+    }
+</script>

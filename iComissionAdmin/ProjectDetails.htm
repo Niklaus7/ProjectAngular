@@ -1,0 +1,186 @@
+﻿<div class="container" ng-controller="ProjectDetailsController" ng-init="getprojectdetails()">
+
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header-box">
+                <ol class="breadcrumb pull-right mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Ubold</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">eCommerce</a>
+                    </li>
+                    <li class="breadcrumb-item active">Product Detail</li>
+                </ol>
+                <h4 class="page-title">Product Detail</h4>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-box product-detail-box">
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12" ng-repeat="x in ProjectDetails">
+                            <div class="product-right-info">
+                                <b>Assignment Information: </b>
+                                <h4>
+                                    <b>{{x.ProjectName}}</b>
+                                </h4>
+                                <h2>
+                                    <b>{{x.ProjectBudget}}</b>
+                                </h2>
+
+                                <h5 class="m-t-20">
+                                    <b>Start Date: </b> {{x.ProjectStartDate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <b>End Date: </b> {{x.ProjectEndDate}}
+                                </h5>
+
+                                <h5 class="m-t-20">
+                                    <b>Company: </b> {{x.CompanyName}}
+                                </h5>
+
+                                <h5 class="m-t-20">
+                                    <b>Website: </b> {{x.CompanyURL}}
+                                </h5>
+                                <h5 class="m-t-20">
+                                    <b>Address: </b> {{x.CompanyRegisteredAddress}}
+                                </h5>
+                                <h5 class="m-t-20">
+                                    <b>Location: </b> {{x.ProjectLocation}}
+                                </h5>
+                                <h5 class="m-t-20">
+                                    <b>Website: </b> {{x.CompanyURL}}
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <b>Assignment Description: </b>
+                            <div class="clearfix">&nbsp;</div>
+                            <div id="assigndesc" style="overflow-x: auto; height: 350px"></div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <b>Assignment Location: </b>
+                            <div class="clearfix">&nbsp;</div>
+                            <div id="map" style="height: 350px; width: 100%"></div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="col-md-12 text-center" ng-repeat="x in ProjectDetails">
+                            <button type="button" class="btn btn-danger waves-effect waves-light m-l-10" ng-click="openmodal(x.ProjectPostID)">
+                                <span class="btn-label">
+                                    <i class="fa fa-check"></i>
+                                </span>Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="m-t-30">
+                    <div class="col-12">
+                        <h4 class="font-18">
+                            <b>Other Document:</b>
+                        </h4>
+                        <div class="table-responsive m-t-20">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="50%">Document</th>
+
+                                        <th width="50%"> Download</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td width="400"> File.txt</td>
+                                        <td>
+                                            <a href="/iComission/PHP/Project_Document/59e0a67f9a80f.jpg" class="table-action-btn btn-info" title="Download" download>
+                                                <i class="md md-file-download"></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <!--<tbody ng-repeat="y in x">
+                                    <tr>
+                                        <td width="400"> {{y.ProjectDocument}}</td>
+                                        <td>
+                                            Download
+                                        </td>
+                                    </tr>
+                                </tbody>-->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- end card-box/Product detai box -->
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+
+</div>
+<!-- container -->
+
+<div id="ProjectApply" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0 text-center">Bidd Description</h4>
+                </div>
+                <div class="modal-body submit-form">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="Bidding" ng-form="Bidding" name="Bidding" style="padding: 20px !Important"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : Bidding.biddamount.$invalid && !Bidding.biddamount.$pristine }">
+                                            <input type="text" class="form-control" ng-pattern="onlynumber" id="biddamount" name="biddamount" ng-model="biddamount"
+                                                placeholder="Bidd amount" required>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group" ng-class="{ 'has-error' : Bidding.biddesr.$invalid && !Bidding.biddesr.$pristine }">
+                                                <textarea type="text" class="form-control" ng-pattern="onlytext" id="biddesr" name="biddesr" ng-model="biddesr"
+                                                    placeholder="Description" required></textarea>
+                                            </div>
+                                </div>
+                            </div>
+
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label id="errormsgg" class="help-block" style="color: #a94442"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-info waves-effect waves-light" ng-click="applytoproject(Bidding.$valid)">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var resizefunc = [];
+
+</script>
+
+<script src="assets\plugins\smoothproducts\js\smoothproducts.min.js"></script>
+<script type="text/javascript">
+    // wait for images to load
+    $(document).ready(function () {
+        $('.sp-wrap').smoothproducts();
+    });
+
+</script>

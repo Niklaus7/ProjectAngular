@@ -1,0 +1,379 @@
+﻿<div class="container" ng-controller="SearchProjectController" ng-init="getAllProject()">
+<style>
+ .md-padding {
+        padding: 6px !important;
+    }
+
+    md-autocomplete input:not(.md-input) {
+        background: #f3f6f9 !important
+    }
+
+    md-autocomplete.md-default-theme,
+    md-autocomplete {
+        background: #f3f6f9 !important
+    }
+
+    #cstmautocomplete .dropdown-menu,
+    #KeywordsAdauto .dropdown-menu {
+        width: 87% !important;
+    }
+
+</style>
+    <!-- Page-Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header-box">
+                <ol class="breadcrumb pull-right mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Ubold</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">eCommerce</a>
+                    </li>
+                    <li class="breadcrumb-item active">Products</li>
+                </ol>
+                <h4 class="page-title">Search Project</h4>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SECTION FILTER
+                                ================================================== -->
+    <!-- serach box -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <div class="row">
+
+                    <div class="col-md-3" id="cstmautocomplete">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="Keywords" ng-model="Keywords" placeholder="Assignment Name" typeahead="item for item in items1 | filter:$viewValue | limitTo:8">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <!-- <select class="required" multiple="" data-selected-text-format="count > 5" id="Serach_joblocation" name="Serach_joblocation"
+                                data-live-search="true" data-style="btn-white">
+                                <option selected="selected" value=""> Locations
+                                    <option ng-repeat="data in ProjectLocationList" value="{{data.ProjectLocation}}">{{data.ProjectLocation}}</option>
+                            </select> -->
+                            <input type="text" id="Serach_joblocation" onclick="call2()" class="form-control" placeholder="Job location" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select class="required" multiple="" data-selected-text-format="count > 5" id="ProjectType" name="ProjectType" data-live-search="true"
+                                data-style="btn-white">
+                                <option selected="selected" value="">Assignment Type</option>
+                                <option ng-repeat="data in ProjectTypeList" value="{{data.ProjectType}}">{{data.ProjectType}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <select id="Salary" style="width: 100%;" class="selectpicker">
+                                <option>Bidding Amount</option>
+                                <option value="Less than $500">
+                                    Less than $500</option>
+                                <option value="$501 to $5000">$501 to $5000</option>
+                                <option value="$5001-$10000">$5001-$10000</option>
+                                <option value="Above">Above</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-white dropdown-toggle  waves-effect" data-toggle="dropdown" aria-expanded="false"> Project Posted <span class="caret"></span> </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                                    Past 24 Hours
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Past Week
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Past Month
+                                    </label>
+                                </div>
+                                <div class="radio radio-info">
+                                    <input type="radio" name="radio" id="radio5" value="option5">
+                                    <label for="radio5">
+                                            Any Time
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                <br />
+
+                <div class="col-md-12 text-center">
+                    <a href ng-click="getAllProject()" class="pull-left">View All</a>
+                    <button type="button" class="btn btn-info waves-effect waves-light" ng-click="search_Project()">Search Assignment </button>
+
+                </div>
+
+
+                <div id="AdvanceSearch_div" class="row" style="display: none">
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-1" class="control-label">Kewords</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-1" placeholder="Skills">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-2" class="control-label">Location</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <select class="required selectpicker" multiple="" data-selected-text-format="count > 5" id="joblocation" name="joblocation"
+                                    data-live-search="true" data-style="btn-white">
+                                    <option selected="selected" value="">Job Locations
+                                        <option>Pune
+                                            <option>Mumbai
+                                                <option>Bangolre
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-3" class="control-label">Industry</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-3" placeholder="Industry">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="field-4" class="control-label">Experience</label>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-4" placeholder="Experience">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="field-5" class="control-label">Expected Salary</label>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="field-5" placeholder="Salary">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Job Type</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <input type="radio" name="radioB1" value="All Jobs"> All Jobs &nbsp;&nbsp;
+                            <input type="radio" name="radioB1" value="Company Jobs"> Company Jobs &nbsp;&nbsp;
+                            <input type="radio" name="radioB1" value="Consultant Jobs"> Consultant Jobs &nbsp;&nbsp;
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="control-label">Sort By</label>
+
+                        </div>
+                        <div class="col-md-10">
+                            <input type="radio" name="radioB2" value="Relevance"> Relevance &nbsp;&nbsp;
+                            <input type="radio" name="radioB2" value="Date"> Date &nbsp;&nbsp;
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+
+                        </div>
+                        <div class="col-md-8">
+                            <button type="button" class=" btn btn-secondary waves-effect" onclick="hide_AdvanceSearch()">Close</button>
+                            <button type="button" class="btn btn-info waves-effect waves-light" ng-click="Advanceserch_job()">Search</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end blog -->
+    <!-- main section -->
+    <div class="row m-b-15">
+        <div class="col-lg-12">
+            <div class="h5 m-0 text-right">
+                <!-- <label class="vertical-middle m-r-10">Sort By:</label> -->
+                <div class="btn-group vertical-middle" data-toggle="buttons">
+                    <label class="btn btn-default btn-md waves-effect active">
+                        <input type="radio" autocomplete="off" checked=""> Budget
+                    </label>
+                    <label class="btn btn-default btn-md waves-effect">
+                        <input type="radio" autocomplete="off"> Date
+                    </label>
+                    <label class="btn btn-default btn-md waves-effect">
+                        <input type="radio" autocomplete="off"> Name
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4 col-md-4 mobiles" ng-repeat="x in ProjectList">
+            <div class="blog-box-one">
+                <div class="post-info">
+                    <!-- <div class="date">
+                        <span class="day">16</span>
+                        <br>
+                        <span class="month">Mar</span>
+                    </div> -->
+
+                    <div>
+                        <a>
+                            <h4 class="text-overflow font-18 m-t-0">{{x.ProjectName}}</h4>
+                        </a>
+                        <!-- <div class="font-13">
+                            <span class="meta">Posted by James in
+                                <a href="#">
+                                    <b>Web Design</b>
+                                </a>
+                            </span>
+                        </div> -->
+                    </div>
+
+                    <div style="margin-top: 5px">
+                        <div class="font-13">
+                            <span class="meta pull-left">Location
+                                <a href="#">
+                                    <b>{{x.ProjectLocation}}</b>
+                                </a>
+                            </span>
+                            <span class="meta pull-left">Start Date
+                                <a href="#">
+                                    <b>{{x.ProjectStartDate}}</b>
+                                </a>
+                            </span>
+                            <span class="meta pull-right">End Date
+                                <a href="#">
+                                    <b>{{x.ProjectEndDate}}</b>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">&nbsp;</div>
+
+                    <p class="text-muted m-b-0">
+                        {{x.ProjectDesc | limitTo : 50}}...
+                    </p>
+
+                    <div class="row m-t-10">
+                        <div class="col-6 text-left">
+                            <a href class="btn btn-sm waves-effect btn-danger">
+                                <i class="fa fa-usd"></i> {{x.ProjectBudget}}</a>
+                        </div>
+                        <!-- <div class="col-6">
+                            <div class="m-t-10 blog-widget-action">
+                                <a href="javascript:void(0)">
+                                    <i class="mdi md-attach-money"></i>
+                                    <span>54</span>
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="mdi md-comment"></i>
+                                    <span>26</span>
+                                </a>
+                            </div>
+                        </div> -->
+                        <div class="col-6 text-right">
+                            <a class="btn btn-sm waves-effect btn-success" ng-click="getProjectID(x.ProjectPostID)">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- End row -->
+
+</div>
+
+
+<script src="assets\plugins\magnific-popup\js\jquery.magnific-popup.min.js"></script>
+<script src="assets\plugins\datatables\dataTables.bootstrap4.min.js"></script>
+
+
+<script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+
+
+
+<!--wizard initialization-->
+
+<!--summernote js-->
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<script>
+    setTimeout(function () {
+        // $("#Serach_joblocation").selectpicker('refresh');
+        $("#ProjectType").selectpicker('refresh');
+    }, 500);
+
+    function call2() {
+            var places2 = new google.maps.places.Autocomplete(document.getElementById('Serach_joblocation'));
+            google.maps.event.addListener(places2, 'place_changed', function () {
+            });
+        }
+</script>
+
+<script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+<script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>

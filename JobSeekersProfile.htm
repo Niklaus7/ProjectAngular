@@ -1,0 +1,1006 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    .post-padding {
+        margin-bottom: 0px !important;
+    }
+
+    .current:hover a,
+    .current:focus a {
+        background-color: transparent;
+        color: #fff !important;
+    }
+
+    .brand-pills>li>a {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .wizard>.steps .current a,
+    .wizard>.steps .current a:hover,
+    .wizard>.steps .current a:active {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .wizard>.actions a,
+    .wizard>.actions a:hover,
+    .wizard>.actions a:active {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .wizard>.content>.body label.error {
+        font-size: 13px !important;
+    }
+
+    .wizard>.steps .error a,
+    .wizard>.steps .error a:hover,
+    .wizard>.steps .error a:active {
+        background: #f36f24 !important;
+    }
+
+    .wizard.vertical>.steps {
+        width: 25% !important;
+    }
+
+    .wizard.vertical>.content {
+        width: 70% !important;
+    }
+
+    .submit-form textarea {
+        min-height: 112px !important;
+    }
+
+    .wizard>.content>.body label {
+        margin-bottom: 0px;
+        height: 40px !important;
+    }
+
+    .wizard>.content>.body label>span {
+        padding-top: 4px !important;
+    }
+    a{
+        max-height: 60px !important;
+        line-height: 1 !important;
+    }
+   /* Styles go here */
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:500px;
+    height:350px;
+  }
+  
+</style>
+
+<link rel="stylesheet" type="text/css" href="iComissionAdmin\assets\plugins\jquery.steps\css\jquery.steps.css">
+
+<link rel="stylesheet" type="text/css" href="iComissionAdmin\assets\plugins\jquery.steps\css\jquery.steps.css">
+
+<link href="iComissionAdmin\assets\css\icons.css" rel="stylesheet" type="text/css">
+
+<div ng-controller="JobSeekersProfileController" id="JobSeekersProfileController" ng-init="Check()">
+    <!-- Vertical Steps Example -->
+    <div class=" section lb">
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="card-box">
+
+                    <form id="wizard-vertical">
+                        <h3>Personal Details</h3>
+                        <section>
+
+                            <div class="content">
+                                <div class="post-padding">
+                                <a href class="btn btn-primary btn-sm" ng-click="skip()" style="margin-bottom: 20px;">Skip</a>
+                                    <br>
+                                    <div class="submit-form">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="required form-control" id="userName" name="userName" readonly placeholder="Name *" ng-model="name" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input type="text" class="form-control required" placeholder="DOB *" id="datepicker" ng-model="dob">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <textarea class="form-control required" id="fulladdr" name="fulladdr" ng-model="fulladdr" rows="2" placeholder="Address *"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="Contact" name="Contact" readonly placeholder="Contact *" ng-model="Contact" type="number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="location" onclick="call1()" placeholder="Cuurent Location *" name="location " ng-model="location"
+                                                            type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="email" name="email" readonly placeholder="Email *" ng-model="emailid" type="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <input type="file" name="file" id="profileImg" class="filestyle required" data-placeholder="Profile Picture">
+                                                    <div class="cropArea" style="display: none">
+                                                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                                          </div>
+                                                          <div style="display: none"><img ng-src="{{myCroppedImage}}" /></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label text-info" style="padding-left: 0px">(*) Mandatory</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end post-padding -->
+                            </div>
+                        </section>
+                        <h3>Education Details</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <select class="required form-control" id="HighestQualification" name="HighestQualification" data-style="btn-white">
+                                                        <option selected="selected" value="">Highest Qualification
+                                                            <option>BE
+                                                                <option>MTECH
+                                                                    <option>MBA
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="required form-control" id="Institutename" ng-model="InstituteName" placeholder="Institute Name" name="Institutename"
+                                                    type="text">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix">&nbsp;</div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <select class="required form-control" id="PassoutYr" name="PassoutYr" data-style="btn-white">
+                                                        <option selected="selected" value=""> Passout Year
+                                                            <option>1990
+                                                                <option>1991
+                                                                    <option>1992
+                                                                            <option>1993
+                                                                                    <option>1994
+                                                                                            <option>1995
+                                                                                                    <option>1996
+                                                                                                            <option>1997
+                                                                                                                    <option>1998
+                                                                                                                            <option>1999
+                                                                                                                                    <option>2000
+                                                                                                                                            <option>2001
+                                                                                                                                                    <option>2002
+                                                                                                                                                            <option>2003
+                                                                                                                                                                    <option>2004
+                                                                                                                                                                            <option>2005
+                                                                                                                                                                                    <option>2006
+                                                                                                                                                                                            <option>2007
+                                                                                                                                                                                                    <option>2008
+                                                                                                                                                                                                            <option>2010
+                                                                                                                                                                                                                    <option>2011
+                                                                                                                                                                                                                            <option>2012
+                                                                                                                                                                                                                                    <option>2013
+                                                                                                                                                                                                                                            <option>2014
+                                                                                                                                                                                                                                                    <option>2015
+                                                                                                                                                                                                                                                            <option>2016
+                                                                                                                                                                                                                                                                    <option>2017
+                                                                                                                                                                                                                                                                            <option>2018
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input class="required form-control" id="CPI" placeholder="Percentage/CPI" ng-model="CPI" name="CPI" type="text">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group clearfix">
+                                                    <input class="required" type="radio" name="radioB1" value="Full Time" checked> Full Time
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group clearfix">
+                                                    <input class="required" type="radio" name="radioB1" value="Part Time">Part Time
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group clearfix">
+                                                    <input class="required" type="radio" name="radioB1" value="Correspondence"> Correspondence
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Work Experience</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="form-group clearfix">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Are You?
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" class="required" name="radioB4" value="Freshers" onchange="show_message1()" checked>Freshers
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" class="required" name="radioB4" onchange="show_message1()" value="Experienced">Experienced
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix">&nbsp;</div>
+
+                                                <div id="ExperiencedDetails" class="form-group clearfix" style="display: none">
+                                                    <div id="addexp">
+                                                        <input type="hidden" id="hidden_newexp" value="1">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <select class="required form-control" id="expinyr_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Experience (Year)
+                                                                                <option>0
+                                                                                        <option>1
+                                                                                            <option>2
+                                                                                                <option>3
+                                                                                                        <option>4
+                                                                                                            <option>6
+                                                                                                                <option>7
+                                                                                                                    <option>8
+                                                                                                                        <option>9
+                                                                                                                            <option>10
+                                                                                                                                <option>11
+                                                                                                                                    <option>12
+                                                                                                                                        <option>13
+                                                                                                                                            <option>14
+                                                                                                                                                <option>15
+                                                                                                                                                    <option>16
+                                                                                                                                                        <option>17
+                                                                                                                                                            <option>18
+                                                                                                                                                                <option>19
+                                                                                                                                                                    <option>20
+                                                                                                                                                                        <option>21
+                                                                                                                                                                            <option>22
+                                                                                                                                                                                <option>23
+                                                                                                                                                                                    <option>24
+                                                                                                                                                                                        <option>25
+                                                                                                                                                                                            <option>26
+                                                                                                                                                                                                    <option>27
+                                                                                                                                                                                                            <option>28
+                                                                                                                                                                                                                    <option>29
+                                                                                                                                                                                                                            <option>30
+                                                                                                                                                                                                                                    <option>31
+                                                                                                                                                                                                                                            <option>32
+                                                                                                                                                                                                                                                    <option>33
+                                                                                                                                                                                                                                                            <option>34
+                                                                                                                                                                                                                                                                    <option>35
+                                                                                                                                                                                                                                                                            <option>36
+                                                                                                                                                                                                                                                                                    <option>37
+                                                                                                                                                                                                                                                                                            <option>38
+                                                                                                                                                                                                                                                                                                    <option>39
+                                                                                                                                                                                                                                                                                                            <option>40
+                                                                                                                                                                                                                                                                                                                    <option>41
+                                                                                                                                                                                                                                                                                                                            <option>42
+                                                                                                                                                                                                                                                                                                                                    <option>43
+                                                                                                                                                                                                                                                                                                                                            <option>44
+                                                                                                                                                                                                                                                                                                                                                    <option>45
+                                                                                                                                                                                                                                                                                                                                                            <option>46
+                                                                                                                                                                                                                                                                                                                                                                    <option>47
+                                                                                                                                                                                                                                                                                                                                                                            <option>48
+                                                                                                                                                                                                                                                                                                                                                                                    <option>49
+                                                                                                                                                                                                                                                                                                                                                                                            <option>50
+                                                                                                                                                                                                                                                                                                                                                                                                    <option>51
+                                                                                                                                                                                                                                                                                                                                                                                                            <option>52
+                                                                                                                                                                                                                                                                                                                                                                                                                    <option>53
+                                                                                                                                                                                                                                                                                                                                                                                                                            <option>54
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>55
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>56
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>57
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>58
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>59
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>60
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <select class="required form-control" id="expinmonth_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Experience (month)
+                                                                            <option>0
+                                                                                <option>1
+                                                                                    <option>3
+                                                                                            <option>4
+                                                                                                    <option>5
+                                                                                                        <option>6
+                                                                                                                <option>7
+                                                                                                                        <option>8
+                                                                                                                            <option>9
+                                                                                                                                    <option>10
+                                                                                                                                            <option>11
+                                                                                                                                                <option>12
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <input class="required form-control" id="Salary_0" placeholder="Cuurent Annual Salary" ng-model="Salary" name="Salary" type="text">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Job Title" id="jobtitle_0" ng-model="jobtitle" name="jobtitle" type="text">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Job Descripion" id="JobDescripion_0" ng-model="JobDescripion" name="JobDescripion"
+                                                                    type="text">
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Company Name" id="companyname_0" ng-model="companyname" name="companyname"
+                                                                    type="text">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <!-- <select class="required form-control" id="Industry_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Industry
+                                                                            <option>Industry0
+                                                                                <option>Industry1
+                                                                                    <option>Industry2
+
+                                                                    </select> -->
+                                                                    <input class="required form-control" placeholder="Industry" id="Industry_0" name="currency" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <!-- <select class="required form-control" id="Department_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Department
+                                                                            <option>Department0
+                                                                                <option>Department1
+                                                                                    <option>Department3
+
+                                                                    </select> -->
+                                                                    <input class="required form-control" placeholder="Department" id="Department_0" name="currency" type="text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="monthfrom_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Month
+                                                                            <option>Jan
+                                                                                <option>Feb
+                                                                                    <option>Mar
+                                                                                        <option>Apr
+                                                                                            <option>May
+                                                                                                <option>Jun
+                                                                                                    <option>Jul
+                                                                                                        <option>Aug
+                                                                                                            <option>Sep
+                                                                                                                <option>Oct
+                                                                                                                    <option>Nov
+                                                                                                                        <option>Dec
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="yearFrom_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Year
+                                                                            <option>2017
+                                                                                <option>2016
+                                                                                    <option>2015
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="monthto_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Month
+                                                                            <option>Jan
+                                                                                <option>Feb
+                                                                                    <option>Mar
+                                                                                        <option>Apr
+                                                                                            <option>May
+                                                                                                <option>Jun
+                                                                                                    <option>Jul
+                                                                                                        <option>Aug
+                                                                                                            <option>Sep
+                                                                                                                <option>Oct
+                                                                                                                    <option>Nov
+                                                                                                                        <option>Dec
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="yearto_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Year
+                                                                            <option>2017
+                                                                                <option>2016
+                                                                                    <option>2015
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button onclick="addnewexp()" align="center" class="btn btn-primary">
+                                                                <i class="fa fa-plus"></i> Add Experience
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="FreshersDetails" class="form-group clearfix" style="display: none">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Key Skill</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="form-group clearfix">
+
+                                            <div id="newskill">
+                                                <input type="hidden" id="hidden_newskill" value="1">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label style="width: 100%;">Key Skill/Experience</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="">
+                                                            <select id="skill_0" class="required form-control" data-style="btn-white">
+                                                                    <option selected value="Select Role">skill</option>
+                                                                    <option ng-repeat="skill in skills" value="{{skill.SkillSetName}}" >{{skill.SkillSetName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="">
+                                                            <select class="required form-control" id="skillexp_0" name="skillexp" data-style="btn-white">
+                                                                <option selected="selected" value="">Experience in Year
+                                                                        <option>0
+                                                                                <option>1
+                                                                                    <option>2
+                                                                                        <option>3
+                                                                                                <option>4
+                                                                                                    <option>6
+                                                                                                        <option>7
+                                                                                                            <option>8
+                                                                                                                <option>9
+                                                                                                                    <option>10
+                                                                                                                        <option>11
+                                                                                                                            <option>12
+                                                                                                                                <option>13
+                                                                                                                                    <option>14
+                                                                                                                                        <option>15
+                                                                                                                                            <option>16
+                                                                                                                                                <option>17
+                                                                                                                                                    <option>18
+                                                                                                                                                        <option>19
+                                                                                                                                                            <option>20
+                                                                                                                                                                <option>21
+                                                                                                                                                                    <option>22
+                                                                                                                                                                        <option>23
+                                                                                                                                                                            <option>24
+                                                                                                                                                                                <option>25
+                                                                                                                                                                                    <option>26
+                                                                                                                                                                                            <option>27
+                                                                                                                                                                                                    <option>28
+                                                                                                                                                                                                            <option>29
+                                                                                                                                                                                                                    <option>30
+                                                                                                                                                                                                                            <option>31
+                                                                                                                                                                                                                                    <option>32
+                                                                                                                                                                                                                                            <option>33
+                                                                                                                                                                                                                                                    <option>34
+                                                                                                                                                                                                                                                            <option>35
+                                                                                                                                                                                                                                                                    <option>36
+                                                                                                                                                                                                                                                                            <option>37
+                                                                                                                                                                                                                                                                                    <option>38
+                                                                                                                                                                                                                                                                                            <option>39
+                                                                                                                                                                                                                                                                                                    <option>40
+                                                                                                                                                                                                                                                                                                            <option>41
+                                                                                                                                                                                                                                                                                                                    <option>42
+                                                                                                                                                                                                                                                                                                                            <option>43
+                                                                                                                                                                                                                                                                                                                                    <option>44
+                                                                                                                                                                                                                                                                                                                                            <option>45
+                                                                                                                                                                                                                                                                                                                                                    <option>46
+                                                                                                                                                                                                                                                                                                                                                            <option>47
+                                                                                                                                                                                                                                                                                                                                                                    <option>48
+                                                                                                                                                                                                                                                                                                                                                                            <option>49
+                                                                                                                                                                                                                                                                                                                                                                                    <option>50
+                                                                                                                                                                                                                                                                                                                                                                                            <option>51
+                                                                                                                                                                                                                                                                                                                                                                                                    <option>52
+                                                                                                                                                                                                                                                                                                                                                                                                            <option>53
+                                                                                                                                                                                                                                                                                                                                                                                                                    <option>54
+                                                                                                                                                                                                                                                                                                                                                                                                                            <option>55
+                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>56
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>57
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>58
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>59
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>60
+
+
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button onclick="addnewskill()" align="center" class="btn btn-primary">
+                                                        <i class="fa fa-plus"></i> Add More
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                        <h3>Upload Resume</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="form-group clearfix">
+                                            <div class="col-lg-12">
+                                                <div class="form-group clearfix">
+                                                    <label class="control-label">Upload Resume</label>
+                                                    <input type="file" name="file" id="file_media" class="filestyle required" data-placeholder="Upload Resume">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                    <!-- End #wizard-vertical -->
+                    <a class="hidden" onclick="GoToHome()" id="Main"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End row -->
+</div>
+
+<script src="iComissionAdmin\assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="iComissionAdmin\assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+
+<!--wizard initialization-->
+<script src="iComissionAdmin\assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+<script src="iComissionAdmin\assets\plugins\bootstrap-filestyle\js\bootstrap-filestyle.min.js" type="text/javascript"></script>
+
+<!-- <script src="iComissionAdmin\assets\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js"></script> -->
+
+<!-- ng tag input -->
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<!-- ng tag input -->
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<!-- add new skill -->
+<script>
+
+    function GoToHome() {
+        window.location.href = "Index.html";
+    }
+
+    id = 1;
+
+    function addnewskill() {
+
+        if (id < 30) {
+            //   alert(id);
+            $('#newskill').append(
+                '<content> <div class="row"><div class="col-md-5"><div class=""><select class="required" id="skill_' +
+                id +
+                '" name="skill" data-style="btn-white"> <option selected="selected" value="">skill<option>java<option>c<option>c++</select> </div> </div><div class="col-md-5"> <div class=""><select class="required" id="skillexp_' +
+                id +
+                '" name="skillexp" data-style="btn-white"><option selected="selected" value="">Experience in Year  <option>0  <option>1<option>2</select></div> </div> <div class="col-md-2"><label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label></div></div></content>'
+            );
+            //alert();
+            id++;
+
+        }
+        document.getElementById("hidden_newskill").value = id;
+
+    }
+
+    function removenewskill() {
+        if (id > 1) {
+            $('#newskill').find('select').last().closest('content').remove();
+            id--;
+
+        }
+        document.getElementById("hidden_newskill").value = id;
+
+    }
+
+    //show div of ExperiencedDetails or FreshersDetails
+    function show_message1() {
+
+
+        var radioB4_value1 = $('input[name="radioB4"]:checked').val();
+        //alert(radioB4_value);
+        if (radioB4_value1 == 'Experienced') {
+            document.getElementById('ExperiencedDetails').style.display = "block";
+            document.getElementById('FreshersDetails').style.display = "none";
+
+
+        } else {
+            document.getElementById('ExperiencedDetails').style.display = "none";
+            document.getElementById('FreshersDetails').style.display = "block";
+
+        }
+    }
+</script>
+
+<!--  add new exp -->
+<script>
+    id = 1;
+
+    function addnewexp() {
+        if (id < 5) {
+            //   alert(id);
+            $('#addexp').append(
+                '<content><div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Total Experience\
+                                                    </div>\
+                                                    <div class="col-md-4">\
+                                                        <div class="">\
+                                                            <select class="required" id="expinyr_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                <option selected="selected" value="">Experience in Year\
+                                                                                                <option>0\
+                                                                                                <option>1\
+                                                                                                <option>2\
+                                                                                                \
+                                                                </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-4">\
+                                                        <div class="">\
+                                                            <select class="required" id="expinmonth_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                <option selected="selected" value="">Experience in month\
+                                                                                                <option>0\
+                                                                                                <option>1\
+                                                                                                <option>2\
+                                                                                                \
+                                                                    </select>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Cuurent Annual Salary\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                            <input class="required form-control" id="Salary_' +
+                id +
+                '" ng-model="Salary" name="Salary" type="text">\
+                                                            \
+                                                        </div>\
+                                                            </div>\
+                                                                \
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Job Title\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="jobtitle_' +
+                id +
+                '" ng-model="jobtitle" name="jobtitle" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                    \
+                                                        Job Descripion\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="JobDescripion_' +
+                id +
+                '" ng-model="JobDescripion" name="JobDescripion" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                \
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Company Name\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="companyname_' +
+                id +
+                '" ng-model="companyname" name="companyname" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Industry of Company\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                                <input class="required form-control" placeholder="Industry'+ id +'" id="Industry_0" name="currency" type="text">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Department\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                                <input class="required form-control" placeholder="Department" id="Department_' + id +'" name="currency" type="text">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Duaration of the job\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="monthfrom_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Month\
+                                                                                                            <option>Jan\
+                                                                                                            <option>Feb\
+                                                                                                            <option>Mar\
+                                                                                                            <option>Apr\
+                                                                                                            <option>May\
+                                                                                                            <option>Jun\
+                                                                                                            <option>Jul\
+                                                                                                            <option>Aug\
+                                                                                                            <option>Sep\
+                                                                                                            <option>Oct\
+                                                                                                            <option>Nov\
+                                                                                                            <option>Dec\
+                                                        \                        </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="yearFrom_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Year\
+                                                                                                            <option>2017\
+                                                                                                            <option>2016\
+                                                                                                            <option>2015\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                    </div>\
+                                                            \
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="monthto_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Month\
+                                                                                                                            <option>Jan\
+                                                                                                                            <option>Feb\
+                                                                                                                            <option>Mar\
+                                                                                                                            <option>Apr\
+                                                                                                                            <option>May\
+                                                                                                                            <option>Jun\
+                                                                                                                            <option>Jul\
+                                                                                                                            <option>Aug\
+                                                                                                                            <option>Sep\
+                                                                                                                            <option>Oct\
+                                                                                                                            <option>Nov\
+                                                                                                                            <option>Dec\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="yearto_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Year\
+                                                                                                            <option>2017    \
+                                                                                                            <option>2016\
+                                                                                                            <option>2015\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                       \
+                                                    </div>\
+                                                    <hr/>\
+                                                    <div class="row">\
+                                                            <label onclick="removexp()" style="color:#209eff" align="center">\
+                                                                            -Remove\
+                                                                    </label>\
+                                                                    <hr/>\
+                                                        </div>\
+                                                        \
+                                    </content>'
+            );
+            //alert();
+            id++;
+            $('.selectpicker').selectpicker();
+
+        }
+
+        document.getElementById("hidden_newexp").value = id;
+
+    }
+
+    function removexp() {
+        if (id > 1) {
+            $('#addexp').find('select').last().closest('content').remove();
+            id--;
+
+        }
+        document.getElementById("hidden_newexp").value = id;
+    }
+
+    function call1() {
+            var places1 = new google.maps.places.Autocomplete(document.getElementById('location'));
+            google.maps.event.addListener(places1, 'place_changed', function () {
+            });
+        }
+</script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker();
+        // var options = {
+        //     format: 'dd/mm/yyyy',
+        //     todayHighlight: true,
+        //     autoclose: true
+        // };
+        // date_input.datepicker(options);
+    })
+</script>

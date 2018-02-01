@@ -1,0 +1,259 @@
+<html>
+
+<head>
+    <link href="assets\plugins\multiselect\css\multi-select.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\select2\css\select2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\bootstrap-select\css\bootstrap-select.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" ng-controller="MyPlanController" id="MyPlanController" ng-init="getMyPlanList()">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-box">
+                    <ol class="breadcrumb pull-right mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="">Ubold</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="" ng-click="displayplanlist()">My Plan</a>
+                        </li>
+                    </ol>
+                    <h4 class="page-title">My Plan</h4>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" id="myplanlist">
+
+            <div class="col-sm-12">
+
+                <div class="card-box">
+
+
+                    <table class="table table-striped add-edit-table" id="datatable-editable">
+                        <thead>
+                            <tr>
+                                <th>My Plan </th>
+
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="gradeX" ng-repeat="x in myPlanList">
+                                <td>{{x.PlanDesc.PlanName}}</td>
+
+
+                                <td class="actions">
+                                    <a href="" ng-click="getPlanID(x.PlanDesc.PlanName,x.UserPlanID)" class="hidden on-editing save-row" data-toggle="tooltip"
+                                        data-placement="top" title="Configure Plan" data-original-title="Save">
+                                        <i class="fa fa-save"></i>
+                                    </a>
+                                    <a href="" class="on-default edit-row" ng-click="editPlan(x.PlanDesc.PlanName,x.UserPlanID)" data-toggle="tooltip" data-placement="top" title="Edit Plan" data-original-title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="" class="on-default remove-row" ng-click="deletePlanID(x.UserPlanID)" data-toggle="tooltip" data-placement="top"
+                                        title="Delete Plan" data-original-title="Delete">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                    <a href="" ng-click="viewPlan(x.UserPlanID)" class="on-default remove-row" data-toggle="tooltip" data-placement="top" title="View Plan"
+                                        data-original-title="View">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end: col -->
+        </div>
+        <!-- end row -->
+
+        <div class="row" id="plandesc" style="display: none">
+
+            <div class="col-sm-12">
+
+                <div class="card-box" ng-repeat="y in myPlanDetails">
+                    <label class="control-label " for="password2">
+                        <b>{{y.PlanDesc.PlanName}}</b>
+                    </label>
+
+
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Plan creation details </b>
+                            </label>
+                            <br/>
+                            <br/>
+                            <ul>
+                                <div class="row" ng-show="y.NoOfBids!='0'">
+                                    <li></li>
+                                    <label class="control-label " for="password2">
+                                        <b>Bid's Per Month:{{y.NoOfBids}} </b>
+                                    </label>
+
+                                </div>
+                                <div class="row" ng-show="y.NoOfSkills!='0'">
+                                    <li></li>
+                                    <label class="control-label " for="password2">
+                                        <b>No.Of Skills:{{y.NoOfSkills}} </b>
+                                    </label>
+
+                                </div>
+                                <div class="row" ng-show="y.NoOfEmpFollw!='0'">
+                                    <li></li>
+                                    <label class="control-label " for="password2">
+                                        <b>No.OF Employer Followings:{{y.NoOfEmpFollw}} </b>
+                                    </label>
+
+                                </div>
+                                <div class="row" ng-show="y.NoOfExtInvoice!='0'">
+                                    <li></li>
+                                    <label class="control-label " for="password2">
+                                        <b>External Invoicings:{{y.NoOfExtInvoice}} </b>
+                                    </label>
+
+                                </div>
+
+                            </ul>
+                            <label class="control-label " for="password2">
+                                <b> Other Feature's CheckList </b>
+                            </label>
+                            <ul>
+                                <div class="row" ng-show="y.PlanFeatures.UnlockRewards!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+                                    <label for="checkbox14">
+                                        Unlock Rewards
+                                    </label>
+
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedProjectBookmarks!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox15">
+                                        Unlimited Project Bookmarks
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.CustomCoverPhoto!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox16">
+                                        Custom Cover Photo
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.DailyWithdrawals!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox17">
+                                        Daily Withdrawals
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.FreeProjectExtensions!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox18">
+                                        Free Project Extensions
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.HighValueProjectBidding!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox19">
+                                        High Value Project Bidding*
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.PreferredAssignmentSeekerEligible!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox20">
+                                        Preferred Assignment Seeker Eligible*
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.FreeSealedProjects!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox21">
+                                        Free Sealed Projects
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.FreeNDAProjects!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox30">
+                                        Free NDA Projects
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedExternalInvoicing!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox31">
+                                        Unlimited External Invoicings
+                                    </label>
+                                </div>
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedEmployerFollowings!=''">
+                                    <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
+
+                                    <label for="checkbox32">
+                                        Unlimited Employer Followings
+                                    </label>
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Plan Configuration Plan </b>
+                            </label>
+                            <br/>
+                            <br/>
+                            <ul>
+                                <div class="row">
+                                    <label class="control-label " for="password2">
+                                        <b>Annual Subscription : {{y.PlanconfigurationDestails.AnnualSubs}} </b>
+                                    </label>
+
+                                </div>
+                                <div class="row">
+                                    <label class="control-label " for="password2">
+                                        <b> Monthly Subscription : {{y.PlanconfigurationDestails.MonthSubs}}</b>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <label class="control-label " for="password2">
+                                        <b> Description : </b>
+                                    </label>
+                                    <p>{{y.PlanconfigurationDestails.Description}}</p>
+                                </div>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--
+        
+    -->
+
+
+    </div>
+    <!-- End row -->
+
+    </div>
+    <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+    <script src="assets\plugins\select2\js\select2.min.js" type="text/javascript"></script>
+
+    <script src="assets\pages\datatables.editable.init.js"></script>
+
+    <script src="assets\plugins\bootstrap-select\js\bootstrap-select.min.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<div class="container" ng-controller="SkillsetController" ng-init="GetSkillsData()">
+    <div class="row">
+        <div class="col-4">
+            <div class="portlet">
+                <!-- /primary heading -->
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Add Skill
+                    </h3>
+                    <div class="portlet-widgets">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2">
+                            <i class="ion-minus-round"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="portlet2" class="panel-collapse collapse show">
+                    <div class="portlet-body">
+                            <div ng-form="skillset" name="skillset" novalidate>
+                                
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : skillset.SName.$invalid && !skillset.SName.$pristine }">
+                                                <input id="SName" type="text" class="form-control" ng-model="SName" ng-pattern="onlytext" name="SName" placeholder="Name" required> </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group has-error" style="margin-bottom: 0px">
+                                        <label id="errormsg" style="color: red" class="help-block"></label>
+                                    </div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <button id="savebtn" class="btn btn-primary" style="margin-top: 0px" ng-click="AddSkills(skillset.$valid)">Save</button>
+                                </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="portlet">
+                <!-- /primary heading -->
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Skill list
+                    </h3>
+                    <div class="portlet-widgets">
+                        <!-- <a href="javascript:;" data-toggle="reload">
+                            <i class="ion-refresh"></i>
+                        </a> -->
+                        <span class="divider"></span>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3">
+                            <i class="ion-minus-round"></i>
+                        </a>
+                        <!-- <span class="divider"></span>
+                        <a href="#" data-toggle="remove">
+                            <i class="ion-close-round"></i>
+                        </a> -->
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="portlet3" class="panel-collapse collapse show">
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table id="skillsdata" class="table table-hover mails m-0 table table-actions-bar">
+                                <thead>
+                                    <tr>
+                                        <th width="65%">Name</th>
+                                        <th width="10%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Required datatable js -->
+<script src="assets\plugins\datatables\jquery.dataTables.min.js"></script>
+<script src="assets\plugins\datatables\dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets\plugins\datatables\dataTables.buttons.min.js"></script>
+<script src="assets\plugins\datatables\buttons.bootstrap4.min.js"></script>
+<script src="assets\plugins\datatables\jszip.min.js"></script>
+<script src="assets\plugins\datatables\pdfmake.min.js"></script>
+<script src="assets\plugins\datatables\vfs_fonts.js"></script>
+<script src="assets\plugins\datatables\buttons.html5.min.js"></script>
+<script src="assets\plugins\datatables\buttons.print.min.js"></script>
+<script src="assets\plugins\datatables\buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="assets\plugins\datatables\dataTables.responsive.min.js"></script>
+<script src="assets\plugins\datatables\responsive.bootstrap4.min.js"></script>
+
+<!-- XEditable Plugin -->
+<script src="assets\plugins\moment\moment.js"></script>
+<script type="text/javascript" src="assets\plugins\x-editable\js\bootstrap-editable.min.js"></script>
+<script type="text/javascript" src="assets\pages\jquery.xeditable.js"></script>
+
+<!-- Bootsrap table js -->
+<script src="assets\plugins\bootstrap-table\js\bootstrap-table.js"></script>
+<script src="assets\pages\jquery.bs-table.js"></script>
+
+<script>
+    $("#checkAll").click(function () {
+        $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+
+    $("#SName").keyup(function (e) {
+        if($(this).val() == ""){
+            document.getElementById("savebtn").innerHTML = "Save";
+        }
+    });
+
+    $("#SName").click(function (e) {
+        
+            document.getElementById("errormsg").innerHTML = "";
+    });
+
+</script>

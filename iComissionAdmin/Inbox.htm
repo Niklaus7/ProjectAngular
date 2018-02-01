@@ -1,0 +1,87 @@
+
+
+
+    <div class="container" ng-controller="InboxController" id="InboxController">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-box">
+                    <ol class="breadcrumb pull-right mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">Ubold</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Inbox</a>
+                        </li>
+                    </ol>
+                    <h4 class="page-title">Inbox</h4>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            
+           
+            <div class="col-xl-12 col-lg-8">
+                
+               
+                <div class="card-box p-0 m-t-20">
+                    <div class="panel-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mails m-0">
+                                <tbody>
+                                    
+                                    <tr class="unread" ng-repeat="x in MessageQueue">
+                                        
+                                        
+                                        <td>
+                                                <a class=" waves-effect waves-light nav-user" >
+                                                <img src="assets\images\users\avatar-1.jpg" alt="user" class="rounded-circle">
+                                                </a>
+                                                <a class="email-name">{{x.SenderName}}</a>
+                                        </td>
+
+                                        <td class="hidden-xs" ng-repeat="y in x">
+                                        
+                                            <a href="#ReadMessage" class="email-msg" ng-click="getMessageSenderID(x.SenderID,x.SenderName)">{{y.Message}}</a>
+                                            
+                                        </td>
+                                        
+                                        <td class="text-right">
+                                           {{x.MessageTime}}
+                                        </td>
+                                        
+                                    </tr>
+
+                                    
+
+                                    
+                                    
+
+                                   
+
+                                    
+
+                                   
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- panel body -->
+                </div>
+                <!-- panel -->
+            </div>
+        </div>
+        <!-- End row -->
+
+    </div>
+
+
+
+   

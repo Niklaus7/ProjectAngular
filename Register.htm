@@ -1,0 +1,412 @@
+﻿<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    label {
+        font-size: 14px !important;
+    }
+
+
+    .brand-pills>li>a {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .nav-pills>li.active>a,
+    .nav-pills>li.active>a:focus,
+    .nav-pills>li.active>a:hover {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .lblclass {
+        font-size: 13px !important;
+    }
+</style>
+<div ng-controller="RegisterUserController" ng-init="GetRoles()">
+
+    <div class="section lb">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="sidebar col-md-3">
+                    <div class="widget clearfix">
+                        <div class="postpager liststylepost">
+                            <ul class="post-blog">
+                                <li>
+                                    <div class="post">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4 class="control-label text-center">Select User Role</h4>
+                                                <input type="hidden" ng-model="RoleUser" />
+                                                <ul id="UserRoles" class="nav nav-pills brand-pills nav-stacked">
+                                                    <li class="active brand-nav" data-Role="{{role.UserTypeID}}" ng-repeat="role in UserRole" ng-if="role.UserRoleName == 'User'">
+                                                        <a data-toggle="tab" href="#User">{{role.UserRoleName}}</a>
+                                                    </li>
+                                                    <li class="brand-nav" data-Role="{{role.UserTypeID}}" ng-repeat="role in UserRole" ng-if="role.UserRoleName != 'User'">
+                                                        <a data-toggle="tab" href="#Other" onclick="ChangeType()">{{role.UserRoleName}}</a>
+                                                    </li>
+                                                    <div class="form-group has-error">
+                                                        <label id="error" class="help-block"></label>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end postpager -->
+                    </div>
+                </div>
+
+
+                <div class="content col-md-9" style="margin-top: 50px;">
+                    <div class="tab-content">
+                        <div id="User" class="post-padding tab-pane fade in active">
+
+                            <div class="job-title nocover hidden-sm hidden-xs">
+                                <h5 id="title">User Registration</h5>
+                            </div>
+                            <form id="UserRegistration" class="submit-form" name="UserRegistration" novalidate>
+                                <div id="div_login">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Name.$invalid && !UserRegistration.Name.$pristine }">
+                                                <input type="text" class="form-control" ng-model="Name" ng-pattern="onlytext" name="Name" placeholder="Name" required> </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Email.$invalid && !UserRegistration.Email.$pristine }">
+                                                <input type="email" class="form-control" ng-model="Email" name="Email" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <hr class="invis">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Phone.$invalid && !UserRegistration.Phone.$pristine }">
+                                                <input type="text" class="form-control" ng-model="Phone" ng-pattern="Mobilenumber" name="Phone" placeholder="Phone" required>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-6 col-sm-12">
+                                                                <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Designation.$invalid && !UserRegistration.Designation.$pristine }">
+                                                                    <input type="text" class="form-control" ng-model="Designation" ng-pattern="onlytext" name="Designation" placeholder="Designation"
+                                                                        required>
+                                                                </div>
+                                                            </div> -->
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Male" checked>Male
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Female">Female
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Password.$invalid && !UserRegistration.Password.$pristine }">
+                                                <input type="password" class="form-control" ng-model="Password" name="Password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+                                                    placeholder="Password" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="UserRegistration.Password.$invalid && !UserRegistration.Password.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password should be atleast 8 characters long and should
+                                                    contain one number,one character and one special character</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.ConformPassword.$invalid && !UserRegistration.ConformPassword.$pristine }">
+                                                <input type="password" class="form-control" ng-model="ConformPassword" name="ConformPassword" placeholder="Conform Password"
+                                                    password-confirm match-target="Password" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="UserRegistration.ConformPassword.$invalid && !UserRegistration.ConformPassword.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password does not match</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group has-error" style="margin-bottom: 0px">
+                                        <label id="errormsg" class="help-block"></label>
+                                    </div>
+                                    <!-- end row -->
+                                    <button class="btn btn-primary" style="margin-top: 0px" ng-click="Getdata(UserRegistration.$valid)">Register</button>
+                                </div>
+                                <div id="div_Otp" style="display:none">
+                                    <div class="form-group text-center">
+                                        <img src="https://bank.hangseng.com/1/PA_1_2_S5/content/pws2/personal/cards/onlinespending/images/one_time_password_step2.png"
+                                            style="width:50%" />
+                                    </div>
+                                    <div class="form-group">
+                                        <small>OTP</small>
+                                        <input type="text" placeholder="Enter OTP" ng-model="txt_otp" class="form-control">
+                                    </div>
+
+                                    <div class="form-group" id="div_loader">
+                                        <label class="text-success" id="lbl_error2"></label>
+                                    </div>
+
+                                    <span>
+                                        <button class="btn btn-primary" style="margin-top: 0px" ng-click="SaveUserData()" type="button">Finish</button>
+                                    </span>
+
+                                    <span>
+                                        <a style="color:#af1e62;cursor:pointer" class="pull-right" ng-click="ResendOTP()">Resend OTP</a>
+                                    </span>
+
+                                </div>
+
+                                <div id="div_success" class="text-center" style="display:none">
+                                    <img src="assets/images/checkmark.ico" style="width:30%" />
+                                    <h4>Registered Successfully!</h4>
+                                    <p>Please sign in to become iComissioning member..!</p>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="Other" class="post-padding tab-pane fade">
+                            <div class="job-title nocover hidden-sm hidden-xs">
+                                <h5 id="title1">Other Registration</h5>
+                            </div>
+                            <form id="OtherRegistration" class="submit-form" name="OtherRegistration" novalidate>
+                                <div id="div_login1">
+                                    <label>Company Details</label>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CName.$invalid && !OtherRegistration.CName.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CName" ng-pattern="onlytext" name="CName" placeholder="Company Name" required> </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CEmail.$invalid && !OtherRegistration.CEmail.$pristine }">
+                                                <input type="email" class="form-control" ng-model="CEmail" name="CEmail" placeholder="Comapny Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAddress.$invalid && !OtherRegistration.CAddress.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CAddress" name="CAddress" placeholder="Company Address" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPhone.$invalid && !OtherRegistration.CPhone.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CPhone" ng-pattern="Mobilenumber" name="CPhone" placeholder="Compnay Phone"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CWebsite.$invalid && !OtherRegistration.CWebsite.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CWebsite" ng-pattern="onlytext" name="CWebsite" placeholder="Company Website"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CRegNo.$invalid && !OtherRegistration.CRegNo.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CRegNo" name="CRegNo" placeholder="Company Registration No" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CIndustry.$invalid && !OtherRegistration.CIndustry.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CIndustry" ng-pattern="onlytext" name="CIndustry" placeholder="Industry Type"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CLogo.$invalid && !OtherRegistration.CLogo.$pristine }">
+                                                <label class="lblclass">Comapny Logo</label>
+                                                <input type="file" class="form-control" id="CLogo" name="CLogo" placeholder="Compnay Logo" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="lblclass">Incorporation Certificate</label>
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCertificate.$invalid && !OtherRegistration.CCertificate.$pristine }">
+                                                <input type="file" class="form-control" id="CCertificate" ng-pattern="onlytext" name="CCertificate" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="lblclass">Incorporation Date</label>
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CDate.$invalid && !OtherRegistration.CDate.$pristine }">
+                                                <input type="date" class="form-control" ng-model="CDate" name="CDate" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Authorised Person Details</label>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAName.$invalid && !OtherRegistration.CAName.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CAName" ng-pattern="onlytext" name="CAName" placeholder="Authorised Person Name"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAEmail.$invalid && !OtherRegistration.CAEmail.$pristine }">
+                                                <input type="email" class="form-control" ng-model="CAEmail" name="CAEmail" placeholder="Authorised Person Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAPhone.$invalid && !OtherRegistration.CAPhone.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CAPhone" ng-pattern="Mobilenumber" name="CAPhone" placeholder="Authorised Person Contact"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPassword.$invalid && !OtherRegistration.CPassword.$pristine }">
+                                                <input type="password" class="form-control" ng-model="CPassword" name="CPassword" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+                                                    placeholder="Password" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="OtherRegistration.CPassword.$invalid && !OtherRegistration.CPassword.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password should be atleast 8 characters long and should
+                                                    contain one number,one character and one special character</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CConformPassword.$invalid && !OtherRegistration.CConformPassword.$pristine }">
+                                                <input type="password" class="form-control" ng-model="CConformPassword" name="CConformPassword" placeholder="Conform Password"
+                                                    password-confirm match-target="CPassword" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="OtherRegistration.CConformPassword.$invalid && !OtherRegistration.CConformPassword.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password does not match</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Other Details</label>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCountry.$invalid && !OtherRegistration.CCountry.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CCountry" ng-pattern="onlytext" name="CCountry" placeholder="Country" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CState.$invalid && !OtherRegistration.CState.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CState" ng-pattern="onlytext" name="CState" placeholder="State" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPAN.$invalid && !OtherRegistration.CPAN.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CPAN" name="CPAN" placeholder="PAN No" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CTAN.$invalid && !OtherRegistration.CTAN.$pristine }">
+                                                <input type="text" class="form-control" ng-model="CTAN" name="CTAN" placeholder="TAN No" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group has-error" style="margin-bottom: 0px">
+                                        <label id="errormsg1" class="help-block"></label>
+                                    </div>
+                                    <!-- end row -->
+                                    <button class="btn btn-primary" style="margin-top: 0px" ng-click="GetOtherdata(OtherRegistration.$valid)">Register</button>
+                                </div>
+                                <div id="div_Otp1" style="display:none">
+                                    <div class="form-group text-center">
+                                        <img src="https://bank.hangseng.com/1/PA_1_2_S5/content/pws2/personal/cards/onlinespending/images/one_time_password_step2.png"
+                                            style="width:50%" />
+                                    </div>
+                                    <div class="form-group">
+                                        <small>OTP</small>
+                                        <input type="text" placeholder="Enter OTP" ng-model="txt_otp1" class="form-control">
+                                    </div>
+
+                                    <div class="form-group" id="div_loader">
+                                        <label class="text-success" id="lbl_error3"></label>
+                                    </div>
+
+                                    <span>
+                                        <button class="btn btn-primary" style="margin-top: 0px" ng-click="GetOtherFileData()" type="button">Finish</button>
+                                    </span>
+
+                                    <span>
+                                        <a style="color:#af1e62;cursor:pointer" class="pull-right" ng-click="ResendOTP()">Resend OTP</a>
+                                    </span>
+
+                                </div>
+
+                                <div id="div_success1" class="text-center" style="display:none">
+                                    <img src="assets/images/checkmark.ico" style="width:30%" />
+                                    <h4>Registered Successfully!</h4>
+                                    <p>Please sign in to become iComissioning member..!</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    <!-- end section -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#div_login input').focus(function (index) {
+            document.getElementById('errormsg').innerHTML = "";
+        });
+    });
+
+    $(document).ready(function () {
+            $('#div_login1 input').focus(function (index) {
+                document.getElementById('errormsg1').innerHTML = "";
+            });
+        });
+
+    function ChangeType() {
+        if(document.getElementById('div_login1').style.display != "block"){
+            $("#div_success1").slideUp();
+            document.getElementById('div_login1').style.display = "block";
+        }
+        setTimeout(function () {
+            document.getElementById('title1').innerHTML = $.trim($('ul#UserRoles').find('li.active').text()) + " Registration";
+        }, 100);
+
+    }
+</script>

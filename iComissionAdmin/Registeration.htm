@@ -1,0 +1,306 @@
+<div class="container" ng-controller="RegisterationController">
+
+    <!-- Page-Title -->
+
+    <!-- Wizard with Validation -->
+    <br />
+
+    <div class="row">
+        
+        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" ng-click="getUserType('Vendor')"> Vendor</button>
+        <br /><br />
+        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" ng-click="getUserType('Client')"> Client</button>
+        <br /><br />
+        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" ng-click="getUserType('Job Seekers')"> Job Seekers</button>
+        <br /><br />
+        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" ng-click="getUserType('Consulatant')"> Consulatant</button>
+
+    </div>
+    
+    <div class="row" id="user-guest">
+        <div class="col-md-12">
+            <div class="card-box">
+                <div class="panel-heading">
+                    <h3 class="text-center"> Sign Up to <strong>Guest</strong> </h3>
+                </div>
+
+                <div class="p-20">
+                    <form class="form-horizontal m-t-20">
+
+                        <div class="form-group-custom">
+                            <input type="email" id="user-email" required="required">
+                            <label class="control-label" for="user-email">Email</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" required="required">
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password" required="required">
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block text-uppercase waves-effect waves-light" type="submit" ng-click="register()">
+                                                Register
+                                            </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">
+                        Already have account?<a href="page-login.htm" class="text-white m-l-5"><b>Sign In</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="user-vendor" style="display:none">
+        <div class="col-md-12">
+            <div class="card-box">
+                <div class="panel-heading">
+                    <h3 class="text-center"> Sign Up to <strong>Vendor</strong> </h3>
+                </div>
+
+                <div class="p-20">
+                    <form class="form-horizontal m-t-20">
+
+                        <div class="form-group-custom">
+                            <input type="email" id="user-email" required="required">
+                            <label class="control-label" for="user-email">Email</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" required="required">
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password" required="required">
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block text-uppercase waves-effect waves-light" type="submit" ng-click="register()">
+                                                    Register
+                                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">
+                        Already have account?<a href="page-login.htm" class="text-white m-l-5"><b>Sign In</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="user-client" style="display:none">
+        <div class="col-md-12">
+            <div class="card-box">
+                <div class="panel-heading">
+                    <h3 class="text-center"> Sign Up to <strong>Client</strong> </h3>
+                </div>
+
+                <div class="p-20">
+                    <form class="form-horizontal m-t-20">
+
+                        <div class="form-group-custom">
+                            <input type="email" id="user-email" required="required">
+                            <label class="control-label" for="user-email">Email</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" required="required">
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password" required="required">
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block text-uppercase waves-effect waves-light" type="submit" ng-click="register()">
+                                                        Register
+                                                    </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">
+                        Already have account?<a href="page-login.htm" class="text-white m-l-5"><b>Sign In</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="user-jobseekers" style="display:none">
+        <div class="col-md-12">
+            <div class="card-box">
+                <div class="panel-heading">
+                    <h3 class="text-center"> Sign Up to <strong>Job Seekers</strong> </h3>
+                </div>
+
+                <div class="p-20">
+                    <form class="form-horizontal m-t-20">
+
+                        <div class="form-group-custom">
+                            <input type="email" id="user-email" required="required">
+                            <label class="control-label" for="user-email">Email</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" required="required">
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password" required="required">
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block text-uppercase waves-effect waves-light" type="submit" ng-click="register()">
+                                                            Register
+                                                        </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">
+                        Already have account?<a href="page-login.htm" class="text-white m-l-5"><b>Sign In</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="user-consulatant" style="display:none">
+        <div class="col-md-12">
+            <div class="card-box">
+                <div class="panel-heading">
+                    <h3 class="text-center"> Sign Up to <strong>Consulatant</strong> </h3>
+                </div>
+
+                <div class="p-20">
+                    <form class="form-horizontal m-t-20">
+
+                        <div class="form-group-custom">
+                            <input type="email" id="user-email" required="required">
+                            <label class="control-label" for="user-email">Email</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="text" id="user-name" required="required">
+                            <label class="control-label" for="user-name">Username</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group-custom">
+                            <input type="password" id="user-password" required="required">
+                            <label class="control-label" for="user-password">Password</label><i class="bar"></i>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12">
+                                <div class="checkbox checkbox-primary">
+                                    <input id="checkbox-signup" type="checkbox" checked="checked">
+                                    <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center m-t-40">
+                            <div class="col-12">
+                                <button class="btn btn-success btn-block text-uppercase waves-effect waves-light" type="submit" ng-click="register()">
+                                                                Register
+                                                            </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white">
+                        Already have account?<a href="page-login.htm" class="text-white m-l-5"><b>Sign In</b></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End row -->
+    <!--Form Wizard-->
+</div>

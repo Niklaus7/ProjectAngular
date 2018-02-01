@@ -1,0 +1,717 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+    .col-md-3{
+        padding: 0px !important;
+    }
+</style>
+
+<div ng-controller="RegistrationController">
+    <div class="section wb">
+        <div class="row" style="margin-left: 0px !important; margin-right: 0px !important">
+            <div class="col-md-4 col-sm-12 col-xs-12" align="center" style="border-right: 1px solid #d7d7d7 !important">
+                <img src="images\user register.png" alt="" class="img-responsive" style="width: 78%">
+                <div class="clearfix">&nbsp;</div>
+                <h4>Job Seeker Registration</h4>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row" align="center">
+                    <div class="col-md-3">
+                        <img src="images\search job.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Search Job</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\apply job.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Apply for Job</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\job alert.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Create Job Alert</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\support.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Enquiry</label>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <a href="#UserRegistration">
+                        <button class="btn btn-info btn-lg waves-effect">Register Now</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12" align="center" style="border-right: 1px solid #d7d7d7 !important">
+                <img src="images\seeker.png" alt="" class="img-responsive" style="width: 78%">
+                <div class="clearfix">&nbsp;</div>
+                <h4>Assignment Seeker Registration</h4>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row" align="center">
+                    <div class="col-md-3">
+                        <img src="images\search job.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Search Assignment</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\apply job.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Apply for Assignment</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\job alert.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Create Assignment Alert</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\support.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Enquiry</label>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <a href="#AssignmentSeekerReg">
+                        <button class="btn btn-info btn-lg waves-effect">Register Now</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12" align="center">
+                <img src="images\client register1.png" alt="" class="img-responsive" style="width: 75%">
+                <div class="clearfix">&nbsp;</div>
+                <h4>Client Registration</h4>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row" align="center">
+                    <div class="col-md-3">
+                        <img src="images\post job.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Post Job</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\post project.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Post Assignment</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\search bidder.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Search Assignment Seekers</label>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="images\search candidate.png" alt="" class="img-responsive" style="width: 70%">
+                        <div class="clearfix"></div>
+                        <label>Search Job Seekers</label>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;</div>
+                <div class="row">
+                    <a href="#OtherRegistration">
+                            <!-- href="#OtherRegistration" -->
+                        <button class="btn btn-info btn-lg waves-effect">Register Now</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trigger the modal with a button -->
+<style>
+    .pricing-box h3{
+        padding: 20px 0 !important;
+    }
+    .pricing-price p{
+        padding: 30px 0 !important;
+    }
+</style>
+<!-- Modal -->
+<div id="pricingplan" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center">Pricing & Plan</h4>
+      </div>
+      <div class="modal-body">
+            <div class="section wb" style="padding: 20px 20px !important;">
+                        <!-- <div class="section-title text-center clearfix">
+                            
+                            <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                        </div> -->
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row pricing-tables text-center">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="pricing-box">
+                                            <div class="pricing-header">
+                                                <h3><i class="icon icon-flag"></i>Free Listing</h3>
+                                            </div>
+                                            <div class="pricing-price">
+                                                <p>Free</p>
+                                            </div>
+                                            <!-- end price -->
+                                            <div class="pricing-desc text-center">
+                                                <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                            </div>
+                                            <!-- end desc -->
+                                            <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingOne">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Submit a free project.</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end panel -->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">Premium Support</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end panel-group -->
+                                            <div class="pricing-footer text-center">
+                                                <a href="#UserRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                            </div>
+                                            <!-- end desc -->
+                                        </div>
+                                        <!-- end pricing-box -->
+                                    </div>
+                                    <!-- end col -->
+    
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="pricing-box">
+                                            <div class="featured"><span class="oi" data-glyph="star"></span></div>
+                                            <div class="pricing-header">
+                                                <h3><i class="icon icon-flag"></i>Premium Listing</h3>
+                                            </div>
+                                            <div class="pricing-price">
+                                                <p><sub>$</sub>20.99</p>
+                                            </div>
+                                            <!-- end price -->
+                                            <div class="pricing-desc text-center">
+                                                <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                            </div>
+                                            <!-- end desc -->
+                                            <div class="panel-group" id="accordion23" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="head1">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo1" aria-expanded="true" aria-controls="callo1">Submit 10 Project</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="callo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head1">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end panel -->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="head2">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo2" aria-expanded="true" aria-controls="callo2">Premium Support</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="callo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head2">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end panel -->
+                                            </div>
+                                            <!-- end panel-group -->
+                                            <div class="pricing-footer text-center">
+                                                <a href="#UserRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                            </div>
+                                            <!-- end desc -->
+                                        </div>
+                                        <!-- end pricing-box -->
+                                    </div>
+                                    <!-- end col -->
+    
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="pricing-box">
+                                            <div class="pricing-header">
+                                                <h3><i class="icon icon-flag"></i>Business Listing</h3>
+                                            </div>
+                                            <div class="pricing-price">
+                                                <p><sub>$</sub>60.99</p>
+                                            </div>
+                                            <!-- end price -->
+                                            <div class="pricing-desc text-center">
+                                                <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                            </div>
+                                            <!-- end desc -->
+                                            <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="head11">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo11" aria-expanded="true" aria-controls="callo11">Submit Unlimited Projects</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="callo11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head11">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end panel -->
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="head21">
+                                                        <h4 class="panel-title">
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo22" aria-expanded="true" aria-controls="callo22">Premium Support</a>
+                                                        </h4>
+                                                    </div>
+                                                    <!-- end heading -->
+                                                    <div id="callo22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head21">
+                                                        <div class="panel-body">
+                                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end panel -->
+                                            </div>
+                                            <!-- end panel-group -->
+                                            <div class="pricing-footer text-center">
+                                                <a href="#UserRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                            </div>
+                                            <!-- end desc -->
+                                        </div>
+                                        <!-- end pricing-box -->
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                </div><!-- end section -->
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="pricingplan1" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="text-center">Pricing & Plan</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="section wb" style="padding: 20px 20px !important;">
+                              <!-- <div class="section-title text-center clearfix">
+                                  
+                                  <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                              </div> -->
+          
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="row pricing-tables text-center">
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Free Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p>Free</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="headingOne">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Submit a free project.</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="headingTwo">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#AssignmentSeekerReg" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+          
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="featured"><span class="oi" data-glyph="star"></span></div>
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Premium Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p><sub>$</sub>20.99</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion23" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head1">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo1" aria-expanded="true" aria-controls="callo1">Submit 10 Project</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head1">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head2">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo2" aria-expanded="true" aria-controls="callo2">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head2">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#AssignmentSeekerReg" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+          
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Business Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p><sub>$</sub>60.99</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head11">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo11" aria-expanded="true" aria-controls="callo11">Submit Unlimited Projects</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head11">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head21">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo22" aria-expanded="true" aria-controls="callo22">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head21">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#AssignmentSeekerReg" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+                                      </div>
+                                      <!-- end row -->
+                                  </div>
+                                  <!-- end col -->
+                              </div>
+                              <!-- end row -->
+                      </div><!-- end section -->
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+      
+        </div>
+      </div>
+
+      <!-- Modal -->
+<div id="pricingplan2" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="text-center">Pricing & Plan</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="section wb" style="padding: 20px 20px !important;">
+                              <!-- <div class="section-title text-center clearfix">
+                                  
+                                  <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+                              </div> -->
+          
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="row pricing-tables text-center">
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Free Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p>Free</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="headingOne">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Submit a free project.</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="headingTwo">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#OtherRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+          
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="featured"><span class="oi" data-glyph="star"></span></div>
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Premium Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p><sub>$</sub>20.99</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion23" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head1">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo1" aria-expanded="true" aria-controls="callo1">Submit 10 Project</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head1">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head2">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion23" href="#callo2" aria-expanded="true" aria-controls="callo2">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head2">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#OtherRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+          
+                                          <div class="col-md-4 col-sm-4 col-xs-12">
+                                              <div class="pricing-box">
+                                                  <div class="pricing-header">
+                                                      <h3><i class="icon icon-flag"></i>Business Listing</h3>
+                                                  </div>
+                                                  <div class="pricing-price">
+                                                      <p><sub>$</sub>60.99</p>
+                                                  </div>
+                                                  <!-- end price -->
+                                                  <div class="pricing-desc text-center">
+                                                      <p>Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris iaculis.</p>
+                                                  </div>
+                                                  <!-- end desc -->
+                                                  <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head11">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo11" aria-expanded="true" aria-controls="callo11">Submit Unlimited Projects</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head11">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                      <div class="panel panel-default">
+                                                          <div class="panel-heading" role="tab" id="head21">
+                                                              <h4 class="panel-title">
+                                                                  <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#callo22" aria-expanded="true" aria-controls="callo22">Premium Support</a>
+                                                              </h4>
+                                                          </div>
+                                                          <!-- end heading -->
+                                                          <div id="callo22" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head21">
+                                                              <div class="panel-body">
+                                                                  <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- end panel -->
+                                                  </div>
+                                                  <!-- end panel-group -->
+                                                  <div class="pricing-footer text-center">
+                                                      <a href="#OtherRegistration" onclick="removeoverlay()" data-scroll="" class="btn btn-primary btn-block">Register Now</a>
+                                                  </div>
+                                                  <!-- end desc -->
+                                              </div>
+                                              <!-- end pricing-box -->
+                                          </div>
+                                          <!-- end col -->
+                                      </div>
+                                      <!-- end row -->
+                                  </div>
+                                  <!-- end col -->
+                              </div>
+                              <!-- end row -->
+                      </div><!-- end section -->
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </div>
+      
+        </div>
+      </div>
+      <script>
+      function removeoverlay(){
+        $('body').css("padding-right","0px");
+        $(".modal-backdrop").remove();//removeClass("modal-backdrop fade in").addClass("modal-backdrop fade out");
+      }
+      </script>
+</div>

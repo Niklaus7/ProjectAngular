@@ -1,0 +1,176 @@
+﻿<style>
+    .section {
+        padding-top: 20px !Important;
+        padding-bottom: 50px !important;
+    }
+
+    .job-title {
+        top: 57px !important;
+    }
+</style>
+<div ng-controller="JobDetailsController" ng-init="GetJobDetails()">
+    <div class="section wb">
+        <div class="container">
+            <div class="single-job">
+                <div class="job-tab">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12" ng-repeat="job in jobdetails">
+                            <h3>Job Details : </h3>
+                            <div class="badge freelancer-badge">Job</div>
+                            <h3>
+                                <a title="">{{job.JobTitle}}</a>
+                            </h3>
+                            <small>
+                                <span><b>Company :</b>
+                                    <a>{{job.CompanyName}}</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span><b>Address :</b> {{job.CompanyAddress}}</span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span><b>Website :</b>
+                                    <a>{{job.CompanyWebSite}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span><b>Experience :</b>
+                                    <a>{{job.MinExp}}-{{job.MaxExp}} in Year</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span><b>Salary :</b>
+                                    <a>{{job.MinSal}}-{{job.MaxSal}} in Lakh</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span><b>Skill :</b>
+                                    <a>{{job.Skillset}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span><b>Functional Area :</b>
+                                    <a>{{job.JobFunctionalArea}}</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span><b>Industry :</b>
+                                    <a>{{job.JobIndustry}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span><b>Location :</b>
+                                    <a>{{job.JobLocation | split:',':0}}</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span><b>Qaulifications :</b>
+                                    <a>{{job.UGQual}},{{job.PGQual}}</a>
+                                </span>
+                            </small>
+                        </div>
+                        <!-- end col -->
+                        
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <h3>Job Description : </h3>
+                            <div class="clearfix">&nbsp;</div>
+                            <div id="jobdesc" style="overflow-x: auto; height: 350px"></div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <h3>Job Location : </h3>
+                            <div class="clearfix">&nbsp;</div>
+                            <div id="map" style="height: 350px; width: 100%"></div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="col-md-12 text-center">
+                            <a href role="button" ng-repeat="job in jobdetails" class="btn btn-primary btn-custom" ng-click="applytojob(job.JobPostID)">Apply For Job</a>
+                    </div>
+                    
+                    <!-- end row -->
+                </div>
+                <!-- end job-tab -->
+            </div>
+            <!-- end single-job -->
+
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <!-- <div class="section-title text-center clearfix">
+                <h4>Check Available Jobs</h4>
+                <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
+                    iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+            </div> -->
+
+            <div class="all-jobs job-listing clearfix">
+                <div id="SidePnl" class="job-title hidden-sm hidden-xs">
+                    <h5>Relevant Jobs</h5>
+                </div>
+                <div class="job-tab" ng-repeat="Job in All_JobList">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="post-media">
+                                <a href="job-single.htm">
+                                    <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                </a>
+                            </div>
+                            <!-- end media -->
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="badge freelancer-badge">Job</div>
+                            <h3>
+                                <a href="job-single.htm" title="">{{Job.JobTitle}}</a>
+                            </h3>
+                            <small>
+                                <span>Company :
+                                    <a href="#">Amanda Sun</a>
+                                </span>
+                                <span>In :
+                                    <a href="#">Development</a>
+                                </span>
+                                <span>Posted Date : {{Job.JobPostDate}}</span>
+                            </small>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta">
+                                <p>{{Job.JobLocation | split:',':0}}</p>
+                                <small>India</small>
+                            </div>
+                            <!-- end meta -->
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta text-center">
+                                <h4>${{Job.MinSal}} - ${{Job.MaxSal}}</h4>
+                                <a href class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                <a href class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end job-tab -->
+            </div>
+            <!-- end alljobs -->
+
+            <!-- <div class="loadmorebutton text-center clearfix">
+                <a href class="btn btn-primary" id="loadMore">Load More Jobs</a>
+            </div> -->
+            <!-- end loadmore -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+</div>

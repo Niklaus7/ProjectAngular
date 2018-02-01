@@ -1,0 +1,182 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+        padding-bottom: 50px !important;
+    }
+    .job-title{
+        top: 65px !important;
+    }
+</style>
+<div ng-controller="ProjectDetailsController" ng-init="GetProjectDetails()">
+    <div class="section wb">
+        <div class="container">
+            <div class="single-job">
+                <div class="job-tab">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12" ng-repeat="Project in Projectdetails">
+                                <h3>Assignment Details : </h3>
+                            <div class="badge freelancer-badge">Project</div>
+                            <h3>
+                                <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
+                            </h3>
+                            <h4 class="text-danger">
+                                <i class="fa fa-usd"></i> {{Project.ProjectBudget}}
+                            </h4>
+                            <small>
+                                <span>Company :
+                                    <a>{{Project.CompanyName}}</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span>Website :
+                                    <a>{{Project.CompanyURL}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span>Address :
+                                    <a>{{Project.CompanyRegisteredAddress}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <small>
+                                <span>Start Date :
+                                    <a>{{Project.ProjectStartDate}}</a>
+                                </span>
+                                <div class="clearfix"></div>
+                                <span>End Date :
+                                    <a>{{Project.ProjectEndDate}}</a>
+                                </span>
+                            </small>
+                            <div class="clearfix"></div>
+                            <span>Location :
+                                <a>{{Project.ProjectLocation}}</a>
+                            </span>
+                            <div class="clearfix"></div>
+                            <!-- <b>Assignment Description : </b>
+                            <p>{{Project.ProjectDesc}}</p> -->
+                            <!-- <small>
+                                <span>Functional Area :
+                                    <a>{{job.JobFunctionalArea}}</a>
+                                </span>
+                                <span>Industry :
+                                    <a>{{job.JobIndustry}}</a>
+                                </span>
+                            </small> -->
+                            <!-- <div class="clearfix"></div>
+                            <small>
+                                <span>Location :
+                                    <a>{{job.JobLocation}}</a>
+                                </span>
+                                <span>Qaulifications :
+                                    <a>{{job.UGQual}},{{job.PGQual}}</a>
+                                </span>
+                            </small> -->
+                            <!-- <div class="clearfix"></div> -->
+                            
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                <h3>Assignment Description : </h3>
+                                <div class="clearfix">&nbsp;</div>
+                                <div id="assigndesc" style="overflow-x: auto; height: 350px"></div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <h3>Assignment Location : </h3>
+                                <div class="clearfix">&nbsp;</div>
+                                <div id="map" style="height: 350px; width: 100%"></div>
+                            </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="col-md-12 text-center">
+                            <a href role="button" ng-repeat="Project in Projectdetails" class="btn btn-primary btn-custom" ng-click="openmodal(Project.ProjectPostID)">Apply For Assignment</a>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end job-tab -->
+            </div>
+            <!-- end single-job -->
+
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <div class="section lb">
+        <div class="container">
+            <!-- <div class="section-title text-center clearfix">
+                <h4>Check Available Jobs</h4>
+                <p class="lead">Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
+                    iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.</p>
+            </div> -->
+
+            <div class="all-jobs job-listing clearfix">
+                <div id="SidePnl" class="job-title hidden-sm hidden-xs">
+                    <h5>Relevant Project</h5>
+                </div>
+                <div class="job-tab" ng-repeat="Project in All_ProjectList">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="post-media">
+                                <a href="job-single.htm">
+                                    <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                </a>
+                            </div>
+                            <!-- end media -->
+                        </div>
+                        <!-- end col -->
+                    
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="badge freelancer-badge">Project</div>
+                            <h3>
+                                <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
+                            </h3>
+                            <small>
+                                <span>Company :
+                                    <a href="#">Amanda Sun</a>
+                                </span>
+                                <span>Start Date : {{Project.ProjectStartDate}}</span>
+                                <span>End Date : {{Project.ProjectEndDate}}</span>
+                            </small>
+                            <br>
+                            <small>
+                                <span>Description :
+                                    <span ng-bind-html="{{Project.ProjectDesc}}"></span>
+                                </span>
+                            </small>
+                        </div>
+                        <!-- end col -->
+                    
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta">
+                                <p>{{Project.ProjectLocation | split:',':0}}</p>
+                                <small>India</small>
+                            </div>
+                            <!-- end meta -->
+                        </div>
+                        <!-- end col -->
+                    
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta text-center">
+                                <h4>${{Project.ProjectBudget}}</h4>
+                                <a href class="btn btn-primary btn-sm" ng-click="openmodal(Project.ProjectPostID)">Apply</a>
+                                <a href class="btn btn-info btn-sm" ng-click="getProjectID(Project.ProjectPostID)">View</a>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end job-tab -->
+            </div>
+            <!-- end alljobs -->
+
+            <!-- <div class="loadmorebutton text-center clearfix">
+                <a href class="btn btn-primary" id="loadMore">Load More Jobs</a>
+            </div> -->
+            <!-- end loadmore -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    
+</div>

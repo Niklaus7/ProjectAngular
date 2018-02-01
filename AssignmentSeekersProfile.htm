@@ -1,0 +1,1012 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    .post-padding {
+        margin-bottom: 0px !important;
+    }
+
+    .current:hover a,
+    .current:focus a {
+        background-color: transparent;
+        color: #fff !important;
+    }
+
+    .brand-pills>li>a {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .wizard>.steps .current a,
+    .wizard>.steps .current a:hover,
+    .wizard>.steps .current a:active {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .wizard>.actions a,
+    .wizard>.actions a:hover,
+    .wizard>.actions a:active {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .wizard>.content>.body label.error {
+        font-size: 13px !important;
+    }
+
+    .wizard>.steps .error a,
+    .wizard>.steps .error a:hover,
+    .wizard>.steps .error a:active {
+        background: #f36f24 !important;
+    }
+
+    .wizard.vertical>.steps {
+        width: 25% !important;
+    }
+
+    .wizard.vertical>.content {
+        width: 70% !important;
+    }
+
+    .submit-form textarea {
+        min-height: 112px !important;
+    }
+
+    .wizard>.content>.body label {
+        margin-bottom: 0px;
+        height: 40px !important;
+    }
+
+    .wizard>.content>.body label>span {
+        padding-top: 4px !important;
+    }
+
+
+    .pac-container {
+        z-index: 9999 !important;
+    }
+
+
+    #pac-input {
+        background-color: #fff;
+        margin-left: 12px;
+        margin-top: 12px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+
+    #pac-input {
+        background-color: #fff;
+        margin-left: 12px;
+        margin-top: 12px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="iComissionAdmin\assets\plugins\jquery.steps\css\jquery.steps.css">
+
+<link rel="stylesheet" type="text/css" href="iComissionAdmin\assets\plugins\jquery.steps\css\jquery.steps.css">
+<link href="iComissionAdmin\assets\plugins\switchery\css\switchery.min.css" rel="stylesheet">
+<link href="assets\plugins\multiselect\css\multi-select.css" rel="stylesheet" type="text/css">
+<link href="assets\plugins\select2\css\select2.min.css" rel="stylesheet" type="text/css">
+<link href="assets\plugins\bootstrap-select\css\bootstrap-select.min.css" rel="stylesheet">
+<link href="assets\plugins\bootstrap-touchspin\css\jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+<link href="iComissionAdmin\assets\css\icons.css" rel="stylesheet" type="text/css">
+
+<div ng-controller="AssignmentSeekersProfileController" id="AssignmentSeekersProfileController" ng-init="Check()">
+    <!-- Vertical Steps Example -->
+    <div class=" section lb">
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="card-box">
+
+                    <form id="wizard-vertical">
+                        <h3>Personal Details</h3>
+                        <section>
+
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="row">
+                                            
+                                    <div class="col-md-8">
+                                            <a href class="btn btn-primary btn-sm" ng-click="skip()" style="margin-bottom: 20px;">Skip</a>
+                                            
+                                    </div>
+                                    <div class="col-md-4">
+                                            <label>Person</label>
+                                            <input id="checkbox" ng-click="getValue()" type="checkbox" checked="" data-plugin="switchery" data-color="#f05050">
+                                            <label>company</label>
+                                    </div>
+                                    </div>
+            
+                                   
+                                    
+                                    <br>
+                                    <div class="submit-form">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="required form-control" id="userName" name="userName" readonly placeholder="Name *" ng-model="name" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input type="text" class="form-control required" placeholder="DOB *" id="datepicker" ng-model="dob">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <textarea class="form-control required" id="fulladdr" name="fulladdr" ng-model="fulladdr" rows="2" placeholder="Address *"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="Contact" name="Contact" readonly placeholder="Contact *" ng-model="Contact" type="number">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="location" placeholder="Cuurent Location *" name="location " ng-model="location"
+                                                            type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <div class="">
+                                                        <input class="form-control required" id="email" name="email" readonly placeholder="Email *" ng-model="emailid" type="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group clearfix">
+                                                    <input type="file" name="file" id="profileImg"  accept="image/*" class="filestyle required" data-placeholder="Profile Picture">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label text-info" style="padding-left: 0px">(*) Mandatory</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end post-padding -->
+                            </div>
+                        </section>
+                        <h3>Company Details</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="clearfix">&nbsp;</div>
+                                        <div class="row">
+
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CName.$invalid && !OtherRegistration.CName.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CName" ng-pattern="onlytext" name="CName" placeholder="Company Name" required> </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CEmail.$invalid && !OtherRegistration.CEmail.$pristine }">
+                                                    <input type="email" class="form-control" ng-model="CEmail" name="CEmail" placeholder="Comapny Email" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAddress.$invalid && !OtherRegistration.CAddress.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CAddress" name="CAddress" placeholder="Company Address" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPhone.$invalid && !OtherRegistration.CPhone.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CPhone" ng-pattern="Mobilenumber" name="CPhone" placeholder="Compnay Phone"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CWebsite.$invalid && !OtherRegistration.CWebsite.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CWebsite" ng-pattern="onlytext" name="CWebsite" placeholder="Company Website"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CRegNo.$invalid && !OtherRegistration.CRegNo.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CRegNo" name="CRegNo" placeholder="Company Registration No" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CIndustry.$invalid && !OtherRegistration.CIndustry.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CIndustry" ng-pattern="onlytext" name="CIndustry" placeholder="Industry Type"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#MapModal">Office Location</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="control-label " for="password2">
+                                                    <b>About Company(*)</b>
+                                                </label>
+                                                <div id="aboutcompany" class="summernote">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CLogo.$invalid && !OtherRegistration.CLogo.$pristine }">
+                                                    <label class="lblclass">Comapny Logo</label>
+                                                    <input type="file" class="form-control" id="CLogo" accept="image/*" name="CLogo" placeholder="Compnay Logo" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <label class="lblclass">Incorporation Certificate</label>
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCertificate.$invalid && !OtherRegistration.CCertificate.$pristine }">
+                                                    <input type="file" class="form-control" id="CCertificate" accept=".pdf,.doc,.docx" ng-pattern="onlytext" name="CCertificate"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <label class="lblclass">Incorporation Date</label>
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CDate.$invalid && !OtherRegistration.CDate.$pristine }">
+                                                    <input type="date" class="form-control" ng-model="CDate" name="CDate" required>
+                                                    <!-- <md-datepicker ng-model="CDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4>
+                                            <b>Other Details</b>
+                                        </h4>
+                                        <div class="clearfix">&nbsp;</div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCountry.$invalid && !OtherRegistration.CCountry.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CCountry" ng-pattern="onlytext" name="CCountry" placeholder="Country" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CState.$invalid && !OtherRegistration.CState.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CState" ng-pattern="onlytext" name="CState" placeholder="State" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPAN.$invalid && !OtherRegistration.CPAN.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CPAN" name="CPAN" placeholder="PAN No" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CTAN.$invalid && !OtherRegistration.CTAN.$pristine }">
+                                                    <input type="text" class="form-control" ng-model="CTAN" name="CTAN" placeholder="TAN No" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-error" style="margin-bottom: 0px">
+                                            <label id="errormsg" class="help-block"></label>
+                                        </div>
+                                        <div class="clearfix">&nbsp;</div>
+
+
+
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Work Experience</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="form-group clearfix">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Are You?
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="radio-inline">
+                                                            <input type="radio" class="required" name="radioB4" value="Freshers" onchange="show_message1()" checked>Freshers
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" class="required" name="radioB4" onchange="show_message1()" value="Experienced">Experienced
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix">&nbsp;</div>
+
+                                                <div id="ExperiencedDetails" class="form-group clearfix" style="display: none">
+                                                    <div id="addexp">
+                                                        <input type="hidden" id="hidden_newexp" value="1">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <select class="required form-control" id="expinyr_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Experience in Year
+                                                                            <option>0
+                                                                                <option>1
+                                                                                    <option>2
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="">
+                                                                    <select class="required form-control" id="expinmonth_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Experience in month
+                                                                            <option>0
+                                                                                <option>1
+                                                                                    <option>2
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <input class="required form-control" id="Salary_0" placeholder="Cuurent Annual Salary" ng-model="Salary" name="Salary" type="text">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Job Title" id="jobtitle_0" ng-model="jobtitle" name="jobtitle" type="text">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Job Descripion" id="JobDescripion_0" ng-model="JobDescripion" name="JobDescripion"
+                                                                    type="text">
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <input class="required form-control" placeholder="Company Name" id="companyname_0" ng-model="companyname" name="companyname"
+                                                                    type="text">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="clearfix">&nbsp;</div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="Industry_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Industry
+                                                                            <option>Industry0
+                                                                                <option>Industry1
+                                                                                    <option>Industry2
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="Department_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Department
+                                                                            <option>Department0
+                                                                                <option>Department1
+                                                                                    <option>Department3
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="row">
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="monthfrom_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Month
+                                                                            <option>Jan
+                                                                                <option>Feb
+                                                                                    <option>Mar
+                                                                                        <option>Apr
+                                                                                            <option>May
+                                                                                                <option>Jun
+                                                                                                    <option>Jul
+                                                                                                        <option>Aug
+                                                                                                            <option>Sep
+                                                                                                                <option>Oct
+                                                                                                                    <option>Nov
+                                                                                                                        <option>Dec
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="yearFrom_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Year
+                                                                            <option>2017
+                                                                                <option>2016
+                                                                                    <option>2015
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="monthto_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Month
+                                                                            <option>Jan
+                                                                                <option>Feb
+                                                                                    <option>Mar
+                                                                                        <option>Apr
+                                                                                            <option>May
+                                                                                                <option>Jun
+                                                                                                    <option>Jul
+                                                                                                        <option>Aug
+                                                                                                            <option>Sep
+                                                                                                                <option>Oct
+                                                                                                                    <option>Nov
+                                                                                                                        <option>Dec
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="form-group clearfix">
+                                                                    <select class="required form-control" id="yearto_0" name="currency" data-style="btn-white">
+                                                                        <option selected="selected" value="">Year
+                                                                            <option>2017
+                                                                                <option>2016
+                                                                                    <option>2015
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <button onclick="addnewexp()" align="center" class="btn btn-primary">
+                                                                <i class="fa fa-plus"></i> Add Experience
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="FreshersDetails" class="form-group clearfix" style="display: none">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <h3>Key Skill</h3>
+                        <section>
+                            <div class="content">
+                                <div class="post-padding">
+                                    <div class="submit-form">
+                                        <div class="form-group clearfix">
+
+                                            <div id="newskill">
+                                                <input type="hidden" id="hidden_newskill" value="1">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label style="width: 100%;">Key Skill/Experience</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="">
+                                                            <select class="required form-control" id="skill_0" name="skill" data-style="btn-white">
+                                                                <option selected="selected" value="">skill
+                                                                    <option>java
+                                                                        <option>c
+                                                                            <option>c++
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="">
+                                                            <select class="required form-control" id="skillexp_0" name="skillexp" data-style="btn-white">
+                                                                <option selected="selected" value="">Experience in Year
+                                                                    <option>0
+                                                                        <option>1
+                                                                            <option>2
+
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="clearfix">&nbsp;</div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button onclick="addnewskill()" align="center" class="btn btn-primary">
+                                                        <i class="fa fa-plus"></i> Add More
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                        
+                    </form>
+                    <!-- End #wizard-vertical -->
+                    <a class="hidden" onclick="GoToHome()" id="Main"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End row -->
+
+    <div id="MapModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Office Location</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="map_canvas" style="height: 300px; width: 100%"></div>
+                                    <input type="hidden" id="hidden_lat" ng-model="hidden_lat" value="" />
+                                    <input type="hidden" id="hidden_lang" ng-model="hidden_lang" value="" />
+                                    <input id="pac-input" data-validate="required" name="pac-input" class="controls form-control" type="text" placeholder="Search Box">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="iComissionAdmin\assets\plugins\jquery.steps\js\jquery.steps.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="iComissionAdmin\assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+
+<!--wizard initialization-->
+<script src="iComissionAdmin\assets\pages\jquery.wizard-init.js" type="text/javascript"></script>
+<script src="iComissionAdmin\assets\plugins\bootstrap-filestyle\js\bootstrap-filestyle.min.js" type="text/javascript"></script>
+
+<!-- <script src="iComissionAdmin\assets\plugins\bootstrap-datepicker\js\bootstrap-datepicker.min.js"></script> -->
+
+
+<script src="iComissionAdmin\assets\plugins\switchery\js\switchery.min.js" type="text/javascript"></script>
+
+<!-- ng tag input -->
+<script type="text/ng-template" id="my-custom-template">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<!-- ng tag input -->
+
+<script type="text/ng-template" id="my-custom-template1">
+
+    <div>
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+
+
+    </div>
+</script>
+
+<!-- add new skill -->
+<script>
+
+    function GoToHome() {
+        window.location.href = "Index.html";
+    }
+
+    id = 1;
+
+    function addnewskill() {
+
+        if (id < 30) {
+            //   alert(id);
+            $('#newskill').append(
+                '<content> <div class="row"><div class="col-md-5"><div class=""><select class="required" id="skill_' +
+                id +
+                '" name="skill" data-style="btn-white"> <option selected="selected" value="">skill<option>java<option>c<option>c++</select> </div> </div><div class="col-md-5"> <div class=""><select class="required" id="skillexp_' +
+                id +
+                '" name="skillexp" data-style="btn-white"><option selected="selected" value="">Experience in Year  <option>0  <option>1<option>2</select></div> </div> <div class="col-md-2"><label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label></div></div></content>'
+            );
+            //alert();
+            id++;
+
+        }
+        document.getElementById("hidden_newskill").value = id;
+
+    }
+
+    function removenewskill() {
+        if (id > 1) {
+            $('#newskill').find('select').last().closest('content').remove();
+            id--;
+
+        }
+        document.getElementById("hidden_newskill").value = id;
+
+    }
+
+    //show div of ExperiencedDetails or FreshersDetails
+    function show_message1() {
+
+
+        var radioB4_value1 = $('input[name="radioB4"]:checked').val();
+        //alert(radioB4_value);
+        if (radioB4_value1 == 'Experienced') {
+            document.getElementById('ExperiencedDetails').style.display = "block";
+            document.getElementById('FreshersDetails').style.display = "none";
+
+
+        } else {
+            document.getElementById('ExperiencedDetails').style.display = "none";
+            document.getElementById('FreshersDetails').style.display = "block";
+
+        }
+    }
+</script>
+
+<!--  add new exp -->
+<script>
+    id = 1;
+
+    function addnewexp() {
+        if (id < 5) {
+            //   alert(id);
+            $('#addexp').append(
+                '<content><div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Total Experience\
+                                                    </div>\
+                                                    <div class="col-md-4">\
+                                                        <div class="">\
+                                                            <select class="required" id="expinyr_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                <option selected="selected" value="">Experience in Year\
+                                                                                                <option>0\
+                                                                                                <option>1\
+                                                                                                <option>2\
+                                                                                                \
+                                                                </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-4">\
+                                                        <div class="">\
+                                                            <select class="required" id="expinmonth_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                <option selected="selected" value="">Experience in month\
+                                                                                                <option>0\
+                                                                                                <option>1\
+                                                                                                <option>2\
+                                                                                                \
+                                                                    </select>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Cuurent Annual Salary\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                            <input class="required form-control" id="Salary_' +
+                id +
+                '" ng-model="Salary" name="Salary" type="text">\
+                                                            \
+                                                        </div>\
+                                                            </div>\
+                                                                \
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Job Title\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="jobtitle_' +
+                id +
+                '" ng-model="jobtitle" name="jobtitle" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                    \
+                                                        Job Descripion\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="JobDescripion_' +
+                id +
+                '" ng-model="JobDescripion" name="JobDescripion" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                \
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Company Name\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <input class="required form-control" id="companyname_' +
+                id +
+                '" ng-model="companyname" name="companyname" type="text">\
+                                                        \
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Industry of Company\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="Industry_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Industry\
+                                                                                                            <option>Industry0\
+                                                                                                            <option>Industry1\
+                                                                                                            <option>Industry2\
+                                                                                                            \
+                                                            </select>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Department\
+                                                    </div>\
+                                                    <div class="col-md-8">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="Department_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                                <option selected="selected" value="">Department\
+                                                                                                                <option>Department0\
+                                                                                                                <option>Department1\
+                                                                                                                <option>Department3\
+                                                                                                                \
+                                                                                </select>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                \
+                                                <div class="row">\
+                                                    <div class="col-md-4">\
+                                                        Duaration of the job\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="monthfrom_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Month\
+                                                                                                            <option>Jan\
+                                                                                                            <option>Feb\
+                                                                                                            <option>Mar\
+                                                                                                            <option>Apr\
+                                                                                                            <option>May\
+                                                                                                            <option>Jun\
+                                                                                                            <option>Jul\
+                                                                                                            <option>Aug\
+                                                                                                            <option>Sep\
+                                                                                                            <option>Oct\
+                                                                                                            <option>Nov\
+                                                                                                            <option>Dec\
+                                                        \                        </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="yearFrom_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Year\
+                                                                                                            <option>2017\
+                                                                                                            <option>2016\
+                                                                                                            <option>2015\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                    </div>\
+                                                            \
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="monthto_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Month\
+                                                                                                                            <option>Jan\
+                                                                                                                            <option>Feb\
+                                                                                                                            <option>Mar\
+                                                                                                                            <option>Apr\
+                                                                                                                            <option>May\
+                                                                                                                            <option>Jun\
+                                                                                                                            <option>Jul\
+                                                                                                                            <option>Aug\
+                                                                                                                            <option>Sep\
+                                                                                                                            <option>Oct\
+                                                                                                                            <option>Nov\
+                                                                                                                            <option>Dec\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col-md-2">\
+                                                        <div class="form-group clearfix">\
+                                                            <select class="required" id="yearto_' +
+                id +
+                '" name="currency" data-style="btn-white">\
+                                                                                                            <option selected="selected" value="">Year\
+                                                                                                            <option>2017    \
+                                                                                                            <option>2016\
+                                                                                                            <option>2015\
+                                                                                                            \
+                                                                            </select>\
+                                                        </div>\
+                                                       \
+                                                    </div>\
+                                                    <hr/>\
+                                                    <div class="row">\
+                                                            <label onclick="removexp()" style="color:#209eff" align="center">\
+                                                                            -Remove\
+                                                                    </label>\
+                                                                    <hr/>\
+                                                        </div>\
+                                                        \
+                                    </content>'
+            );
+            //alert();
+            id++;
+            $('.selectpicker').selectpicker();
+
+        }
+
+        document.getElementById("hidden_newexp").value = id;
+
+    }
+
+    function removexp() {
+        if (id > 1) {
+            $('#addexp').find('select').last().closest('content').remove();
+            id--;
+
+        }
+        document.getElementById("hidden_newexp").value = id;
+    }
+</script>
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker();
+        // var options = {
+        //     format: 'dd/mm/yyyy',
+        //     todayHighlight: true,
+        //     autoclose: true
+        // };
+        // date_input.datepicker(options);
+    })
+</script>
+
+
+<script src="assets\plugins\summernote\summernote.min.js"></script>
+<script>
+    function initialize3() {
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('pac-input')),
+            { types: ['(cities)'], componentRestrictions: { country: "in" } });
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        });
+    }
+
+    jQuery(document).ready(function () {
+
+        $('.summernote').summernote({
+            height: 150,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+
+    });
+
+</script>

@@ -1,0 +1,182 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    label {
+        font-size: 14px !important;
+    }
+
+
+    .brand-pills>li>a {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .nav-pills>li.active>a,
+    .nav-pills>li.active>a:focus,
+    .nav-pills>li.active>a:hover {
+        color: #fff !important;
+        background-color: #fca22c !important;
+    }
+
+    .lblclass {
+        font-size: 13px !important;
+    }
+    .section{
+        padding-bottom: 0px !important;
+    }
+</style>
+<div ng-controller="AssignmentSeekerRegController">
+
+    <div class="section lb">
+        <div class="container">
+
+            <div class="row">
+                <div class="content col-md-9" style="margin-top: 50px; margin-left:12.50%;margin-right:12.50%">
+                    <div class="tab-content">
+                        <div id="User" class="post-padding tab-pane fade in active">
+
+                            <div class="job-title nocover hidden-sm hidden-xs">
+                                <h5 id="title">Assignment Seeker Registration</h5>
+                            </div>
+                            <form id="UserRegistration" class="submit-form" name="UserRegistration" novalidate>
+                                <div id="div_login">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Name.$invalid && !UserRegistration.Name.$pristine }">
+                                                <input type="text" class="form-control" ng-model="Name" ng-pattern="onlytext" name="Name" placeholder="Name" required> </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Email.$invalid && !UserRegistration.Email.$pristine }">
+                                                <input type="email" class="form-control" ng-model="Email" name="Email" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <hr class="invis">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Phone.$invalid && !UserRegistration.Phone.$pristine }">
+                                                <input type="text" class="form-control" ng-model="Phone" ng-pattern="Mobilenumber" name="Phone" placeholder="Phone" required>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-6 col-sm-12">
+                                                                <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Designation.$invalid && !UserRegistration.Designation.$pristine }">
+                                                                    <input type="text" class="form-control" ng-model="Designation" ng-pattern="onlytext" name="Designation" placeholder="Designation"
+                                                                        required>
+                                                                </div>
+                                                            </div> -->
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Male" checked>Male
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="optradio" value="Female">Female
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <hr class="invis">
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.Password.$invalid && !UserRegistration.Password.$pristine }">
+                                                <input type="password" class="form-control" ng-model="Password" name="Password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+                                                    placeholder="Password" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="UserRegistration.Password.$invalid && !UserRegistration.Password.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password should be atleast 8 characters long and should
+                                                    contain one number,one character and one special character</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group" ng-class="{ 'has-error' : UserRegistration.ConformPassword.$invalid && !UserRegistration.ConformPassword.$pristine }">
+                                                <input type="password" class="form-control" ng-model="ConformPassword" name="ConformPassword" placeholder="Conform Password"
+                                                    password-confirm match-target="Password" required>
+                                                <p style="font-size: 12px !important; line-height: 1.5 !important" ng-show="UserRegistration.ConformPassword.$invalid && !UserRegistration.ConformPassword.$pristine"
+                                                    class="help-block">
+                                                    <i class="fa fa-info"></i>&nbsp;&nbsp;Password does not match</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group has-error" style="margin-bottom: 0px">
+                                        <label id="errormsg" class="help-block"></label>
+                                    </div>
+                                    <!-- end row -->
+                                    <button class="btn btn-primary" style="margin-top: 0px" ng-click="Getdata(UserRegistration.$valid)">Register</button>
+                                </div>
+                                <div id="div_Otp" style="display:none">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group text-center">
+                                                <img src="images/OTP.png" style="width:100%" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12" style="margin-top: 7%;">
+                                            <div class="form-group">
+                                                <small>OTP</small>
+                                                <input type="text" placeholder="Enter OTP" id="txt_otp" ng-model="txt_otp" class="form-control">
+                                            </div>
+                                
+                                            <div class="form-group" id="div_loader">
+                                                <label class="text-success" id="lbl_error2"></label>
+                                            </div>
+                                
+                                            <span>
+                                                <button class="btn btn-primary" style="margin-top: 0px" ng-click="SaveUserData()" type="button">Finish</button>
+                                            </span>
+                                
+                                            <span>
+                                                <a style="color:#af1e62;cursor:pointer" class="pull-right" ng-click="ResendOTP()">Resend OTP</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="div_success" class="text-center" style="display:none">
+                                    <img src="assets/images/checkmark.ico" style="width:30%" />
+                                    <h4>Registered Successfully!</h4>
+                                    <p>Please sign in to become ProcStart member..!</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <img src="images/bottomimg.png" style="opacity: 0.6; width: 100%">
+        <!-- end container -->
+    </div>
+    <!-- end section -->
+    <!-- end section -->
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#div_login input').focus(function (index) {
+            document.getElementById('errormsg').innerHTML = "";
+        });
+    });
+
+    $(document).ready(function () {
+        $('#div_login1 input').focus(function (index) {
+            document.getElementById('errormsg1').innerHTML = "";
+        });
+    });
+
+    function ChangeType() {
+        if (document.getElementById('div_login1').style.display != "block") {
+            $("#div_success1").slideUp();
+            document.getElementById('div_login1').style.display = "block";
+        }
+        setTimeout(function () {
+            document.getElementById('title1').innerHTML = $.trim($('ul#UserRoles').find('li.active').text()) + " Registration";
+        }, 100);
+
+    }
+</script>

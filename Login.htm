@@ -1,0 +1,119 @@
+<style>
+    .section {
+        padding-top: 20px !Important;
+    }
+
+    label {
+        font-size: 14px !important;
+    }
+</style>
+<script type="text/javascript">
+    var onloadCallback = function() {
+      grecaptcha.render('html_element', {
+        'sitekey' : '6Le6oUIUAAAAAJ0AlaCLfBQAQTG9fSzlYt--yG2r'
+      });
+    };
+  </script>
+<div ng-controller="LoginController">
+
+    <div class="section lb">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="content col-md-4" style="padding-right: 0px">
+                    <img src="images/login.jpg" style="width: 100%;">
+                </div>
+                <div class="content col-md-4" style="padding-left: 0px;">
+                    <div class="post-padding" style="    padding-bottom: 20px;">
+                        <div id="UserRoleDiv">
+                            <div class="content-title">
+                                <h4 id=title> Login</h4>
+                                <hr>
+                            </div>
+                            <!-- <a id="superadmin" href="Admin\Main.htm" ><button type="button" class="btn btn-pink btn-rounded waves-effect waves-light">Search Bidder</button></a> -->
+                            <form id="LoginForm" class="submit-form" data-callback="XXX" name="LoginForm" novalidate>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group" ng-class="{ 'has-error' : LoginForm.username.$invalid && !LoginForm.username.$pristine }">
+                                            <input type="email" class="form-control" ng-model="username" name="username" placeholder="Username" required>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">&nbsp;</div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group" ng-class="{ 'has-error' : LoginForm.password.$invalid && !LoginForm.password.$pristine }">
+                                            <input type="password" class="form-control" ng-model="password" name="password" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group has-error">
+                                    <label id="errormsg" class="help-block"></label>
+                                </div>
+                                <!-- end row -->
+                                <input type="checkbox" style="display: inline" class="checkbox" id="chk" value="Remember Me">
+                                <label for="chk" href style="font-weight: normal">Remember Me</label>
+                                <div class="clearfix">&nbsp;</div>
+                                <div id="html_element" data-callback="recaptchaCallback"></div>
+                                <div class="clearfix">&nbsp;</div>
+                                <button id="lgnbtn" class="btn btn-custom" disabled ng-click="Login(LoginForm.$valid)" style="margin-top: 0px">Login</button>
+                                <div class="clearfix">&nbsp;</div>
+                                <a href onclick="ShowForgtPassword()">Forgot Password?</a>
+                                <div class="clearfix"></div>
+                                Don't have an account
+                                <a href="#Registration" style="color: #ff6200 !important">Register here</a>, it takes less than a minute
+                            </form>
+                        </div>
+                        <div id="ForgotPassword" style="display: none">
+                            <div class="content-title">
+                                <h4 id="title" class="text-center"> Forgot Password</h4>
+                                <hr class="text-center" style="width: 100%;">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group text-center">
+                                        <input type="text" class="form-control" placeholder="Enter registered emailid" ng-model="Email" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-custom" ng-click="ForgotPassword()" style="margin-top: 0px">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end post-padding -->
+                </div>
+                <!-- end col -->
+                <div class="col-md-2"></div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <div id="snackbar">Some text some message..</div>
+    <!-- end section -->
+    <!-- end section -->
+</div>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+async defer>
+</script>
+<script>
+    function ShowForgtPassword1() {
+        $("#UserRoleDiv").slideUp();
+        document.getElementById('ForgotPassword').style.display = "block";
+    }
+</script>
+<script>
+    function recaptchaCallback() {
+        $('#lgnbtn').removeAttr('disabled');
+        //localStorage.setItem("isCaptchachecked","Yes");
+    };
+
+    $("#LoginForm input").click(function(){
+        document.getElementById("errormsg").innerHTML = "";
+    });
+</script>

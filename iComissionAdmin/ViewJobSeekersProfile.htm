@@ -1,0 +1,253 @@
+<style>
+    .p-20 {
+        padding: 0px !important;
+    }
+
+    .font-13 {
+        font-size: 14px !important;
+    }
+
+    .button-list {
+        margin-bottom: 10px !important;
+    }
+
+    .header-title {
+        font-size: 18px !important;
+    }
+</style>
+<div class="container" ng-controller="ViewJobSeekersProfileController" ng-repeat="x in JobSeekersProfile">
+
+    <div id="header_div" class="row">
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <div class="profile-detail card-box">
+                    <div>
+                        <img src="{{x.ProfileImage}}" class="rounded-circle bx-shadow" alt="profile-image">
+
+                        <!-- <ul class="list-inline status-list m-t-20">
+                                    <li class="list-inline-item">
+                                        <h3 class="text-primary m-b-5">456</h3>
+                                        <p class="text-muted">Followings</p>
+                                    </li>
+
+                                    <li class="list-inline-item">
+                                        <h3 class="text-success m-b-5">5864</h3>
+                                        <p class="text-muted">Followers</p>
+                                    </li>
+                                </ul> -->
+
+                        <!-- <button type="button" class="btn btn-success waves-effect waves-light">Follow</button> -->
+
+                        <hr>
+                        <h4 class="text-uppercase font-18 font-600">About Me</h4>
+                        <p class="text-muted font-13 m-b-30">
+                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of type.
+                        </p>
+
+                        <div class="text-left">
+                            <p class="text-muted font-13">
+                                <strong>Full Name :</strong>
+                                <span>{{x.FirstName}}</span>
+                            </p>
+
+                            <p class="text-muted font-13">
+                                <strong>Type :</strong>
+                                <span>{{x.JobSeekerType}}</span>
+                            </p>
+
+                            <p class="text-muted font-13">
+                                <strong>Email :</strong>
+                                <span>{{x.Email}}</span>
+                            </p>
+
+                            <p class="text-muted font-13">
+                                <strong>Location :</strong>
+                                <span>{{x.Location}}</span>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-8 col-md-8">
+                <div class="card-box">
+                    <div class="button-list" align="right">
+                        <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="view_AppliedJob()">
+                            Applied Job
+                        </button>
+
+                        <button type="button" class="btn btn-info waves-effect waves-light">
+                            <span class="badge badge-pill badge-warning">7</span>
+                        </button>
+
+                        <button type="button" class="btn btn-primary waves-effect waves-light" ng-click="viewProfile()">
+                            View Profile
+                        </button>
+
+                        <button type="button" class="btn btn-info waves-effect waves-light">
+                            Status
+                        </button>
+                    </div>
+
+
+                    <div id="maindiv">
+                        <h4 class="m-t-0 header-title">
+                            <b>Education Details</b>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Highest Qualification</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.EducationDetails.HighestQualification}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Percentage/CPI</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.EducationDetails.CPI}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Course Type</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.EducationDetails.CourseType}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Passout Year</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.EducationDetails.PassoutYear}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h4 class="m-t-0 header-title">
+                            <b>Skills</b>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Skills</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.Skill.SkillSetID}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <h4 class="m-t-0 header-title">
+                            <b>Experience</b>
+                        </h4>
+
+                        <div class="row">
+                            <div class="col-md-6" ng-show="x.JobSeekerType == 'Freshers'">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Experience</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        Fresher having no experience.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-show="x.JobSeekerType == 'Experience'">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>Company Name</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.CompanyName}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-show="x.JobSeekerType == 'Experience'">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>JobTitle</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.JobTitle}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-show="x.JobSeekerType == 'Experience'">
+                                <div class="p-20">
+                                    <h5>
+                                        <b>TotalExp(Yr)</b>
+                                    </h5>
+                                    <p class="text-muted m-b-15 font-13">
+                                        {{x.TotalExp_Year}} Year {{x.TotalExp_Month}} Months
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="AppliedJob_div" class="row" style="display: none;">
+                        <div class="col-md-12" style="min-height: 365px">
+                            <h4 class="m-t-0 header-title">
+                                <b>Applied Jobs list</b>
+                            </h4>
+                            <div class="clearfix">&nbsp;</div>
+                            <div class="table-responsive">
+                                <table class="table table-hover mails m-0 table table-actions-bar">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Job Title</th>
+                                            <th width="50%">Applied Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active" ng-repeat="i in JobSeekers_AppliedJobList ">
+
+                                            <td>
+
+                                                {{i.JobTitle}}
+
+
+                                            </td>
+                                            <td>
+                                                {{i.ApplyDate}}
+                                            </td>
+
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
