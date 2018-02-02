@@ -384,7 +384,29 @@ iComissionapp.controller('ProjectPostController', function ($scope, $http, $loca
 	$timeout(function () {
 		$('#preloader').delay(350).fadeOut('slow');
 	}, 1000);
+/////////////////////////////////////////////
+	$scope.getMembershipPlans = function () {
+		$http.post("PHP/Get_MembershipPlans.php").then(function (response) {
+			console.log(response.data);
+			$scope.MembershipPlansData = response.data;		
+			$("#membershipPlanDropdown").empty();
+			$scope.MembershipPlansData.forEach(function(val) {	   
+				$("#membershipPlanDropdown").append("<option value='" + val.MembershipPlanId + "'>" + val.MembershipPlanName + "</option>");	   
+			});	
+			$("#membershipPlanName").html($scope.MembershipPlansData[0].MembershipPlanName);
+			$("#membershipPlanDescription").html($scope.MembershipPlansData[0].MembershipPlanDescription);
+			$("#membershipPlanCost").html($scope.MembershipPlansData[0].MembershipPlanCost);
+		}, function (error) {
+			console.log("Fetching error : " + error);			
+		});		
 
+		$("#membershipPlanDropdown").change(function() {
+			$("#membershipPlanName").html($scope.MembershipPlansData[$("#membershipPlanDropdown").val() - 1].MembershipPlanName);
+			$("#membershipPlanDescription").html($scope.MembershipPlansData[$("#membershipPlanDropdown").val() - 1].MembershipPlanDescription);
+			$("#membershipPlanCost").html($scope.MembershipPlansData[$("#membershipPlanDropdown").val() - 1].MembershipPlanCost);
+		});
+	}
+////////////////////////////////////////
 	$scope.show = function () {
 
 		$("#mapdiv").show();
