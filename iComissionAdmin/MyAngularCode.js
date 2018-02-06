@@ -513,6 +513,7 @@ iComissionapp.controller('ProjectPostController', function ($scope, $http, $loca
 		$scope.MilestoneBudget1 = [];
 
 		$scope.projectDateTime = new Date();
+		$scope.membershipType = $("#membershipPlanDropdown").val();
 
 		//alert($scope.MilestoneCount );
 
@@ -598,6 +599,7 @@ iComissionapp.controller('ProjectPostController', function ($scope, $http, $loca
 				'projectLocation': $("#projectLocation").val(),//$scope.projectLocation,
 				'lat': $scope.latitude,
 				'lng': $scope.langitude,
+				'MembershipType': +$scope.membershipType,
 				'officelocation': $scope.officelocation,
 			}).then(function (response) {
 

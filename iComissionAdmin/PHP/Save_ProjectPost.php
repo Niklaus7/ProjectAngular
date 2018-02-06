@@ -33,11 +33,13 @@ $AssignmentAprrovedstatus = "No";
 $DocumentFile= $data->DocumentFile;
 $DocumentFileExt= $data->DocumentFileExt;
 
-$projectDateTime= $data->projectDateTime;
+$projectDateTime= date("Y-m-d", strtotime($data->projectDateTime));
 
 $lat = $data->lat;
 $lng = $data->lng;
 $officelocation = $data->officelocation;
+$MembershipType = 1;
+$MembershipType = $data->MembershipType;
 
 if($officelocation == "Yes"){
     $sql9 ="SELECT officelocation,lat,lng FROM registeruserinforamtion where UserID = $JobPostBy";
@@ -59,13 +61,13 @@ else{
 }
 
 
-$sql0 = "CALL usp_Insert_ProjectPost(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql0 = "CALL usp_Insert_ProjectPost(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 $stmt0 = $conn->prepare($sql0);
 
-$stmt0->bind_param("ississsssssss",$JobPostBy,$ProjectName,$ProjectDesc,
+$stmt0->bind_param("ississsssssssi",$JobPostBy,$ProjectName,$ProjectDesc,
                             $ProjectBudget,$ProjectType,$Project_StartDate,
-                            $Project_EndDate,$projectDateTime,$Officeloationselected,$AssignmentActive,$AssignmentAprrovedstatus,$Latselected,$Lngselected);
+                            $Project_EndDate,$projectDateTime,$Officeloationselected,$AssignmentActive,$AssignmentAprrovedstatus,$Latselected,$Lngselected,$MembershipType);
 
 if($stmt0->execute())
 {
