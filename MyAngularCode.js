@@ -1008,12 +1008,13 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	
 	$rootScope.GetJobProjecfrmCurrntlocation = function (type) {
 
-        if (navigator.geolocation) {
+		//if (navigator.geolocation) 
+		//{
            navigator.geolocation.getCurrentPosition(function (p) {
 			var lat = p.coords.latitude;
 			var lng = p.coords.longitude;
 			var latlng = new google.maps.LatLng(lat, lng);
-		//alert(latlng);
+			alert(latlng);
 			var geocoder = geocoder = new google.maps.Geocoder();
 			geocoder.geocode({ 'latLng': latlng }, function (results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
@@ -1069,9 +1070,11 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 			});
 
            });
-        } else {
-           alert('Geo Location feature is not supported in this browser.');
-        }
+		//} 
+		//else 
+		//{
+          // alert('Geo Location feature is not supported in this browser.');
+       // }
 
        
     }
@@ -4103,8 +4106,8 @@ iComissionapp.controller('AssignmentSeekersProfileController', function ($scope,
 					'CompanyRegNo': $scope.CRegNo,
 					'aboutcompany': $('#aboutcompany').summernote('code'),
 					'Industry': $scope.CIndustry,
-					'Lat': '16.23566',//$scope.latitude,
-					'Lng': '23.21462',//$scope.langitude,
+					'Lat': $scope.latitude,
+					'Lng': $scope.langitude,
 					'CompanyLogo': $scope.FileData,
 					'CompanyLogoFileExt': $scope.fileext,
 					'IncorporationCert': $scope.FileData1,
@@ -4155,7 +4158,7 @@ iComissionapp.controller('AssignmentSeekersProfileController', function ($scope,
 			} 
 			else 
 			{
-				alert("5")
+				//alert("5")
 				$http.post("iComissionAdmin/PHP/Save_AssignmentSeeker_FreshersProfileInfo.php", {
 					'FirstName': $scope.name,
 					'DOB': $scope.dob,
@@ -4173,8 +4176,8 @@ iComissionapp.controller('AssignmentSeekersProfileController', function ($scope,
 					'CompanyRegNo': $scope.CRegNo,
 					'aboutcompany': $('#aboutcompany').summernote('code'),
 					'Industry': $scope.CIndustry,
-					'Lat': '16.233',//$scope.latitude,
-					'Lng': '23.22',//$scope.langitude,
+					'Lat': $scope.latitude,
+					'Lng': $scope.langitude,
 					'CompanyLogo': $scope.FileData,
 					'CompanyLogoFileExt': $scope.fileext,
 					'IncorporationCert': $scope.FileData1,
