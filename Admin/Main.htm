@@ -38,19 +38,20 @@
 
     <script src="assets\js\modernizr.min.js"></script>
     <style>
-            .has_sub img {
-                width: 10%;
-                margin-right: 20px;
-            }
-            .mb-0{
-                margin-bottom: -5px !important;
-            }
-        </style>
+        .has_sub img {
+            width: 10%;
+            margin-right: 20px;
+        }
+
+        .mb-0 {
+            margin-bottom: -5px !important;
+        }
+    </style>
 </head>
 
 <body class="fixed-left">
     <!-- Loader -->
-    
+
     <!-- Begin page -->
     <div id="wrapper">
         <!-- Top Bar Start -->
@@ -59,18 +60,18 @@
             <div class="topbar-left">
                 <div class="text-center">
                     <a class="logo" href="../Index.html">
-                        
-                        <img src="..\images\logo.png" height="42"/>
-                    <!-- Image Logo here -->
-                    <!--<a href="index.html" class="logo">-->
-                    <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
-                    <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
-                    <!--</a>-->
+
+                        <img src="..\images\logo.png" height="42" />
+                        <!-- Image Logo here -->
+                        <!--<a href="index.html" class="logo">-->
+                        <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
+                        <!--<span><img src="assets/images/logo_light.png" height="20"/></span>-->
+                        <!--</a>-->
                 </div>
             </div>
             <!-- Button mobile view to collapse sidebar menu -->
             <div>
-                
+
                 <nav class="navbar-custom" id="topbar-right">
                     <ul class="list-inline float-right mb-0">
                         <li class="list-inline-item dropdown notification-list" style="padding: 0 10px !important">
@@ -200,12 +201,12 @@
                 <!--- Divider -->
                 <div id="sidebar-menu">
                     <ul>
-                            <li class="has_sub">
-                                    <a href="#Dashboard">
-                                            <i class="ion-ionic"></i>
-                                        <span> Dashboard </span>
-                                    </a>
-                                </li>
+                        <li class="has_sub">
+                            <a href="#Dashboard">
+                                <i class="ion-ionic"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect">
                                 <i class="ion-ionic"></i>
@@ -223,24 +224,40 @@
                             </ul>
                         </li>
                         <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect">
-                                    <i class="ion-ionic"></i>
-                                    <span> Skills </span>
-                                    <span class="ion-chevron-down"></span>
-                                </a>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#skillset">Skill List</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has_sub">
-                                    <a href="#Pricing">
-                                            <i class="ion-ionic"></i>
-                                        <span> Pricing Plans </span>
-                                    </a>
+                            <a href="javascript:void(0);" class="waves-effect">
+                                <i class="ion-ionic"></i>
+                                <span> Skills </span>
+                                <span class="ion-chevron-down"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#skillset">Skill List</a>
                                 </li>
-                        
+                            </ul>
+                        </li>
+                        <li class="has_sub">
+                            <a href="#Pricing">
+                                <i class="ion-ionic"></i>
+                                <span> Pricing Plans </span>
+                            </a>
+                        </li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect">
+                                <i class="ion-ionic"></i>
+                                <span> Membership Plan  </span>
+                                <span class="ion-chevron-down pull-right"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#CreatePlan">New Plan
+                                    </a>
+                                    <a href="#MyPlan"> My Plan 
+                                    </a>
+                                   
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                     <div class="clearfix"></div>
                 </div>
@@ -254,13 +271,13 @@
         <div class="content-page">
             <!-- Start content -->
             <div class="content">
-                    <div id="preloader">
-                            <div id="status">
-                                <div class="spinner">
-                                    <img src="assets/images/loader.gif">
-                                </div>
-                            </div>
+                <div id="preloader">
+                    <div id="status">
+                        <div class="spinner">
+                            <img src="assets/images/loader.gif">
                         </div>
+                    </div>
+                </div>
                 <div ng-view autoscroll="true"></div>
             </div>
             <!-- content -->
