@@ -38,21 +38,21 @@
                                     <tr class="unread" ng-repeat="x in MessageQueue">
                                         
                                         
-                                        <td>
+                                        <td width="130">
                                                 <a class=" waves-effect waves-light nav-user" >
                                                 <img src="assets\images\users\avatar-1.jpg" alt="user" class="rounded-circle">
                                                 </a>
                                                 <a class="email-name">{{x.SenderName}}</a>
                                         </td>
 
-                                        <td class="hidden-xs" ng-repeat="y in x">
-                                        
-                                            <a href="#ReadMessage" class="email-msg" ng-click="getMessageSenderID(x.SenderID,x.SenderName)">{{y.Message}}</a>
+                                        <td width="200">
+                                       
+                                            <a href="#ReadMessage" class="email-msg" ng-click="getMessageSenderID(x.SenderID,x.SenderName)"> {{MessageQueueContent.Message}}</a>
                                             
                                         </td>
                                         
-                                        <td class="text-right">
-                                           {{x.MessageTime}}
+                                        <td width="100">
+                                           {{MessageQueueContent.MessageTime}}
                                         </td>
                                         
                                     </tr>

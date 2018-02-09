@@ -14,11 +14,11 @@ $AnswerID = $data->AnswerID ;
 $QuestionID = $data->QuestionID;
 
 
-
-$PostDate = $data->PostDateTime;
-
 $CommentPostedBy = $data->CommentPostedBy;
 $Comment1 = $data->comment;
+$PostDate = $data->PostDateTime;
+
+
 
 $sql0 = "CALL usp_Insert_PostForumAnswerComment(?,?,?,?,?)";
 

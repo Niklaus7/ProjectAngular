@@ -310,6 +310,7 @@ if($stmt0->execute()){
 }
 else
 {
-	echo "error"; //error message
+    echo "error"; //error message
+    //echo $sql0.$conn->error;
 }
 ?>

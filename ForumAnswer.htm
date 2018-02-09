@@ -60,7 +60,7 @@
                                                                 <a class="waves-effect waves-light nav-user">
                                                                         <img src="iComissionAdmin/PHP/{{x.profileimage}}" alt="" class="rounded-circle" style="width: 40px;height: 40px">
                                                                     </a>
-                                                                    <a class="email-name">{{x.UserName}}</a>
+                                                                    <a class="email-name"> By- {{x.UserName}}</a>
                                                                 
                                                         </div>
                                                  </div>
@@ -115,22 +115,25 @@
                         </div>
                     
                                                            
-                        <div class="post-padding" id="ask_question_div">
-                            <div class="row">
-
-                                <label>Your Answer</label>
-                                <div id="Answerdesc" class="summernote">
-                                </div>
-
-                                <br/>
-                                <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="postAnswer()">Post Answer</button>
-                                
-
-                            </div>
-
-                        </div>
+                        
 
                         <!-- end post-padding -->
+                    </div>
+                    
+
+                </div>
+
+                <div class="post-padding" id="ask_question_div">
+                    <div class="row">
+
+                        <label>Your Answer</label>
+                        <div id="Answerdesc" class="summernote">
+                        </div>
+
+                        <br/>
+                        <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="postAnswer()">Post Answer</button>
+                        
+
                     </div>
 
                 </div>

@@ -90,7 +90,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="control-label " for="password2">
-                                <b> Plan creation details </b>
+                                <b> </b>
                             </label>
                             <br/>
                             <br/>
@@ -126,80 +126,80 @@
 
                             </ul>
                             <label class="control-label " for="password2">
-                                <b> Other Feature's CheckList </b>
+                                <b> Feature's CheckList </b>
                             </label>
                             <ul>
-                                <div class="row" ng-show="y.PlanFeatures.UnlockRewards!=''">
+                                <div class="row" ng-show="y.PlanFeatures.UnlockRewards!='' && y.PlanFeatures.UnlockRewards!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
                                     <label for="checkbox14">
                                         Unlock Rewards
                                     </label>
 
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.UnlimitedProjectBookmarks!=''">
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedProjectBookmarks!='' && y.PlanFeatures.UnlimitedProjectBookmarks!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox15">
                                         Unlimited Project Bookmarks
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.CustomCoverPhoto!=''">
+                                <div class="row" ng-show="y.PlanFeatures.CustomCoverPhoto!='' && y.PlanFeatures.CustomCoverPhoto!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox16">
                                         Custom Cover Photo
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.DailyWithdrawals!=''">
+                                <div class="row" ng-show="y.PlanFeatures.DailyWithdrawals!='' && y.PlanFeatures.DailyWithdrawals!='0' ">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox17">
                                         Daily Withdrawals
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.FreeProjectExtensions!=''">
+                                <div class="row" ng-show="y.PlanFeatures.FreeProjectExtensions!='' && y.PlanFeatures.FreeProjectExtensions!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox18">
                                         Free Project Extensions
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.HighValueProjectBidding!=''">
+                                <div class="row" ng-show="y.PlanFeatures.HighValueProjectBidding!='' && y.PlanFeatures.HighValueProjectBidding!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox19">
                                         High Value Project Bidding*
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.PreferredAssignmentSeekerEligible!=''">
+                                <div class="row" ng-show="y.PlanFeatures.PreferredAssignmentSeekerEligible!='' && y.PlanFeatures.PreferredAssignmentSeekerEligible!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox20">
                                         Preferred Assignment Seeker Eligible*
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.FreeSealedProjects!=''">
+                                <div class="row" ng-show="y.PlanFeatures.FreeSealedProjects!='' && y.PlanFeatures.FreeSealedProjects!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox21">
                                         Free Sealed Projects
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.FreeNDAProjects!=''">
+                                <div class="row" ng-show="y.PlanFeatures.FreeNDAProjects!='' && y.PlanFeatures.FreeNDAProjects!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox30">
                                         Free NDA Projects
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.UnlimitedExternalInvoicing!=''">
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedExternalInvoicing!='' && y.PlanFeatures.UnlimitedExternalInvoicing!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox31">
                                         Unlimited External Invoicings
                                     </label>
                                 </div>
-                                <div class="row" ng-show="y.PlanFeatures.UnlimitedEmployerFollowings!=''">
+                                <div class="row" ng-show="y.PlanFeatures.UnlimitedEmployerFollowings!='' && y.PlanFeatures.UnlimitedEmployerFollowings!='0'">
                                     <i class="fa fa-check" style="color:#ff6700"></i>&nbsp;&nbsp;
 
                                     <label for="checkbox32">
@@ -210,27 +210,31 @@
                         </div>
                         <div class="col-md-6">
                             <label class="control-label " for="password2">
-                                <b> Plan Configuration Plan </b>
+                                <b> </b>
                             </label>
                             <br/>
                             <br/>
                             <ul>
-                                <div class="row">
+                                <div class="row" ng-show="y.PlanconfigurationDestails.AnnualSubs!='0'">
+                                    <li></li>
+                                    
                                     <label class="control-label " for="password2">
                                         <b>Annual Subscription : {{y.PlanconfigurationDestails.AnnualSubs}} </b>
                                     </label>
 
                                 </div>
-                                <div class="row">
+                                <div class="row" ng-show="y.PlanconfigurationDestails.MonthSubs!='0'">
+                                    <li></li>
                                     <label class="control-label " for="password2">
                                         <b> Monthly Subscription : {{y.PlanconfigurationDestails.MonthSubs}}</b>
                                     </label>
                                 </div>
-                                <div class="row">
+                                <div class="row" ng-show="y.PlanconfigurationDestails.Description!=''">
+                                    <li></li>
                                     <label class="control-label " for="password2">
                                         <b> Description : </b>
                                     </label>
-                                    <p>{{y.PlanconfigurationDestails.Description}}</p>
+                                    <p> {{y.PlanconfigurationDestails.Description}}</p>
                                 </div>
                             </ul>
 
@@ -239,15 +243,10 @@
                 </div>
             </div>
         </div>
-    <!--
-        
-    -->
-
 
     </div>
-    <!-- End row -->
 
-    </div>
+    
     <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
     <script src="assets\plugins\select2\js\select2.min.js" type="text/javascript"></script>
 

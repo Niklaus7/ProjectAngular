@@ -65,7 +65,7 @@ $sql1="SELECT distinct SenderID FROM messageboard where ReceiverID = '$ReceiverI
                  $output= $row;
                  $Sid = $row['SenderID'];
                     
-                    $sql2="SELECT `Message`, `MessageTime`, `Status` FROM messageboard where ReceiverID = '$ReceiverID' and SenderID = '  $Sid ' ORDER BY MessageTime ASC ";
+                    $sql2="SELECT `Message`, `MessageTime`, `Status` FROM messageboard where ReceiverID = '$ReceiverID' and SenderID = '  $Sid ' ORDER BY MessageTime DESC ";
                     $result2 = $conn->query($sql2);
                     if($result2->num_rows > 0) 
                     {
@@ -84,10 +84,22 @@ $sql1="SELECT distinct SenderID FROM messageboard where ReceiverID = '$ReceiverI
                                     $output['SenderName']=$row3['FirstName'];
                                 }
                             }
+                            else
+                            {
+                                echo "error";
+                            }
                         }
+                    }
+                    else
+                    {
+                        echo"error";
                     }
                     $respone[]= $output; 
             }
             echo json_encode($respone);
+        }
+        else
+        {
+            echo "error";
         }
 ?>

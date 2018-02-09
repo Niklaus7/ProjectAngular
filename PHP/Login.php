@@ -29,49 +29,73 @@ $password = $data->password;
 				}
 				$array["UserRoleName"] = $UserRoleName;
 				$UserAccountID =  $row["UserAccountID"];
-				$profileimage="";
-				$IsJobSeeker="";
+				
 				//And in addition, if user has completed the Jobseeker Profile, based on this we will redirect the user after login directly to jobseeker profile to complete
-				$sql4 = "SELECT JobSeekerID FROM jobseekerprofile where JobSeekerID='$UserAccountID'";
-				$result4 = $conn->query($sql4);
-				if ($result4->num_rows > 0) 
+				if($UserRoleName=="AssignmentSeeker")
 				{
-					//if record exists with the UserAccountID, means user has completed the jobseeker profile
-					$IsJobSeeker = "Yes";
-					$sql6 = "SELECT ProfileImage FROM jobseekerprofileimage where JobSeekerID='$UserAccountID'";
-					$result6 = $conn->query($sql6);
-					while($row6=mysqli_fetch_array($result6))
+					$sql7 = "SELECT AssignmentSeekerID FROM assignmentseekerprofile where AssignmentSeekerID='$UserAccountID'";
+					$result7 = $conn->query($sql7);
+					if ($result7->num_rows > 0) 
 					{
-						$profileimage = $row6["ProfileImage"];
+						//if record exists with the UserAccountID, means user has completed the jobseeker profile
+						$IsJobSeeker = "Yes";
+						$sql8 = "SELECT ProfileImage FROM assignmentseekerprofileimage where AssignmentSeekerID='$UserAccountID'";
+						$result8 = $conn->query($sql8);
+						while($row8=mysqli_fetch_array($result8))
+						{
+							$profileimage = $row8["ProfileImage"];
+							$ProfileComplete = "Yes";
+						}
+						$array["profileimage"] = $profileimage;
 					}
-					$array["profileimage"] = $profileimage;
-				}
-				else{
-					//else user has not completed the jobseeker profile
-					$IsJobSeeker = "No";
-					$sql99 = "SELECT CompanyLogo FROM registeruserinforamtion where UserID='$UserAccountID'";
-					$result99 = $conn->query($sql99);
-					while($row99=mysqli_fetch_array($result99))
+					else
 					{
-						$profileimage = $row99["CompanyLogo"];
+						//else user has not completed the jobseeker profile
+						$IsJobSeeker = "No";
+						$ProfileComplete = "No";
 					}
-					$array["CompanyLogo"] = $profileimage;
-				}
-				$array["IsJobSeeker"] = $IsJobSeeker;
-				$array["profileimage"] = $profileimage;
+					$array["IsJobSeeker"] = $IsJobSeeker;
+					$array["ProfileComplete"] = $ProfileComplete;
 
-				$sql5 = "SELECT UserID FROM registeruserinforamtion where UserID='$UserAccountID'";
-				$result5 = $conn->query($sql5);
-				if ($result5->num_rows > 0) 
+					$output[]=$array;
+				}
+				else
 				{
-					$ProfileComplete = "Yes";
-				}
-				else{
-					$ProfileComplete = "No";
-				}
-				$array["ProfileComplete"] = $ProfileComplete;
 
-				$output[]=$array;
+				
+					$sql4 = "SELECT JobSeekerID FROM jobseekerprofile where JobSeekerID='$UserAccountID'";
+					$result4 = $conn->query($sql4);
+					if ($result4->num_rows > 0) 
+					{
+						//if record exists with the UserAccountID, means user has completed the jobseeker profile
+						$IsJobSeeker = "Yes";
+						$sql6 = "SELECT ProfileImage FROM jobseekerprofileimage where JobSeekerID='$UserAccountID'";
+						$result6 = $conn->query($sql6);
+						while($row6=mysqli_fetch_array($result6))
+						{
+							$profileimage = $row6["ProfileImage"];
+						}
+						$array["profileimage"] = $profileimage;
+					}
+					else{
+						//else user has not completed the jobseeker profile
+						$IsJobSeeker = "No";
+					}
+					$array["IsJobSeeker"] = $IsJobSeeker;
+
+					$sql5 = "SELECT UserID FROM registeruserinforamtion where UserID='$UserAccountID'";
+					$result5 = $conn->query($sql5);
+					if ($result5->num_rows > 0) 
+					{
+						$ProfileComplete = "Yes";
+					}
+					else{
+						$ProfileComplete = "No";
+					}
+					$array["ProfileComplete"] = $ProfileComplete;
+
+					$output[]=$array;
+				}//job seeker
 			}
 			print(json_encode($output));
 		}

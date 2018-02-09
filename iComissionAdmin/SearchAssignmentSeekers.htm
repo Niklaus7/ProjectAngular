@@ -40,7 +40,7 @@
 .chipsdemoBasicUsage .custom-chips md-chips-wrap.md-removable md-chip md-chip-template {
   padding-right: 5px; }
 </style> -->
-<div class="container" ng-controller="SearchAssignmentSeekersController" >
+<div class="container" ng-controller="SearchAssignmentSeekersController" ng-init="GetAssignmentSeekerInfo()"> 
     
         <!-- Page-Title  ng-init="GetJobSeekerInfo()"-->
         <div class="row">
@@ -65,7 +65,7 @@
             <div class="col-sm-12">
                 <div class="card-box">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <tags-input ng-model="skillSet" display-property="SkillSetName" placeholder="Search Skill" replace-spaces-with-dashes="false">
                                     <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
@@ -95,12 +95,12 @@
                         </div>
     
     
-                        <div class="col-md-3" style="margin-top: 4px;">
+                        <div class="col-md-4" style="margin-top: 4px;">
                             <div class="">
                                 <select id="Experience" class="form-control">
                                     <option>Assignment Seeker Type</option>
                                     <option>Assignment Seeker</option>
-                                    <!-- <option>Client</option> -->
+                                    <option>Client</option>
                                     <option>Vendor</option>
                                     <option>SME</option>
                                     <option>Consultant</option>
@@ -127,31 +127,31 @@
     
         <!-- job seeker display  -->
         <div id="JobSeeker_div" class="row">
-            <!-- <div class="col-sm-6 col-lg-4" ng-repeat="x in JobSeekerInfo"> -->
-            <div class="col-sm-6 col-lg-4" >
+            <div class="col-sm-6 col-lg-4" ng-repeat="x in assignmentSeekerInfo"> 
+            
                 <div class="card-box" style="padding: 10px 10px !important">
                     <div class="contact-card">
                         <a class="pull-left" href="#">
-                             <!-- <img class="rounded" src="php/{{x.ProfileImage}}" alt="">  -->
-                             <img class="rounded" src="assets\images\users\avatar-1.jpg" alt="">
+                              <img class="rounded" src="php/{{x.ProfileImage}}" alt="">  
                              
                         </a>
                         <div class="member-info">
                             <h4 class="m-t-0 m-b-5 header-title">
-                                <!-- <b>{{x.FirstName}}</b> -->
-                                <b>XXXX XXX</b>
+                                <b>{{x.FirstName}}</b>
+                            
                             </h4>
-                            <!--<span style="display: flex">Experience:&nbsp;&nbsp;
-                                    <p class="pull-left" ng-show="x.JobSeekerType == 'Experience'" style="margin-bottom: 2px !Important">{{x.TotalExp_Year}} Year-{{x.TotalExp_Month}} Month</small>
+                            <span style="display: flex">Experience:&nbsp;&nbsp;
+                                    <p class="pull-left" ng-show="x.AssignmentSeekerType == 'Experience'" style="margin-bottom: 2px !Important">{{x.TotalExp_Year}} Year-{{x.TotalExp_Month}} Month</small>
                                     </p>
-                                    <p class="pull-left" ng-show="x.JobSeekerType == 'Freshers'" style="margin-bottom: 2px !Important">Freshers</p>
-                            </span>-->
-                            <p style="margin-bottom: 0px !important;">Location: Pune</p>
-                            <p style="margin-bottom: 0px !important;">Skills: Java</p>
-                            <p style="margin-bottom: 0px !important;">Type: Client</p>
+                                    <p class="pull-left" ng-show="x.AssignmentSeekerType == 'Freshers'" style="margin-bottom: 2px !Important">Freshers</p>
+                            </span>
+                            <p style="margin-bottom: 0px !important;">Location: {{x.Location}}</p>
+                            <p style="margin-bottom: 0px !important;">Skills: {{x.SkillSetID}}</p>
+                            <p style="margin-bottom: 0px !important;">User Type: Assignment Seeker</p>
+                            <p style="margin-bottom: 0px !important;">Assignment Bidding Type:{{x.AssignmentBiddingType}}</p>
     
                             <div class="contact-action">
-                                <a href="#ViewProfile" title="View Profile" ng-click="view_jobseekerprofile(x.JobSeekerID)" class="btn btn-success btn-sm">
+                                <a  title="View Profile" ng-click="view_assignmentseekerprofile(x.AssignmentSeekerID)" class="btn btn-success btn-sm">
                                     <i class=" md-remove-red-eye"></i>
                                 </a>
                             </div>

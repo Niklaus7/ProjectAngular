@@ -84,7 +84,7 @@ if($result->num_rows > 0)
               $output[]=$output1;
             }
               
-            
+           
             
          }
          $sql1="SELECT UserTypeID,FirstName,UserAccountID FROM useraccount where UserAccountID = $UserId";
@@ -132,10 +132,10 @@ if($result->num_rows > 0)
 
             }
          }
-          else
-          {
+         else
+         {
             echo "error";
-          }
+        }
       
         
         

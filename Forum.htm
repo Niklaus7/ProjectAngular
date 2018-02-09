@@ -23,51 +23,67 @@
 
                 <div class="row">
 
-                    <div class="content col-md-4">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" ng-model="tagkey" placeholder="Search by Keywords" class="form-control">
 
-                        <input type="text" ng-model="tagkey" placeholder="Search" class="form-control">
-                        <br/>
-                        <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="serachQuestion()">Serach Question</button>
-                        &nbsp;&nbsp;
-                        <a href="" ng-click="clearSerachtags()">Clear Filters</a>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="serachQuestion()">Serach Question</button>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <ul class="nav nav-tabs tabs">
+                                    <li class="tab">
+                                        <a href="" ng-click="frequentSearch()" data-toggle="tab" aria-expanded="false">
+                                            Frequent Search
+                                        </a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="" ng-click="topDiscussion()" data-toggle="tab" aria-expanded="false">
+                                            Top Discussion
+                                        </a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="" data-toggle="tab" aria-expanded="true">
+                                            Newest Question
+                                        </a>
+                                    </li>
+                                    <li class="tab">
+                                        <a href="" ng-click="unansweredQues()" data-toggle="tab" aria-expanded="false">
+                                            Unanswered Question
+                                        </a>
+                                    </li>
+                                    <!--<li class="tab">
+                                                        <a href="" data-toggle="tab" aria-expanded="false">
+                                                            Month
+                                                        </a>
+                                                    </li>-->
+                                </ul>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="" ng-click="clearSerachtags()">Clear Filters</a>
+                            </div>
+
+                        </div>
+
+
 
                     </div>
-                    <div class="content col-md-6">
-                        <ul class="nav nav-tabs tabs">
-                            <li class="tab">
-                                <a href="" ng-click="frequentSearch()" data-toggle="tab" aria-expanded="false">
-                                    Frequent Search
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a href="" ng-click="topDiscussion()" data-toggle="tab" aria-expanded="false">
-                                    Top Discussion
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a href="" data-toggle="tab" aria-expanded="true">
-                                    newest
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a href="" ng-click="unansweredQues()" data-toggle="tab" aria-expanded="false">
-                                    unanswered
-                                </a>
-                            </li>
-                            <li class="tab">
-                                <a href="" data-toggle="tab" aria-expanded="false">
-                                    Month
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="content col-md-2">
+                    <div class="col-md-2">
+
                         <h5>{{NoOfQue}} Question</h5>
                         <button class="btn btn-primary btn-block cstmcls pull-left" style="width: auto !important" ng-click="ShowQustionDiv()">Ask Question</button>
 
 
 
+
                     </div>
+
                     <!-- end col -->
 
                     <!-- end col -->
@@ -93,15 +109,15 @@
                                 <div class="rpw" style="display: flex">
                                     <button class="btn btn-primary" style="width: auto !important" ng-click="postQuestion()">Post Question</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-info" style="width: auto !important" onclick="showMainDiv()">Cancel</button>
+                                    <button class="btn btn-primary" style="width: auto !important" onclick="showMainDiv()">Cancel</button>
                                 </div>
 
                             </div>
 
                         </div>
-                        <div class="row">
+                        <div class="row" id="main_content_div">
                             <div class="col-md-10">
-                                <div class="post-padding" id="main_content_div" ng-repeat="x in QuestionList">
+                                <div class="post-padding"  ng-repeat="x in QuestionList">
 
                                     <div class="row">
                                         <div class="col-md-2">
@@ -143,12 +159,18 @@
 
                                                 </div>
                                                 <div class="col-md-3">
-                                                    {{x.QuestionDate}}
+                                                        <label class="control-label " for="password2">
+                                                                {{x.QuestionDate}}
+                                                            </label>
+                                                    
                                                     <br/>
                                                     <a class="waves-effect waves-light nav-user">
                                                         <img src="iComissionAdmin/PHP/{{x.profileimage}}" alt="" class="rounded-circle" style="width: 40px;height: 40px">
                                                     </a>
-                                                    <a class="email-name">{{x.UserName}}</a>
+                                                    <label class="control-label " for="password2">
+                                                            By {{x.UserName}}
+                                                        </label>
+                                                   
                                                 </div>
 
                                             </div>
@@ -162,7 +184,8 @@
                                 <h3> Related Tag</h3>
                                 <div ng-repeat="x in skill">
                                     <h6>
-                                        <a href="">{{x.SkillSetName}}</a>
+                                        <li style="color:#ff6700"><a href="">{{x.SkillSetName}}</a> </li>
+                                        
                                     </h6>
                                 </div>
 
@@ -195,11 +218,11 @@
                         
                         
                                 </div>
-                    </script>
+    </script>
     <script>
 
         function showMainDiv() {
-            
+
             $("#main_content_div").slideToggle();
             $("#ask_question_div").slideToggle();
         }
