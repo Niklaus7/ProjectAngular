@@ -170,7 +170,7 @@
                                 <select class="form-control tofind">
                                     <option>Find</option>
                                     <option>Jobs</option>
-                                    <option>Assignments</option>
+                                    <option id="optAssignments">Assignments</option>
                                 </select>
                             </div>
                             <script>
@@ -1269,6 +1269,14 @@
                                 }
 
                                 $("#avnce").click(function () {
+                                    $("#optAssignments").hide();
+                                    if(localStorage.getItem('EndUserAccountID') != null)
+                                    {
+                                        $("#optAssignments").show();
+                                    }else{
+                                        $("#optAssignments").hide();
+                                    }                                    
+
                                     $("#searchdiv").toggle();
                                     $("#serach_button").toggle();
                                 });
