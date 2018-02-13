@@ -256,7 +256,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center showListView" style="
                                             padding-left: 2px;
                                             margin-left: 2px;
                                             max-height: 25px !important;
@@ -265,7 +265,7 @@
                                             line-height: 0.6;
                                         " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center showMapView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -541,7 +541,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center showListView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -550,7 +550,7 @@
                                                 line-height: 0.6;
                                             " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center showMapView" style="
                                                     padding-left: 2px;
                                                     margin-left: 2px;
                                                     max-height: 25px !important;
@@ -576,8 +576,57 @@
         <div id="overl" style="position: absolute; height: 100%; z-index: 1; width: 100%; display: none; background-color: rgba(0,0,0,0.5);">
 
         </div>
-        <div id="map_canvas" style="height: 520px !important;">
+        <div id="mapdiv">
+            <div id="map_canvas" style="height: 520px !important;">
+                
+            </div>
+        </div>
+        
 
+        <div id="job_view" class="all-jobs job-listing clearfix">
+            <div id="jobdivv" class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0px !important">                
+                <div id="jobdiv">
+                    <div class="job-tab" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="">{{Job.JobTitle}}</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span>Posted Date : {{Job.JobPostDate}}</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p>{{Job.JobLocation | split:',':0}}</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>${{Job.MinSal}} - ${{Job.MaxSal}}</h4>
+                                    <a href class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>                
+            </div>                     
         </div>
     </div>
     <!-- end section -->
@@ -1230,6 +1279,17 @@
                                 });
 
                                 $(document).ready(function () {
+                                    localStorage.setItem("selectedfromplace","Yes");
+                                    $("#map_canvas").show();
+                                    $("#job_view").hide();
+                                    $(".showMapView").click(function(){
+                                        $("#map_canvas").show();
+                                        $("#job_view").hide();
+                                    });
+                                    $(".showListView").click(function(){
+                                        $("#map_canvas").hide();
+                                        $("#job_view").show();
+                                    });
                                     $("#DefaultSearch .input-group, .input-groupp").hover(function (index) {
                                         $("#DefaultSearch .input-group, .input-groupp, #DefaultSearch .bootstrap-select").css('border', 'none');
                                     });
