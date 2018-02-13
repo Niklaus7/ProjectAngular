@@ -2257,7 +2257,7 @@ iComissionapp.config(function ($routeProvider) {
 	iComissionapp.controller('JobpostController', function ($scope, $http, $location) {
 		
 		
-		
+		$scope.WiazrdID = "JobpostController";
 
 		$scope.UserID = localStorage.getItem('UserAccountID');
 		$scope.jobPostDateTime = new Date();
