@@ -170,7 +170,7 @@
                                 <select class="form-control tofind">
                                     <option>Find</option>
                                     <option>Jobs</option>
-                                    <option>Assignments</option>
+                                    <option id="optAssignments">Assignments</option>
                                 </select>
                             </div>
                             <script>
@@ -221,7 +221,7 @@
                                             <option>3</option>
                                             <option>4</option>
                                             <option>5</option>
-                                            <option>6+</option>
+                                            <option>6</option>
                                         </select>
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@
                                             <option>4</option>
                                             <option>5</option>
                                             <option>6</option>
-                                            <option>7+</option>
+                                            <option>7</option>
                                         </select>
                                     </div>
                                 </div>
@@ -256,7 +256,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a id="showListView" class="btn btn-primary pull-left text-center" style="
                                             padding-left: 2px;
                                             margin-left: 2px;
                                             max-height: 25px !important;
@@ -265,7 +265,7 @@
                                             line-height: 0.6;
                                         " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a id="showMapView" class="btn btn-primary pull-right text-center" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -418,7 +418,7 @@
                                             <option>3</option>
                                             <option>4</option>
                                             <option>5</option>
-                                            <option>6+</option>
+                                            <option>6</option>
                                         </select>
                                     </div>
                                 </div>
@@ -433,7 +433,7 @@
                                             <option>4</option>
                                             <option>5</option>
                                             <option>6</option>
-                                            <option>7+</option>
+                                            <option>7</option>
                                         </select>
                                     </div>
                                 </div>
@@ -510,10 +510,10 @@
                                 <!-- end col -->
                                 <div class="col-md-2 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="input-groupp">
-                                        <select class="required" multiple="" data-selected-text-format="count > 5" id="ProjectType1" name="ProjectType1" data-live-search="true"
+                                        <select class="required" multiple="" data-selected-text-format="count > 5" id="ProjectType" name="ProjectType" data-live-search="true"
                                             data-style="btn-white">
                                             <option selected="selected" value="Assignment Type">Assignment Type</option>
-                                            <option ng-repeat="data in ProjectTypeList1" value="{{data.ProjectType}}">{{data.ProjectType}}</option>
+                                            <option ng-repeat="data in ProjectTypeList" value="{{data.ProjectType}}">{{data.ProjectType}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -579,6 +579,216 @@
         <div id="map_canvas" style="height: 520px !important;">
 
         </div>
+
+
+        <div id="job_view" class="all-jobs job-listing clearfix">
+            <div id="jobdivv" class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0px !important">
+                <!-- <button id="btnmax" data-toggle="tooltip" title="Open list view" class="btn btn-primary" ng-click="maxlist()" style="display: none; position: absolute;z-index: 10;left: -35px;border-radius: 0px;">
+                    <i class="fa fa-angle-right fa-2x"></i>
+                </button>
+                <button id="btnmin" data-toggle="tooltip" title="Close list view" class="btn btn-primary" ng-click="minlist()" style="position: absolute;z-index: 10;right: 0px;border-radius: 0px;">
+                    <i class="fa fa-angle-left fa-2x"></i>
+                </button> -->
+                <div id="jobdiv">
+                    <!-- ngRepeat: Job in All_JobList --><div class="job-tab ng-scope" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)" style="">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="" class="ng-binding">Refinery Additives M</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span class="ng-binding">Posted Date : 2018-01-25</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p class="ng-binding">Pune</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4 class="ng-binding">$1 - $3</h4>
+                                    <a href="" class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href="" class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div><!-- end ngRepeat: Job in All_JobList --><div class="job-tab ng-scope" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="" class="ng-binding">Iraq Basra: Plant Op</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span class="ng-binding">Posted Date : 2018-01-25</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p class="ng-binding">Pune</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4 class="ng-binding">$1 - $3</h4>
+                                    <a href="" class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href="" class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div><!-- end ngRepeat: Job in All_JobList --><div class="job-tab ng-scope" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="" class="ng-binding">Coordinator-Work Pro</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span class="ng-binding">Posted Date : 2018-01-25</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p class="ng-binding">Pune</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4 class="ng-binding">$3 - $3</h4>
+                                    <a href="" class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href="" class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div><!-- end ngRepeat: Job in All_JobList --><div class="job-tab ng-scope" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="" class="ng-binding">International Sales </a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span class="ng-binding">Posted Date : 2018-01-25</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p class="ng-binding">Pune</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4 class="ng-binding">$2 - $3</h4>
+                                    <a href="" class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href="" class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div><!-- end ngRepeat: Job in All_JobList --><div class="job-tab ng-scope" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="" class="ng-binding">Frac Operators and S</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span class="ng-binding">Posted Date : 2018-01-25</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p class="ng-binding">Pune</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4 class="ng-binding">$1 - $3</h4>
+                                    <a href="" class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href="" class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div><!-- end ngRepeat: Job in All_JobList -->
+                </div>
+            </div>            
+        </div>
+
+
+
+
+
     </div>
     <!-- end section -->
     <!-- /carousel -->
@@ -594,16 +804,14 @@
                     iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.
                 </p>
             </div>
-            <input type="hidden" id="Filtervale" value="Assignment">
-
             <div class="row" id="FilterButton">
                 <div class="col-md-6">
-                    <button class="btn btn-primary pull-right" type="button" ng-click="showJob()">Job</button>
-
+                        <button class="btn btn-primary pull-right" type="button" ng-click="showJob()">Job</button>
+                                
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary cstmcls" type="button" ng-click="showProject()">Assignment</button>
-
+                        <button class="btn btn-primary cstmcls" type="button" ng-click="showProject()">Assignment</button>
+                                
                 </div>
             </div>
             <div class="all-jobs job-listing clearfix">
@@ -1214,7 +1422,6 @@
                                 setTimeout(function () {
                                     // $("#Serach_Projlocation").selectpicker('refresh');
                                     $("#ProjectType").selectpicker('refresh');
-                                    $("#ProjectType1").selectpicker('refresh');
                                     // $("#Serach_joblocation").selectpicker('refresh');
                                     // $("#joblocation").selectpicker('refresh');
                                     $("#jobindustry").selectpicker('refresh');
@@ -1230,6 +1437,18 @@
                                 });
 
                                 $(document).ready(function () {
+                                    localStorage.setItem("selectedfromplace","Yes");
+                                    $("#job_view").hide();
+                                    $("#map_canvas").show();
+                                    $("#showListView").click(function(){
+                                        $("#job_view").show();
+                                        $("#map_canvas").hide();
+                                    });
+                                    $("#showMapView").click(function(){
+                                        $("#job_view").hide();
+                                        $("#map_canvas").show();
+                                    });
+
                                     $("#DefaultSearch .input-group, .input-groupp").hover(function (index) {
                                         $("#DefaultSearch .input-group, .input-groupp, #DefaultSearch .bootstrap-select").css('border', 'none');
                                     });
@@ -1272,6 +1491,14 @@
                                 }
 
                                 $("#avnce").click(function () {
+                                    $("#optAssignments").hide();                                    
+                                    if(localStorage.getItem('EndUserAccountID') != null)
+                                    {
+                                        $("#optAssignments").show();
+                                    }else{
+                                        $("#optAssignments").hide();
+                                    }                                    
+
                                     $("#searchdiv").toggle();
                                     $("#serach_button").toggle();
                                 });

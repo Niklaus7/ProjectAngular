@@ -189,23 +189,26 @@ function($) {
             onFinishing: function (event, currentIndex) {
                 $form_container.validate().settings.ignore = ":disabled";
                 return $form_container.valid();
+               
             },
             onFinished: function (event, currentIndex) 
             {
                 //alert("Submitted!");
-                var temp = angular.element(document.getElementById('ProjectPostController')).scope().WiazrdID;
-                if(temp =="ProjectPost")
-                {
-                   // alert("in project post");
-                    angular.element(document.getElementById('ProjectPostController')).scope().postProject();
+                //var temp = angular.element(document.getElementById('ProjectPostController')).scope().WiazrdID;
+                //var temp1 = angular.element(document.getElementById('JobpostController')).scope().WiazrdID;
+                
+                //if(temp =="ProjectPost")
+                //{
+                  // alert("in project post");
+                    //angular.element(document.getElementById('ProjectPostController')).scope().postProject();
 
-                }
-                else
-                {
-                    //alert("in job post");
+                //}
+                //else 
+                //{
+                  //  alert("in job post");
                     angular.element(document.getElementById('JobpostController')).scope().Savejobpost();
                     
-                }
+                //}
             }
         });
 

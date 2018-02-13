@@ -331,8 +331,11 @@
                                         <td>
                                             {{x.ProjectName}}
                                         </td>
-                                        <td>
-                                            <span class="label label-info">{{x.AssignmentActive}}</span>
+                                        <td ng-show="x.AssignmentAprrovedstatus == 'No'">
+                                            <span class="label label-info" >Waiting For Approval</span>
+                                        </td>
+                                        <td ng-show="x.AssignmentAprrovedstatus == 'Yes'">
+                                            <span class="label label-info" >Approve</span>
                                         </td>
                                         <td ng-show="x.NumberOFCandidate_Applied > 0">
                                             <a href class="table-action-btn btn-info" title="View Details" ng-click="getProjectID(x.ProjectPostID)">
@@ -401,8 +404,12 @@
                                         <td>
                                             {{x.JobTitle}}
                                         </td>
-                                        <td>
-                                            <span class="label label-info">{{x.JobActive}}</span>
+                                        
+                                        <td ng-show="x.JobAprrovedstatus == 'No'">
+                                            <span class="label label-info" >Waiting For Approval</span>
+                                        </td>
+                                        <td ng-show="x.JobAprrovedstatus == 'Yes'">
+                                            <span class="label label-info" >Approve</span>
                                         </td>
                                         <td ng-show="x.NumberOFCandidate_Applied > 0">
                                             <a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(x.JobPostID,x.JobTitle)">

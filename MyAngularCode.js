@@ -782,6 +782,48 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	$scope.Keywords = '';
 	$scope.KeywordsAd = '';
 	$scope.Type = "";
+
+	$scope.showJob = function()
+	{
+		//document.getElementById("Filtervale").value = "job";
+	
+		$scope.Type = "Jobs";
+		
+		$("#FeaturedProjects").hide();
+			$http.post("iComissionAdmin/PHP/Get_JobList.php", {
+				'jobPostedBy': 'null',
+				'ShowData': 'All'
+			}).then(function (response) {
+				console.log(response.data);
+				$scope.All_JobList = response.data;
+				$("#FeaturedJobs").show();
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+	}
+	$scope.showProject = function()
+	{
+		//document.getElementById("Filtervale").value = "Assignment";
+		
+			$scope.Type = "Projects";
+		
+			$("#FeaturedJobs").hide();
+			
+			$http.post("iComissionAdmin/PHP/Get_ProjectList.php", {
+				'ProjectPostedBy': 'null',
+				'ShowData': 'All',
+				'UserId': localStorage.getItem('EndUserAccountID'),
+			}).then(function (response) {
+				console.log(response.data);
+				$scope.All_ProjectList = "";
+				$scope.All_ProjectList = response.data;
+				$("#FeaturedProjects").show();
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+	}
 	$scope.LoadData = function (type) 
 	{
 		
@@ -846,7 +888,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 			
 			$http.post("iComissionAdmin/PHP/Get_ProjectLocation.php").then(function (response) 
 			{
-				$scope.ProjectTypeList = response.data.ProjectType;
+				$scope.ProjectTypeList1 = response.data.ProjectType;
 				$scope.ProjectLocationList = response.data.ProjectLocation;
 	
 			}, function (error) {
@@ -922,21 +964,27 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				console.log("Sorry! Data Couldn't be inserted!");
 				console.log(error);
 			});*/
-			$scope.Type = "Projects";
-			$('#carousel-example-generic').carousel(1);
-			$("#FeaturedJobs").remove();
-			$http.post("iComissionAdmin/PHP/Get_ProjectList.php", {
-				'ProjectPostedBy': 'null',
-				'ShowData': 'All',
-				'UserId': localStorage.getItem('EndUserAccountID'),
-			}).then(function (response) {
-				console.log(response.data);
-				$scope.All_ProjectList = "";
-				$scope.All_ProjectList = response.data;
-			}, function (error) {
-				console.log("Sorry! Data Couldn't be inserted!");
-				console.log(error);
-			});
+
+		
+			
+			
+				$scope.Type = "Projects";
+				$('#carousel-example-generic').carousel(1);
+				$("#FeaturedJobs").hide();
+				$http.post("iComissionAdmin/PHP/Get_ProjectList.php", {
+					'ProjectPostedBy': 'null',
+					'ShowData': 'All',
+					'UserId': localStorage.getItem('EndUserAccountID'),
+				}).then(function (response) {
+					console.log(response.data);
+					$scope.All_ProjectList = "";
+					$scope.All_ProjectList = response.data;
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be inserted!");
+					console.log(error);
+				});
+			
+			
 		}
 
 		if (localStorage.getItem("searchtype") == "Advanced") {
@@ -1023,19 +1071,43 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 					'Location': localStorage.getItem("selectedcity")
 				}).then(function (response) {
 					console.log(response.data);
-					if (response.data != "error") {
-						$scope.All_JobList = response.data;
-						$scope.All_JobList_Map = response.data.Jobdata;
-						$scope.All_ProjectList_Map = response.data.Projectdata;
-						$scope.Joblength = response.data.Jobdata.length;
-						$scope.Projectlength = response.data.Projectdata.length;
-						$scope.loadMap("No");
+					if (response.data != "error") 
+					{
+						if(localStorage.getItem('UserRoleName') == "User")
+						{
+							$scope.All_JobList = response.data;
+							$scope.All_JobList_Map = response.data.Jobdata;
+							//$scope.All_ProjectList_Map = response.data.Projectdata;
+							$scope.Joblength = response.data.Jobdata.length;
+							//$scope.Projectlength = response.data.Projectdata.length;
+							$scope.loadMap("No");
+						}
+						else if(localStorage.getItem('UserRoleName') == "AssignmentSeeker")
+						{
+							$scope.All_JobList = response.data;
+							//$scope.All_JobList_Map = response.data.Jobdata;
+							$scope.All_ProjectList_Map = response.data.Projectdata;
+							//$scope.Joblength = response.data.Jobdata.length;
+							$scope.Projectlength = response.data.Projectdata.length;
+							$scope.loadMap("No");
+						}
+						else
+						{
+							$scope.All_JobList = response.data;
+							$scope.All_JobList_Map = response.data.Jobdata;
+							$scope.All_ProjectList_Map = response.data.Projectdata;
+							$scope.Joblength = response.data.Jobdata.length;
+							$scope.Projectlength = response.data.Projectdata.length;
+							$scope.loadMap("No");
+						}
+						
 						// localStorage.removeItem("selectedcity");
 						// localStorage.removeItem("selectedlat");
 						// localStorage.removeItem("selectedlng");
-						localStorage.removeItem("selectedfromplace");
+						//localStorage.removeItem("selectedfromplace");
 					}
-					else {
+					else 
+					{
 						$scope.loadblankmap(localStorage.getItem("selectedlat"), localStorage.getItem("selectedlng"));
 						localStorage.removeItem("selectedfromplace");
 					}
@@ -1164,42 +1236,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
        
     }
 
-	$scope.showJob = function()
-	{
-		$scope.Type = "Jobs";
-		
-		//$("#FeaturedProjects").remove();
-			$http.post("iComissionAdmin/PHP/Get_JobList.php", {
-				'jobPostedBy': 'null',
-				'ShowData': 'All'
-			}).then(function (response) {
-				console.log(response.data);
-				$scope.All_JobList = response.data;
-			}, function (error) {
-				console.log("Sorry! Data Couldn't be inserted!");
-				console.log(error);
-			});
-	}
-	$scope.showProject = function()
-	{
-		
-			$scope.Type = "Projects";
-		
-			//$("#FeaturedJobs").remove();
-			
-			$http.post("iComissionAdmin/PHP/Get_ProjectList.php", {
-				'ProjectPostedBy': 'null',
-				'ShowData': 'All',
-				'UserId': localStorage.getItem('EndUserAccountID'),
-			}).then(function (response) {
-				console.log(response.data);
-				$scope.All_ProjectList = "";
-				$scope.All_ProjectList = response.data;
-			}, function (error) {
-				console.log("Sorry! Data Couldn't be inserted!");
-				console.log(error);
-			});
-	}
+	
 
     $scope.loadblankmap = function (lat, lng) {
         var mapOptions = {
@@ -1377,12 +1414,20 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
 
-        var x = document.getElementById("snackbar")
+      /*  var x = document.getElementById("snackbar")
         x.innerHTML = "No Jobs or assignments found";
         x.className = "show";
         setTimeout(function () {
             x.className = x.className.replace("show", "");
-        }, 3000);
+		}, 3000);*/
+		
+		swal({
+			title: "",
+			text: "Oppss..No job/Assignment availabe.Please  Register as job seeker or assignemnt seeker to get alert of recommended jobs and assignments  in your area",
+			type: "info",
+			
+		});
+		//window.location.href = "Index.html";
     }
 
     var marker;
@@ -2318,7 +2363,8 @@ iComissionapp.controller('JobSearchController', function ($scope, $http, $locati
 										$scope.loadMap();
 										$('.selectpicker').selectpicker('deselectAll');
 									}
-									else {
+									else 
+									{
 										$scope.All_JobList = "";
 										$("#job_view").hide();
 									}
@@ -2921,6 +2967,8 @@ iComissionapp.controller('JobSearchController', function ($scope, $http, $locati
 			}
 		}
 });
+
+
 
 iComissionapp.controller('ProjectSearchController', function ($scope, $http, $location) {
 
