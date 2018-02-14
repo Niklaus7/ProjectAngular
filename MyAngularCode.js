@@ -783,6 +783,658 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	$scope.KeywordsAd = '';
 	$scope.Type = "";
 
+	$scope.GetSearchedJobs = function () 
+	{
+
+		var allStates = "";
+		$http.get('iComissionAdmin/PHP/Get_skills.php', {
+			cache: true
+		}).then(function (response) {
+			console.log(response.data);
+			$scope.items = response.data;
+			
+			var allStatesc = response.data;
+
+		});
+
+		$http.post("iComissionAdmin/PHP/Get_JobLocation.php").then(function (response) {
+			$scope.JobLocationList = response.data.JobLocation;
+			$scope.JobIndustryList = response.data.JobIndustry;
+
+		}, function (error) {
+			console.log("Sorry! Data Couldn't be inserted!");
+			console.log(error);
+		});
+
+		if (localStorage.getItem("searchtype") == "Default") 
+		{
+			// $scope.JobLocation = localStorage.getItem("joblocation");
+			// document.getElementById("Experience").value = localStorage.getItem("Experience");
+			// document.getElementById("Salary").value = localStorage.getItem("Salary");
+			// $scope.Keywords = localStorage.getItem("keywords");
+			if(localStorage.getItem("joblocation")!='null')
+			{
+				$('.selectpicker').selectpicker();
+				
+							$http.post("iComissionAdmin/PHP/Get_SearchJob.php", {
+								'joblocation': localStorage.getItem("joblocation"),
+								'Experience': localStorage.getItem("Experience"),
+								'Salary': localStorage.getItem("Salary"),
+								'keywords': localStorage.getItem("keywords"),
+								'searchtype': localStorage.getItem("searchtype")
+							}).then(function (response) {
+								console.log(response.data);
+								if (response.data != "error") {
+									$scope.All_JobList = response.data;
+									$scope.All_JobList_Map = response.data;
+									$scope.length = response.data.length;
+									$scope.loadMap();
+									$('.selectpicker').selectpicker('deselectAll');
+								}
+								else 
+								{
+									$scope.All_JobList = "";
+									$("#job_view").hide();
+								}
+								$('.cssload-container').delay(300).fadeOut('slow');
+							}, function (error) {
+								console.log("Sorry! Data Couldn't be inserted!");
+								console.log(error);
+							});
+			}
+			else
+			{
+				$('.selectpicker').selectpicker();
+				
+							$http.post("iComissionAdmin/PHP/Get_SearchJob.php", {
+								'joblocation': localStorage.getItem("GeoLocation"),
+								'Experience': localStorage.getItem("Experience"),
+								'Salary': localStorage.getItem("Salary"),
+								'keywords': localStorage.getItem("keywords"),
+								'searchtype': localStorage.getItem("searchtype")
+							}).then(function (response) {
+								console.log(response.data);
+								if (response.data != "error") {
+									$scope.All_JobList = response.data;
+									$scope.All_JobList_Map = response.data;
+									$scope.length = response.data.length;
+									$scope.loadMap();
+									$('.selectpicker').selectpicker('deselectAll');
+								}
+								else {
+									$scope.All_JobList = "";
+									$("#job_view").hide();
+								}
+								$('.cssload-container').delay(300).fadeOut('slow');
+							}, function (error) {
+								console.log("Sorry! Data Couldn't be inserted!");
+								console.log(error);
+							});
+			}
+			/*Comment-2
+					$('.selectpicker').selectpicker();
+
+					$http.post("iComissionAdmin/PHP/Get_SearchJob.php", {
+						'joblocation': localStorage.getItem("joblocation"),
+						'Experience': localStorage.getItem("Experience"),
+						'Salary': localStorage.getItem("Salary"),
+						'keywords': localStorage.getItem("keywords"),
+						'searchtype': localStorage.getItem("searchtype")
+					}).then(function (response) {
+						console.log(response.data);
+						if (response.data != "error") {
+							$scope.All_JobList = response.data;
+							$scope.All_JobList_Map = response.data;
+							$scope.length = response.data.length;
+							$scope.loadMap();
+							$('.selectpicker').selectpicker('deselectAll');
+						}
+						else {
+							$scope.All_JobList = "";
+							$("#job_view").hide();
+						}
+						$('.cssload-container').delay(300).fadeOut('slow');
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+			*/
+
+		}
+		else if (localStorage.getItem("searchtype") == "Advanced") {
+			$("#DefaultSearch").slideUp('fast');
+			document.getElementById('AdvanceSearch').style.display = "block";
+
+			// $scope.JobLocatioAd = localStorage.getItem("joblocationAd");
+			// document.getElementById("ExperienceAd").value = localStorage.getItem("ExperienceAd");
+			// document.getElementById("SalaryAd").value = localStorage.getItem("SalaryAd");
+			// document.getElementById("jobindustry").value = localStorage.getItem("jobindustryAd");
+			// $scope.KeywordsAd = localStorage.getItem("KeywordsAd");
+			$('.selectpicker').selectpicker();
+
+			$http.post("iComissionAdmin/PHP/Get_SearchJob.php", {
+				'joblocation': localStorage.getItem("joblocationAd"),
+				'jobindustry': localStorage.getItem("jobindustryAd"),
+				'Experience': localStorage.getItem("ExperienceAd"),
+				'Salary': localStorage.getItem("SalaryAd"),
+				'keywords': localStorage.getItem("KeywordsAd"),
+				'searchtype': localStorage.getItem("searchtype")
+			}).then(function (response) {
+				console.log(response.data);
+				if (response.data != "error") {
+					$scope.All_JobList = response.data;
+					$('.selectpicker').selectpicker('deselectAll');
+				}
+				else {
+					$scope.All_JobList = "";
+				}
+				$('.cssload-container').delay(300).fadeOut('slow');
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+		}
+	}
+	var marker;
+	var markers = [];
+	$scope.loadMap = function () {
+		var mapOptions = {
+			zoom: 10,
+			mapTypeControlOptions: {
+				mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+					'styled_map']
+			},
+		}
+		var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		var JobsData = [];
+
+		for (var i = 0; i < $scope.length; i++) {
+			JobsData[i] = [$scope.All_JobList_Map[i].Lat, $scope.All_JobList_Map[i].Lng, $scope.All_JobList_Map[i].CompanyName, $scope.All_JobList_Map[i].JobTitle, $scope.All_JobList_Map[i].CompanyLogo, $scope.All_JobList_Map[i].MinSal, $scope.All_JobList_Map[i].MaxSal, $scope.All_JobList_Map[i].JobPostsID];
+		}
+
+		var styledMapType = new google.maps.StyledMapType(
+			[
+				{
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#f5f5f5"
+						}
+					]
+				},
+				{
+					"elementType": "labels.icon",
+					"stylers": [
+						{
+							"visibility": "off"
+						}
+					]
+				},
+				{
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#2f2a2c"
+						}
+					]
+				},
+				{
+					"elementType": "labels.text.stroke",
+					"stylers": [
+						{
+							"color": "#f5f5f5"
+						}
+					]
+				},
+				{
+					"featureType": "administrative.land_parcel",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#bdbdbd"
+						}
+					]
+				},
+				{
+					"featureType": "poi",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#eeeeee"
+						}
+					]
+				},
+				{
+					"featureType": "poi",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#757575"
+						}
+					]
+				},
+				{
+					"featureType": "poi.park",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#e5e5e5"
+						}
+					]
+				},
+				{
+					"featureType": "poi.park",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#9e9e9e"
+						}
+					]
+				},
+				{
+					"featureType": "road",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#fba86f"
+						}
+					]
+				},
+				{
+					"featureType": "road.arterial",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#757575"
+						}
+					]
+				},
+				{
+					"featureType": "road.highway",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#dadada"
+						}
+					]
+				},
+				{
+					"featureType": "road.highway",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#2f2a2c"
+						}
+					]
+				},
+				{
+					"featureType": "road.local",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#9e9e9e"
+						}
+					]
+				},
+				{
+					"featureType": "transit.line",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#e5e5e5"
+						}
+					]
+				},
+				{
+					"featureType": "transit.station",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#eeeeee"
+						}
+					]
+				},
+				{
+					"featureType": "water",
+					"elementType": "geometry",
+					"stylers": [
+						{
+							"color": "#bbdefb"
+						}
+					]
+				},
+				{
+					"featureType": "water",
+					"elementType": "labels.text.fill",
+					"stylers": [
+						{
+							"color": "#9e9e9e"
+						}
+					]
+				}
+			],
+			{ name: 'Styled Map' });
+
+		map.mapTypes.set('styled_map', styledMapType);
+		map.setMapTypeId('styled_map');
+
+		google.maps.event.trigger(map, 'resize');
+
+		var bounds = new google.maps.LatLngBounds();
+
+
+		var marker, i;
+		var infowindow = new google.maps.InfoWindow();
+
+
+		google.maps.event.addListener(map, 'click', function () {
+			infowindow.close();
+		});
+
+
+		for (i = 0; i < JobsData.length; i++) {
+
+			var p = JobsData[i];
+			var latlng = new google.maps.LatLng(p[0], p[1]);
+			bounds.extend(latlng);
+
+			marker = new google.maps.Marker({
+				position: latlng,
+				map: map,
+				CompanyName: p[2],
+				JobTitle: p[3],
+				CompanyLogo: p[4],
+				MinSal: p[5],
+				MaxSal: p[6],
+				JobPostsID: p[7],
+				animation: google.maps.Animation.DROP,
+				icon: 'images/pin.png',
+			});
+
+			google.maps.event.addListener(marker, 'click', (function (marker, i) {
+				return function () {
+					$scope.JobPostsID = this.JobPostsID;
+					var div = document.createElement('DIV');
+
+					div.innerHTML = '<div class="col-sm-12" style="width:250px; padding: 5px !important">' +
+						'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+						'<div class="post-media">' +
+						'<a href>' +
+						'<img src="iComissionAdmin/php/' + this.CompanyLogo + '" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+						'</a>' +
+						'</div>' +
+						'</div>' +
+
+						'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+						'<h5 style="margin: 5px 0 !important;">' +
+						'<a title="">' + this.CompanyName + '</a>' +
+						'</h5>' +
+						'<small>' +
+						'<span>Website :' +
+						'<a href>' + this.JobTitle + '</a>' +
+						'</span>' +
+						'</small>' +
+						'<br/><small>' +
+						'<span class="text-danger" style="color: #ff6700 !important"><b>Salary: $' + this.MinSal + ' - $' + this.MaxSal + '</b>' +
+						'<a href class="text-danger pull-right" ng-click="getJobID(' + this.JobPostsID + ')" style="color: #2f2a2c !important;padding-right: 5px;"><b>View Jobs</b></a>' +
+						'</span>' +
+						'</small>' +
+						'</div>' +
+						'</div>';
+
+					$compile(div)($scope);
+
+					infowindow.setContent(div);
+					// infowindow.setContent(this.title);
+					infowindow.open(map, marker);
+				}
+			})(marker, i));
+
+			google.maps.event.addListener(infowindow, 'domready', function () {
+
+				// Reference to the DIV that wraps the bottom of infowindow
+				var iwOuter = $('.gm-style-iw');
+
+				/* Since this div is in a position prior to .gm-div style-iw.
+				 * We use jQuery and create a iwBackground variable,
+				 * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+				*/
+				var iwBackground = iwOuter.prev();
+
+				// Removes background shadow DIV
+				iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
+
+				// Removes white background DIV
+				iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
+
+				// Moves the infowindow 115px to the right.
+				iwOuter.parent().parent().css({ left: '65px' });
+
+				// Moves the shadow of the arrow 76px to the left margin.
+				iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 76px !important;' });
+
+				// Moves the arrow 76px to the left margin.
+				iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 76px !important;' });
+
+				// Changes the desired tail shadow color.
+				iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
+
+				// Reference to the div that groups the close button elements.
+				var iwCloseBtn = iwOuter.next();
+
+				// Apply the desired effect to the close button
+				iwCloseBtn.css({ opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
+
+				// If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+				if ($('.iw-content').height() < 140) {
+					$('.iw-bottom-gradient').css({ display: 'none' });
+				}
+
+				// The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+				iwCloseBtn.mouseout(function () {
+					$(this).css({ opacity: '1' });
+				});
+			});
+
+
+			markers.push(marker);
+		}
+		map.fitBounds(bounds);
+	}
+
+	$scope.getJobID = function (id) {
+		$('.cssload-container').delay(300).show();
+		localStorage.setItem('JobID', id);
+		$location.path("\JobDetails");
+	}
+
+	$scope.myClick = function (id) {
+		google.maps.event.trigger(markers[id], 'click');
+	}
+
+	$scope.GetJobs = function (ids) {
+
+		document.getElementById('loadercstm').style.display = "block";
+		var $pCont = $("#panel-content");
+		$pCont.stop().animate({ width: 550 }, 700);
+		$http.post("iComissionAdmin/PHP/Get_JobList_Map.php", {
+			'JobPostsId': $scope.JobPostsID
+		}).then(function (response) {
+			console.log(response.data);
+			$scope.All_JobList_Company = response.data;
+
+			// document.getElementById('CompanyJob').style.display = "block";
+			document.getElementById('loadercstm').style.display = "none";
+
+		}, function (error) {
+			console.log("Sorry! Data Couldn't be inserted!");
+			console.log(error);
+		});
+
+	}
+
+	$scope.minlist = function () {
+		if ($("#mapdiv").is(":visible")) {
+			$("#jobdiv").hide();
+			$("#mapdiv").removeClass("col-md-6 col-sm-12 col-xs-12").addClass("col-md-12 col-sm-12 col-xs-12");
+			$('#btnmin').hide();
+			$('#btnmin1').hide();
+			$('#btnmax').show();
+		}
+		else {
+			$("#jobdivv").removeClass("col-md-12 col-sm-12 col-xs-12").addClass("col-md-6 col-sm-12 col-xs-12");
+			$("#mapdiv").show();
+			$('#btnmin').show();
+			$('#btnmin1').show();
+			$('#btnmax').hide();
+		}
+		$scope.loadMap();
+	}
+
+	$scope.maxlist = function () {
+		$("#jobdiv").show();
+		$('#btnmin').show();
+		$('#btnmin1').show();
+		$('#btnmax').hide();
+		$("#mapdiv").removeClass("col-md-12 col-sm-12 col-xs-12").addClass("col-md-6 col-sm-12 col-xs-12");
+		$scope.loadMap();
+	}
+
+	$scope.minmap = function () {
+		$("#mapdiv").hide();
+		$('#btnmin1').hide();
+		$('#btnmax1').show();
+		$("#jobdivv").removeClass("col-md-6 col-sm-12 col-xs-12").addClass("col-md-12 col-sm-12 col-xs-12");
+		$scope.loadMap();
+	}
+
+	$scope.close = function () {
+		document.getElementById('loadercstm').style.display = "block";
+		var $pCont = $("#panel-content");
+		$pCont.stop().animate({ width: 0 }, 700);
+	}
+
+	$scope.MapView = function () {
+		$("#job_view").slideUp('slow');
+		document.getElementById("map_canvas").style.display = "block";
+		$scope.loadMap();
+	}
+	$scope.ListView = function () {
+		$("#map_canvas").slideUp('slow');
+		document.getElementById("job_view").style.display = "block";
+	}
+
+	// $scope.serch_job = function () {
+	// 	if ($scope.Keywords != "" && $("#Serach_joblocation").val() != "" && document.getElementById("Experience").value != "Exp in Year" && document.getElementById("Salary").value != "Salary in Lakh") {
+	// 		$('.cssload-container').delay(300).show();
+	// 		if ($("#Serach_joblocation").val() != null) {
+	// 			localStorage.setItem("joblocation", $("#Serach_joblocation").val());
+	// 		}
+	// 		else {
+	// 			localStorage.setItem("joblocation", $("#Serach_joblocation").val());
+	// 		}
+	// 		localStorage.setItem("Experience", document.getElementById("Experience").value);
+	// 		localStorage.setItem("Salary", document.getElementById("Salary").value);
+	// 		localStorage.setItem("searchtype", "Default");
+	// 		$scope.GetSearchedJobs();
+	// 	}
+	// 	else {
+	// 		$("#DefaultSearch .input-group, .input-groupp").css('border', '1px solid #8a1f11');
+	// 		$(".SearchJob").effect("shake", { direction: "up", times: 4, distance: 5 }, 1000);
+	// 	}
+	// }
+
+	// $scope.Advanceserch_job = function () {
+	// 	if ($scope.KeywordsAd != "" && ($("#jobindustry").val() != "" || $.trim($("#jobindustry").val()) != "Industry") && $("#joblocation").val() != "" && document.getElementById("ExperienceAd").value != "Exp in Year" && document.getElementById("SalaryAd").value != "Salary in Lakh") {
+	// 		$('.cssload-container').delay(300).show();
+	// 		if ($("#joblocation").val() != null) {
+	// 			localStorage.setItem("joblocationAd", $("#joblocation").val());
+	// 		}
+	// 		else {
+	// 			localStorage.setItem("joblocationAd", $("#joblocation").val());
+	// 		}
+	// 		if ($("#jobindustry").val() != null) {
+	// 			localStorage.setItem("jobindustryAd", $.trim($("#jobindustry").val()));
+	// 		}
+	// 		else {
+	// 			localStorage.setItem("jobindustryAd", $("#jobindustry").val());
+	// 		}
+	// 		localStorage.setItem("ExperienceAd", document.getElementById("ExperienceAd").value);
+	// 		localStorage.setItem("SalaryAd", document.getElementById("SalaryAd").value);
+	// 		localStorage.setItem("KeywordsAd", $scope.KeywordsAd);
+	// 		localStorage.setItem("searchtype", "Advanced");
+	// 		$scope.GetSearchedJobs();
+	// 	}
+	// 	else {
+	// 		$("#AdvanceSearch .cstm, #AdvanceSearch .bootstrap-select").css('border', '1px solid #8a1f11');
+	// 		$(".SearchJob").effect("shake", { direction: "up", times: 4, distance: 5 }, 1000);
+	// 	}
+	// }
+
+	$scope.AdvanceSearch = function () {
+		$("#DefaultSearch .input-group, .input-groupp #DefaultSearch .bootstrap-select").css('border', 'none');
+		$("#DefaultSearch").slideUp('fast');
+		document.getElementById('AdvanceSearch').style.display = "block";
+
+	}
+
+	$scope.DefaultSearch = function () {
+		$("#AdvanceSearch .cstm, #AdvanceSearch .bootstrap-select").css('border', 'none');
+		$("#AdvanceSearch").slideUp('fast');
+		document.getElementById('DefaultSearch').style.display = "block";
+	}
+
+	$scope.getJobID = function (id) {
+		$('.cssload-container').delay(300).show();
+		localStorage.setItem('JobID', id);
+		$location.path("\JobDetails");
+	}
+
+	$scope.applytojob = function (id) {
+		if (localStorage.getItem('UserAccountID') != null) {
+			if (localStorage.getItem("IsRegistered") != "No") {
+				$('.cssload-container').delay(300).show();
+				$scope.jobApplytDateTime = new Date();
+				$scope.JobSeekerID = localStorage.getItem('UserAccountID');
+				//alert(id );
+				$http.post("iComissionAdmin/PHP/Save_JobSeeker_ApplytoJob.php", {
+					'JobID': id,
+					'JobSeekerID': $scope.JobSeekerID,
+					'ApplyDate': $scope.jobApplytDateTime,
+
+				}).then(function (response) {
+					console.log(response.data);
+
+					if (response.data.data == false) {
+						swal({
+							title: "Already Applied!",
+							text: "You have already applied for this job post",
+							type: "info"
+						});
+					}
+					else {
+						swal({
+							title: "Applied Successfully!",
+							text: "You have successfully applied for this job post",
+							type: "success"
+						});
+					}
+					$('.cssload-container').delay(300).fadeOut('slow');
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be inserted!");
+					console.log(error);
+				});
+			}
+			else {
+				$location.path('JobSeekersProfile');
+			}
+		}
+		else {
+			$location.path('Login');
+		}
+	}
+
 	$scope.showJob = function()
 	{
 		//document.getElementById("Filtervale").value = "job";
@@ -806,7 +1458,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	{
 		//document.getElementById("Filtervale").value = "Assignment";
 		
-			$scope.Type = "Projects";
+			$scope.Type = "Assignments";
 		
 			$("#FeaturedJobs").hide();
 			
@@ -905,7 +1557,39 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				console.log(error);
 			});
 		
-		
+			$scope.currentPage = 0;
+			$scope.pageSize = 5;
+			$scope.data = [];
+			$scope.q = '';
+
+			$scope.getData = function () 
+    {
+      // needed for the pagination calc
+      // https://docs.angularjs.org/api/ng/filter/filter
+      return $filter('filter')($scope.data, $scope.q)
+     /* 
+       // manual filter
+       // if u used this, remove the filter from html, remove above line and replace data with getData()
+       
+        var arr = [];
+        if($scope.q == '') {
+            arr = $scope.data;
+        } else {
+            for(var ea in $scope.data) {
+                if($scope.data[ea].indexOf($scope.q) > -1) {
+                    arr.push( $scope.data[ea] );
+                }
+            }
+        }
+        return arr;
+       */
+    }
+    
+    $scope.numberOfPages=function()
+    {
+        return Math.ceil($scope.getData().length/$scope.pageSize);                
+    }
+
 
 		if (localStorage.getItem('UserRoleName') == "User") 
 		{
@@ -932,7 +1616,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 			document.getElementById("Job-Assignment").style.display="none";
 			document.getElementById("Assignment").style.display="block";
 
-			$scope.Type = "Projects";
+			$scope.Type = "Assignments";
 			$('#carousel-example-generic').carousel(1);
 			$("#FeaturedJobs").remove();
 			document.getElementById("FilterButton").style.display="none";
@@ -968,7 +1652,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 		
 			
 			
-				$scope.Type = "Projects";
+				$scope.Type = "Assignments";
 				$('#carousel-example-generic').carousel(1);
 				$("#FeaturedJobs").hide();
 				$http.post("iComissionAdmin/PHP/Get_ProjectList.php", {
@@ -986,6 +1670,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 			
 			
 		}
+
 
 		if (localStorage.getItem("searchtype") == "Advanced") {
 			$("#DefaultSearch").slideUp('fast');
@@ -2091,6 +2776,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	//call when click on search button
 	$scope.serch_job = function () 
 	{
+		alert("serch_job");
 		//alert($("#Serach_joblocation").val());
 
 		/*change--1*/
@@ -2101,7 +2787,8 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				localStorage.setItem("Salary", document.getElementById("Salary").value);
 				localStorage.setItem("keywords", $scope.Keywords);
 				localStorage.setItem("searchtype", "Default");
-				$location.path("\JobSearch");
+				$scope.GetSearchedJobs();
+				//$location.path("\JobSearch");
 			}
 			else
 			{
@@ -2110,7 +2797,8 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				localStorage.setItem("Salary", document.getElementById("Salary").value);
 				localStorage.setItem("keywords", $scope.Keywords);
 				localStorage.setItem("searchtype", "Default");
-				$location.path("\JobSearch");
+				$scope.GetSearchedJobs();
+				//$location.path("\JobSearch");
 			}
 			
 		/*change--1*/
@@ -2212,65 +2900,11 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 		}
 	}
 
-	$scope.search_Project = function () 
-	{
-		if($("#Serach_joblocation").val() != "")
+
+	/* Searching assignment */
+		$scope.search_Project = function () 
 		{
-			var budget = $.trim($("#Budget").val());
-			var MinBudget = 0,
-				MaxBudget = 0;
-			if (budget == "Less than $500") {
-				MinBudget = 0;
-				MaxBudget = 500;
-			} else if (budget == "$501 to $5000") {
-				MinBudget = 501;
-				MaxBudget = 5000;
-			} else if (budget == "$5001-$10000") {
-				MinBudget = 5001;
-				MaxBudget = 10000;
-			} else if (budget == "Above") {
-				MinBudget = 10001;
-				MaxBudget = 100000;
-			}
-
-			localStorage.setItem("ProjKeywords", $scope.Keywords);
-			localStorage.setItem("Projlocation", $.trim($("#Serach_joblocation").val()));
-			localStorage.setItem("ProjectType", $.trim($("#ProjectType").val()));
-			localStorage.setItem("ProjMinBudget", MinBudget);
-			localStorage.setItem("ProjMaxBudget", MaxBudget);
-
-			$location.path("\ProjectSearch");
-			
-		}
-		else
-		{
-			var budget = $.trim($("#Budget").val());
-			var MinBudget = 0,
-				MaxBudget = 0;
-			if (budget == "Less than $500") {
-				MinBudget = 0;
-				MaxBudget = 500;
-			} else if (budget == "$501 to $5000") {
-				MinBudget = 501;
-				MaxBudget = 5000;
-			} else if (budget == "$5001-$10000") {
-				MinBudget = 5001;
-				MaxBudget = 10000;
-			} else if (budget == "Above") {
-				MinBudget = 10001;
-				MaxBudget = 100000;
-			}
-
-			localStorage.setItem("ProjKeywords", $scope.Keywords);
-			localStorage.setItem("Projlocation", 'null');
-			localStorage.setItem("ProjectType", $.trim($("#ProjectType").val()));
-			localStorage.setItem("ProjMinBudget", MinBudget);
-			localStorage.setItem("ProjMaxBudget", MaxBudget);
-			$location.path("\ProjectSearch");
-		}
-
-		/*
-			if ($scope.Keywords != "" && $.trim($("#Budget").val()) != "Bidding Amount" && ($("#ProjectType").val() != "" || $.trim($("#ProjectType").val()) != "Assignment Type") && ($("#Serach_joblocation").val() != "")) 
+			if($("#Serach_joblocation").val() != "")
 			{
 				var budget = $.trim($("#Budget").val());
 				var MinBudget = 0,
@@ -2295,21 +2929,181 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				localStorage.setItem("ProjMinBudget", MinBudget);
 				localStorage.setItem("ProjMaxBudget", MaxBudget);
 
-				$location.path("\ProjectSearch");
+				//$location.path("\ProjectSearch");
+				$scope.GetSearchedProject();
+				
 			}
-			else 
+			else
 			{
-				// $("#projectSearch .input-group, #projectSearch .input-groupp").css('border', '1px solid #8a1f11');
-				// $(".SearchProj").effect("shake", { direction: "up", times: 4, distance: 5 }, 1000);
-				var x = document.getElementById("snackbar")
-				x.innerHTML = "Please enter all data";
-				x.className = "show";
-				setTimeout(function () {
-					x.className = x.className.replace("show", "");
-				}, 3000);
+				var budget = $.trim($("#Budget").val());
+				var MinBudget = 0,
+					MaxBudget = 0;
+				if (budget == "Less than $500") {
+					MinBudget = 0;
+					MaxBudget = 500;
+				} else if (budget == "$501 to $5000") {
+					MinBudget = 501;
+					MaxBudget = 5000;
+				} else if (budget == "$5001-$10000") {
+					MinBudget = 5001;
+					MaxBudget = 10000;
+				} else if (budget == "Above") {
+					MinBudget = 10001;
+					MaxBudget = 100000;
+				}
+
+				localStorage.setItem("ProjKeywords", $scope.Keywords);
+				localStorage.setItem("Projlocation", 'null');
+				localStorage.setItem("ProjectType", $.trim($("#ProjectType").val()));
+				localStorage.setItem("ProjMinBudget", MinBudget);
+				localStorage.setItem("ProjMaxBudget", MaxBudget);
+				//$location.path("\ProjectSearch");
+				$scope.GetSearchedProject();
 			}
-		*/
-	}
+
+			/*
+				if ($scope.Keywords != "" && $.trim($("#Budget").val()) != "Bidding Amount" && ($("#ProjectType").val() != "" || $.trim($("#ProjectType").val()) != "Assignment Type") && ($("#Serach_joblocation").val() != "")) 
+				{
+					var budget = $.trim($("#Budget").val());
+					var MinBudget = 0,
+						MaxBudget = 0;
+					if (budget == "Less than $500") {
+						MinBudget = 0;
+						MaxBudget = 500;
+					} else if (budget == "$501 to $5000") {
+						MinBudget = 501;
+						MaxBudget = 5000;
+					} else if (budget == "$5001-$10000") {
+						MinBudget = 5001;
+						MaxBudget = 10000;
+					} else if (budget == "Above") {
+						MinBudget = 10001;
+						MaxBudget = 100000;
+					}
+
+					localStorage.setItem("ProjKeywords", $scope.Keywords);
+					localStorage.setItem("Projlocation", $.trim($("#Serach_joblocation").val()));
+					localStorage.setItem("ProjectType", $.trim($("#ProjectType").val()));
+					localStorage.setItem("ProjMinBudget", MinBudget);
+					localStorage.setItem("ProjMaxBudget", MaxBudget);
+
+					$location.path("\ProjectSearch");
+				}
+				else 
+				{
+					// $("#projectSearch .input-group, #projectSearch .input-groupp").css('border', '1px solid #8a1f11');
+					// $(".SearchProj").effect("shake", { direction: "up", times: 4, distance: 5 }, 1000);
+					var x = document.getElementById("snackbar")
+					x.innerHTML = "Please enter all data";
+					x.className = "show";
+					setTimeout(function () {
+						x.className = x.className.replace("show", "");
+					}, 3000);
+				}
+			*/
+		}
+		$scope.GetSearchedProject = function () 
+		{
+			
+					var allStates = "";
+					$http.get('iComissionAdmin/PHP/Get_Assignments.php', {
+						cache: true
+					}).then(function (response) {
+						console.log(response.data);
+						$scope.items1 = response.data;
+						
+						var allStatescd = response.data;
+			
+					});
+			
+					$http.post("iComissionAdmin/PHP/Get_ProjectLocation.php").then(function (response) {
+						$scope.ProjectTypeList = response.data.ProjectType;
+						$scope.ProjectLocationList = response.data.ProjectLocation;
+			
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+			
+					if(localStorage.getItem("Projlocation")!='null')
+					{
+						$('.selectpicker').selectpicker();
+						
+								$http.post("iComissionAdmin/PHP/Get_SearchProject.php", {
+									"ProjectName": localStorage.getItem("ProjKeywords"),
+									"ProjectLocation": localStorage.getItem("Projlocation"),
+									"ProjectType": localStorage.getItem("ProjectType"),
+									"MinBudget": localStorage.getItem("ProjMinBudget"),
+									"MaxBudget": localStorage.getItem("ProjMaxBudget"),
+								}).then(function (response) {
+						
+									console.log(response.data);
+									if (response.data != "error") {
+										$scope.ProjectList = response.data;
+										$('.selectpicker').selectpicker('deselectAll');;
+									}
+									else {
+										$scope.ProjectList = "";
+									}
+									$('.cssload-container').delay(300).fadeOut('slow');
+								}, function (error) {
+									console.log("Sorry! Data Couldn't be inserted!");
+									console.log(error);
+								});
+					}
+					else
+					{
+						$('.selectpicker').selectpicker();
+						
+								$http.post("iComissionAdmin/PHP/Get_SearchProject.php", {
+									"ProjectName": localStorage.getItem("ProjKeywords"),
+									"ProjectLocation": localStorage.getItem("GeoLocation"),
+									"ProjectType": localStorage.getItem("ProjectType"),
+									"MinBudget": localStorage.getItem("ProjMinBudget"),
+									"MaxBudget": localStorage.getItem("ProjMaxBudget"),
+								}).then(function (response) {
+						
+									console.log(response.data);
+									if (response.data != "error") {
+										$scope.ProjectList = response.data;
+										$('.selectpicker').selectpicker('deselectAll');;
+									}
+									else {
+										$scope.ProjectList = "";
+									}
+									$('.cssload-container').delay(300).fadeOut('slow');
+								}, function (error) {
+									console.log("Sorry! Data Couldn't be inserted!");
+									console.log(error);
+								});
+					}
+					/*
+						$('.selectpicker').selectpicker();
+			
+						$http.post("iComissionAdmin/PHP/Get_SearchProject.php", {
+							"ProjectName": localStorage.getItem("ProjKeywords"),
+							"ProjectLocation": localStorage.getItem("Projlocation"),
+							"ProjectType": localStorage.getItem("ProjectType"),
+							"MinBudget": localStorage.getItem("ProjMinBudget"),
+							"MaxBudget": localStorage.getItem("ProjMaxBudget"),
+						}).then(function (response) {
+			
+							console.log(response.data);
+							if (response.data != "error") {
+								$scope.ProjectList = response.data;
+								$('.selectpicker').selectpicker('deselectAll');;
+							}
+							else {
+								$scope.ProjectList = "";
+							}
+							$('.cssload-container').delay(300).fadeOut('slow');
+						}, function (error) {
+							console.log("Sorry! Data Couldn't be inserted!");
+							console.log(error);
+						});
+					*/
+		}
+	/* Searching assignment */
 });
 
 iComissionapp.controller('JobSearchController', function ($scope, $http, $location, $compile) 

@@ -170,7 +170,7 @@
                                 <select class="form-control tofind">
                                     <option>Find</option>
                                     <option>Jobs</option>
-                                    <option>Assignments</option>
+                                    <option id="optAssignments">Assignments</option>
                                 </select>
                             </div>
                             <script>
@@ -256,7 +256,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center showListView" style="
                                             padding-left: 2px;
                                             margin-left: 2px;
                                             max-height: 25px !important;
@@ -265,7 +265,7 @@
                                             line-height: 0.6;
                                         " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center showMapView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -336,7 +336,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center show_AssignmentListView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -345,7 +345,7 @@
                                                 line-height: 0.6;
                                             " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center show_AssignmentMapView" style="
                                                     padding-left: 2px;
                                                     margin-left: 2px;
                                                     max-height: 25px !important;
@@ -453,7 +453,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center showListView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -462,7 +462,7 @@
                                                 line-height: 0.6;
                                             " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center showMapView" style="
                                                     padding-left: 2px;
                                                     margin-left: 2px;
                                                     max-height: 25px !important;
@@ -541,7 +541,7 @@
                                 </div>
                                 <div class="col-md-1 col-sm-6 col-xs-12" style="padding-top: 10px">
                                     <div class="row">
-                                        <a class="btn btn-primary pull-left text-center" style="
+                                        <a class="btn btn-primary pull-left text-center show_AssignmentListView" style="
                                                 padding-left: 2px;
                                                 margin-left: 2px;
                                                 max-height: 25px !important;
@@ -550,7 +550,7 @@
                                                 line-height: 0.6;
                                             " title="List View">List
                                         </a>
-                                        <a class="btn btn-primary pull-right text-center" style="
+                                        <a class="btn btn-primary pull-right text-center show_AssignmentMapView" style="
                                                     padding-left: 2px;
                                                     margin-left: 2px;
                                                     max-height: 25px !important;
@@ -576,8 +576,115 @@
         <div id="overl" style="position: absolute; height: 100%; z-index: 1; width: 100%; display: none; background-color: rgba(0,0,0,0.5);">
 
         </div>
-        <div id="map_canvas" style="height: 520px !important;">
+        <div id="mapdiv">
+            <div id="map_canvas" style="height: 520px !important;">
+                
+            </div>
+        </div>
+        
 
+        <div id="job_view" class="all-jobs job-listing clearfix">
+            <div id="jobdivv" class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0px !important">                
+                <div id="jobdiv">
+                    <div class="job-tab" ng-repeat="Job in All_JobList" data-toggle="tooltip" title="Click to view on map" ng-mouseover="myClick($index)">
+                        <div class="row">
+                            <div class="cstmclss col-md-6 col-sm-6 col-xs-12">
+                                <div class="badge freelancer-badge">Job</div>
+                                <h3>
+                                    <a title="">{{Job.JobTitle}}</a>
+                                </h3>
+                                <small>
+                                    <span>Company :
+                                        <a href="#">Amanda Sun</a>
+                                    </span>
+                                    <span>In :
+                                        <a href="#">Development</a>
+                                    </span>
+                                    <span>Posted Date : {{Job.JobPostDate}}</span>
+                                </small>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <div class="job-meta">
+                                    <p>{{Job.JobLocation | split:',':0}}</p>
+                                    <small>India</small>
+                                </div>
+                                <!-- end meta -->
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="job-meta text-center">
+                                    <h4>${{Job.MinSal}} - ${{Job.MaxSal}}</h4>
+                                    <a href class="btn btn-primary btn-sm" ng-click="applytojob(Job.JobPostID)">Apply</a>
+                                    <a href class="btn btn-info btn-sm" ng-click="getJobID(Job.JobPostID)">View</a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                    </div>
+                </div>                
+            </div>                     
+        </div>
+        <div  id="Assignment_View" class="all-jobs job-listing clearfix">
+            <div class="col-md-12 col-sm-12 col-xs-12" style="padding-right: 0px !important">                
+                
+                <div id="FeaturedProjects" class="job-tab" ng-repeat="Project in ProjectList">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="post-media">
+                                <a href="job-single.htm">
+                                    <img src="upload\job_06.jpg" alt="" class="img-responsive img-thumbnail">
+                                </a>
+                            </div>
+                            <!-- end media -->
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="badge freelancer-badge">Project</div>
+                            <h3>
+                                <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
+                            </h3>
+                            <small>
+                                <span>Company :
+                                    <a href="#">Amanda Sun</a>
+                                </span>
+                                <span>Start Date : {{Project.ProjectStartDate}}</span>
+                                <span>End Date : {{Project.ProjectEndDate}}</span>
+                            </small>
+                            <br>
+                            <small>
+                                <span>Description :
+                                    <span ng-bind-html="{{Project.ProjectDesc}}"></span>
+                                </span>
+                            </small>
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta">
+                                <p>{{Project.ProjectLocation | split:',':0}}</p>
+                                <small>India</small>
+                            </div>
+                            <!-- end meta -->
+                        </div>
+                        <!-- end col -->
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <div class="job-meta text-center">
+                                <h4>${{Project.ProjectBudget}}</h4>
+                                <a href class="btn btn-primary btn-sm" ng-click="openmodal(Project.ProjectPostID)">Apply</a>
+                                <a href class="btn btn-info btn-sm" ng-click="getProjectID(Project.ProjectPostID)">View</a>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
         </div>
     </div>
     <!-- end section -->
@@ -606,10 +713,13 @@
 
                 </div>
             </div>
+            
             <div class="all-jobs job-listing clearfix">
                 <div class="job-title hidden-sm ">
                     <h5>Featured</h5>
                 </div>
+                
+                <!--ng-repeat="item in data | filter:q | limitTo:pageSize"  -->
                 <div id="FeaturedJobs">
                     <div class="job-tab" ng-repeat="Job in All_JobList">
                         <div class="row">
@@ -674,7 +784,7 @@
                             </div>
                             <!-- end col -->
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="badge freelancer-badge">Project</div>
+                                <div class="badge freelancer-badge">Assignment</div>
                                 <h3>
                                     <a href="job-single.htm" title="">{{Project.ProjectName}}</a>
                                 </h3>
@@ -715,6 +825,7 @@
                         <!-- end row -->
                     </div>
                 </div>
+                
             </div>
             <!-- end alljobs -->
 
@@ -722,6 +833,8 @@
                 <a href="#" class="btn btn-primary" id="loadMore">Load More Jobs</a>
             </div> -->
             <!-- end loadmore -->
+          
+            <div class="clearfix"></div>
         </div>
         <!-- end container -->
     </div>
@@ -1229,7 +1342,40 @@
                                     });
                                 });
 
-                                $(document).ready(function () {
+                                $(document).ready(function () 
+                                {
+                                    localStorage.setItem("selectedfromplace","Yes");
+                                    $("#map_canvas").show();
+                                    $("#job_view").hide();
+                                    $("Assignment_View").hide();
+                                    /* job view*/
+                                        $(".showMapView").click(function(){
+                                            $("#map_canvas").show();
+                                            $("#job_view").hide();
+                                            $("Assignment_View").hide();
+
+                                        });
+                                        $(".showListView").click(function(){
+                                            $("#map_canvas").hide();
+                                            $("#job_view").show();
+                                            $("Assignment_View").hide();
+
+                                        });
+                                    /* job view*/
+                                    
+                                    /* assignment view*/
+                                        $(".show_AssignmentMapView").click(function(){
+                                            $("#map_canvas").show();
+                                            $("#Assignment_View").hide();
+                                            $("#job_view").hide();
+                                        });
+                                        $(".show_AssignmentListView").click(function(){
+                                            $("#map_canvas").hide();
+                                            $("#Assignment_View").show();
+                                            $("#job_view").hide();
+                                        });
+                                    /* assignment view*/
+
                                     $("#DefaultSearch .input-group, .input-groupp").hover(function (index) {
                                         $("#DefaultSearch .input-group, .input-groupp, #DefaultSearch .bootstrap-select").css('border', 'none');
                                     });
@@ -1272,6 +1418,14 @@
                                 }
 
                                 $("#avnce").click(function () {
+                                    /*$("#optAssignments").hide();
+                                    if(localStorage.getItem('EndUserAccountID') != null)
+                                    {
+                                        $("#optAssignments").show();
+                                    }else{
+                                        $("#optAssignments").hide();
+                                    }   */                                 
+
                                     $("#searchdiv").toggle();
                                     $("#serach_button").toggle();
                                 });
