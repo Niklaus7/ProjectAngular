@@ -1344,7 +1344,6 @@
 
                                 $(document).ready(function () 
                                 {
-                                    localStorage.removeItem("mapRenderProps");
                                     localStorage.setItem("selectedfromplace","Yes");
                                     $("#map_canvas").show();
                                     $("#job_view").hide();
@@ -1419,9 +1418,6 @@
                                 }
 
                                 $("#avnce").click(function () {
-                                    localStorage.removeItem("mapRenderProps");
-                                    $("#map_canvas").show();
-                                    $("#job_view").hide();
                                     /*$("#optAssignments").hide();
                                     if(localStorage.getItem('EndUserAccountID') != null)
                                     {

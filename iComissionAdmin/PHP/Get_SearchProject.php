@@ -105,7 +105,7 @@ else
     }
     else
     {
-        echo $sql1.$conn->error;
+        echo "error";
     }
 }
     

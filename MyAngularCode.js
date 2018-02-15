@@ -77,7 +77,7 @@ iComissionapp.config(function ($routeProvider) {
 			controller: 'JobSeekersProfileController',
 			resolve: {
 				"check": function () {
-					$('#preloader').delay(350).show();
+					//$('#preloader').delay(350).show();
 				}
 			}
 		})
@@ -828,13 +828,48 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 									$scope.All_JobList = response.data;
 									$scope.All_JobList_Map = response.data;
 									$scope.length = response.data.length;
-									$scope.loadMap();
+									$scope.loadJobMap();
 									$('.selectpicker').selectpicker('deselectAll');
 								}
 								else 
 								{
-									$scope.All_JobList = "";
-									$("#job_view").hide();
+									
+									if(localStorage.getItem("UserRoleName")==null)
+									{
+										swal({
+											title: "",
+											text: "Oppss..No job availabe.Please  Register as job seeker  to get alert of recommended jobs   in your area",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
+									else if(localStorage.getItem("UserRoleName")=="User")		
+									{
+										swal({
+											title: "",
+											text: "Oppss..No jobs availabe.",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
+									else
+									{
+										swal({
+											title: "",
+											text: "Oppss..No jobs availabe.",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
 								}
 								$('.cssload-container').delay(300).fadeOut('slow');
 							}, function (error) {
@@ -858,12 +893,49 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 									$scope.All_JobList = response.data;
 									$scope.All_JobList_Map = response.data;
 									$scope.length = response.data.length;
-									$scope.loadMap();
+									//$scope.loadMap();
+									$scope.loadJobMap();
 									$('.selectpicker').selectpicker('deselectAll');
 								}
-								else {
-									$scope.All_JobList = "";
-									$("#job_view").hide();
+								else 
+								{
+									
+									if(localStorage.getItem("UserRoleName")==null)
+									{
+										swal({
+											title: "",
+											text: "Oppss..No job availabe.Please  Register as job seeker  to get alert of recommended jobs in your area",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
+									else if(localStorage.getItem("UserRoleName")=="User")		
+									{
+										swal({
+											title: "",
+											text: "Oppss..No jobs availabe.",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
+									else
+									{
+										swal({
+											title: "",
+											text: "Oppss..No jobs availabe.",
+											type: "info",
+											
+										});
+										document.getElementById("Serach_joblocation").value='';
+										$scope.All_JobList = "";
+										$("#job_view").hide();
+									}
 								}
 								$('.cssload-container').delay(300).fadeOut('slow');
 							}, function (error) {
@@ -2106,12 +2178,46 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
             x.className = x.className.replace("show", "");
 		}, 3000);*/
 		
-		swal({
-			title: "",
-			text: "Oppss..No job/Assignment availabe.Please  Register as job seeker or assignemnt seeker to get alert of recommended jobs and assignments  in your area",
-			type: "info",
-			
-		});
+		if(localStorage.getItem("UserRoleName")==null)
+		{
+			swal({
+				title: "",
+				text: "Oppss..No job/Assignment availabe.Please  Register as job seeker or assignemnt seeker to get alert of recommended jobs and assignments  in your area",
+				type: "info",
+				
+			});
+			document.getElementById("Serach_joblocation").value='';
+		}
+		else if(localStorage.getItem("UserRoleName")=="User")		
+		{
+			swal({
+				title: "",
+				text: "Oppss..No jobs availabe.",
+				type: "info",
+				
+			});
+			document.getElementById("Serach_joblocation").value='';
+		}
+		else if(localStorage.getItem("UserRoleName")=="AssignmentSeeker")		
+		{
+			swal({
+				title: "",
+				text: "Oppss..No Assignment availabe.",
+				type: "info",
+				
+			});
+			document.getElementById("Serach_joblocation").value='';
+		}
+		else
+		{
+			swal({
+				title: "",
+				text: "Oppss..No job/Assignment availabe.",
+				type: "info",
+				
+			});
+			document.getElementById("Serach_joblocation").value='';
+		}
 		//window.location.href = "Index.html";
     }
 
@@ -2311,159 +2417,157 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 
         google.maps.event.addListener(map, 'click', function () {
             infowindow.close();
-        });
-
-        var markerIconj = {
-            url: 'images/pin_j.png',
-            scaledSize: new google.maps.Size(40, 40),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(32, 65),
-            labelOrigin: new google.maps.Point(20, 15)
-        }
-        for (i = 0; i < JobsData.length; i++) {
-
-            var p = JobsData[i];
-            var latlng = new google.maps.LatLng(p[0], p[1]);
-			bounds.extend(latlng);
+        });		
+			var markerIconj = {
+				url: 'images/pin_j.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+			for (i = 0; i < JobsData.length; i++) {
+	
+				var p = JobsData[i];
+				var latlng = new google.maps.LatLng(p[0], p[1]);
+				bounds.extend(latlng);
+				
+				marker = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					CompanyName: p[2],
+					JobTitle: p[3],
+					MinSal: p[4],
+					MaxSal: p[5],
+					JobPostID: p[6],
+					JobPostedBy: p[7],
+					CompanyURL: p[8],
+					MinExp: p[9],
+					MaxExp: p[10],
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIconj,
+				});
+	
+				google.maps.event.addListener(marker, 'click', (function (marker, i) {
+					return function () {
+						$scope.JobPostsID = this.JobPostID;
+						var div = document.createElement('DIV');
+	
+						div.innerHTML = '<div class="col-sm-12" style="width:auto; padding: 5px !important">' +
+						'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+						'<div class="post-media">' +
+						'<a href>' +
+						'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+						'</a>' +
+						'</div>' +
+						'</div>' +
+						'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+						// '<h5 style="margin: 5px 0 !important;">' +
+						'<div class="text-wrapp">' + this.JobTitle + '</div>' +
+						// '</h5>' +
+						'<small>' +
+						'<span style="color: #ff6700 !important; font-size: 14px;" class="text-danger"><b>Salary: </b>' +
+						'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i><b> ' + this.MinSal + ' to ' + this.MaxSal + '</b></a>' +
+						'</span>' +
+						'</small>' +
+						'<br/><small>' +
+						'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Experience: ' + this.MinExp + ' - ' + this.MaxExp + ' Years</b>' +
+						'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getJobID(' + this.JobPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+						'</span>' +
+						'</small>' +
+						'</div>' +
+						'</div>';
+	
+						$compile(div)($scope);
+	
+						infowindow.setContent(div);
+						// infowindow.setContent(this.title);
+						infowindow.open(map, marker);
+					}
+				})(marker, i));
+	
+				markers = [];
+				markers.push(marker);
+			}
+			var markerCluster1 = new MarkerClusterer(map, markers,
+				{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			);
+		
+			var ProjectsData = [];
 			
-            marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                CompanyName: p[2],
-                JobTitle: p[3],
-                MinSal: p[4],
-                MaxSal: p[5],
-                JobPostID: p[6],
-                JobPostedBy: p[7],
-				CompanyURL: p[8],
-				MinExp: p[9],
-                MaxExp: p[10],
-                animation: google.maps.Animation.BOUNCE,
-				icon: markerIconj,
-            });
-
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                return function () {
-					$scope.JobPostsID = this.JobPostID;
-					var div = document.createElement('DIV');
-
-                    div.innerHTML = '<div class="col-sm-12" style="width:auto; padding: 5px !important">' +
-					'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
-					'<div class="post-media">' +
-					'<a href>' +
-					'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
-					'</a>' +
-					'</div>' +
-					'</div>' +
-					'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
-					// '<h5 style="margin: 5px 0 !important;">' +
-					'<div class="text-wrapp">' + this.JobTitle + '</div>' +
-					// '</h5>' +
-					'<small>' +
-					'<span style="color: #ff6700 !important; font-size: 14px;" class="text-danger"><b>Salary: </b>' +
-					'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i><b> ' + this.MinSal + ' to ' + this.MaxSal + '</b></a>' +
-					'</span>' +
-					'</small>' +
-					'<br/><small>' +
-					'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Experience: ' + this.MinExp + ' - ' + this.MaxExp + ' Years</b>' +
-					'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getJobID(' + this.JobPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
-					'</span>' +
-					'</small>' +
-					'</div>' +
-					'</div>';
-
-                    $compile(div)($scope);
-
-                    infowindow.setContent(div);
-                    // infowindow.setContent(this.title);
-                    infowindow.open(map, marker);
-                }
-            })(marker, i));
-
-			markers = [];
-            markers.push(marker);
-		}
-		var markerCluster1 = new MarkerClusterer(map, markers,
-            {imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
-        );
-
-		var ProjectsData = [];
-		
-		var markerIcona = {
-            url: 'images/pin_a.png',
-            scaledSize: new google.maps.Size(40, 40),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(32, 65),
-            labelOrigin: new google.maps.Point(20, 15)
-        }
-
-        for (var i = 0; i < $scope.Projectlength; i++) {
-            ProjectsData[i] = [$scope.All_ProjectList_Map[i].lat, $scope.All_ProjectList_Map[i].lng, $scope.All_ProjectList_Map[i].CompanyName, $scope.All_ProjectList_Map[i].ProjectName, $scope.All_ProjectList_Map[i].ProjectBudget, $scope.All_ProjectList_Map[i].ProjectPostID, $scope.All_ProjectList_Map[i].ProjectPostBy, $scope.All_ProjectList_Map[i].CompanyURL, $scope.All_ProjectList_Map[i].ProjectStartDate];
-        }
-        for (i = 0; i < ProjectsData.length; i++) {
-            var p = ProjectsData[i];
-            var latlng = new google.maps.LatLng(p[0], p[1]);
-            bounds.extend(latlng);
-
-            marker1 = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                CompanyName: p[2],
-                ProjectName: p[3],
-                ProjectBudget: p[4],
-                ProjectPostID: p[5],
-                ProjectPostBy: p[6],
-				CompanyURL: p[7],
-				ProjectStartDate: p[8],
-                animation: google.maps.Animation.BOUNCE,
-                icon: markerIcona,
-            });
-
-            google.maps.event.addListener(marker1, 'click', (function (marker1, i) {
-                return function () {
-					var div = document.createElement('DIV');
-
-                    div.innerHTML = '<div class="col-sm-12" style="width: auto; padding: 5px !important">' +
-					'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
-					'<div class="post-media">' +
-					'<a href>' +
-					'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
-					'</a>' +
-					'</div>' +
-					'</div>' +
-					'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
-					// '<h5 style="margin: 5px 0 !important;">' +
-					// '<a href style="text-overflow: ellipsis;">' + this.ProjectName + '</a>' +
-					// '</h5>' +
-					'<div class="text-wrapp">' + this.ProjectName + '</div>' +
-					'<small>' +
-					'<span style="color: #ff6700 !important; font-size: 12px;"><b>Budget: </b>' +
-					'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i> <b>' + this.ProjectBudget +'</b></a>'+
-					'</span>' +
-					'</small>' +
-					'<br/><small>' +
-					'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Date: ' + this.ProjectStartDate +
-					'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getProjectID(' + this.ProjectPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
-					'</span>' +
-					'</small>' +
-					'</div>' +
-					'</div>';
-
-                    $compile(div)($scope);
-
-                    infowindow.setContent(div);
-                    // infowindow.setContent(this.title);
-                    infowindow.open(map, marker1);
-                }
-            })(marker1, i));
-			markers1 = [];
-            markers1.push(marker1);
-		}
-		
-		var markerCluster1 = new MarkerClusterer(map, markers1,
-            {imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
-        );
-
+			var markerIcona = {
+				url: 'images/pin_a.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+	
+			for (var i = 0; i < $scope.Projectlength; i++) {
+				ProjectsData[i] = [$scope.All_ProjectList_Map[i].lat, $scope.All_ProjectList_Map[i].lng, $scope.All_ProjectList_Map[i].CompanyName, $scope.All_ProjectList_Map[i].ProjectName, $scope.All_ProjectList_Map[i].ProjectBudget, $scope.All_ProjectList_Map[i].ProjectPostID, $scope.All_ProjectList_Map[i].ProjectPostBy, $scope.All_ProjectList_Map[i].CompanyURL, $scope.All_ProjectList_Map[i].ProjectStartDate];
+			}
+			for (i = 0; i < ProjectsData.length; i++) {
+				var p = ProjectsData[i];
+				var latlng = new google.maps.LatLng(p[0], p[1]);
+				bounds.extend(latlng);
+	
+				marker1 = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					CompanyName: p[2],
+					ProjectName: p[3],
+					ProjectBudget: p[4],
+					ProjectPostID: p[5],
+					ProjectPostBy: p[6],
+					CompanyURL: p[7],
+					ProjectStartDate: p[8],
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIcona,
+				});
+	
+				google.maps.event.addListener(marker1, 'click', (function (marker1, i) {
+					return function () {
+						var div = document.createElement('DIV');
+	
+						div.innerHTML = '<div class="col-sm-12" style="width: auto; padding: 5px !important">' +
+						'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+						'<div class="post-media">' +
+						'<a href>' +
+						'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+						'</a>' +
+						'</div>' +
+						'</div>' +
+						'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+						// '<h5 style="margin: 5px 0 !important;">' +
+						// '<a href style="text-overflow: ellipsis;">' + this.ProjectName + '</a>' +
+						// '</h5>' +
+						'<div class="text-wrapp">' + this.ProjectName + '</div>' +
+						'<small>' +
+						'<span style="color: #ff6700 !important; font-size: 12px;"><b>Budget: </b>' +
+						'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i> <b>' + this.ProjectBudget +'</b></a>'+
+						'</span>' +
+						'</small>' +
+						'<br/><small>' +
+						'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Date: ' + this.ProjectStartDate +
+						'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getProjectID(' + this.ProjectPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+						'</span>' +
+						'</small>' +
+						'</div>' +
+						'</div>';
+	
+						$compile(div)($scope);
+	
+						infowindow.setContent(div);
+						// infowindow.setContent(this.title);
+						infowindow.open(map, marker1);
+					}
+				})(marker1, i));
+				markers1 = [];
+				markers1.push(marker1);
+			}
+			
+			var markerCluster1 = new MarkerClusterer(map, markers1,
+				{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			);		        		
 		map.fitBounds(bounds);
 
 		zoomChangeBoundsListener =
@@ -2476,7 +2580,721 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 		setTimeout(function () { google.maps.event.removeListener(zoomChangeBoundsListener) }, 2000);
 
 		$scope.LoadData(type);
-    }
+	}
+
+	$scope.loadJobMap = function (type) {
+        var mapOptions = {
+            zoom: 10,
+            mapTypeControlOptions: {
+                mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                    'styled_map']
+            },
+        }
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var JobsData = [];
+
+        for (var i = 0; i < $scope.Joblength; i++) {
+            JobsData[i] = [$scope.All_JobList_Map[i].lat, $scope.All_JobList_Map[i].lng, $scope.All_JobList_Map[i].CompanyName, $scope.All_JobList_Map[i].JobTitle, $scope.All_JobList_Map[i].MinSal, $scope.All_JobList_Map[i].MaxSal, $scope.All_JobList_Map[i].JobPostID, $scope.All_JobList_Map[i].JobPostedBy, $scope.All_JobList_Map[i].CompanyURL, $scope.All_JobList_Map[i].MinExp, $scope.All_JobList_Map[i].MaxExp];
+        }
+
+        var styledMapType = new google.maps.StyledMapType(
+            [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#2f2a2c"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#bdbdbd"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#eeeeee"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e5e5e5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#fba86f"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dadada"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#2f2a2c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e5e5e5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.station",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#eeeeee"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#bbdefb"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                }
+            ],
+            { name: 'Styled Map' });
+
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
+        // google.maps.event.trigger(map, 'resize');
+
+        var bounds = new google.maps.LatLngBounds();
+
+        var marker, i;
+        var infowindow = new google.maps.InfoWindow();
+
+
+        google.maps.event.addListener(map, 'click', function () {
+            infowindow.close();
+        });		
+			var markerIconj = {
+				url: 'images/pin_j.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+			for (i = 0; i < JobsData.length; i++) {
+	
+				var p = JobsData[i];
+				var latlng = new google.maps.LatLng(p[0], p[1]);
+				bounds.extend(latlng);
+				
+				marker = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					CompanyName: p[2],
+					JobTitle: p[3],
+					MinSal: p[4],
+					MaxSal: p[5],
+					JobPostID: p[6],
+					JobPostedBy: p[7],
+					CompanyURL: p[8],
+					MinExp: p[9],
+					MaxExp: p[10],
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIconj,
+				});
+	
+				google.maps.event.addListener(marker, 'click', (function (marker, i) {
+					return function () {
+						$scope.JobPostsID = this.JobPostID;
+						var div = document.createElement('DIV');
+	
+						div.innerHTML = '<div class="col-sm-12" style="width:auto; padding: 5px !important">' +
+						'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+						'<div class="post-media">' +
+						'<a href>' +
+						'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+						'</a>' +
+						'</div>' +
+						'</div>' +
+						'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+						// '<h5 style="margin: 5px 0 !important;">' +
+						'<div class="text-wrapp">' + this.JobTitle + '</div>' +
+						// '</h5>' +
+						'<small>' +
+						'<span style="color: #ff6700 !important; font-size: 14px;" class="text-danger"><b>Salary: </b>' +
+						'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i><b> ' + this.MinSal + ' to ' + this.MaxSal + '</b></a>' +
+						'</span>' +
+						'</small>' +
+						'<br/><small>' +
+						'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Experience: ' + this.MinExp + ' - ' + this.MaxExp + ' Years</b>' +
+						'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getJobID(' + this.JobPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+						'</span>' +
+						'</small>' +
+						'</div>' +
+						'</div>';
+	
+						$compile(div)($scope);
+	
+						infowindow.setContent(div);
+						// infowindow.setContent(this.title);
+						infowindow.open(map, marker);
+					}
+				})(marker, i));
+	
+				markers = [];
+				markers.push(marker);
+			}
+			var markerCluster1 = new MarkerClusterer(map, markers,
+				{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			);
+		
+			var ProjectsData = [];
+			
+			var markerIcona = {
+				url: 'images/pin_a.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+	
+			// for (var i = 0; i < $scope.Projectlength; i++) {
+			// 	ProjectsData[i] = [$scope.All_ProjectList_Map[i].lat, $scope.All_ProjectList_Map[i].lng, $scope.All_ProjectList_Map[i].CompanyName, $scope.All_ProjectList_Map[i].ProjectName, $scope.All_ProjectList_Map[i].ProjectBudget, $scope.All_ProjectList_Map[i].ProjectPostID, $scope.All_ProjectList_Map[i].ProjectPostBy, $scope.All_ProjectList_Map[i].CompanyURL, $scope.All_ProjectList_Map[i].ProjectStartDate];
+			// }
+			// for (i = 0; i < ProjectsData.length; i++) {
+			// 	var p = ProjectsData[i];
+			// 	var latlng = new google.maps.LatLng(p[0], p[1]);
+			// 	bounds.extend(latlng);
+	
+			// 	marker1 = new google.maps.Marker({
+			// 		position: latlng,
+			// 		map: map,
+			// 		CompanyName: p[2],
+			// 		ProjectName: p[3],
+			// 		ProjectBudget: p[4],
+			// 		ProjectPostID: p[5],
+			// 		ProjectPostBy: p[6],
+			// 		CompanyURL: p[7],
+			// 		ProjectStartDate: p[8],
+			// 		animation: google.maps.Animation.BOUNCE,
+			// 		icon: markerIcona,
+			// 	});
+	
+			// 	google.maps.event.addListener(marker1, 'click', (function (marker1, i) {
+			// 		return function () {
+			// 			var div = document.createElement('DIV');
+	
+			// 			div.innerHTML = '<div class="col-sm-12" style="width: auto; padding: 5px !important">' +
+			// 			'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+			// 			'<div class="post-media">' +
+			// 			'<a href>' +
+			// 			'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+			// 			'</a>' +
+			// 			'</div>' +
+			// 			'</div>' +
+			// 			'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+			// 			// '<h5 style="margin: 5px 0 !important;">' +
+			// 			// '<a href style="text-overflow: ellipsis;">' + this.ProjectName + '</a>' +
+			// 			// '</h5>' +
+			// 			'<div class="text-wrapp">' + this.ProjectName + '</div>' +
+			// 			'<small>' +
+			// 			'<span style="color: #ff6700 !important; font-size: 12px;"><b>Budget: </b>' +
+			// 			'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i> <b>' + this.ProjectBudget +'</b></a>'+
+			// 			'</span>' +
+			// 			'</small>' +
+			// 			'<br/><small>' +
+			// 			'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Date: ' + this.ProjectStartDate +
+			// 			'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getProjectID(' + this.ProjectPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+			// 			'</span>' +
+			// 			'</small>' +
+			// 			'</div>' +
+			// 			'</div>';
+	
+			// 			$compile(div)($scope);
+	
+			// 			infowindow.setContent(div);
+			// 			// infowindow.setContent(this.title);
+			// 			infowindow.open(map, marker1);
+			// 		}
+			// 	})(marker1, i));
+			// 	markers1 = [];
+			// 	markers1.push(marker1);
+			// }
+			
+			// var markerCluster1 = new MarkerClusterer(map, markers1,
+			// 	{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			// );		        		
+		map.fitBounds(bounds);
+
+		zoomChangeBoundsListener =
+			google.maps.event.addListenerOnce(map, 'bounds_changed', function (event) {
+				if (this.getZoom()) {   // or set a minimum
+					this.setZoom(5);  // set zoom here
+				}
+			});
+
+		setTimeout(function () { google.maps.event.removeListener(zoomChangeBoundsListener) }, 2000);
+
+		$scope.LoadData(type);
+	}
+	
+	$scope.loadProjectMap = function (type) {
+        var mapOptions = {
+            zoom: 10,
+            mapTypeControlOptions: {
+                mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                    'styled_map']
+            },
+        }
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var JobsData = [];
+
+        for (var i = 0; i < $scope.Joblength; i++) {
+            JobsData[i] = [$scope.All_JobList_Map[i].lat, $scope.All_JobList_Map[i].lng, $scope.All_JobList_Map[i].CompanyName, $scope.All_JobList_Map[i].JobTitle, $scope.All_JobList_Map[i].MinSal, $scope.All_JobList_Map[i].MaxSal, $scope.All_JobList_Map[i].JobPostID, $scope.All_JobList_Map[i].JobPostedBy, $scope.All_JobList_Map[i].CompanyURL, $scope.All_JobList_Map[i].MinExp, $scope.All_JobList_Map[i].MaxExp];
+        }
+
+        var styledMapType = new google.maps.StyledMapType(
+            [
+                {
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#2f2a2c"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative.land_parcel",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#bdbdbd"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#eeeeee"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e5e5e5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#fba86f"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#757575"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dadada"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#2f2a2c"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.line",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e5e5e5"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit.station",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#eeeeee"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#bbdefb"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#9e9e9e"
+                        }
+                    ]
+                }
+            ],
+            { name: 'Styled Map' });
+
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
+        // google.maps.event.trigger(map, 'resize');
+
+        var bounds = new google.maps.LatLngBounds();
+
+        var marker, i;
+        var infowindow = new google.maps.InfoWindow();
+
+
+        google.maps.event.addListener(map, 'click', function () {
+            infowindow.close();
+        });		
+			var markerIconj = {
+				url: 'images/pin_j.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+			// for (i = 0; i < JobsData.length; i++) {
+	
+			// 	var p = JobsData[i];
+			// 	var latlng = new google.maps.LatLng(p[0], p[1]);
+			// 	bounds.extend(latlng);
+				
+			// 	marker = new google.maps.Marker({
+			// 		position: latlng,
+			// 		map: map,
+			// 		CompanyName: p[2],
+			// 		JobTitle: p[3],
+			// 		MinSal: p[4],
+			// 		MaxSal: p[5],
+			// 		JobPostID: p[6],
+			// 		JobPostedBy: p[7],
+			// 		CompanyURL: p[8],
+			// 		MinExp: p[9],
+			// 		MaxExp: p[10],
+			// 		animation: google.maps.Animation.BOUNCE,
+			// 		icon: markerIconj,
+			// 	});
+	
+			// 	google.maps.event.addListener(marker, 'click', (function (marker, i) {
+			// 		return function () {
+			// 			$scope.JobPostsID = this.JobPostID;
+			// 			var div = document.createElement('DIV');
+	
+			// 			div.innerHTML = '<div class="col-sm-12" style="width:auto; padding: 5px !important">' +
+			// 			'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+			// 			'<div class="post-media">' +
+			// 			'<a href>' +
+			// 			'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+			// 			'</a>' +
+			// 			'</div>' +
+			// 			'</div>' +
+			// 			'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+			// 			// '<h5 style="margin: 5px 0 !important;">' +
+			// 			'<div class="text-wrapp">' + this.JobTitle + '</div>' +
+			// 			// '</h5>' +
+			// 			'<small>' +
+			// 			'<span style="color: #ff6700 !important; font-size: 14px;" class="text-danger"><b>Salary: </b>' +
+			// 			'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i><b> ' + this.MinSal + ' to ' + this.MaxSal + '</b></a>' +
+			// 			'</span>' +
+			// 			'</small>' +
+			// 			'<br/><small>' +
+			// 			'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Experience: ' + this.MinExp + ' - ' + this.MaxExp + ' Years</b>' +
+			// 			'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getJobID(' + this.JobPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+			// 			'</span>' +
+			// 			'</small>' +
+			// 			'</div>' +
+			// 			'</div>';
+	
+			// 			$compile(div)($scope);
+	
+			// 			infowindow.setContent(div);
+			// 			// infowindow.setContent(this.title);
+			// 			infowindow.open(map, marker);
+			// 		}
+			// 	})(marker, i));
+	
+			// 	markers = [];
+			// 	markers.push(marker);
+			// }
+			// var markerCluster1 = new MarkerClusterer(map, markers,
+			// 	{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			// );
+		
+			var ProjectsData = [];
+			
+			var markerIcona = {
+				url: 'images/pin_a.png',
+				scaledSize: new google.maps.Size(40, 40),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(32, 65),
+				labelOrigin: new google.maps.Point(20, 15)
+			}
+	
+			for (var i = 0; i < $scope.Projectlength; i++) {
+				ProjectsData[i] = [$scope.All_ProjectList_Map[i].lat, $scope.All_ProjectList_Map[i].lng, $scope.All_ProjectList_Map[i].CompanyName, $scope.All_ProjectList_Map[i].ProjectName, $scope.All_ProjectList_Map[i].ProjectBudget, $scope.All_ProjectList_Map[i].ProjectPostID, $scope.All_ProjectList_Map[i].ProjectPostBy, $scope.All_ProjectList_Map[i].CompanyURL, $scope.All_ProjectList_Map[i].ProjectStartDate];
+			}
+			for (i = 0; i < ProjectsData.length; i++) {
+				var p = ProjectsData[i];
+				var latlng = new google.maps.LatLng(p[0], p[1]);
+				bounds.extend(latlng);
+	
+				marker1 = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					CompanyName: p[2],
+					ProjectName: p[3],
+					ProjectBudget: p[4],
+					ProjectPostID: p[5],
+					ProjectPostBy: p[6],
+					CompanyURL: p[7],
+					ProjectStartDate: p[8],
+					animation: google.maps.Animation.BOUNCE,
+					icon: markerIcona,
+				});
+	
+				google.maps.event.addListener(marker1, 'click', (function (marker1, i) {
+					return function () {
+						var div = document.createElement('DIV');
+	
+						div.innerHTML = '<div class="col-sm-12" style="width: auto; padding: 5px !important">' +
+						'<div class="col-md-3 col-sm-3 col-xs-3" style="padding: 0px !important">' +
+						'<div class="post-media">' +
+						'<a href>' +
+						'<img src="iComissionAdmin/php/CompanyLogo/5a1fd1727c629.png" alt="" class="img-responsive img-thumbnail" style="width: 60px;height: 60px;">' +
+						'</a>' +
+						'</div>' +
+						'</div>' +
+						'<div class="col-md-9 col-sm-9 col-xs-9" style="padding-left: 10px !important;padding-right: 0px;">' +
+						// '<h5 style="margin: 5px 0 !important;">' +
+						// '<a href style="text-overflow: ellipsis;">' + this.ProjectName + '</a>' +
+						// '</h5>' +
+						'<div class="text-wrapp">' + this.ProjectName + '</div>' +
+						'<small>' +
+						'<span style="color: #ff6700 !important; font-size: 12px;"><b>Budget: </b>' +
+						'<a href style="color: #ff6700 !important;"><i class="fa fa-usd"></i> <b>' + this.ProjectBudget +'</b></a>'+
+						'</span>' +
+						'</small>' +
+						'<br/><small>' +
+						'<span class="text-danger" style="color: #2f2a2c !important; font-size: 10px"><b>Date: ' + this.ProjectStartDate +
+						'<br><button class="btn btn-primary pull-right cstmbtncls" ng-click="getProjectID(' + this.ProjectPostID + ')" style="padding-right: 5px; font-size: 12px">View</button>' +
+						'</span>' +
+						'</small>' +
+						'</div>' +
+						'</div>';
+	
+						$compile(div)($scope);
+	
+						infowindow.setContent(div);
+						// infowindow.setContent(this.title);
+						infowindow.open(map, marker1);
+					}
+				})(marker1, i));
+				markers1 = [];
+				markers1.push(marker1);
+			}
+			
+			var markerCluster1 = new MarkerClusterer(map, markers1,
+				{imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m'}
+			);		        		
+		map.fitBounds(bounds);
+
+		zoomChangeBoundsListener =
+			google.maps.event.addListenerOnce(map, 'bounds_changed', function (event) {
+				if (this.getZoom()) {   // or set a minimum
+					this.setZoom(5);  // set zoom here
+				}
+			});
+
+		setTimeout(function () { google.maps.event.removeListener(zoomChangeBoundsListener) }, 2000);
+
+		$scope.LoadData(type);
+	}
 	
 
 
@@ -2778,6 +3596,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	{
 		alert("serch_job");
 		//alert($("#Serach_joblocation").val());
+		localStorage.setItem("mapRenderProps","1");
 
 		/*change--1*/
 			if($("#Serach_joblocation").val() != "")
@@ -2904,6 +3723,7 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	/* Searching assignment */
 		$scope.search_Project = function () 
 		{
+			localStorage.setItem("mapRenderProps","2");
 			if($("#Serach_joblocation").val() != "")
 			{
 				var budget = $.trim($("#Budget").val());
@@ -3040,10 +3860,47 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 									console.log(response.data);
 									if (response.data != "error") {
 										$scope.ProjectList = response.data;
+										$scope.loadProjectMap();
 										$('.selectpicker').selectpicker('deselectAll');;
 									}
-									else {
-										$scope.ProjectList = "";
+									else 
+									{
+										if(localStorage.getItem("UserRoleName")==null)
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignment availabe.Please  Register as  Assignment seeker  to get alert of recommended  assignments  in your area",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
+										else if(localStorage.getItem("UserRoleName")=="AssignmentSeeker")		
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignments availabe.",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
+										else
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignment availabe.",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
 									}
 									$('.cssload-container').delay(300).fadeOut('slow');
 								}, function (error) {
@@ -3066,10 +3923,47 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 									console.log(response.data);
 									if (response.data != "error") {
 										$scope.ProjectList = response.data;
+										$scope.loadProjectMap();
 										$('.selectpicker').selectpicker('deselectAll');;
 									}
-									else {
-										$scope.ProjectList = "";
+									else 
+									{
+										if(localStorage.getItem("UserRoleName")==null)
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignment availabe.Please  Register as  Assignment seeker  to get alert of recommended assignments  in your area",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
+										else if(localStorage.getItem("UserRoleName")=="AssignmentSeeker")		
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignments availabe.",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
+										else
+										{
+											swal({
+												title: "",
+												text: "Oppss..No Assignment availabe.",
+												type: "info",
+												
+											});
+											document.getElementById("Serach_joblocation").value='';
+											$scope.ProjectList = "";
+											$("#Assignment_View").hide();
+										}
 									}
 									$('.cssload-container').delay(300).fadeOut('slow');
 								}, function (error) {
