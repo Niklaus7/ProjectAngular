@@ -28,9 +28,18 @@ if($ProjectPostedBy =='null')
        
                 while($row = $result1->fetch_assoc())
                 {
-                    $output[] = $row;
+                    $output = $row;
+                    $PostedById = $row["ProjectPostBy"];
+                    $sql3="SELECT CompanyName FROM registeruserinforamtion where UserID = '$PostedById'";
+                    $result3 = $conn->query($sql3);
+                    while($row3=mysqli_fetch_array($result3)) 
+                    {
+                        $output["CompanyName"]= $row3["CompanyName"];
+                       
+                    }
+                    $output1[]=$output;
                 }
-                echo json_encode($output);
+                echo json_encode($output1);
             }
             else
             {
@@ -72,6 +81,7 @@ else
                         {
                             
                             $noofcandidate = $row2['NumberOFCandidate'];
+                            
                                     
                         }
                     }
@@ -79,6 +89,15 @@ else
                     {
                         $noofcandidate = 0;
                     }
+                    $PostedById = $row["ProjectPostBy"];
+                    $sql3="SELECT CompanyName FROM registeruserinforamtion where UserID = '$PostedById'";
+                    $result3 = $conn->query($sql3);
+                    while($row3=mysqli_fetch_array($result3)) 
+                    {
+                        $output["CompanyName"]= $row3["CompanyName"];
+                       
+                    }
+                   
                     $output['NumberOFCandidate_Applied'] =  $noofcandidate; 
                     $respone[]= $output; 
                 }

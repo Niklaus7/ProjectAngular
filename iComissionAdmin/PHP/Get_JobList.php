@@ -13,10 +13,12 @@ $ShowData = $data->ShowData;
 
 if($JobPostedBy =='null')
 {
-    if($ShowData == "All"){
-        $sql1="SELECT * FROM jobpost where JobActive = 'Active' order by JobPostDate DESC";
+    if($ShowData == "All")
+    {
+        $sql1="SELECT * FROM jobpost where JobActive = 'Active' order by JobPostDate DESC limit 10";
     }
-    else{
+    else
+    {
         $sql1="SELECT * FROM jobpost where JobActive = 'Active' order by JobPostDate DESC  limit 10";
     }
             $result1 = $conn->query($sql1);
@@ -29,7 +31,7 @@ if($JobPostedBy =='null')
                     $output = $row;
     
                     $id = $row['JobPostID'];
-    
+                   
                     
                     $sql2 ="SELECT COUNT(JobApplyActivityID) As NumberOFCandidate FROM jobapplyactivity where JobPostID = $id ";
                     
@@ -40,8 +42,27 @@ if($JobPostedBy =='null')
                        
                                 while($row2 = $result2->fetch_assoc())
                                 {
+
                                     
                                     $noofcandidate = $row2['NumberOFCandidate'];
+                                    $sql3 ="SELECT * from company where JobPostID = $id ";
+                                    
+                                            $result3 = $conn->query($sql3);
+                        
+                                            if ($result3->num_rows > 0) 
+                                            {
+                                       
+                                                while($row3 = $result3->fetch_assoc())
+                                                {
+                                                   
+                                                    
+                                                    $output['CompanyName'] = $row3['CompanyName'];
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $output['CompanyName'] = "No Company Details";
+                                            }
                                     
                                 }
                     
@@ -100,6 +121,24 @@ else
                                 {
                                     
                                     $noofcandidate = $row2['NumberOFCandidate'];
+                                    $sql3 ="SELECT * from company where JobPostID = $id ";
+                                    
+                                            $result3 = $conn->query($sql3);
+                        
+                                            if ($result3->num_rows > 0) 
+                                            {
+                                       
+                                                while($row3 = $result3->fetch_assoc())
+                                                {
+                                                   
+                                                    
+                                                    $output['CompanyName'] = $row3['CompanyName'];
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $output['CompanyName'] = "No Company Details";
+                                            }
                                             
                                 }
                             }

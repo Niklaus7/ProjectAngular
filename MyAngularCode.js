@@ -683,6 +683,7 @@ iComissionapp.controller('LoginController', function ($scope, $http, $location)
 		localStorage.removeItem("success")
 	}
 
+	
 	$scope.Login = function (isValid) {
 		if (isValid) {
 			$('.cssload-container').delay(300).show();
@@ -691,8 +692,9 @@ iComissionapp.controller('LoginController', function ($scope, $http, $location)
 				'password': $scope.password
 			}).then(function (response) {
 				console.log(response.data);
-				if (response.data != "error") {
-
+				if (response.data != "error") 
+				{
+					
 					localStorage.setItem('UserTypeID', response.data[0].UserTypeID)
 					localStorage.setItem('UserRoleName', response.data[0].UserRoleName);
 					localStorage.setItem('FirstName', response.data[0].FirstName);
@@ -771,7 +773,8 @@ iComissionapp.controller('LoginController', function ($scope, $http, $location)
 	}
 });
 
-iComissionapp.controller('IndexController', function ($scope, $http, $location, $log, $rootScope, $compile) 
+
+iComissionapp.controller('IndexController', function ($scope,$http, $location, $log, $rootScope, $compile) 
 {
 
 	//....................validation start...............
@@ -1629,39 +1632,40 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 				console.log(error);
 			});
 		
-			$scope.currentPage = 0;
+		/*paging coding*/
+			/*$scope.currentPage = 0;
 			$scope.pageSize = 5;
-			$scope.data = [];
+			$scope.All_JobList = [];
 			$scope.q = '';
 
 			$scope.getData = function () 
-    {
-      // needed for the pagination calc
-      // https://docs.angularjs.org/api/ng/filter/filter
-      return $filter('filter')($scope.data, $scope.q)
-     /* 
-       // manual filter
-       // if u used this, remove the filter from html, remove above line and replace data with getData()
-       
-        var arr = [];
-        if($scope.q == '') {
-            arr = $scope.data;
-        } else {
-            for(var ea in $scope.data) {
-                if($scope.data[ea].indexOf($scope.q) > -1) {
-                    arr.push( $scope.data[ea] );
-                }
-            }
-        }
-        return arr;
-       */
-    }
-    
-    $scope.numberOfPages=function()
-    {
-        return Math.ceil($scope.getData().length/$scope.pageSize);                
-    }
-
+			{
+				// needed for the pagination calc
+				// https://docs.angularjs.org/api/ng/filter/filter
+				return $filter('filter')($scope.All_JobList, $scope.q)
+				/* 
+				// manual filter
+				// if u used this, remove the filter from html, remove above line and replace data with getData()
+				
+					var arr = [];
+					if($scope.q == '') {
+						arr = $scope.data;
+					} else {
+						for(var ea in $scope.data) {
+							if($scope.data[ea].indexOf($scope.q) > -1) {
+								arr.push( $scope.data[ea] );
+							}
+						}
+					}
+					return arr;
+				*/
+			//	}
+		
+			/*	$scope.numberOfPages=function()
+				{
+					return Math.ceil($scope.getData().length/$scope.pageSize);                
+				}
+		/*paging coding*/	
 
 		if (localStorage.getItem('UserRoleName') == "User") 
 		{
@@ -4000,6 +4004,12 @@ iComissionapp.controller('IndexController', function ($scope, $http, $location, 
 	/* Searching assignment */
 });
 
+/*iComissionapp.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+});*/
 iComissionapp.controller('JobSearchController', function ($scope, $http, $location, $compile) 
 {
 	
@@ -5087,6 +5097,7 @@ iComissionapp.controller('JobSeekersProfileController', function ($scope, $route
 						});
 
 					localStorage.setItem("IsRegistered", "Yes");
+					window.location.href = "Index.html";
 					$('.cssload-container').delay(300).fadeOut('slow');
 
 				}, function (error) {
@@ -5128,6 +5139,7 @@ iComissionapp.controller('JobSeekersProfileController', function ($scope, $route
 						});
 
 					localStorage.setItem("IsRegistered", "Yes");
+					window.location.href = "Index.html";
 					$('.cssload-container').delay(300).fadeOut('slow');
 
 				}, function (error) {
@@ -5629,8 +5641,7 @@ iComissionapp.controller('ProfileController', function ($scope, $http, $location
 //save Assignment Seekers  Profile info 
 iComissionapp.controller('AssignmentSeekersProfileController', function ($scope, $route, $http, $route, $templateCache) 
 {
-											//this is for wizard ruuning purpose
-	$scope.WiazrdID="AssignmentSeekersProfile";
+											
 
 
 	//get assignment Bidding Type e.g personal/company

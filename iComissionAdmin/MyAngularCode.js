@@ -358,8 +358,9 @@ iComissionapp.config(function ($routeProvider) {
 		//project Post
 		iComissionapp.controller('ProjectPostController', function ($scope, $http, $location, Project_service, $timeout) 
 		{
+			localStorage.setItem("PostType",'Project');
 			//this is for wizard ruuning purpose
-			$scope.WiazrdID="ProjectPost";
+			
 			
 			$timeout(function () {
 				$('#preloader').delay(350).fadeOut('slow');
@@ -1788,8 +1789,14 @@ iComissionapp.config(function ($routeProvider) {
 				});
 			}
 
-			$scope.info = function () {
+			$scope.info = function () 
+			{
 				$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No assignment seeker have applied for this assignment.');
+			}
+
+			$scope.info_job = function () 
+			{
+				$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No  Jobseeker have applied for this Job.');
 			}
 
 			//call when click on viewproject
@@ -2189,7 +2196,8 @@ iComissionapp.config(function ($routeProvider) {
 	});
 
 	//call when click on view details
-	iComissionapp.controller('EditJobController', function ($scope, $http, $location) {
+	iComissionapp.controller('EditJobController', function ($scope, $http, $location) 
+	{
 
 		
 		
@@ -2257,7 +2265,7 @@ iComissionapp.config(function ($routeProvider) {
 	iComissionapp.controller('JobpostController', function ($scope, $http, $location) {
 		
 		
-		$scope.WiazrdID = "JobpostController";
+		localStorage.setItem("PostType",'Job');
 
 		$scope.UserID = localStorage.getItem('UserAccountID');
 		$scope.jobPostDateTime = new Date();
@@ -2730,8 +2738,10 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		$scope.info = function () {
-			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No assignment seeker have applied for this assignment.');
+			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No Jobseeker have applied for this Job.');
 		}
+
+		
 
 		$scope.viewjob = function (id) {
 
@@ -2858,7 +2868,7 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		$scope.info = function () {
-			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No assignment seeker have applied for this assignment.');
+			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No  Jobseeker have applied for this job.');
 		}
 
 		$scope.viewjob = function (id) {

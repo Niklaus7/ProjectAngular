@@ -595,7 +595,7 @@
                                 </h3>
                                 <small>
                                     <span>Company :
-                                        <a href="#">Amanda Sun</a>
+                                        <a href="#">{{Job.CompanyName}}</a>
                                     </span>
                                     <span>In :
                                         <a href="#">Development</a>
@@ -650,7 +650,7 @@
                             </h3>
                             <small>
                                 <span>Company :
-                                    <a href="#">Amanda Sun</a>
+                                    <a href="#">{{Project.CompanyName}}</a>
                                 </span>
                                 <span>Start Date : {{Project.ProjectStartDate}}</span>
                                 <span>End Date : {{Project.ProjectEndDate}}</span>
@@ -713,13 +713,18 @@
 
                 </div>
             </div>
-            
+            <!--<select ng-model="pageSize" id="pageSize" class="form-control">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+             </select>-->
             <div class="all-jobs job-listing clearfix">
                 <div class="job-title hidden-sm ">
                     <h5>Featured</h5>
                 </div>
                 
-                <!--ng-repeat="item in data | filter:q | limitTo:pageSize"  -->
+                <!--ng-repeat="Job in All_JobList| filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">  -->
                 <div id="FeaturedJobs">
                     <div class="job-tab" ng-repeat="Job in All_JobList">
                         <div class="row">
@@ -740,7 +745,7 @@
                                 </h3>
                                 <small>
                                     <span>Company :
-                                        <a href="#">Amanda Sun</a>
+                                        <a href="#">{{Job.CompanyName}}</a>
                                     </span>
                                     <span>In :
                                         <a href="#">Development</a>
@@ -790,7 +795,7 @@
                                 </h3>
                                 <small>
                                     <span>Company :
-                                        <a href="#">Amanda Sun</a>
+                                        <a href="#">{{Project.CompanyName}}</a>
                                     </span>
                                     <span>Start Date : {{Project.ProjectStartDate}}</span>
                                     <span>End Date : {{Project.ProjectEndDate}}</span>
@@ -825,7 +830,13 @@
                         <!-- end row -->
                     </div>
                 </div>
-                
+                    <!--<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                        Previous
+                    </button>
+                     {{currentPage+1}}/{{numberOfPages()}} 
+                    <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                        Next
+                    </button>-->
             </div>
             <!-- end alljobs -->
 

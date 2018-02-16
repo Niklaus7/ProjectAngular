@@ -197,18 +197,18 @@ function($) {
                 //var temp = angular.element(document.getElementById('ProjectPostController')).scope().WiazrdID;
                 //var temp1 = angular.element(document.getElementById('JobpostController')).scope().WiazrdID;
                 
-                //if(temp =="ProjectPost")
-                //{
+                if(localStorage.getItem("PostType") =="Project")
+                {
                   // alert("in project post");
-                    //angular.element(document.getElementById('ProjectPostController')).scope().postProject();
+                    angular.element(document.getElementById('ProjectPostController')).scope().postProject();
 
-                //}
-                //else 
-                //{
+                }
+                else if(localStorage.getItem("PostType")=='Job')
+                {
                   //  alert("in job post");
                     angular.element(document.getElementById('JobpostController')).scope().Savejobpost();
                     
-                //}
+                }
             }
         });
 
@@ -245,16 +245,17 @@ function($) {
             }, 
             onFinished: function (event, currentIndex) {
                //NOTE: Submit the form, if all validation passed.
-                 
-                
-                var temp = angular.element(document.getElementById('AssignmentSeekersProfileController')).scope().WiazrdID;
-                if(temp =="AssignmentSeekersProfile")
+                //alert(localStorage.getItem("UserRoleName"));
+               
+               //var  temp = angular.element(document.getElementById('LoginController')).scope().WizardUserType;
+                //alert(temp);
+                if(localStorage.getItem("UserRoleName") =="AssignmentSeeker")
                 {
                     //alert("in as");
                     angular.element(document.getElementById('AssignmentSeekersProfileController')).scope().SaveAssignmentSeekerProfileinfo();
 
                 }
-                else
+                else if (localStorage.getItem("UserRoleName") == "User")
                 {
                     //alert("in js");
                     angular.element(document.getElementById('JobSeekersProfileController')).scope().SavejobseekerProfileinfo();

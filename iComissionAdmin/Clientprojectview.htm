@@ -85,8 +85,15 @@
                                                     <tr class="active" ng-repeat="x in ApplyCandiateList">
                                                        
                                                         <td>
-                                                            {{x.AuthorizedPersonName}}
+                                                            <span ng-show="x.AuthorizedPersonName!=''">
+                                                                    {{x.AuthorizedPersonName}}
+                                                            </span>
+                                                            <span ng-show="x.UserName!=''">
+                                                                    {{x.UserName}}
+                                                            </span>
+                                                          
                                                         </td>
+                                                        
                                                         <td>
                                                             {{x.CompanyName}}
                                                         </td>

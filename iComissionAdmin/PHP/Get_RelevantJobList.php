@@ -37,9 +37,29 @@ $data = json_decode(file_get_contents("php://input"));
 
         while($row = $result1->fetch_assoc())
         {
-            $output[] = $row;
+            $id = $row['JobPostID'];
+            $output = $row;
+                $sql2 ="SELECT * from company where JobPostID = $id ";
+            
+                    $result2 = $conn->query($sql2);
+
+                    if ($result2->num_rows > 0) 
+                    {
+               
+                        while($row2 = $result2->fetch_assoc())
+                        {
+                           
+                            
+                            $output['CompanyName'] = $row2['CompanyName'];
+                        }
+                    }
+                    else
+                    {
+                        $output['CompanyName'] = "No Company Details";
+                    }
         }
-        echo json_encode($output);
+        $output1[]=$output;
+        echo json_encode($output1);
     }
     else
     {
