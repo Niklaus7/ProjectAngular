@@ -2598,7 +2598,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 
         var JobsData = [];
 
-        for (var i = 0; i < $scope.Joblength; i++) {
+        for (var i = 0; i < $scope.All_JobList.length; i++) {
             JobsData[i] = [$scope.All_JobList_Map[i].lat, $scope.All_JobList_Map[i].lng, $scope.All_JobList_Map[i].CompanyName, $scope.All_JobList_Map[i].JobTitle, $scope.All_JobList_Map[i].MinSal, $scope.All_JobList_Map[i].MaxSal, $scope.All_JobList_Map[i].JobPostID, $scope.All_JobList_Map[i].JobPostedBy, $scope.All_JobList_Map[i].CompanyURL, $scope.All_JobList_Map[i].MinExp, $scope.All_JobList_Map[i].MaxExp];
         }
 
@@ -3220,8 +3220,8 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 				labelOrigin: new google.maps.Point(20, 15)
 			}
 	
-			for (var i = 0; i < $scope.Projectlength; i++) {
-				ProjectsData[i] = [$scope.All_ProjectList_Map[i].lat, $scope.All_ProjectList_Map[i].lng, $scope.All_ProjectList_Map[i].CompanyName, $scope.All_ProjectList_Map[i].ProjectName, $scope.All_ProjectList_Map[i].ProjectBudget, $scope.All_ProjectList_Map[i].ProjectPostID, $scope.All_ProjectList_Map[i].ProjectPostBy, $scope.All_ProjectList_Map[i].CompanyURL, $scope.All_ProjectList_Map[i].ProjectStartDate];
+			for (var i = 0; i < $scope.All_ProjectList.length; i++) {
+				ProjectsData[i] = [$scope.All_ProjectList[i].lat, $scope.All_ProjectList[i].lng, $scope.All_ProjectList[i].CompanyName, $scope.All_ProjectList[i].ProjectName, $scope.All_ProjectList[i].ProjectBudget, $scope.All_ProjectList[i].ProjectPostID, $scope.All_ProjectList[i].ProjectPostBy, $scope.All_ProjectList[i].CompanyURL, $scope.All_ProjectList[i].ProjectStartDate];
 			}
 			for (i = 0; i < ProjectsData.length; i++) {
 				var p = ProjectsData[i];
@@ -3864,6 +3864,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 									console.log(response.data);
 									if (response.data != "error") {
 										$scope.ProjectList = response.data;
+										$scope.All_ProjectList = response.data;
 										$scope.loadProjectMap();
 										$('.selectpicker').selectpicker('deselectAll');;
 									}
