@@ -2030,9 +2030,21 @@ iComissionapp.config(function ($routeProvider) {
 
 		//Job module-2
 			$scope.saveJobVacancy = function(isValid)
-			{
-				$scope.JobID =  localStorage.getItem("ApplytoJobId");
-				alert($scope.NoOfVacancy);
+			{			
+				$http.post("PHP/Save_JobVacancy.php", {
+					'JobPostBy': $scope.UserID,
+					'NoOfVacancy': $scope.NoOfVacancy,
+					'JobID': localStorage.getItem("ApplytoJobId")
+
+				}).then(function (response) {
+					console.log(response.data);
+					alert("Vacancies updated");
+					$("#ProjectApply").modal('hide');
+					
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be inserted!");
+					console.log(error);
+				});				
 			}
 		//Job module-2
 		$scope.deletejob = function () {
