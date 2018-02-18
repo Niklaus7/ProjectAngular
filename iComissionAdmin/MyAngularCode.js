@@ -1723,7 +1723,8 @@ iComissionapp.config(function ($routeProvider) {
 			$scope.TotalBidder = 0;
 			$scope.ProjectList = [];
 			//get all job list posted by user
-			$scope.getAllJobList = function () {
+			$scope.getAllJobList = function () 
+      {
 				
 				if (localStorage.getItem("Jobposted") == "Yes") {
 					swal({
@@ -2143,7 +2144,7 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		//call when on next and get selectedCandidate id
-
+		$scope.SelectedCandiateListCount = 0;
 		$scope.item = [];
 		$scope.selectedcandidatelist = function () 
 		{
@@ -2190,7 +2191,9 @@ iComissionapp.config(function ($routeProvider) {
 					if (response.data.data == false) 
 					{
 						console.log("error");
-
+						document.getElementById("selectedcount").innerHTML = "0";
+						$scope.SelectedCandiateList = "";
+						$scope.SelectedCandiateListCount = 0;
 					} 
 					else 
 					{
@@ -2205,6 +2208,7 @@ iComissionapp.config(function ($routeProvider) {
 							document.getElementById("selectedcount").innerHTML = response.data.length;
 						}
 						$scope.SelectedCandiateList = response.data;
+						$scope.SelectedCandiateListCount = response.data.length;
 					}
 
 
@@ -3008,7 +3012,20 @@ iComissionapp.config(function ($routeProvider) {
 											return '<span class="label label-danger">' + data + '</span>';
 										}
 									}
-								},								
+								},	
+								{
+									"data": "JobPostID",
+									"render": function (data, type, row) {
+										var NumberOFCandidate_Applied = row.NumberOFCandidate_Applied;
+										return '<button  type="button" class="btn btn-info btn-rounded waves-effect waves-light"  style="font-size: 14px" title="Repost Job">Repost Job</button>'
+										/*if (NumberOFCandidate_Applied > 0) {
+											return '<a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>'
+										}
+										else {
+											return '<a href class="table-action-btn btn-info" title="View Details" ng-click="info()"><i class="ion-eye"></i></a>'
+										}*/
+									}
+								},							
 							]
 						});
 
@@ -3030,16 +3047,36 @@ iComissionapp.config(function ($routeProvider) {
 			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No  Jobseeker have applied for this job.');
 		}
 
-		$scope.viewjob = function (id) {
-
+		$scope.viewjob = function (id) 
+		{
+			
 			//$scope.JobTitle = titlev;
 
 			$scope.JobId = id;
-
+			$scope.NoOfVacancy;
+			$scope.JobTitle;
+			$scope.PostDate;
+			
 			localStorage.setItem('JobId', $scope.JobId);
+			$http.post("PHP/Get_JobDetails.php", {
+				'JobId': $scope.JobId,
 
-			$location.path('viewjob');
+			}).then(function (response) {
+				console.log(response.data);
+				for(var i=0;i<response.data.length;i++)
+				{
+					localStorage.setItem("JobTitle",response.data[i].JobTitle);
+					localStorage.setItem("PostDate",response.data[i].JobPostDate);
+					localStorage.setItem("NoOfVacancy",response.data[i].NoOfVacancy);
+					$location.path('viewjob');
+				}
+				
+			});
 
+			
+		
+			
+			
 		}
 	});
 

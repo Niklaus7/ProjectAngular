@@ -92,11 +92,13 @@ if($JobPostedBy =='null')
 }//get all job
 else
 {
-    if($ShowData == "All"){
+    if($ShowData == "All")
+    {
         $sql1="SELECT * FROM jobpost where JobPostedBy = $JobPostedBy and JobActive = 'Active' order by JobPostDate DESC";
     }
-    else{
-        $sql1="SELECT * FROM jobpost where JobPostedBy = $JobPostedBy order by JobPostDate DESC limit 10";
+    else
+    {
+        $sql1="SELECT * FROM jobpost where JobPostedBy = $JobPostedBy and JobActive != 'Deactive'order by JobPostDate DESC limit 10";
     }
             $result1 = $conn->query($sql1);
             

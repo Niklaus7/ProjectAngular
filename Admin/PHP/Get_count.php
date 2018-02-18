@@ -7,7 +7,7 @@ include("db_connection.php");
 
 $data = json_decode(file_get_contents("php://input"));
 
-$sql1="select count(JobPostID) as jobscount, (select count(JobPostID) from jobpost where JobActive= 'Active') as activejobcount, (select count(JobPostID) from jobpost where JobActive= 'Inactive') as inactivejobcount from jobpost";
+$sql1="select count(JobPostID) as jobscount, (select count(JobPostID) from jobpost where JobActive= 'Active') as activejobcount, (select count(JobPostID) from jobpost where JobActive= 'Inactive') as inactivejobcount from jobpost where JobActive != 'Deactive'";
     $result1 = $conn->query($sql1);
     
     if ($result1->num_rows > 0) 

@@ -558,7 +558,8 @@ iComissionapp.controller('dashboardcontroller', function ($scope, $compile, $htt
 
 iComissionapp.controller('ApproveJobController', function ($scope, $compile, $http, $location) {
 	
-	$scope.GetJobData = function () {
+	$scope.GetJobData = function () 
+	{
 
 		var type = "";
 		if(localStorage.getItem("veiwjob") == "Inactive")
@@ -697,12 +698,32 @@ iComissionapp.controller('ApproveJobController', function ($scope, $compile, $ht
 					"data": "JobPostDate"
 				},
 				{
-					"data": "JobAprrovedstatus",
+					"data": "JobActive",
+					//"data1":"JobActive",
 					"render": function (data) {
-						if (data == "Yes") {
+						/*if(data == "Yes" && data1 =="Active") 
+						{
 							return '<span class="label label-info">Active</span>';
-						} else {
+						}
+						else if(data == "No"  && data1 =="Inactive")
+						{
 							return '<span class="label label-danger">Inactive</span>';
+						}
+						else if(data == "No"  && data1 == "Deactive")
+						{
+							return '<span class="label label-danger">Deactive</span>';
+						}*/
+						if(data=="Active") 
+						{
+							return '<span class="label label-info">Active</span>';
+						}
+						else if(data =="Inactive")
+						{
+							return '<span class="label label-danger">Inactive</span>';
+						}
+						else if(data == "Deactive")
+						{
+							return '<span class="label label-warning">Deactive</span>';
 						}
 					}
 				},

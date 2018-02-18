@@ -14,7 +14,16 @@
    
     $Ids = implode(",",$FinalJobSeekerIds);
 
-    
+    //echo $Ids;
+    if(sizeof($FinalJobSeekerIds)==0)
+    {
+        $data = false;
+        $msg ='No data';
+        $respone = array('data'=>$data,'msg'=>$msg);
+        echo json_encode($respone);
+    }
+    else
+    {
     
         $sql2 ="SELECT * FROM jobseekerprofile where JobSeekerID in ($Ids)";
         
@@ -81,5 +90,5 @@
                 echo json_encode($respone);
             }
         
-
+    }
 ?>
