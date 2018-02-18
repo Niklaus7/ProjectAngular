@@ -59,8 +59,15 @@
         </div>
     </div>
 
+    <div class="row"  id="Div_ShowProjectDescription" ng-show="NoOfCandidate==false">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <p>No AssignmentSeeker have applied for this Assignment </p>
+            </div>
+        </div>
+    </div>
     <!-- Wizard with Validation -->
-    <div class="row"  id="Div_ShowProjectDescription">
+    <div class="row"  id="Div_ShowProjectDescription" ng-show="NoOfCandidate==true">
         <div class="col-sm-12">
             <div class="card-box">
                 <form id="wizard-validation-form" action="#">
@@ -98,7 +105,9 @@
                                                             {{x.CompanyName}}
                                                         </td>
                                                         <td>
-                                                            <a href class="table-action-btn btn-info" title="View Details" ng-click="viewprofile(x.UserID)"><i class="ion-eye"></i></a>
+                                                            <button  type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details" ng-click="viewprofile(x.UserID)">
+                                                                View Details
+                                                            </button>
                                                         </td>
                                                         <td>
                                                             <span class="label label-pink" style="font-size: 14px"><i class="ion-social-usd"></i>{{x.BiddAmount}}/Day</span>

@@ -96,7 +96,7 @@
     
     
                         <div class="col-md-4" style="margin-top: 4px;">
-                            <div class="">
+                            <!--<div class="">
                                 <select id="Experience" class="form-control">
                                     <option>Assignment Seeker Type</option>
                                     <option>Assignment Seeker</option>
@@ -105,7 +105,7 @@
                                     <option>SME</option>
                                     <option>Consultant</option>
                                 </select>
-                            </div>
+                            </div>-->
                         </div>
                        
                         <div class="col-md-2">
@@ -137,8 +137,8 @@
                         </a>
                         <div class="member-info">
                             <h4 class="m-t-0 m-b-5 header-title">
-                                <b>{{x.FirstName}}</b>
-                            
+                                <!-- <b>{{x.FirstName}}</b> -->
+                                <b>XXXX XXX</b>
                             </h4>
                             <span style="display: flex">Experience:&nbsp;&nbsp;
                                     <p class="pull-left" ng-show="x.AssignmentSeekerType == 'Experience'" style="margin-bottom: 2px !Important">{{x.TotalExp_Year}} Year-{{x.TotalExp_Month}} Month</small>
@@ -147,13 +147,13 @@
                             </span>
                             <p style="margin-bottom: 0px !important;">Location: {{x.Location}}</p>
                             <p style="margin-bottom: 0px !important;">Skills: {{x.SkillSetID}}</p>
-                            <p style="margin-bottom: 0px !important;">User Type: Assignment Seeker</p>
-                            <p style="margin-bottom: 0px !important;">Assignment Bidding Type:{{x.AssignmentBiddingType}}</p>
+                            <!-- <p style="margin-bottom: 0px !important;">User Type: Assignment Seeker</p> -->
+                            <p style="margin-bottom: 0px !important;">Bidding Type:{{x.AssignmentBiddingType}}</p>
     
                             <div class="contact-action">
-                                <a  title="View Profile" ng-click="view_assignmentseekerprofile(x.AssignmentSeekerID)" class="btn btn-success btn-sm">
-                                    <i class=" md-remove-red-eye"></i>
-                                </a>
+                                <button  title="View Profile" ng-click="view_assignmentseekerprofile(x.AssignmentSeekerID)" class="btn btn-success btn-sm">
+                                   View Profile
+                                </button>
                             </div>
                         </div>
                     </div>

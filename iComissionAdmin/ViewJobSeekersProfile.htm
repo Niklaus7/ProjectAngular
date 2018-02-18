@@ -23,7 +23,7 @@
             <div class="col-md-4 col-lg-4">
                 <div class="profile-detail card-box">
                     <div>
-                        <img src="{{x.ProfileImage}}" class="rounded-circle bx-shadow" alt="profile-image">
+                        <img src="php/{{x.ProfileImage}}" class="rounded-circle bx-shadow" alt="profile-image">
 
                         <!-- <ul class="list-inline status-list m-t-20">
                                     <li class="list-inline-item">
@@ -150,9 +150,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="p-20">
-                                    <h5>
+                                    <!-- <h5> 
                                         <b>Skills</b>
-                                    </h5>
+                                    </h5>-->
                                     <p class="text-muted m-b-15 font-13">
                                         {{x.Skill.SkillSetID}}
                                     </p>
@@ -168,11 +168,11 @@
                         <div class="row">
                             <div class="col-md-6" ng-show="x.JobSeekerType == 'Freshers'">
                                 <div class="p-20">
-                                    <h5>
+                                   <!-- <h5>
                                         <b>Experience</b>
-                                    </h5>
+                                    </h5>-->
                                     <p class="text-muted m-b-15 font-13">
-                                        Fresher having no experience.
+                                        Fresher
                                     </p>
                                 </div>
                             </div>

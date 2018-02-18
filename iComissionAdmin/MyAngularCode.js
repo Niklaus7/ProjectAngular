@@ -609,7 +609,8 @@ iComissionapp.config(function ($routeProvider) {
 			
 
 			//get all project
-			$scope.getAllProject = function () {
+			$scope.getAllProject = function () 
+			{
 				
 				$http.post("PHP/Get_ProjectLocation.php").then(function (response) {
 					$scope.ProjectTypeList = response.data.ProjectType;
@@ -656,7 +657,8 @@ iComissionapp.config(function ($routeProvider) {
 			}
 
 			//call when click on search_Project 
-			$scope.search_Project = function () {
+			$scope.search_Project = function () 
+			{
 
 				if (document.getElementById('Keywords').value != "" && $.trim($("#Salary").val()) != "Bidding Amount" && ($("#ProjectType").val() != "" || $.trim($("#ProjectType").val()) != "Assignment Type") && ($("#Serach_joblocation").val() != "")) {
 					$('#preloader').delay(350).show();
@@ -803,7 +805,8 @@ iComissionapp.config(function ($routeProvider) {
 				});
 			}
 
-			$scope.openmodal = function (ProjectId) {
+			$scope.openmodal = function (ProjectId) 
+			{
 				$scope.biddamount = "";
 				$scope.biddesr = "";
 				document.getElementById("errormsgg").innerHTML = "";
@@ -812,7 +815,8 @@ iComissionapp.config(function ($routeProvider) {
 			}
 
 			//call when click on applyproject button
-			$scope.applytoproject = function (isValid) {
+			$scope.applytoproject = function (isValid) 
+			{
 				if (isValid) {
 					var id = localStorage.getItem("ApplyProjectId");
 					if (localStorage.getItem('UserAccountID') != null) {
@@ -1284,12 +1288,14 @@ iComissionapp.config(function ($routeProvider) {
 												"data": "ProjectPostID",
 												"render": function (data, type, row) {
 													var NumberOFCandidate_Applied = row.NumberOFCandidate_Applied;
-													if (NumberOFCandidate_Applied > 0) {
+													return '<button  type="button" class="btn btn-info btn-rounded waves-effect waves-light"  style="font-size: 14px" title="View Details" ng-click="viewproject(' + data + ')"> View Details</button>';
+													/*if (NumberOFCandidate_Applied > 0) 
+													{
 														return '<a href class="table-action-btn btn-info" title="View Details" ng-click="viewproject(' + data + ')"><i class="ion-eye"></i></a>';
 													}
 													else {
 														return '<a href class="table-action-btn btn-info" title="View Details" ng-click="info()"><i class="ion-eye"></i></a>'
-													}
+													}*/
 												}
 											}
 										]
@@ -1806,13 +1812,18 @@ iComissionapp.config(function ($routeProvider) {
 			}
 
 			//call when click on viewjob
-			$scope.viewjob = function (id, title) {
+			$scope.viewjob = function (id,title,NoOfVacancy,PostDate) 
+			{
 
 				$scope.JobTitle = title;
 				$scope.JobId = id;
+				$scope.NoOfVacancy = NoOfVacancy;
+				$scope.PostDate = PostDate
 
 				localStorage.setItem('JobId', $scope.JobId);
 				localStorage.setItem('JobTitle', $scope.JobTitle);
+				localStorage.setItem('NoOfVacancy',$scope.NoOfVacancy);
+				localStorage.setItem('PostDate',$scope.PostDate);
 				$location.path('viewjob');
 			}
 
@@ -1895,7 +1906,9 @@ iComissionapp.config(function ($routeProvider) {
 				});
 			}
 
-			$scope.applyCandidate = function () {
+			$scope.NoOfCandidate = false;
+			$scope.applyCandidate = function () 
+			{
 
 				// document.getElementById("maindiv").style.display = "block";
 				// document.getElementById("jobdescription").style.display = "none";
@@ -1906,10 +1919,15 @@ iComissionapp.config(function ($routeProvider) {
 
 				}).then(function (response) {
 					console.log(response.data);
-					if (response.data.data == false) {
+					if (response.data.data == false) 
+					{
+						$scope.NoOfCandidate = false;
+
 						console.log("error");
 						$('#preloader').delay(350).fadeOut('slow');
-					} else {
+					} else 
+					{
+						$scope.NoOfCandidate = true;
 						$scope.ApplyCandiateList = response.data;
 						$('#preloader').delay(350).fadeOut('slow');
 					}
@@ -1940,9 +1958,15 @@ iComissionapp.config(function ($routeProvider) {
 
 		$scope.JobId = localStorage.getItem('JobId');
 		$scope.JobTitle = localStorage.getItem('JobTitle');
+		$scope.NoOfVacancy = localStorage.getItem("NoOfVacancy");
+		$scope.PostDate = localStorage.getItem("PostDate");
 
+		$scope.JobID = localStorage.getItem("JobId");
+
+		$scope.NoOfCandidate = false;
 		//call when click on candidate list
-		$scope.applyCandidate = function () {
+		$scope.applyCandidate = function () 
+		{
 
 			document.getElementById("maindiv").style.display = "block";
 			document.getElementById("jobdescription").style.display = "none";
@@ -1953,10 +1977,14 @@ iComissionapp.config(function ($routeProvider) {
 
 			}).then(function (response) {
 				console.log(response.data);
-				if (response.data.data == false) {
+				if (response.data.data == false) 
+				{
+					$scope.NoOfCandidate = false;
 					console.log("error");
 
-				} else {
+				} else 
+				{
+					$scope.NoOfCandidate =true;
 					document.getElementById("appliedcount").innerHTML = response.data.length;
 					$scope.ApplyCandiateList = response.data;
 				}
@@ -1983,12 +2011,30 @@ iComissionapp.config(function ($routeProvider) {
 		};
 
 
+
 		$scope.viewjobsingle = function () {
 			document.getElementById("jobdescription").style.display = "none";
 			document.getElementById("maindiv").style.display = "block";
 			document.getElementById("edit_job").style.display = "none";
 		}
 
+		//call when click on edit job vacancies
+		$scope.openmodal = function (JobId) 
+		{
+			//$scope.biddamount = "";
+			//$scope.biddesr = "";
+			document.getElementById("errormsgg").innerHTML = "";
+			localStorage.setItem("ApplytoJobId",JobId);
+			$('#ProjectApply').modal('show');
+		}
+
+		//Job module-2
+			$scope.saveJobVacancy = function(isValid)
+			{
+				$scope.JobID =  localStorage.getItem("ApplytoJobId");
+				alert($scope.NoOfVacancy);
+			}
+		//Job module-2
 		$scope.deletejob = function () {
 
 			swal({
@@ -2087,12 +2133,14 @@ iComissionapp.config(function ($routeProvider) {
 		//call when on next and get selectedCandidate id
 
 		$scope.item = [];
-		$scope.selectedcandidatelist = function () {
+		$scope.selectedcandidatelist = function () 
+		{
 			//alert("in pp")
 			var checkBoxes = document.getElementsByName("checkItem");
 			//alert(checkBoxes.length)
 			$scope.selectedCandidate = [];
-			for (var i = 0; i < checkBoxes.length; i++) {
+			for (var i = 0; i < checkBoxes.length; i++) 
+			{
 				if (checkBoxes[i].type == 'checkbox' && checkBoxes[i].checked == true)
 					$scope.selectedCandidate[i] = checkBoxes[i].value;
 			}
@@ -2114,7 +2162,8 @@ iComissionapp.config(function ($routeProvider) {
 					console.log(response.data);
 
 					$scope.emailids = "";
-					for (i = 0; i < response.data.length; i++) {
+					for (i = 0; i < response.data.length; i++) 
+					{
 						$scope.emailids += response.data[i].Email + ",";
 					}
 					$scope.ids = "";
@@ -2126,14 +2175,21 @@ iComissionapp.config(function ($routeProvider) {
 						$scope.FirstNames += response.data[i].FirstName + ",";
 					}
 
-					if (response.data.data == false) {
+					if (response.data.data == false) 
+					{
 						console.log("error");
 
-					} else {
-						if (response.data.length == "1090") {
+					} 
+					else 
+					{
+						if (response.data.length == "1090") 
+						{
+							//alert("if");
 							document.getElementById("selectedcount").innerHTML = "0";
 						}
-						else {
+						else 
+						{
+							//alert("yes");
 							document.getElementById("selectedcount").innerHTML = response.data.length;
 						}
 						$scope.SelectedCandiateList = response.data;
@@ -2842,12 +2898,13 @@ iComissionapp.config(function ($routeProvider) {
 									"data": "JobPostID",
 									"render": function (data, type, row) {
 										var NumberOFCandidate_Applied = row.NumberOFCandidate_Applied;
-										if (NumberOFCandidate_Applied > 0) {
+										return '<button  type="button" class="btn btn-info btn-rounded waves-effect waves-light"  style="font-size: 14px" title="View Details" ng-click="viewjob(' + data + ')">View Details</button>'
+										/*if (NumberOFCandidate_Applied > 0) {
 											return '<a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>'
 										}
 										else {
 											return '<a href class="table-action-btn btn-info" title="View Details" ng-click="info()"><i class="ion-eye"></i></a>'
-										}
+										}*/
 									}
 								},
 							]

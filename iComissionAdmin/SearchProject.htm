@@ -32,7 +32,7 @@
                     </li>
                     <li class="breadcrumb-item active">Products</li>
                 </ol>
-                <h4 class="page-title">Search Project</h4>
+                <h4 class="page-title">Search Assignments</h4>
                 <div class="clearfix"></div>
             </div>
 
@@ -60,7 +60,7 @@
                                 <option selected="selected" value=""> Locations
                                     <option ng-repeat="data in ProjectLocationList" value="{{data.ProjectLocation}}">{{data.ProjectLocation}}</option>
                             </select> -->
-                            <input type="text" id="Serach_joblocation" onclick="call2()" class="form-control" placeholder="Job location" />
+                            <input type="text" id="Serach_joblocation" onclick="call2()" class="form-control" placeholder="location" />
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -274,21 +274,24 @@
 
                     <div style="margin-top: 5px">
                         <div class="font-13">
-                            <span class="meta pull-left">Location
-                                <a href="#">
+                            <span class="meta pull-left fa fa-map-marker" style="color:#ff6700">
+                                <a href="">
                                     <b>{{x.ProjectLocation}}</b>
                                 </a>
                             </span>
-                            <span class="meta pull-left">Start Date
-                                <a href="#">
-                                    <b>{{x.ProjectStartDate}}</b>
+                            <br/>
+                            <span class="meta pull-left fa fa-calendar-check-o" style="color:#ff6700">
+                                <a href="">
+                                    <b>  {{x.ProjectStartDate}} to {{x.ProjectEndDate}}</b>
                                 </a>
                             </span>
-                            <span class="meta pull-right">End Date
+                            
+                            <!--<span class="meta pull-left">End Date
                                 <a href="#">
                                     <b>{{x.ProjectEndDate}}</b>
                                 </a>
-                            </span>
+                            </span>-->
+                            <br/>
                         </div>
                     </div>
 

@@ -2,8 +2,8 @@
 
     <style>
         /******************************************
-    PRICING
-******************************************/
+        PRICING
+        ******************************************/
 
         .pricing-box {
             background-color: #fff;
@@ -261,22 +261,22 @@
         <div class="col-lg-12 col-xl-6">
             <div class="card-box">
                 <div class="row">
-                    <div class="col-md-3 text-center">
+                    <div class="col-md-6 text-center">
                         <img src="assets\images\icon\post job.png" alt="image" class="img-fluid rounded-circle" width="70">
                         <div class="clearfix">&nbsp;</div>
                         <a href="#jobpost">
                             <button type="button" class="btn btn-info btn-rounded waves-effect waves-light">Post Job</button>
                         </a>
                     </div>
-                    <div class="col-md-5 text-center">
+                    <!--<div class="col-md-5 text-center">
                         <img src="assets\images\icon\search  project.png" alt="image" class="img-fluid rounded-circle" width="70">
 
                         <div class="clearfix">&nbsp;</div>
                         <a href="#SearchProject">
                             <button type="button" class="btn btn-success btn-rounded waves-effect waves-light">Search Assignment</button>
                         </a>
-                    </div>
-                    <div class="col-md-4 text-center">
+                    </div>-->
+                    <div class="col-md-6 text-center">
                         <img src="assets\images\icon\search candidates.png" alt="image" class="img-fluid rounded-circle" width="70">
                         <div class="clearfix">&nbsp;</div>
                         <a href="#SearchCandidate">
@@ -337,16 +337,17 @@
                                         <td ng-show="x.AssignmentAprrovedstatus == 'Yes'">
                                             <span class="label label-info" >Approve</span>
                                         </td>
-                                        <td ng-show="x.NumberOFCandidate_Applied > 0">
-                                            <a href class="table-action-btn btn-info" title="View Details" ng-click="getProjectID(x.ProjectPostID)">
-                                                <i class="ion-eye"></i>
-                                            </a>
+                                        <td>
+                                            <button  type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details" ng-click="getProjectID(x.ProjectPostID)">
+                                                View Details
+                                            </button>
                                         </td>
-                                        <td ng-show="x.NumberOFCandidate_Applied == 0">
+                                        <!--ng-show="x.NumberOFCandidate_Applied > 0
+                                            <td ng-show="x.NumberOFCandidate_Applied == 0">
                                             <a href class="table-action-btn btn-info" title="View Details" ng-click="info()">
                                                 <i class="ion-eye"></i>
                                             </a>
-                                        </td>
+                                        </td>-->
                                     </tr>
 
                                 </tbody>
@@ -374,11 +375,11 @@
                             <i class="ion-refresh"></i>
                         </a>
                         <span class="divider"></span>
-                        <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="javascript;">
                             <i class="ion-minus-round"></i>
                         </a>
                         <span class="divider"></span>
-                        <a href="#" data-toggle="remove">
+                        <a href="javascript;" data-toggle="remove">
                             <i class="ion-close-round"></i>
                         </a>
                     </div>
@@ -411,16 +412,18 @@
                                         <td ng-show="x.JobAprrovedstatus == 'Yes'">
                                             <span class="label label-info" >Approve</span>
                                         </td>
-                                        <td ng-show="x.NumberOFCandidate_Applied > 0">
-                                            <a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(x.JobPostID,x.JobTitle)">
-                                                <i class="ion-eye"></i>
-                                            </a>
+                                        <td>
+                                            <button  type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details" ng-click="viewjob(x.JobPostID,x.JobTitle,x.NoOfVacancy,x.JobPostDate)">
+                                               View  Details
+                                            </button>
                                         </td>
-                                        <td ng-show="x.NumberOFCandidate_Applied == 0">
+                                        <!--
+                                            ng-show="x.NumberOFCandidate_Applied > 0
+                                            <td ng-show="x.NumberOFCandidate_Applied == 0">
                                             <a href class="table-action-btn btn-info" title="View Details" ng-click="info_job()">
                                                 <i class="ion-eye"></i>
                                             </a>
-                                        </td>
+                                        </td>-->
                                     </tr>
 
 

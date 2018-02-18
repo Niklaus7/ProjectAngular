@@ -785,7 +785,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 	$scope.Keywords = '';
 	$scope.KeywordsAd = '';
 	$scope.Type = "";
-
+	
 	$scope.GetSearchedJobs = function () 
 	{
 
@@ -815,6 +815,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 			// document.getElementById("Experience").value = localStorage.getItem("Experience");
 			// document.getElementById("Salary").value = localStorage.getItem("Salary");
 			// $scope.Keywords = localStorage.getItem("keywords");
+			$scope.All_JobList = "";
 			if(localStorage.getItem("joblocation")!='null')
 			{
 				$('.selectpicker').selectpicker();
@@ -892,7 +893,8 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 								'searchtype': localStorage.getItem("searchtype")
 							}).then(function (response) {
 								console.log(response.data);
-								if (response.data != "error") {
+								if (response.data != "error") 
+								{
 									$scope.All_JobList = response.data;
 									$scope.All_JobList_Map = response.data;
 									$scope.length = response.data.length;
@@ -902,7 +904,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 								}
 								else 
 								{
-									
+									$scope.All_JobList = "";	
 									if(localStorage.getItem("UserRoleName")==null)
 									{
 										swal({
@@ -3595,7 +3597,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 		}
 	}
 
-	//call when click on search button
+	//call when click on search button in advance search 
 	$scope.serch_job = function () 
 	{
 		alert("serch_job");
@@ -3723,7 +3725,6 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 		}
 	}
 
-
 	/* Searching assignment */
 		$scope.search_Project = function () 
 		{
@@ -3804,13 +3805,11 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 						MinBudget = 10001;
 						MaxBudget = 100000;
 					}
-
 					localStorage.setItem("ProjKeywords", $scope.Keywords);
 					localStorage.setItem("Projlocation", $.trim($("#Serach_joblocation").val()));
 					localStorage.setItem("ProjectType", $.trim($("#ProjectType").val()));
 					localStorage.setItem("ProjMinBudget", MinBudget);
 					localStorage.setItem("ProjMaxBudget", MaxBudget);
-
 					$location.path("\ProjectSearch");
 				}
 				else 
@@ -4003,6 +4002,10 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 					*/
 		}
 	/* Searching assignment */
+
+	
+			
+
 });
 
 /*iComissionapp.filter('startFrom', function() {

@@ -70,12 +70,17 @@ $result1 = $conn->query($sql1);
                                              }
                                          }
 
-                                         $sql9    = "SELECT ProfileImage FROM jobseekerprofileimage where JobSeekerProfileImageID = $ID";
+                                         $sql9    = "SELECT * FROM jobseekerprofileimage where JobSeekerID = $ID";
                                         $result9 = $conn->query($sql9);
-                                        if ($result9->num_rows > 0) {
+                                        if($result9->num_rows > 0) 
+                                        {
                                             while ($row9 = $result9->fetch_assoc()) {
                                                 $output["ProfileImage"] = $row9["ProfileImage"];
                                             }
+                                        }
+                                        else
+                                        {
+                                            $output["ProfileImage"] = "No Profile Image";
                                         }
                                      }
                                 }

@@ -3,8 +3,8 @@
         text-align: left !important;
     }
 </style>
-    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
-    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+<link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+<script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
 <div class="container" ng-controller="JobviewController" id="JobviewController" ng-init="applyCandidate()">
 
     <div class="row">
@@ -14,31 +14,59 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-sm-5 col-md-5 col-xs-12 text-left">
-                                <h3 ng-click="viewjobsingle()">Job Title {{JobTitle}}</h3>
-                                <h5><b>Posted Date: </b>13/09/2017</h5>
+                                <h3 ng-click="viewjobsingle()">{{JobTitle}}</h3>
+                                <h5>
+                                    <b>Posted Date: </b>{{PostDate}}</h5>
                                 <hr>
                                 <div class="row">
-                                <div class="col-md-4 col-sm-12 col-xs-12 text-center"><a style="width: 50%; text-align: center; font-size: 20px" href ng-click="viewdescription()"><i class="ion-information-circled"></i><p style="font-size: 16px">Description</p></a></div>
-                                <div class="col-md-4 col-sm-12 col-xs-12 text-center"><a style="width: 50%; text-align: center; font-size: 20px" href ng-click="deletejob()"><i class="ion-trash-a"></i><p style="font-size: 16px">Delete</p></a></div>
-                            </div>
-                                
+                                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <a style="width: 50%; text-align: center; font-size: 20px" href ng-click="viewdescription()">
+                                            <i class="ion-information-circled"></i>
+                                            <p style="font-size: 16px">Description</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <a style="width: 50%; text-align: center; font-size: 20px" href ng-click="openmodal(JobID)">
+                                            <i class="ion-information-circled"></i>
+                                            <p style="font-size: 16px">Edit Job Vacancy</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 col-xs-12 text-center">
+                                        <a style="width: 50%; text-align: center; font-size: 20px" href ng-click="deletejob()">
+                                            <i class="ion-trash-a"></i>
+                                            <p style="font-size: 16px">Delete</p>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
 
 
                             <div class="col-sm-4 col-md-4 col-xs-12 text-center">
-                                <h6><b>Applied Candidates</b></h6>
-                                <p><span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="appliedcount">0</span></p>
+                                <h6>
+                                    <b>Applied Candidates</b>
+                                </h6>
+                                <p>
+                                    <span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="appliedcount">0</span>
+                                </p>
                                 <hr>
-                                <h6><b>Selected Candidates</b></h6>
-                                <p><span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="selectedcount">0</span></p>
+                                <h6>
+                                    <b>Selected Candidates</b>
+                                </h6>
+                                <p>
+                                    <span class="badge badge-pink noti-icon-badge" style="font-size: 20px;" id="selectedcount">0</span>
+                                </p>
                             </div>
 
                             <div class="col-sm-3 col-md-3 col-xs-12 text-center">
-                                <a><i class="ion-android-textsms fa-5x" aria-hidden="true" style="color: #292b2c"></i>
+                                <a>
+                                    <i class="ion-android-textsms fa-5x" aria-hidden="true" style="color: #292b2c"></i>
                                     <br/>
-                                    <p><span class="badge badge-pink noti-icon-badge" style="font-size: 30px;">4</span></p>
+                                    <p>
+                                        <span class="badge badge-pink noti-icon-badge" style="font-size: 30px;">4</span>
+                                    </p>
                                 </a>
-                                    
+
                             </div>
 
                             <!-- <div class="col-sm-3 text-left">
@@ -86,9 +114,15 @@
             </div>
         </div>
     </div>
-
+    <div class="row" id="Div_ShowProjectDescription" ng-show="NoOfCandidate==false">
+        <div class="col-sm-12">
+            <div class="card-box">
+                <p>No JobSeeker have applied for this Job </p>
+            </div>
+        </div>
+    </div>
     <!-- Wizard with Validation -->
-    <div id="maindiv" class="row">
+    <div id="maindiv" class="row" ng-show="NoOfCandidate==true">
         <div class="col-sm-12">
             <div class="card-box">
                 <form id="basic-form" action="#">
@@ -109,6 +143,7 @@
                                                         <th>Candidate Name</th>
                                                         <th>Action</th>
                                                         <th data-checkbox="true">
+                                                            Select Candidates
                                                             <input type="checkbox" id="checkAll" ng-click="selectedcandidatelist()">
                                                         </th>
 
@@ -117,7 +152,7 @@
                                                 <tbody>
                                                     <tr class="active" ng-repeat="x in ApplyCandiateList">
                                                         <td>
-                                                            <img src="{{x.ProfileImage}}" alt="img" title="contact-img" class="rounded-circle thumb-sm">
+                                                            <img src="php/{{x.ProfileImage}}" alt="img" title="contact-img" class="rounded-circle thumb-sm">
                                                         </td>
                                                         <td>
                                                             {{x.UserEncodedName}}***
@@ -136,9 +171,10 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <a href="#ViewProfile" class="table-action-btn btn-info" title="View Profile" ng-click="viewcandidateProfile(x.JobSeekerID)">
-                                                                <i class="ion-eye"></i>
-                                                            </a>
+                                                            <button href="#ViewProfile" type="button" class="btn btn-info btn-rounded waves-effect waves-light" title="View Profile"
+                                                                style="font-size: 14px" ng-click="viewcandidateProfile(x.JobSeekerID)">
+                                                                View Profile
+                                                            </button>
                                                             <a href class="table-action-btn btn-pink" title="Select Candidate" ng-click="selectcandidate()">
                                                                 <i class="ion-checkmark-round"></i>
                                                             </a>
@@ -181,7 +217,8 @@
                                         <ul class="list-group list-group-flush">
                                             <li class="list-group-item" ng-show="Candidate.JobSeekerType == 'Experience'">
                                                 <b>Experience: </b> {{Candidate.TotalExp_Year}} - {{Candidate.TotalExp_Month}}
-                                                yrs</li>
+                                                yrs
+                                            </li>
                                             <li class="list-group-item" ng-show="Candidate.JobSeekerType == 'Freshers'">
                                                 <b>Experience: </b> Freshers</li>
                                             <li class="list-group-item">
@@ -190,8 +227,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="BtnID_createInterview" class="btn btn-info btn-rounded waves-effect waves-light pull-left" data-toggle="modal" data-target="#ScheduleMail">
-                            Create Interview Schedule </button>
+                            <button type="button" id="BtnID_createInterview" class="btn btn-info btn-rounded waves-effect waves-light pull-left" data-toggle="modal"
+                                data-target="#ScheduleMail">
+                                Create Interview Schedule </button>
                         </section>
                     </div>
                 </form>
@@ -297,9 +335,9 @@
                                     <input id="Keywords" name="Keywords" ng-model="Keywords" type="text" class="required form-control">
                                 </div> -->
                                 <tags-input ng-model="skillSet" display-property="SkillSetName" placeholder="Add Skill" replace-spaces-with-dashes="false">
-                                        <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
-                                            template="my-custom-template1"></auto-complete>
-                                    </tags-input>
+                                    <auto-complete source="loadSkillSet($query)" min-length="0" load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+                                        template="my-custom-template1"></auto-complete>
+                                </tags-input>
                             </div>
 
                             <label class="control-label" for="confirm2">Work Experience *</label>
@@ -319,10 +357,10 @@
                                 <div class="col-sm-5 pull-left">
                                     <select class="required form-control" id="maxexp" name="maxexp" data-style="btn-white">
                                         <option selected="selected" value="">-- -Maximun --
-                                                <option value="0">0
-                                                        <option value="1">1
-                                                            <option value="2">
-                                                                2
+                                            <option value="0">0
+                                                <option value="1">1
+                                                    <option value="2">
+                                                        2
                                     </select>
                                 </div>
                             </div>
@@ -352,10 +390,10 @@
                                 <div class="col-sm-4">
                                     <select class="required form-control" id="maxsalary" name="maxsalary" data-style="btn-white">
                                         <option selected="selected" value="">-- -Maximun Salary--
-                                                <option value="1">1
-                                                        <option value="2">2
-                                                            <option value="3">
-                                                                3
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">
+                                                        3
                                     </select>
                                 </div>
                             </div>
@@ -529,8 +567,7 @@
     </div>
 
 
-    <div id="ScheduleMail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-        style="display: none;">
+    <div id="ScheduleMail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" ng-form="interviewschedule" naame="interviewschedule" novalidate>
                 <div class="modal-header">
@@ -542,7 +579,8 @@
                         <div class="col-md-12">
                             <div class="form-group" ng-class="{ 'has-error' : interviewschedule.mailsubject.$invalid && !interviewschedule.mailsubject.$pristine }">
                                 <label for="field-1" class="control-label">Mail Subject</label>
-                                <input type="text" class="form-control" id="mailsubject" name="mailsubject" ng-model="mailsubject" placeholder="Mail Subject" required>
+                                <input type="text" class="form-control" id="mailsubject" name="mailsubject" ng-model="mailsubject" placeholder="Mail Subject"
+                                    required>
                             </div>
                         </div>
                         <!-- <div class="col-md-12">
@@ -751,7 +789,8 @@
                                                 <b>
                                                     <span style="color:blue">
                                                         <span class="m_-8995023913745657632il">
-                                                            <a target="_blank">youremail@email.com</a></span>
+                                                            <a target="_blank">youremail@email.com</a>
+                                                        </span>
                                                     </span>
                                                 </b>
                                             </p>
@@ -762,11 +801,12 @@
                                                 </b>
                                                 <b>
                                                     <span style="color:blue">
-                                                        <a target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://www.indecomm.net/&amp;source=gmail&amp;ust=1510985094007000&amp;usg=AFQjCNFQxbxVmgWr0kI8LypaDuvZzokoVw">www.companywebsite.com</a></span>
+                                                        <a target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://www.indecomm.net/&amp;source=gmail&amp;ust=1510985094007000&amp;usg=AFQjCNFQxbxVmgWr0kI8LypaDuvZzokoVw">www.companywebsite.com</a>
+                                                    </span>
                                                 </b>
                                                 <b>
-                                                    <span style="color:white">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<wbr>&nbsp;&nbsp;&nbsp;
-                                                        &nbsp; &nbsp; &nbsp;</span>
+                                                    <span style="color:white">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <wbr>&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</span>
                                                 </b>
                                             </p>
                                             <p class="MsoNormal" style="margin-right:.1in;margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt">
@@ -782,13 +822,13 @@
                                                 </span>
                                             </p>
                                             <p class="MsoNormal" style="margin-top:1.0pt">
-                                                <span lang="EN-IN" style="font-size:10.0pt;color:#595959">This e-mail and any files transmitted with it are for the sole use of the intended
-                                                    recipient(s) and may contain confidential and privileged information. If
-                                                    you are not the intended recipient, please contact the sender by reply e-mail
-                                                    and destroy all copies of the original message. Any unauthorized&nbsp;review,
-                                                    use, disclosure, dissemination, forwarding, printing or copying of this email
-                                                    or any action taken in reliance on this e-mail is strictly prohibited and
-                                                    may be unlawful</span>
+                                                <span lang="EN-IN" style="font-size:10.0pt;color:#595959">This e-mail and any files transmitted with it are for the sole use of the
+                                                    intended recipient(s) and may contain confidential and privileged information.
+                                                    If you are not the intended recipient, please contact the sender by reply
+                                                    e-mail and destroy all copies of the original message. Any unauthorized&nbsp;review,
+                                                    use, disclosure, dissemination, forwarding, printing or copying of this
+                                                    email or any action taken in reliance on this e-mail is strictly prohibited
+                                                    and may be unlawful</span>
                                                 <span style="font-size:10.0pt">
                                                     <u></u>
                                                     <u></u>
@@ -800,14 +840,47 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                        <div class="form-group" style="margin-bottom: 0px">
-                            <label id="errormsg" class="help-block" style="color: #a94442"></label>
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label id="errormsg" class="help-block" style="color: #a94442"></label>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info waves-effect waves-light" ng-click="SendInterviewScheduleToSelectedCandidate(interviewschedule.$valid)">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ProjectApply" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0 text-center">{{JobTitle}}</h4>
+                </div>
+                <div class="modal-body submit-form">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12" id="Bidding" ng-form="Bidding" name="Bidding" style="padding: 20px !Important"
+                        novalidate>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group" ng-class="{ 'has-error' : Bidding.biddamount.$invalid && !Bidding.biddamount.$pristine }">
+                                    <input type="text" class="form-control" ng-pattern="onlynumber" ng-value="NoOfVacancy" id="biddamount" name="biddamount" ng-model="NoOfVacancy" placeholder="Enter No.Of Job Vacancy"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group" style="margin-bottom: 0px">
+                            <label id="errormsgg" class="help-block" style="color: #a94442"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect waves-light" ng-click="saveJobVacancy(Bidding.$valid)">Apply</button>
                 </div>
             </div>
         </div>
@@ -926,20 +999,20 @@
 
     });
 
-    function call(){
-            var places = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
-            google.maps.event.addListener(places, 'place_changed', function () {
-                // var place = places.getPlace();
-                // var address = place.formatted_address;
-                // var latitude = place.geometry.location.lat();
-                // var longitude = place.geometry.location.lng();
-                // var mesg = "Address: " + address;
-                // mesg += "\nLatitude: " + latitude;
-                // mesg += "\nLongitude: " + longitude;
-                // alert(mesg);
-            });
-        }
+    function call() {
+        var places = new google.maps.places.Autocomplete(document.getElementById('joblocation'));
+        google.maps.event.addListener(places, 'place_changed', function () {
+            // var place = places.getPlace();
+            // var address = place.formatted_address;
+            // var latitude = place.geometry.location.lat();
+            // var longitude = place.geometry.location.lng();
+            // var mesg = "Address: " + address;
+            // mesg += "\nLatitude: " + latitude;
+            // mesg += "\nLongitude: " + longitude;
+            // alert(mesg);
+        });
+    }
 
 </script>
-  <script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
-  <script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="assets\pages\jquery.form-advanced.init.js"></script>
+<script src="assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.min.js"></script>
