@@ -2921,6 +2921,96 @@ iComissionapp.config(function ($routeProvider) {
 					console.log(error);
 				});
 
+				// new code for deactivated jobs
+				var historytable = $('#Job_HistoryDatatable');
+				$http.post("PHP/Get_DeativatedJobList.php", {
+					'jobPostedBy': $scope.UserID,
+					'ShowData': 'All'
+
+				}).then(function (response) {
+					//console.log(response.data);
+					if (response.data != "error") {
+						$scope.AllHistoryData = response.data;
+						var data = $scope.AllHistoryData;
+						var datatablevar = historytable.DataTable({
+							data: data,
+							dom: 'lBfrtip',
+							buttons: [{
+								extend: 'excel',
+								text: '<i class="fa fa-file-excel-o text-default"></i> Excel',
+								exportOptions: {
+									columns: [1, 2, 3, 4]
+								}
+							},
+							{
+								extend: 'csv',
+								text: '<i class="fa fa-files-o text-default"></i> CSV',
+								exportOptions: {
+									columns: [1, 2, 3, 4]
+								}
+							},
+							{
+								extend: 'pdf',
+								text: '<i class="fa fa-file-pdf-o text-default"></i> PDF',
+								exportOptions: {
+									columns: [1, 2, 3, 4]
+								},
+								title: 'Job History',
+							},
+							{
+								extend: 'print',
+								text: '<i class="fa fa-print text-default"></i> Print',
+								exportOptions: {
+									columns: [1, 2, 3, 4]
+								},
+								title: 'Job History',
+							}
+							],
+							columns: [
+
+								// {
+								// 	"data": "JobTitle",
+								// 	"render": function (data, type, row) {
+								// 		return '<img src="assets/images/users/avatar-6.jpg" alt="contact-img" title="contact-img" class="rounded-circle thumb-sm">';
+								// 	}
+								// },
+								{
+									"data": "JobTitle"
+								},
+								// {
+								// 	"data": "NoOfVacancy"
+								// },
+								// {
+								// 	"data": "JobLocation"
+								// },
+
+								{
+									"data": "JobPostDate"
+								},								
+								{
+									"data": "JobActive",
+									"render": function (data) {
+										if (data == "Active") {
+											return '<span class="label label-info">' + data + '</span>';
+										} else {
+											return '<span class="label label-danger">' + data + '</span>';
+										}
+									}
+								},								
+							]
+						});
+
+						$compile(historytable)($scope);
+					}
+					else {
+						$('#Job_HistoryDatatable').DataTable();
+					}
+					$('#preloader').delay(350).fadeOut('slow');
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be fetched!");
+					console.log(error);
+				});
+
 			}
 		}
 
