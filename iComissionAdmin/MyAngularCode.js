@@ -2270,11 +2270,7 @@ iComissionapp.config(function ($routeProvider) {
 	//call when click on view details
 	iComissionapp.controller('EditJobController', function ($scope, $http, $location) 
 	{
-
-		
-		
-		
-
+		localStorage.setItem("PostType",'EditJob');
 		//Get_SkillSet
 		$scope.loadSkillSet = function ($query) {
 
@@ -2331,6 +2327,15 @@ iComissionapp.config(function ($routeProvider) {
 			$('#preloader').delay(350).fadeOut('slow');
 		}
 
+		/*job module-3*/
+			$scope.update_JobDetails = function()
+			{
+				alert(localStorage.getItem("editjobid"));
+				alert("update_JobDetails");
+				/*for this functionality refer JobpostController 
+						Savejobpost and Savejobpostdata function*/
+			}
+		/*job module-3*/
 	});
 
 	//call when job post
@@ -2777,12 +2782,13 @@ iComissionapp.config(function ($routeProvider) {
 									"data": "JobPostID",
 									"render": function (data, type, row) {
 										var NumberOFCandidate_Applied = row.NumberOFCandidate_Applied;
-										if (NumberOFCandidate_Applied > 0) {
+										return '<button  type="button" class="btn btn-pink btn-rounded waves-effect waves-light" style="font-size: 14px" title="Edit Job Details" ng-click="viewdescription(' + data + ')">Edit Details</button><br/><br/><button  type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details" ng-click="viewjob(' + data + ')">View Details</button>';
+										/*if (NumberOFCandidate_Applied > 0) {
 											return '<a href class="table-action-btn btn-info" title="Edit Job Details" ng-click="viewdescription(' + data + ')"><i class="ion-edit"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>';
 										}
 										else {
 											return '<a href class="table-action-btn btn-info" title="Edit Job Details" ng-click="viewdescription(' + data + ')"><i class="ion-edit"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="View Details" ng-click="info()"><i class="ion-eye"></i></a>'
-										}
+										}*/
 									}
 								},
 							]
@@ -2803,7 +2809,8 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		//call when click on jobdescription
-		$scope.viewdescription = function (JobId) {
+		$scope.viewdescription = function (JobId) 
+		{
 			localStorage.setItem("editjobid", JobId);
 
 			$location.path("editjob");
@@ -2821,7 +2828,20 @@ iComissionapp.config(function ($routeProvider) {
 
 			localStorage.setItem('JobId', $scope.JobId);
 
-			$location.path('viewjob');
+			$http.post("PHP/Get_JobDetails.php", {
+				'JobId': $scope.JobId,
+
+			}).then(function (response) {
+				console.log(response.data);
+				for(var i=0;i<response.data.length;i++)
+				{
+					localStorage.setItem("JobTitle",response.data[i].JobTitle);
+					localStorage.setItem("PostDate",response.data[i].JobPostDate);
+					localStorage.setItem("NoOfVacancy",response.data[i].NoOfVacancy);
+					$location.path('viewjob');
+				}
+				
+			});
 		}
 	});
 
@@ -3017,7 +3037,7 @@ iComissionapp.config(function ($routeProvider) {
 									"data": "JobPostID",
 									"render": function (data, type, row) {
 										var NumberOFCandidate_Applied = row.NumberOFCandidate_Applied;
-										return '<button  type="button" class="btn btn-info btn-rounded waves-effect waves-light"  style="font-size: 14px" title="Repost Job">Repost Job</button>'
+										return '<button  type="button" class="btn btn-info btn-rounded waves-effect waves-light"  style="font-size: 14px" title="Repost Job" ng-click="rePostJob(' + data + ')">Repost Job</button>'
 										/*if (NumberOFCandidate_Applied > 0) {
 											return '<a href class="table-action-btn btn-info" title="View Details" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>'
 										}
@@ -3047,6 +3067,13 @@ iComissionapp.config(function ($routeProvider) {
 			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No  Jobseeker have applied for this job.');
 		}
 
+		//call when click on repost
+		$scope.rePostJob = function (JobId) 
+		{
+			localStorage.setItem("editjobid", JobId);
+
+			$location.path("editjob");
+		}
 		$scope.viewjob = function (id) 
 		{
 			

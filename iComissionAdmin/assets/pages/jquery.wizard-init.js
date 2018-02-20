@@ -209,6 +209,11 @@ function($) {
                     angular.element(document.getElementById('JobpostController')).scope().Savejobpost();
                     
                 }
+                else if(localStorage.getItem("PostType")=='EditJob')
+                {
+                    //alert();
+                    angular.element(document.getElementById('EditJobController')).scope().update_JobDetails();
+                }
             }
         });
 

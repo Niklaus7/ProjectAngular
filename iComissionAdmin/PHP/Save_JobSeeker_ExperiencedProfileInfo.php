@@ -109,11 +109,11 @@ if($stmt0->execute())
 
                         if($stmt5->execute())
                         {
-                            $sql5 = "CALL usp_Insert_JobSeekerProfile(?,?)";
-                            $stmt5 = $conn->prepare($sql5);
-                            $stmt5->bind_param("is",$value->JobSeekerID, 'php/'.$FileData_file1);
+                            $sql6 = "CALL usp_Insert_JobSeekerProfile(?,?)";
+                            $stmt6 = $conn->prepare($sql6);
+                            $stmt6->bind_param("is",$value->JobSeekerID, $FileData_file1);
         
-                            if($stmt5->execute())
+                            if($stmt6->execute())
                             {    
                             
                             $sql2 = "CALL usp_Insert_JobSeekerResume(?,?)";
