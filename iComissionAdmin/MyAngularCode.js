@@ -2271,6 +2271,7 @@ iComissionapp.config(function ($routeProvider) {
 	iComissionapp.controller('EditJobController', function ($scope, $http, $location) 
 	{
 		localStorage.setItem("PostType",'EditJob');
+		
 		//Get_SkillSet
 		$scope.loadSkillSet = function ($query) {
 
@@ -2328,13 +2329,96 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		/*job module-3*/
+
 			$scope.update_JobDetails = function()
 			{
-				alert(localStorage.getItem("editjobid"));
-				alert("update_JobDetails");
+				//alert(localStorage.getItem("editjobid"));
+				//alert("update_JobDetails");
 				/*for this functionality refer JobpostController 
 						Savejobpost and Savejobpostdata function*/
+				$scope.SavejobRepost();
 			}
+		
+			$scope.skillSetName1 = [];
+				$scope.SavejobRepost = function () 
+				{								
+						//$scope.skillSetName = "Foobar";
+						
+						// $('#preloader').delay(350).show();
+					
+						// $scope.UGQualName = [];
+						// $scope.PGQualName = [];
+			
+						for (var i = 0; i < $scope.skillSet.length; i++) 
+						{
+							 	$scope.skillSetName1[i] = $scope.skillSet[i].SkillSetName;
+						}
+			
+						console.log($scope.skillSetName1);
+						$scope.SavejobRepostdata();
+						// for (var i = 0; i < $scope.UGQual.length; i++) {
+						// 	$scope.UGQualName[i] = $scope.UGQual[i].JobQualification;
+						// }
+			
+						// for (var i = 0; i < $scope.PGQual.length; i++) {
+						// 	$scope.PGQualName[i] = $scope.PGQual[i].Qualification;
+						// }
+			
+						// if ($('#radio19').prop('checked')) {
+						// 	$scope.officelocation = "Yes";
+						// 	$scope.latitude = "No";
+						// 	$scope.langitude = "No";
+						// 	$scope.Savejobpostdata();
+						// }
+						// if ($('#radio20').prop('checked')) {
+						// 	if ($scope.latitude != "" && $scope.langitude != "" && $("#joblocation").val() != "") {
+						// 		$scope.officelocation = "No";
+						// 		$scope.Savejobpostdata();
+						// 	}
+						// 	else {
+						// 		$.Notification.autoHideNotify('info', 'top center', 'Select location', 'Select job location on map.');
+						// 	}
+						// }
+				}
+			
+					$scope.SavejobRepostdata = function () 
+					{
+						$http.post("PHP/Save_JobRepost.php", {
+							'jobID': localStorage.getItem("editjobid"),
+							'jobPostedBy': $scope.UserID,
+							'jobtitle': $scope.jobtitle,
+							'jobdescription': $('#jobdesc').summernote('code').replace(/'/g, ''),//replace(/[^a-zA-Z ]/g, ""),
+							'NoOfVacancy': $scope.vacancies,
+							'Keywords': $scope.skillSetName1.toString(),
+							'minexp': document.getElementById("minexp").value.replace(/\s+/g, ''),
+							'maxexp': document.getElementById("maxexp").value.replace(/\s+/g, ''),
+							'currency': document.getElementById("currency").value.replace(/\s+/g, ''),
+							'minsalary': document.getElementById("minsalary").value.replace(/\s+/g, ''),
+							'maxsalary': document.getElementById("maxsalary").value.replace(/\s+/g, ''),
+							'saldetails': $scope.saldetails,
+							'joblocation': $("#joblocation").val().toString().replace(/\s+/g, ''),
+							'industry': document.getElementById("industry").value.toString().replace(/\s+/g, ''),
+							'functionalarea': document.getElementById("functionalarea").value.toString().replace(/\s+/g, ''),
+							'upspec': $("#upspec").val().toString().replace(/\s+/g, ''),
+							'pgspec': $("#pgspec").val().toString().replace(/\s+/g, ''),					
+							'jobPostDateTime': new Date(),					
+						}).then(function (response) {
+							console.log(response.data);					
+							if (response.data.data == true) {
+								$('#preloader').delay(350).hide();
+								alert("Job Reposted");
+								//localStorage.setItem("Jobposted","Yes");
+								$location.path("/clientdashboard");
+							} else {
+								console.log("error");
+							}
+			
+						}, function (error) {
+							console.log("Sorry! Data Couldn't be inserted!");
+							console.log(error);
+						});
+					}
+
 		/*job module-3*/
 	});
 
@@ -2512,7 +2596,8 @@ iComissionapp.config(function ($routeProvider) {
 		}
 
 		$scope.Savejobpostdata = function () {
-			$http.post("PHP/Save_JobPostDetails.php", {
+			$http.post("PHP/Save_JobPostDetails.php", 
+			{
 				'jobPostedBy': $scope.UserID,
 				'jobtitle': $scope.jobtitle,
 				'jobdescription': $('#jobdesc').summernote('code'),
@@ -2649,7 +2734,8 @@ iComissionapp.config(function ($routeProvider) {
 		};
 
 		//call when click on serch_jobseeker
-		$scope.serch_jobseeker = function () {
+		$scope.serch_jobseeker = function () 
+		{
 			// alert($.trim($scope.skillSetName));
 			if ($scope.skillSet.length > 0 && document.getElementById("Experience").value != "Experience in Year") {
 
@@ -2681,8 +2767,15 @@ iComissionapp.config(function ($routeProvider) {
 					if (response.data != "error") {
 						$scope.JobSeekerInfo = response.data;
 					}
-					else {
-						$scope.JobSeekerInfo = "";
+					else 
+					{
+						swal({
+							title: "",
+							text: "No JobSeeker Found....!",
+							type: "info"
+						});
+						$scope.GetJobSeekerInfo();
+						//$scope.JobSeekerInfo = "";
 					}
 					$('#preloader').delay(350).fadeOut('slow');
 				}, function (error) {
@@ -2690,9 +2783,19 @@ iComissionapp.config(function ($routeProvider) {
 					console.log(error);
 				});
 			}
-			else {
-				//alert();
+			else 
+			{
+				//document.getElementById("errormsg").innerHTML = "Please enter all data";
+				
+				
+				alert("enter all value");
 			}
+		}
+
+		//call when click on  clear filter
+		$scope.clearFilter = function()
+		{
+			$scope.GetJobSeekerInfo();
 		}
 	})
 
@@ -2816,7 +2919,8 @@ iComissionapp.config(function ($routeProvider) {
 			$location.path("editjob");
 		}
 
-		$scope.info = function () {
+		$scope.info = function () 
+		{
 			$.Notification.autoHideNotify('info', 'top center', 'No records found !', 'No Jobseeker have applied for this Job.');
 		}
 

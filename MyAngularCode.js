@@ -3463,7 +3463,8 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 
 
 
-	$scope.openmodal = function (ProjectId) {
+	$scope.openmodal = function (ProjectId) 
+	{
 		$scope.biddamount = "";
 		$scope.biddesr = "";
 		document.getElementById("errormsgg").innerHTML = "";
@@ -3544,7 +3545,8 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
 
 	//call when click on applyproject button
 	$scope.applytoproject = function (isValid) {
-		if (isValid) {
+		if (isValid) 
+		{
 			var id = localStorage.getItem("ApplyProjectId");
 			if (localStorage.getItem('UserAccountID') != null) {
 				if (localStorage.getItem("ProfileComplete") == "No") {

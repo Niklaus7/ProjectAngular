@@ -521,34 +521,69 @@ iComissionapp.controller('dashboardcontroller', function ($scope, $compile, $htt
 		}).draw();
 	}
 
-	$scope.approveproject = function (ProjectPostID) {
+	$scope.approveproject = function (ProjectPostID) 
+	{
+		$scope.ProjectID = ProjectPostID;
+		$scope.CompanyName;
+		$scope.AssignmentTitle;
+		$scope.AssignmentAmount;
+		$scope.AssignmentStartDate;
+		$scope.AssignmentEndDate;
+		$('#ProjectApply').modal('show');
+
+		$http.post("PHP/Get_ProjectDetails.php", {
+			'ProjectID': ProjectPostID,
 			
-		swal({
-			title: 'Are you sure?',
-			text: "Job post will be available on portal!",
-			type: 'info',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, Approve it!'
-		  }).then((result) => {
-			if (result.value) {
+
+		}).then(function (response) {
+			console.log(response.data);
+			for(var i=0;i<response.data.length;i++)
+			{
+				$scope.CompanyName = response.data[i].CompanyName;
+				$scope.AssignmentTitle = response.data[i].ProjectName;
+				$scope.AssignmentAmount = response.data[i].ProjectBudget;
+				$scope.AssignmentStartDate = response.data[i].ProjectStartDate;
+				$scope.AssignmentEndDate = response.data[i].ProjectEndDate;
+			}
+
+
+		}, function (error) {
+			console.log("Sorry! Data Couldn't be inserted!");
+			console.log(error);
+		});
+		
+		
+	}
+
+	$scope.closeModal = function()
+	{
+		$('#ProjectApply').modal('hide');
+	}
+	//call when click on approve on modal
+	$scope.approveProject = function(ProjectID)
+	{
+		
+
 
 				$http.post("PHP/Approve_Assignment.php", {
-					'ProjectPostID': ProjectPostID,
+					'ProjectPostID': ProjectID,
+					'SecurityDeposite':$scope.SecurityDeposite,
 					'Status': 'Inactive'
 				}).then(function (response) {
 					console.log(response.data);
+					$('#ProjectApply').modal('hide');
+					
+					
+						$scope.GetProjectData();
+					
 					// window.location.href = "Main.htm";
-					$scope.GetProjectData();
+				
 				}, function (error) {
 					console.log("Sorry! Data Couldn't be inserted!");
 					console.log(error);
 				});
-			}
-		  })
+		
 	}
-
 	$scope.viewallprojects = function(){
 		localStorage.setItem("veiwproject","Inactive");
 		$location.path("approveassignment");

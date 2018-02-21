@@ -68,7 +68,8 @@
                         </div>
                         <div class="text-right">
                             <h3 class="text-dark">
-                                <span class="counter">{{activejobcount}}</span></h3>
+                                <span class="counter">{{activejobcount}}</span>
+                            </h3>
                             <p class="text-muted mb-0">Active Jobs</p>
                         </div>
                         <div class="clearfix"></div>
@@ -97,8 +98,8 @@
                     <div class="card-box">
                         <h4 class="text-dark header-title m-t-0 m-b-30">Posted Jobs</h4>
                         <div class="widget-chart text-center">
-                            <input class="knob" data-width="150" data-height="150" data-linecap="round" data-fgcolor="#566676" value="{{jobspercentage}}" data-skin="tron"
-                                data-angleoffset="180" data-readonly="true" data-thickness=".15">
+                            <input class="knob" data-width="150" data-height="150" data-linecap="round" data-fgcolor="#566676" value="{{jobspercentage}}"
+                                data-skin="tron" data-angleoffset="180" data-readonly="true" data-thickness=".15">
                             <h5 class="text-muted m-t-20">Total posted jobs</h5>
                             <h2 class="font-600">{{Jobscount}}</h2>
                             <ul class="list-inline m-t-15">
@@ -240,7 +241,8 @@
                         </div>
                         <div class="text-right">
                             <h3 class="text-dark">
-                                <span class="counter">{{activeprojectcount}}</span></h3>
+                                <span class="counter">{{activeprojectcount}}</span>
+                            </h3>
                             <p class="text-muted mb-0">Active Assignment</p>
                         </div>
                         <div class="clearfix"></div>
@@ -267,8 +269,8 @@
                     <div class="card-box">
                         <h4 class="text-dark header-title m-t-0 m-b-30">Posted Assignments</h4>
                         <div class="widget-chart text-center">
-                            <input class="knob" data-width="150" data-height="150" data-linecap="round" data-fgcolor="#566676" value="{{projectspercentage}}" data-skin="tron"
-                                data-angleoffset="180" data-readonly="true" data-thickness=".15">
+                            <input class="knob" data-width="150" data-height="150" data-linecap="round" data-fgcolor="#566676" value="{{projectspercentage}}"
+                                data-skin="tron" data-angleoffset="180" data-readonly="true" data-thickness=".15">
                             <h5 class="text-muted m-t-20">Total posted Assignments</h5>
                             <h2 class="font-600">{{projectsscount}}</h2>
                             <ul class="list-inline m-t-15">
@@ -879,6 +881,115 @@
 
     </div>
 
+    <div id="ProjectApply" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top: 0px;padding-top: 0px;margin-bottom: 0px;padding-bottom: 0px;padding-right: 0px">
+
+                <div class="modal-body submit-form" style="margin-top: 0px;padding-top: 0px;margin-bottom: 0px;padding-bottom: 0px;padding-right: 0px">
+                    <img src="assets/images/cancel.png" class="img-hide" style="width:40px;position:absolute;top:-5%;right:-3%;z-index:9999" ng-click="closeModal()"/>
+                    <div class="row">
+                        <br/>
+                        <div class="col-md-5">
+                            <br/><br/>
+                            <div class="row">
+                                <div class="form-group-custom ">
+                                    <p class="bar">
+                                        <label>Service Provider Name : </label>&nbsp;&nbsp; <b>{{CompanyName}}</b>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="form-group-custom">
+                                    <p class="bar">
+                                        <label>Assignment Title : </label>&nbsp;&nbsp; <b>{{AssignmentTitle}}</b>
+                                    </p>
+                                </div>
+
+                            </div>
+                           
+                            <div class="row">
+                                <div class="form-group-custom">
+                                    <p class="bar">
+                                        <label>Assignment Cost :</label>&nbsp;&nbsp; <b>{{AssignmentAmount}}</b>
+
+
+                                    </p>
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="form-group-custom">
+                                    <p class="bar">
+                                        <label>Duration :</label>&nbsp;&nbsp; <b>{{AssignmentStartDate}} To {{AssignmentEndDate}} </b>
+
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-7" style="background-color: #DCDCDC;padding-left: 0px">
+                                <br/>
+                            <h3 class="text-align: center" style="color:#ff6700;margin-left:35px "> 
+                                <b>Configure Security Deposite</b></h3>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-3">
+
+                                </div>
+
+                                <div class="col-md-7">
+
+                                    <input type="text" data-parsley-type="digits" style="background-color: #C0C0C0" class="form-control"required placeholder="Security Deposite Amount" ng-model="SecurityDeposite">
+
+                                </div>
+
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row">
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-7">
+                                    <p style="color: #000000;font-size: 17px">
+                                       <b> &nbsp;&nbsp;&nbsp;If you don't want to take any 
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Security Deposite<br/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please enter '0'
+                                        </b>
+
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+
+
+
+                            </div>
+                            <br/><br/>
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-5">
+                                        <button type="button" class="btn btn-info  btn-rounded waves-effect waves-light" style="width: 100%;font-size: 20px" ng-click="approveProject(ProjectID)">Approve</button>
+                                        
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <br/><br/>
+                            <div class="row"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+    
+            </div>
+        </div>
+    </div>
 
 
 
@@ -933,6 +1044,6 @@
         $(".knob").knob();
 
     });
-   
+
 
 </script>
