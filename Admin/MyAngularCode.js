@@ -55,7 +55,7 @@ iComissionapp.config(function ($routeProvider) {
             }
 		})
 
-		/* Plan Congiguration functionality*/
+		/* Membership Plan Congiguration functionality*/
 			//Create Plan
 			.when('/CreatePlan', {
 				templateUrl: 'CreatePlan.htm',
@@ -99,8 +99,22 @@ iComissionapp.config(function ($routeProvider) {
 					}
 				}*/
 			})
+		/* Membership Plan Congiguration functionality*/
 
 
+		/*Project plan */
+
+		//Create Plan
+		.when('/CreateProjectPlan', {
+			templateUrl: 'CreateProjectPlan.htm',
+			controller: 'CreateProjectPlanController',
+			/*resolve: {
+				"check": function () {
+					$('#preloader').delay(350).show();
+				}
+			}*/
+		})
+		/*Project Plan*/
 		.otherwise({
 
 			redirectTo: $routeProvider
@@ -615,14 +629,15 @@ iComissionapp.controller('ApproveJobController', function ($scope, $compile, $ht
 				'ShowData': type
 
 			}).then(function (response) {
-				//console.log(response.data);
+				console.log(response.data);
 				if(response.data != "error"){
 					$scope.AllData = response.data;
 					var data = $scope.AllData;
 					
 					BindData();
 				}
-				else{
+				else
+				{
 					$('#Job_Datatable').dataTable();
 				}
 				
@@ -635,7 +650,8 @@ iComissionapp.controller('ApproveJobController', function ($scope, $compile, $ht
 			});
 	}
 
-	function BindData() {
+	function BindData() 
+	{
 
 		var data = $scope.AllData;
 		var datatablevar;
@@ -671,7 +687,8 @@ iComissionapp.controller('ApproveJobController', function ($scope, $compile, $ht
 	}
 
 
-	function DrawTable() {
+	function DrawTable() 
+	{
 		
 		var data = $scope.AllData;
 
@@ -768,10 +785,10 @@ iComissionapp.controller('ApproveJobController', function ($scope, $compile, $ht
 						var JobAprrovedstatus = row.JobAprrovedstatus;
 						if(JobAprrovedstatus == "Yes")
 						{
-							return '<a href class="table-action-btn btn-info" title="View Job" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Approve Job" ng-click="viewdescription(' + data + ')"><i class="ion-checkmark"></i></a>';
+							return '<a href class="table-action-btn btn-info" title="View Job" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title=" Remove Job" ng-click="viewdescription(' + data + ')"><i class="ion-checkmark"></i></a>';
 						}
 						else{
-							return '<a href class="table-action-btn btn-info" title="View Job" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Remove Job" ng-click="viewdescription1(' + data + ')"><i class="ion-checkmark"></i></a>';
+							return '<a href class="table-action-btn btn-info" title="View Job" ng-click="viewjob(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Approve Job" ng-click="viewdescription1(' + data + ')"><i class="ion-checkmark"></i></a>';
 						}
 						
 						
@@ -881,7 +898,7 @@ iComissionapp.controller('ApproveProjectController', function ($scope, $compile,
 				if(response.data!="error"){
 					$scope.AllData = response.data;
 					var data = $scope.AllData;
-					//BindData();
+					BindData();
 				}
 				else{
 					$('#Project_Datatable').dataTable();
@@ -1005,10 +1022,10 @@ iComissionapp.controller('ApproveProjectController', function ($scope, $compile,
 					"render": function (data, type, row) {
 						var AssignmentAprrovedstatus = row.AssignmentAprrovedstatus;
 						if(AssignmentAprrovedstatus == "Yes"){
-							return '<a href="#viewclientproject" class="table-action-btn btn-info" title="View Details" ng-click="viewproject(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Approve Assignment" ng-click="viewdescription(' + data + ')"><i class="ion-checkmark"></i></a>&nbsp;&nbsp;';
+							return '<a href="#viewclientproject" class="table-action-btn btn-info" title="View Details" ng-click="viewproject(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Remove Assignment" ng-click="viewdescription(' + data + ')"><i class="ion-checkmark"></i></a>&nbsp;&nbsp;';
 						}
 						else{
-							return '<a href="#viewclientproject" class="table-action-btn btn-info" title="View Details" ng-click="viewproject(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Remove Assignment" ng-click="viewdescription1(' + data + ')"><i class="ion-checkmark"></i></a>&nbsp;&nbsp;'
+							return '<a href="#viewclientproject" class="table-action-btn btn-info" title="View Details" ng-click="viewproject(' + data + ')"><i class="ion-eye"></i></a>&nbsp;&nbsp;<a href class="table-action-btn btn-info" title="Approve Assignment" ng-click="viewdescription1(' + data + ')"><i class="ion-checkmark"></i></a>&nbsp;&nbsp;'
 						}
 					}
 				}
@@ -1022,7 +1039,7 @@ iComissionapp.controller('ApproveProjectController', function ($scope, $compile,
 		
 			swal({
 				title: 'Are you sure?',
-				text: "Job post will be disable from portal!",
+				text: "Assignment will be disable from portal!",
 				type: 'info',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
@@ -1050,7 +1067,7 @@ iComissionapp.controller('ApproveProjectController', function ($scope, $compile,
 			
 			swal({
 				title: 'Are you sure?',
-				text: "Job post will be available on portal!",
+				text: "Assignment will be available on portal!",
 				type: 'info',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
@@ -2093,3 +2110,607 @@ iComissionapp.controller('pricingController', function ($scope, $compile, $http,
 	});
 
 /************************************ Membership Plan ***************************************************************/
+
+/************************************  Project Plan ***************************************************************/
+	
+	iComissionapp.controller('CreateProjectPlanController', function ($scope, $http, $location)
+	{
+		$scope.UserID = localStorage.getItem('UserAccountID');
+		
+		$scope.myPlan;
+		$scope.ProjectPlanName = "Featured";
+		
+		$scope.getSelectedValue =function()
+		{
+			if($scope.myPlan=="")
+			{
+				$scope.ProjectPlanName = 'Featured';
+				
+				document.getElementById("div_Urgent").style.display="none";
+				document.getElementById("div_Private").style.display="none";
+				document.getElementById("div_FullTime").style.display="none";
+				document.getElementById("div_Recruiter").style.display="none";
+				document.getElementById("div_NDA").style.display="none";
+				document.getElementById("div_IPAgreement").style.display="none";
+				document.getElementById("div_Sealed").style.display="none";
+				document.getElementById("div_Priority").style.display="none";
+				document.getElementById("div_Extend").style.display="none";
+				document.getElementById("div_Delete").style.display="none";
+
+
+				document.getElementById("div_Featured").style.display="block";
+				
+			}
+			else
+			{
+				$scope.ProjectPlanName = $scope.myPlan;
+				
+				document.getElementById("div_Featured").style.display="none";
+				document.getElementById("div_Urgent").style.display="none";
+				document.getElementById("div_Private").style.display="none";
+				document.getElementById("div_FullTime").style.display="none";
+				document.getElementById("div_Recruiter").style.display="none";
+				document.getElementById("div_IPAgreement").style.display="none";			
+				document.getElementById("div_NDA").style.display="none";
+				document.getElementById("div_Sealed").style.display="none";
+				document.getElementById("div_Priority").style.display="none";
+				document.getElementById("div_Extend").style.display="none";
+				document.getElementById("div_Delete").style.display="none";
+				
+				document.getElementById('div_' + $scope.myPlan).style.display = "block";
+			}
+		
+		}
+		
+		$scope.createProjectPlan = function()
+		{
+			
+			
+			alert($scope.ProjectPlanName);
+			
+			alert($scope.Cost);
+
+
+			/*$http.post("PHP/Save_IntroPlan.php", {
+				'PlanName':'Featured',
+				
+				
+			}).then(function (response) {
+				console.log(response.data);
+				//alert(console.data);
+				if(response.data.data==true)
+				{
+					$location.path("MyPlan")
+				}
+				else if (response.data=="error")
+				{
+					swal({
+						title: "Already Created Plan!",
+						text: "",
+						type: "info"
+					});
+					$location.path('MyPlan');
+				}
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});*/
+		}
+
+
+
+	});
+
+	iComissionapp.controller('MyProjectPlanController', function ($scope, $http, $location)
+	{
+		document.getElementById("myplanlist").style.display="block";
+		document.getElementById("plandesc").style.display="none";	
+		
+
+		$scope.UserID = localStorage.getItem('UserAccountID');
+
+		$scope.displayplanlist = function()
+		{
+			document.getElementById("myplanlist").style.display="block";
+			document.getElementById("plandesc").style.display="none";
+			
+		}
+		
+		$scope.getMyPlanList =function()
+		{
+			document.getElementById("myplanlist").style.display="block";
+			document.getElementById("plandesc").style.display="none";
+			$http.post("PHP/Get_MyPlan.php", {
+				'CreatorID': $scope.UserID
+				
+			}).then(function (response) {
+				console.log(response.data);
+				$scope.myPlanList = response.data;
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+		}
+		
+		$scope.getPlanID = function(name,id)
+		{
+
+			localStorage.setItem('Config-UserPlanID',id);
+			localStorage.setItem("Config-PlanName",name);
+			$location.path("ConfigurePlan");
+		}
+		
+		$scope.viewPlan = function(id)
+		{
+			document.getElementById("myplanlist").style.display="none";
+			document.getElementById("plandesc").style.display="block";
+			$http.post("PHP/Get_MyPlanDetails.php", {
+				'CreatorID': $scope.UserID,
+				'UserPlanID':id	
+			}).then(function (response) {
+				console.log(response.data);
+				$scope.myPlanDetails = response.data;
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+		}
+		$scope.deletePlanID = function(id)
+		{
+
+			$http.post("PHP/Delete_DeleteMyPlan.php", {
+				'CreatorID': $scope.UserID,
+				'UserPlanID':id
+			}).then(function (response) {
+				console.log(response.data);
+				if(response.data.data==true)
+				{
+					$scope.getMyPlanList();
+				}
+				//$scope.myPlanList = response.data;
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+		}
+
+		$scope.editPlan = function(name,id)
+		{
+			localStorage.setItem('Edit-UserPlanID',id);
+			localStorage.setItem("Edit-PlanName",name);
+			$location.path("EditPlan");
+
+			
+		}
+
+		
+		
+	});
+
+		
+	iComissionapp.controller('EditProjectPlanController', function ($scope, $http, $location)
+	{
+		$scope.UserID = localStorage.getItem('UserAccountID');
+		$scope.PlanName = localStorage.getItem("Edit-PlanName");	
+		$scope.UserPlanID = localStorage.getItem('Edit-UserPlanID');
+
+			
+			
+		$scope.getSelectedValue =function()
+		{
+			//alert($scope.PlanName);
+			/*document.getElementById("div_Intro").style.display="none";
+			document.getElementById("div_Basic").style.display="none";
+			document.getElementById("div_Plus").style.display="none";
+			document.getElementById("div_Professional").style.display="none";
+			document.getElementById("div_Premier").style.display="none";*/
+			document.getElementById('div_'+$scope.PlanName).style.display = "block";
+			
+			
+		}
+				
+			
+			
+		
+			$scope.checkbox1 = 0;
+			$scope.checkbox2 = 0;
+			$scope.checkbox3 = 0;
+			$scope.checkbox4 = 0;
+			$scope.checkbox5 = 0;
+			$scope.checkbox6 = 0;
+			$scope.checkbox7 = 0;
+			$scope.checkbox8 = 0;
+			$scope.checkbox9 = 0;
+			$scope.checkbox10 = 0;
+			$scope.checkbox11 = 0;
+			$scope.checkbox12 = 0;
+			$scope.checkbox13 = 0;
+			$scope.checkbox14 = 0;
+			$scope.checkbox15 = 0;
+			$scope.checkbox16 = 0;
+			$scope.checkbox17 = 0;
+			$scope.checkbox18 = 0;
+			$scope.checkbox19 = 0;
+			$scope.checkbox20 = 0;
+			$scope.checkbox21 = 0;
+			$scope.checkbox22 = 0;
+			$scope.checkbox23 = 0;
+			$scope.checkbox24 = 0;
+			$scope.checkbox25 = 0;
+			$scope.checkbox26 = 0;
+			$scope.checkbox27 = 0;
+			$scope.checkbox28 = 0;
+			$scope.checkbox29 = 0;
+			$scope.checkbox30 = 0;
+			$scope.checkbox31 = 0;
+			$scope.checkbox32 = 0;
+
+			/*$scope.AnnualSubs=0;
+			$scope.MonthSubs=0;
+			$scope.desc="";*/
+			//$scope.checkbox1=false;
+
+			$http.post("PHP/Get_MyPlanDetails.php", {
+				'CreatorID': $scope.UserID,
+				'UserPlanID':$scope.UserPlanID	
+			}).then(function (response) {
+				console.log(response.data);
+				for(var i=0;i<response.data.length;i++)
+				{
+					//"PlanconfigurationDestails" in response.data[i]? console.log('key exists') : console.log('unknown key')
+					
+					if(response.data[i].PlanDesc.PlanName=='Intro')
+					{
+						//alert("in intro");
+						$scope.Planname = response.data[i].PlanDesc.PlanName
+						$scope.noOfBids_I = response.data[i].NoOfBids;
+						$scope.noOFSkills_I = response.data[i].NoOfSkills,
+						$scope.checkbox1 = response.data[i].PlanFeatures.UnlockRewards;
+						$scope.checkbox2 = response.data[i].PlanFeatures.UnlimitedProjectBookmarks;
+						$scope.checkbox3 = response.data[i].PlanFeatures.CustomCoverPhoto;
+						//alert($scope.checkbox3);
+						if("PlanconfigurationDestails" in response.data[i])
+						{
+							$scope.AnnualSubs=response.data[i].PlanconfigurationDestails.AnnualSubs;
+							$scope.MonthSubs=response.data[i].PlanconfigurationDestails.MonthSubs;
+							$scope.desc=response.data[i].PlanconfigurationDestails.Description;
+						}
+						else
+						{
+							$scope.AnnualSubs=0;
+							$scope.MonthSubs=0;
+							$scope.desc="";
+						}
+						
+					}
+					else if(response.data[i].PlanDesc.PlanName=='Basic')
+					{
+						
+						
+						$scope.Planname = response.data[i].PlanDesc.PlanName
+						$scope.noOfBids_B = response.data[i].NoOfBids;
+						$scope.noOFSkills_B = response.data[i].NoOfSkills,
+						$scope.empFollowings_B = response.data[i].NoOfEmpFollw,
+						$scope.checkbox4 = response.data[i].PlanFeatures.UnlockRewards;
+						$scope.checkbox5 = response.data[i].PlanFeatures.UnlimitedProjectBookmarks;
+						$scope.checkbox6 = response.data[i].PlanFeatures.CustomCoverPhoto;
+						
+						if("PlanconfigurationDestails" in response.data[i])
+						{
+							$scope.AnnualSubs=response.data[i].PlanconfigurationDestails.AnnualSubs;
+							$scope.MonthSubs=response.data[i].PlanconfigurationDestails.MonthSubs;
+							$scope.desc=response.data[i].PlanconfigurationDestails.Description;
+						}
+						else
+						{
+							$scope.AnnualSubs=0;
+							$scope.MonthSubs=0;
+							$scope.desc="";
+						}
+						
+					}
+					else if(response.data[i].PlanDesc.PlanName=='Plus')
+					{
+						
+						
+						$scope.Planname = response.data[i].PlanDesc.PlanName
+						$scope.noOfBids_P = response.data[i].NoOfBids;
+						$scope.noOFSkills_P = response.data[i].NoOfSkills,
+						$scope.empFollowings_P = response.data[i].NoOfEmpFollw,
+						$scope.extInvoice_P = response.data[i].NoOfExtInvoice,
+						$scope.checkbox7 = response.data[i].PlanFeatures.UnlockRewards;
+						$scope.checkbox8 = response.data[i].PlanFeatures.UnlimitedProjectBookmarks;
+						$scope.checkbox9 = response.data[i].PlanFeatures.CustomCoverPhoto;
+						$scope.checkbox10 = response.data[i].PlanFeatures.DailyWithdrawals;
+						$scope.checkbox11 = response.data[i].PlanFeatures.FreeProjectExtensions;
+						$scope.checkbox12 = response.data[i].PlanFeatures.HighValueProjectBidding;
+						$scope.checkbox13 = response.data[i].PlanFeatures.PreferredAssignmentSeekerEligible;
+						
+						if("PlanconfigurationDestails" in response.data[i])
+						{
+							$scope.AnnualSubs=response.data[i].PlanconfigurationDestails.AnnualSubs;
+							$scope.MonthSubs=response.data[i].PlanconfigurationDestails.MonthSubs;
+							$scope.desc=response.data[i].PlanconfigurationDestails.Description;
+						}
+						else
+						{
+							$scope.AnnualSubs=0;
+							$scope.MonthSubs=0;
+							$scope.desc="";
+						}
+						
+					}
+					else if(response.data[i].PlanDesc.PlanName=='Professional')
+					{
+						
+						
+						$scope.Planname = response.data[i].PlanDesc.PlanName
+						$scope.noOfBids_Pro = response.data[i].NoOfBids;
+						$scope.noOFSkills_Pro = response.data[i].NoOfSkills,
+						$scope.empFollowings_Pro = response.data[i].NoOfEmpFollw,
+						$scope.extInvoice_Pro = response.data[i].NoOfExtInvoice,
+						$scope.checkbox14 = response.data[i].PlanFeatures.UnlockRewards;
+						$scope.checkbox15= response.data[i].PlanFeatures.UnlimitedProjectBookmarks;
+						$scope.checkbox16 = response.data[i].PlanFeatures.CustomCoverPhoto;
+						$scope.checkbox17 = response.data[i].PlanFeatures.DailyWithdrawals;
+						$scope.checkbox18 = response.data[i].PlanFeatures.FreeProjectExtensions;
+						$scope.checkbox19 = response.data[i].PlanFeatures.HighValueProjectBidding;
+						$scope.checkbox20 = response.data[i].PlanFeatures.PreferredAssignmentSeekerEligible;
+						$scope.checkbox21 = response.data[i].PlanFeatures.FreeSealedProjects;
+
+						if("PlanconfigurationDestails" in response.data[i])
+						{
+							$scope.AnnualSubs=response.data[i].PlanconfigurationDestails.AnnualSubs;
+							$scope.MonthSubs=response.data[i].PlanconfigurationDestails.MonthSubs;
+							$scope.desc=response.data[i].PlanconfigurationDestails.Description;
+						}
+						else
+						{
+							$scope.AnnualSubs=0;
+							$scope.MonthSubs=0;
+							$scope.desc="";
+						}
+						
+					}
+					else if(response.data[i].PlanDesc.PlanName=='Premier')
+					{
+						
+						
+						$scope.Planname = response.data[i].PlanDesc.PlanName
+						$scope.noOfBids_Pre = response.data[i].NoOfBids;
+						$scope.noOFSkills_Pre = response.data[i].NoOfSkills,
+						$scope.checkbox22 = response.data[i].PlanFeatures.UnlockRewards;
+						$scope.checkbox23 = response.data[i].PlanFeatures.UnlimitedProjectBookmarks;
+						$scope.checkbox24 = response.data[i].PlanFeatures.CustomCoverPhoto;
+						$scope.checkbox25 = response.data[i].PlanFeatures.DailyWithdrawals;
+						$scope.checkbox26 = response.data[i].PlanFeatures.FreeProjectExtensions;
+						$scope.checkbox27 = response.data[i].PlanFeatures.HighValueProjectBidding;
+						$scope.checkbox28 = response.data[i].PlanFeatures.PreferredAssignmentSeekerEligible;
+						$scope.checkbox29 = response.data[i].PlanFeatures.FreeSealedProjects;
+						$scope.checkbox30 = response.data[i].PlanFeatures.FreeNDAProjects;
+						$scope.checkbox31 = response.data[i].PlanFeatures.UnlimitedExternalInvoicing;
+						$scope.checkbox32 = response.data[i].PlanFeatures.UnlimitedEmployerFollowings;
+						if("PlanconfigurationDestails" in response.data[i])
+						{
+							$scope.AnnualSubs=response.data[i].PlanconfigurationDestails.AnnualSubs;
+							$scope.MonthSubs=response.data[i].PlanconfigurationDestails.MonthSubs;
+							$scope.desc=response.data[i].PlanconfigurationDestails.Description;
+						}
+						else
+						{
+							$scope.AnnualSubs=0;
+							$scope.MonthSubs=0;
+							$scope.desc="";
+						}
+						
+					}
+					
+					
+				}
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+			
+			
+			
+				$scope.createIntoPlan = function()
+				{
+					
+					$http.post("PHP/Update_IntroPlan.php", {
+						'NoOFBids':$scope.noOfBids_I,
+						'NoOfSkills':$scope.noOFSkills_I,
+						'CreatorID': $scope.UserID,
+						'UnlockRewards':$scope.checkbox1,
+						'UnlimitedProjectBookmarks':$scope.checkbox2,
+						'CustomCoverPhoto':$scope.checkbox3,
+						'UserPlanID':$scope.UserPlanID,
+						'AnnualSubs':$scope.AnnualSubs,
+						'MonthSubs':$scope.MonthSubs,
+						'Desc':$scope.desc
+						
+					}).then(function (response) {
+						console.log(response.data);
+						//alert(console.data);
+						if(response.data.data==true)
+						{
+							swal({
+								title: "Updated Plan Successfully..!",
+								text: "",
+								type: "info"
+							});
+							$location.path("MyPlan")
+						}
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+					
+					
+				}
+			
+				$scope.createBasicPlan = function()
+				{
+						//alert($scope.noOfBids_B+$scope.noOFSkills_B+$scope.empFollowings_B);
+						$http.post("PHP/Update_BasicPlan.php", {
+							'NoOFBids':$scope.noOfBids_B,
+							'NoOfSkills':$scope.noOFSkills_B,
+							'EmpFollw':$scope.empFollowings_B,
+							'CreatorID': $scope.UserID,
+							'UnlockRewards':$scope.checkbox4,
+							'UnlimitedProjectBookmarks':$scope.checkbox5,
+							'CustomCoverPhoto':$scope.checkbox6,
+							'UserPlanID':$scope.UserPlanID,
+							'AnnualSubs':$scope.AnnualSubs,
+							'MonthSubs':$scope.MonthSubs,
+							'Desc':$scope.desc
+							
+						}).then(function (response) {
+							console.log(response.data);
+							//alert(console.data);
+							if(response.data.data==true)
+							{
+								swal({
+									title: "Updated Plan Successfully..!",
+									text: "",
+									type: "info"
+								});
+								$location.path("MyPlan")
+							}
+						}, function (error) {
+							console.log("Sorry! Data Couldn't be inserted!");
+							console.log(error);
+						});
+					
+				}
+			
+				
+				$scope.createPlusPlan=function()
+				{
+					
+					$scope.extInvoice_P;
+					//alert($scope.noOfBids_P+$scope.noOFSkills_P+$scope.empFollowings_P);
+					$http.post("PHP/Update_PlusPlan.php", {
+						'NoOFBids':$scope.noOfBids_P,
+						'NoOfSkills':$scope.noOFSkills_P,
+						'EmpFollw':$scope.empFollowings_P,
+						'ExtInvoice':$scope.extInvoice_P,
+						'CreatorID': $scope.UserID,
+						'UnlockRewards':$scope.checkbox7,
+						'UnlimitedProjectBookmarks':$scope.checkbox8,
+						'CustomCoverPhoto':$scope.checkbox9,
+						'DailyWithdrawals':$scope.checkbox10,
+						'PreferredAssignmentSeekerEligible':$scope.checkbox13,
+						'FreeProjectExtensions':$scope.checkbox11,
+						'HighValueProjectBidding':$scope.checkbox12,
+						'UserPlanID':$scope.UserPlanID,
+						'AnnualSubs':$scope.AnnualSubs,
+						'MonthSubs':$scope.MonthSubs,
+						'Desc':$scope.desc
+						
+					}).then(function (response) {
+						console.log(response.data);
+						//alert(console.data);
+						if(response.data.data==true)
+						{
+							swal({
+								title: "Updated Plan Successfully..!",
+								text: "",
+								type: "info"
+							});
+							$location.path("MyPlan")
+						}
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+					
+				}
+
+				$scope.createProPlan = function()
+				{
+					$scope.extInvoice_Pro;	
+					$http.post("PHP/Update_ProPlan.php", {
+						'NoOFBids':$scope.noOfBids_Pro,
+						'NoOfSkills':$scope.noOFSkills_Pro,
+						'EmpFollw':$scope.empFollowings_Pro,
+						'ExtInvoice':$scope.extInvoice_Pro,
+						'CreatorID': $scope.UserID,
+						'UnlockRewards':$scope.checkbox14,
+						'UnlimitedProjectBookmarks':$scope.checkbox15,
+						'CustomCoverPhoto':$scope.checkbox16,
+						'DailyWithdrawals':$scope.checkbox17,
+						'PreferredAssignmentSeekerEligible':$scope.checkbox20,
+						'FreeProjectExtensions':$scope.checkbox18,
+						'HighValueProjectBidding':$scope.checkbox19,
+						'FreeSealedProjects':$scope.checkbox21,
+						'UserPlanID':$scope.UserPlanID,
+						'AnnualSubs':$scope.AnnualSubs,
+						'MonthSubs':$scope.MonthSubs,
+						'Desc':$scope.desc
+						
+					}).then(function (response) {
+						console.log(response.data);
+						//alert(console.data);
+						if(response.data.data==true)
+						{
+							swal({
+								title: "Updated Plan Successfully..!",
+								text: "",
+								type: "info"
+							});
+							$location.path("MyPlan")
+						}
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+				}
+
+				$scope.createPrePlan = function()
+				{
+						
+					$http.post("PHP/Update_PrePlan.php", {
+						'NoOFBids':$scope.noOfBids_Pre,
+						'NoOfSkills':$scope.noOFSkills_Pre,
+						'CreatorID': $scope.UserID,
+						'UnlockRewards':$scope.checkbox22,
+						'UnlimitedProjectBookmarks':$scope.checkbox23,
+						'CustomCoverPhoto':$scope.checkbox24,
+						'DailyWithdrawals':$scope.checkbox25,
+						'PreferredAssignmentSeekerEligible':$scope.checkbox28,
+						'FreeProjectExtensions':$scope.checkbox26,
+						'HighValueProjectBidding':$scope.checkbox27,
+						'FreeSealedProjects':$scope.checkbox29,
+						'FreeNDAProjects':$scope.checkbox30,
+						'UnlimitedEmployerFollowings':$scope.checkbox32,
+						'UnlimitedExternalInvoicing':$scope.checkbox31,
+						'UserPlanID':$scope.UserPlanID,
+						'AnnualSubs':$scope.AnnualSubs,
+						'MonthSubs':$scope.MonthSubs,
+						'Desc':$scope.desc
+						
+					}).then(function (response) {
+						console.log(response.data);
+						//alert(console.data);
+						if(response.data.data==true)
+						{
+							swal({
+								title: "Updated Plan Successfully..!",
+								text: "",
+								type: "info"
+							});
+							$location.path("MyPlan")
+						}
+					}, function (error) {
+						console.log("Sorry! Data Couldn't be inserted!");
+						console.log(error);
+					});
+				}
+			
+		
+
+		
+	});
+
+/************************************ Project Plan ***************************************************************/

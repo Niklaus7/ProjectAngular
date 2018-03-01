@@ -1,0 +1,458 @@
+<html>
+
+<head>
+    <link href="assets\plugins\multiselect\css\multi-select.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\select2\css\select2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets\plugins\bootstrap-select\css\bootstrap-select.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container" ng-controller="CreateProjectPlanController" id="CreateProjectPlanController">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-header-box">
+                    <ol class="breadcrumb pull-right mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="#">Ubold</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Create Project Plan</a>
+                        </li>
+                    </ol>
+                    <h4 class="page-title">Create Project Plan</h4>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+
+
+            <div class="col-xl-12 col-lg-8">
+
+
+                <div class="card-box">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Select Project plan:</b>
+                            </label>
+
+                        </div>
+                        <div class="col-md-6">
+                            <select ng-change="getSelectedValue()" ng-model="myPlan" id="Membership">
+                               
+                                    <option selected="selected" value="">Featured</option>
+                                    <option value="Urgent">Urgent</option>
+                                    <option value="Private">Private</option>
+                                    <option value="FullTime">Full Time</option>
+                                    <option value="Recruiter">Recruiter</option>
+                                    <option value="NDA">Non-Disclosure Agreement (NDA)</option>
+                                    <option value="IPAgreement">IP Agreement</option>
+                                    <option value="Sealed">Sealed</option>
+                                    <option value="Priority">Priority</option>
+                                    <option value="Extend">Extend</option>
+                                    <option value="Delete">Delete</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                </div>
+                <!-- panel -->
+            </div>
+
+            <!-- Feature -->
+            <div class="col-xl-12 col-lg-8" id="div_Featured">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Featured" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Feature Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Featured" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Urgent -->
+            <div class="col-xl-12 col-lg-8" id="div_Urgent" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Urgent" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Urgent Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Urgent" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Private -->
+            <div class="col-xl-12 col-lg-8" id="div_Private" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Private" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Private Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Private" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+             <!-- FullTime -->
+             <div class="col-xl-12 col-lg-8" id="div_FullTime" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_FullTime" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Full Time Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_FullTime" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+             <!-- Recruiter -->
+             <div class="col-xl-12 col-lg-8" id="div_Recruiter" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Recruiter" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Recruiter Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Recruiter" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+             <!-- NDA -->
+             <div class="col-xl-12 col-lg-8" id="div_NDA" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_NDA" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of NDA Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_NDA" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+             <!-- IPAgreement -->
+             <div class="col-xl-12 col-lg-8" id="div_IPAgreement" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_IPAgreement" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of IP Agreement Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_IPAgreement" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+             <!-- Sealed -->
+             <div class="col-xl-12 col-lg-8" id="div_Sealed" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Sealed" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Sealed Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Sealed" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+              <!-- Sealed -->
+              <div class="col-xl-12 col-lg-8" id="div_Sealed" style="display: none">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b>Plan Cost </b>
+                            </label>
+
+
+                            <input id="bids" name="bids" type="number" ng-model="Cost_Sealed" class="form-control">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label " for="password2">
+                                <b> Description Of Sealed Plan</b>
+                            </label>
+
+                            <div class="">
+                                <textarea id="skills" name="skills" rows="3" cols="5" ng-model="Desc_Sealed" class="form-control"> </textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr/>
+                   
+
+
+                    <div class="row">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light" style="font-size: 20px" ng-click="createProjectPlan()">Create Plan</button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <!-- End row -->
+
+    </div>
+    <script src="assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" type="text/javascript"></script>
+    <script src="assets\plugins\select2\js\select2.min.js" type="text/javascript"></script>
+
+
+    <script src="assets\plugins\bootstrap-select\js\bootstrap-select.min.js" type="text/javascript"></script>
+</body>
+
+</html>

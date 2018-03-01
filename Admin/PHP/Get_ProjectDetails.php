@@ -71,9 +71,12 @@ $ProjectID = $data->ProjectID;
                                     $output['Lng'] = $row6['Lng'];
                                     $output['CompanyURL'] = $row6['CompanyURL'];
                                     $output['CompanyLogo'] = $row6['CompanyLogo'];
+                                   
                                 }
                             }
 
+                            
+                            
                             $respone[]= $output;    
                 }
                 echo json_encode($respone);

@@ -1807,10 +1807,30 @@ iComissionapp.config(function ($routeProvider) {
 			}
 
 			//call when click on viewproject
-			$scope.viewproject = function () {
+			$scope.viewproject = function () 
+			{
 				$('#preloader').delay(350).show();
+			//	$('#ModalPayNow').modal('show');
 				$location.path('viewclientproject');
 			}
+
+			/*$scope.InvokePaymentRoutine = function()
+			{
+				// do all the necessary api stuff to fetch user payment status and set the flag accordingly
+				localStorage.setItem("UserPaymentStatusFlag", true);
+				alert();
+				//$('#ModalPayNow').modal('hide');  // this giving trouble
+				if(localStorage.getItem("UserPaymentStatusFlag") == "true")
+				{
+					$('#ModalPayNow').modal('hide');
+				}
+				else
+				{
+					//else part here do
+				}
+				
+				
+			}*/
 
 			//call when click on viewjob
 			$scope.viewjob = function (id,title,NoOfVacancy,PostDate) 
@@ -1885,8 +1905,12 @@ iComissionapp.config(function ($routeProvider) {
 			// 	console.log(error);
 			// });
 
-			$scope.getprojectdetails = function () {
-				
+			
+			
+			$scope.getprojectdetails = function () 
+			{
+				$('#ModalPayNow').modal('show');
+
 				//$scope.ProjectId = localStorage.getItem('ProjectID');
 
 				$http.post("PHP/Get_ProjectDetails.php", {
@@ -1895,6 +1919,13 @@ iComissionapp.config(function ($routeProvider) {
 				}).then(function (response) {
 					console.log(response.data);
 					$scope.ProjectDetails = response.data;
+					$scope.PaymentAmount = response.data[0].SecurityDepositeAmount;
+					if(response.data[0].PaymentStatus =='No')
+					{
+						document.getElementById("maindiv").style.display ="none";
+						
+					}
+
 					document.getElementById("prjnm").innerHTML = response.data[0].ProjectName;
 					document.getElementById("projdt").innerHTML = response.data[0].ProjectDateTime;
 					document.getElementById("description").innerHTML = response.data[0].ProjectDesc;
@@ -1938,6 +1969,25 @@ iComissionapp.config(function ($routeProvider) {
 				});
 			}
 
+			//pay now functionality.
+			$scope.InvokePaymentRoutine = function()
+			{
+				// do all the necessary api stuff to fetch user payment status and set the flag accordingly
+				localStorage.setItem("UserPaymentStatusFlag", true);
+				alert();
+				$('#ModalPayNow').modal('hide');
+				//$('#ModalPayNow').modal('hide');  // this giving trouble
+				if(localStorage.getItem("UserPaymentStatusFlag") == true)
+				{
+					$('#ModalPayNow').modal('hide');
+				}
+				else
+				{
+					//else part here do
+				}
+				
+				
+			}
 
 		});
 
@@ -1969,6 +2019,7 @@ iComissionapp.config(function ($routeProvider) {
 		$scope.applyCandidate = function () 
 		{
 
+		
 			document.getElementById("maindiv").style.display = "block";
 			document.getElementById("jobdescription").style.display = "none";
 			document.getElementById("edit_job").style.display = "none";

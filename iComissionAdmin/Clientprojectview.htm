@@ -3,9 +3,9 @@
         text-align: left !important;
     }
 </style>
-<div class="container" ng-controller="ClientprojectviewController" ng-init="applyCandidate();getprojectdetails()">
+<div class="container" ng-controller="ClientprojectviewController" ng-init="getprojectdetails();applyCandidate()">
 
-    <div class="row">
+    <div class="row" id="maindiv">
         <div class="col-sm-12">
             <div class="card-box">
                 <div class="row">
@@ -18,7 +18,9 @@
                                 </p>-->
                             </div>
                             <div class="col-sm-6 text-left">
-                                <h3><a id="prjnm" href onclick="show_divProjectDescription()"></a></h3>
+                                <h3>
+                                    <a id="prjnm" href onclick="show_divProjectDescription()"></a>
+                                </h3>
                                 <h5 id="projdt"></h5>
                                 <p id="description" style="height: 150px; overflow-x: auto" class="text-muted m-b-15 font-13">
                                 </p>
@@ -30,7 +32,7 @@
                                         <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%">Assignment Files</button>
                                     </div>
                                     <div class="col-md-6 text-center">
-                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%"  onclick="Show_divInvoiceBilling()">Invoice & Billing</button>
+                                        <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 100%" onclick="Show_divInvoiceBilling()">Invoice & Billing</button>
                                     </div>
                                 </div>
                                 <div class="clearfix">&nbsp;</div>
@@ -59,7 +61,7 @@
         </div>
     </div>
 
-    <div class="row"  id="Div_ShowProjectDescription" ng-show="NoOfCandidate==false">
+    <div class="row" id="Div_ShowProjectDescription" ng-show="NoOfCandidate==false">
         <div class="col-sm-12">
             <div class="card-box">
                 <p>No AssignmentSeeker have applied for this Assignment </p>
@@ -67,7 +69,7 @@
         </div>
     </div>
     <!-- Wizard with Validation -->
-    <div class="row"  id="Div_ShowProjectDescription" ng-show="NoOfCandidate==true">
+    <div class="row" id="Div_ShowProjectDescription" ng-show="NoOfCandidate==true">
         <div class="col-sm-12">
             <div class="card-box">
                 <form id="wizard-validation-form" action="#">
@@ -77,7 +79,9 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card-box">
-                                        <h4 class="header-title m-t-0 text-center"><b>List Of Bidders</b></h4>
+                                        <h4 class="header-title m-t-0 text-center">
+                                            <b>List Of Bidders</b>
+                                        </h4>
                                         <div class="table-responsive">
                                             <table id="datatable" class="table table-hover mails m-0 table table-actions-bar">
                                                 <thead>
@@ -90,27 +94,29 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr class="active" ng-repeat="x in ApplyCandiateList">
-                                                       
+
                                                         <td>
                                                             <span ng-show="x.AuthorizedPersonName!=''">
-                                                                    {{x.AuthorizedPersonName}}
+                                                                {{x.AuthorizedPersonName}}
                                                             </span>
                                                             <span ng-show="x.UserName!=''">
-                                                                    {{x.UserName}}
+                                                                {{x.UserName}}
                                                             </span>
-                                                          
+
                                                         </td>
-                                                        
+
                                                         <td>
                                                             {{x.CompanyName}}
                                                         </td>
                                                         <td>
-                                                            <button  type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details" ng-click="viewprofile(x.UserID)">
+                                                            <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="font-size: 14px" title="View Details"
+                                                                ng-click="viewprofile(x.UserID)">
                                                                 View Details
                                                             </button>
                                                         </td>
                                                         <td>
-                                                            <span class="label label-pink" style="font-size: 14px"><i class="ion-social-usd"></i>{{x.BiddAmount}}/Day</span>
+                                                            <span class="label label-pink" style="font-size: 14px">
+                                                                <i class="ion-social-usd"></i>{{x.BiddAmount}}/Day</span>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -125,7 +131,9 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="card-box">
-                                        <h4 class="header-title m-t-0"><b>Instructions</b></h4>
+                                        <h4 class="header-title m-t-0">
+                                            <b>Instructions</b>
+                                        </h4>
                                         <p>
                                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
                                             vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
@@ -139,7 +147,9 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-sm-6 text-center">
-                                                    <h5 class="header-title m-t-0"><b>Sign</b></h5>
+                                                    <h5 class="header-title m-t-0">
+                                                        <b>Sign</b>
+                                                    </h5>
                                                     <div class="row">
                                                         <div class="col-md-12 text-center">
                                                             <button type="button" class="btn btn-info btn-rounded waves-effect waves-light" style="width: 50%">Terms & Conditions</button>
@@ -153,7 +163,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <h5 class="header-title m-t-0"><b>Sign & upload other documents to other party</b></h5>
+                                                    <h5 class="header-title m-t-0">
+                                                        <b>Sign & upload other documents to other party</b>
+                                                    </h5>
                                                     <div class="row">
                                                         <div class="col-md-12" style="padding-left: 27%">
                                                             <input type="file" class="btn btn-info btn-rounded waves-effect waves-light" data-input="false">
@@ -232,7 +244,9 @@
                                             <div class="col-md-12">
                                                 <textarea class="form-control" placeholder="Type your message here.."></textarea>
                                                 <label class="pull-left">0/2500</label>
-                                                <label class="pull-left" style="font-size: 16px; margin-left: 25px"><i class="ion-paperclip"></i></label>
+                                                <label class="pull-left" style="font-size: 16px; margin-left: 25px">
+                                                    <i class="ion-paperclip"></i>
+                                                </label>
                                                 <button type="button" class="btn btn-info btn-rounded waves-effect waves-light pull-right" style="margin-top: 10px">Send</button>
                                             </div>
                                         </div>
@@ -246,7 +260,9 @@
                                 <div class="col-sm-12">
                                     <div class="card-box">
                                         <div class="text-center">
-                                            <h4 class="header-title m-t-0"><b>Assignment Completed Successfully</b></h4>
+                                            <h4 class="header-title m-t-0">
+                                                <b>Assignment Completed Successfully</b>
+                                            </h4>
                                             <p>
                                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in
                                                 vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
@@ -261,7 +277,9 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-sm-6 text-center">
-                                                    <h4 class="m-t-0 m-b-20 header-title text-center"><b>Deliverable from service provider</b></h4>
+                                                    <h4 class="m-t-0 m-b-20 header-title text-center">
+                                                        <b>Deliverable from service provider</b>
+                                                    </h4>
                                                     <div class="table-responsive">
                                                         <table id="datatable1" class="table table-hover mails m-0 table table-actions-bar">
                                                             <thead>
@@ -280,7 +298,9 @@
                                                                         Gorrod Kazu
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -291,7 +311,9 @@
                                                                         Ellal Kiosan
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -302,7 +324,9 @@
                                                                         Mork'Ra Khard
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -313,7 +337,9 @@
                                                                         Kathrin Propst
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -324,7 +350,9 @@
                                                                         Swen Kunze
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -335,7 +363,9 @@
                                                                         Sabine Kuester
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
 
@@ -347,7 +377,9 @@
                                                                         Gorrod Kazu
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -358,7 +390,9 @@
                                                                         Ellal Kiosan
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -369,7 +403,9 @@
                                                                         Mork'Ra Khard
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -380,7 +416,9 @@
                                                                         Kathrin Propst
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -391,7 +429,9 @@
                                                                         Swen Kunze
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -402,7 +442,9 @@
                                                                         Sabine Kuester
                                                                     </td>
                                                                     <td>
-                                                                        <a href class="table-action-btn btn-info" title="View Details"><i class="ion-ios-download"></i></a>
+                                                                        <a href class="table-action-btn btn-info" title="View Details">
+                                                                            <i class="ion-ios-download"></i>
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
 
@@ -411,7 +453,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 text-center">
-                                                    <h4 class="m-t-0 m-b-20 header-title text-center"><b>Assignment History</b></h4>
+                                                    <h4 class="m-t-0 m-b-20 header-title text-center">
+                                                        <b>Assignment History</b>
+                                                    </h4>
                                                     <div class="col-sm-12 text-center">
                                                         <div class="row">
                                                             <div class="col-md-12 text-center">
@@ -508,7 +552,9 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias
                             eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem
                             doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius
-                            odio natus ullam provident pariatur temporibus quia eos repellat ... <a href="#">Read more</a></p>
+                            odio natus ullam provident pariatur temporibus quia eos repellat ...
+                            <a href="#">Read more</a>
+                        </p>
                         <span class="cd-date">Jun 05</span>
                     </div>
                     <!-- cd-timeline-content -->
@@ -584,9 +630,10 @@
                 </div> -->
                 <div class="panel-body">
                     <div class="clearfix">
-                        
+
                         <div class="pull-right">
-                            <h4 class="font-16">Invoice # <br>
+                            <h4 class="font-16">Invoice #
+                                <br>
                                 <strong>2015-04-23654789</strong>
                             </h4>
                         </div>
@@ -595,15 +642,20 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                            
+
                             <div class="pull-Left m-t-30">
-                                <p><strong>Order Date: </strong> Jun 15, 2015</p>
-                                <p class="m-t-10"><strong>Order Status: </strong> <span class="label label-pink">Pending</span></p>
-                                <p class="m-t-10"><strong>Order ID: </strong> #123456</p>
+                                <p>
+                                    <strong>Order Date: </strong> Jun 15, 2015</p>
+                                <p class="m-t-10">
+                                    <strong>Order Status: </strong>
+                                    <span class="label label-pink">Pending</span>
+                                </p>
+                                <p class="m-t-10">
+                                    <strong>Order ID: </strong> #123456</p>
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -666,7 +718,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-3 offset-md-9">
-                            <p class="text-right"><b>Sub-total:</b> 2930.00</p>
+                            <p class="text-right">
+                                <b>Sub-total:</b> 2930.00</p>
                             <p class="text-right">Discout: 12.9%</p>
                             <p class="text-right">VAT: 12.9%</p>
                             <hr>
@@ -676,7 +729,9 @@
                     <hr>
                     <div class="hidden-print">
                         <div class="text-right">
-                            <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="ion-printer"></i></a>
+                            <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light">
+                                <i class="ion-printer"></i>
+                            </a>
                             <a href="#" class="btn btn-primary waves-effect waves-light">Submit</a>
                         </div>
                     </div>
@@ -685,6 +740,50 @@
 
         </div>
 
+    </div>
+
+    <div id="ModalPayNow" class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true" style="display: none;">
+        <div class="modal-body">
+            <div class="container  modal-lg" style="width:60%;background-color:#e6e6e6">
+                <div class="row" style="background-color:#e6e6e6">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <img src="assets/images/modelImage1.png" style="width:400px; height: 400px;" />
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div style="position:absolute; text-align:center; margin-right: 50px;margin-top: 50px">
+                            <h2>
+                                <b>Security Deposit
+                                    <b></b>
+                                </b>
+                            </h2>
+                            <h1>
+                                <b style="color:#ff650d">${{PaymentAmount}}
+                                    <b></b>
+                                </b>
+                            </h1>
+                            <br/>
+                            <h7>
+                                <b>You need to pay security deposit first</b>
+                            </h7>
+                            <h7>
+                                <b> before starting and signing with</b>
+                            </h7>
+                            <h7>
+                                <b> service provider</b>
+                            </h7>
+                            <p style="color:#ff650d">Need more information ?</p>
+                            <br/>
+                            <button ng-click="InvokePaymentRoutine()" style="font-size: 50px" type="button" class="btn btn-info btn-rounded waves-effect waves-light">
+                                <h4>
+                                    <b style="color:white;">Pay Now</b>
+                                </h4>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- End row -->
     <!--Form Wizard-->
@@ -702,8 +801,7 @@
         document.getElementById("div_ShowProjectInvoiceBilling").style.display = "none";
 
     }
-    function Show_divInvoiceBilling()
-    {
+    function Show_divInvoiceBilling() {
         document.getElementById("Div_ShowProjectDescription").style.display = "none";
         document.getElementById("div_ShowProjectMilestoneStatus").style.display = "none";
         document.getElementById("div_ShowProjectInvoiceBilling").style.display = "block";

@@ -1,0 +1,43 @@
+CreateProjectPlan
+
+MyProjectPlan
+
+<option selected="selected" value="">Featured</option>
+                                    <option value="Urgent">Urgent</option>
+                                    <option value="Private">Private</option>
+                                    <option value="FullTime">Full Time</option>
+                                    <option value="Recruiter">Recruiter</option>
+                                    <option value="NDA">Non-Disclosure Agreement (NDA)</option>
+                                    <option value="IPAgreement">IP Agreement</option>
+                                    <option value="Sealed">Sealed</option>
+                                    <option value="Priority">Priority</option>
+                                    <option value="Extend">Extend</option>
+                                    <option value="Delete">Delete</option>
+
+(new Date()).getFullYear()
+
+var div = document.createElement('DIV');
+					
+										div.innerHTML = '<div>' +
+
+
+                                        id = 1;
+
+    function addnewskill() {
+
+        if (id < 30) {
+            //   alert(id);
+            $('#newskill').append(
+                '<content> <div class="row"><div class="col-md-5"><div class=""><select class="required" id="skill_' +
+                id +
+                '" name="skill" data-style="btn-white"> <option selected="selected" value="">skill<option>java<option>c<option>c++</select> </div> </div><div class="col-md-5"> <div class=""><select class="required" id="skillexp_' +
+                id +
+                '" name="skillexp" data-style="btn-white"><option selected="selected" value="">Experience in Year  <option>0  <option>1<option>2</select></div> </div> <div class="col-md-2"><label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label></div></div></content>'
+            );
+            //alert();
+            id++;
+
+        }
+        document.getElementById("hidden_newskill").value = id;
+
+    }

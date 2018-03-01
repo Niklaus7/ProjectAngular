@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="iComissionapp" ng-controller="MainController">
+<html lang="en" ng-app="iComissionapp" ng-controller="MainController" ng-init="init()">
 
 <head>
 
@@ -346,7 +346,7 @@
                                                 <span class="glyphicon glyphicon-off"></span> Applied Jobs</a>
                                         </li>
                                         <li ng-show="IsJobseeker == 'True'">
-                                            <a>
+                                            <a href="#ChangePassword">
                                                 <span class="glyphicon glyphicon-edit"></span> Change Password</a>
                                         </li>
                                         <li>

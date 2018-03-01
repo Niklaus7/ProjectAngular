@@ -20,191 +20,226 @@
         width: 400px;
     }
 </style>
-<div class="container" ng-controller="ProfileController" ng-init="getmap()">
-
+<div class="container" ng-controller="ProfileController" ng-init="getJobSeekersProfile()">
     <div class="content col-md-12">
-        <div class="tab-content">
-            <div id="User" class="post-padding tab-pane fade in active">
+        <div class="post-padding">
+            <form id="submit" class="submit-form" ng-repeat="x in JobSeekersProfile">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label">My Profile
 
-                <div class="job-title nocover hidden-sm hidden-xs">
-                    <h5 id="title">User Registration</h5>
-                </div>
-                <form id="UserRegistration" name="UserRegistration" novalidate>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card-box" ng-form="OtherRegistration" name="OtherRegistration" novalidate>
-                                <h4>
-                                    <b>Company Details</b>
-                                </h4>
-                                <div class="clearfix">&nbsp;</div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CName.$invalid && !OtherRegistration.CName.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CName" ng-pattern="onlytext" name="CName" placeholder="Company Name" required> </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CEmail.$invalid && !OtherRegistration.CEmail.$pristine }">
-                                            <input type="email" class="form-control" ng-model="CEmail" name="CEmail" placeholder="Comapny Email" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CAddress.$invalid && !OtherRegistration.CAddress.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CAddress" name="CAddress" placeholder="Company Address" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPhone.$invalid && !OtherRegistration.CPhone.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CPhone" ng-pattern="Mobilenumber" name="CPhone" placeholder="Compnay Phone"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CWebsite.$invalid && !OtherRegistration.CWebsite.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CWebsite" ng-pattern="onlytext" name="CWebsite" placeholder="Company Website"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CRegNo.$invalid && !OtherRegistration.CRegNo.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CRegNo" name="CRegNo" placeholder="Company Registration No" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CIndustry.$invalid && !OtherRegistration.CIndustry.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CIndustry" ng-pattern="onlytext" name="CIndustry" placeholder="Industry Type"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#MapModal">Office Location</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <label class="control-label " for="password2">
-                                            <b>About Company(*)</b>
-                                        </label>
-                                        <div id="aboutcompany" class="summernote">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="clearfix">&nbsp;</div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CLogo.$invalid && !OtherRegistration.CLogo.$pristine }">
-                                            <label class="lblclass">Comapny Logo</label>
-                                            <input type="file" class="form-control" id="CLogo" accept="image/*" name="CLogo" placeholder="Compnay Logo" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <label class="lblclass">Incorporation Certificate</label>
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCertificate.$invalid && !OtherRegistration.CCertificate.$pristine }">
-                                            <input type="file" class="form-control" id="CCertificate" accept=".pdf,.doc,.docx" ng-pattern="onlytext" name="CCertificate"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <label class="lblclass">Incorporation Date</label>
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CDate.$invalid && !OtherRegistration.CDate.$pristine }">
-                                            <input type="date" class="form-control" ng-model="CDate" name="CDate" required>
-                                            <!-- <md-datepicker ng-model="CDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <h4>
-                                    <b>Other Details</b>
-                                </h4>
-                                <div class="clearfix">&nbsp;</div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CCountry.$invalid && !OtherRegistration.CCountry.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CCountry" ng-pattern="onlytext" name="CCountry" placeholder="Country" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CState.$invalid && !OtherRegistration.CState.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CState" ng-pattern="onlytext" name="CState" placeholder="State" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CPAN.$invalid && !OtherRegistration.CPAN.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CPAN" name="CPAN" placeholder="PAN No" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group" ng-class="{ 'has-error' : OtherRegistration.CTAN.$invalid && !OtherRegistration.CTAN.$pristine }">
-                                            <input type="text" class="form-control" ng-model="CTAN" name="CTAN" placeholder="TAN No" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group has-error" style="margin-bottom: 0px">
-                                    <label id="errormsg" class="help-block"></label>
-                                </div>
-                                <div class="clearfix">&nbsp;</div>
-                                <button class="btn btn-primary" style="margin-top: 0px" ng-click="GetOtherFileData(OtherRegistration.$valid)">Save</button>
+                        </label>
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail">
+                                <img src="iComissionAdmin/PHP/{{x.ProfileImage}}" alt="User Profile Pic">
                             </div>
+                            <br>
+                            <span class="btn btn-default btn-file">
+                                <span class="fileupload-new">Upload Photo</span>
+                                <span class="fileupload-exists">Change</span>
+                                <input type="file">
+                            </span>
+                            <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">
+                                <i class="fa fa-close"></i>
+                            </a>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- io.cordova.myapp54413f -->
-    <div id="MapModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Office Location</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="map_canvas" style="height: 300px; width: 100%"></div>
-                                    <input type="hidden" id="hidden_lat" ng-model="hidden_lat" value="" />
-                                    <input type="hidden" id="hidden_lang" ng-model="hidden_lang" value="" />
-                                    <input id="pac-input" data-validate="required" name="pac-input" class="controls form-control" type="text" placeholder="Search Box">
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label"> My Name </label>
+                        <input type="text" class="form-control" placeholder="Your Name" ng-value="FirstName" ng-model="FirstName">
+                        <br>
+                        <label class="control-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" ng-value="Email" ng-model="Email">
 
-                                </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label">Contact No</label>
+                        <input type="text" class="form-control" placeholder="Contact No" ng-value="Contact" ng-model="Contact">
+                        <br>
+                        <label class="control-label">Passport No </label>
+                        <input type="text" class="form-control" placeholder="Passport No" ng-value="PassportNo" ng-model="PassportNo">
+
+                    </div>
+                </div>
+                <!-- end row -->
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <label class="control-label">Resume Skills</label>
+                        <input type="text" class="form-control" id="ResumeSkills" placeholder="Resume Skills" ng-value="ResumeSkills" ng-model="ResumeSkills">
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <label class="control-label">Location</label>
+                        <input type="text" class="form-control" id="location" onclick="call1()" placeholder="Location" ng-value="Address" ng-model="Address">
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+
+                <hr/>
+
+                <br/>
+                <label class="control-label">Education</label>
+                <br/>
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <small>Institute Name</small>
+                        <input type="text" class="form-control" placeholder="Institute Name" ng-value="InstituteName" ng-model="InstituteName">
+                        <br>
+                        <small>Passout Year</small>
+                        <select class="required form-control" id="PassoutYr" name="PassoutYr" data-style="btn-white" data-ng-model="PassoutYr">
+                            <option selected="selected" value=""> Passout Year
+                                <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+
+
+                        </select>
+
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+
+                        <small>Highest Qualification</small>
+                        <input type="text" class="form-control" placeholder="Highest Qualification" ng-value="HighestQualification" ng-model="HighestQualification">
+                        <br>
+                        <small>Percentage/CPI</small>
+                        <input type="text" class="form-control" placeholder="Percentage/CPI" ng-value="CPI" ng-model="CPI">
+
+                    </div>
+
+
+                </div>
+                <br/>
+                <hr/>
+                <br/>
+                <label class="control-label">Experience
+                </label>
+                <br/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <small>I am -</small>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="radio-inline">
+                            <input type="radio" class="required" name="radioB4" value="Freshers" ng-model="$parent.JobSeekerType">Freshers
+                            
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="required" name="radioB4" value="Experienced" ng-model="$parent.JobSeekerType">Experienced
+                        </label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        <small>Employer</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="Employer" ng-value="Employer"
+                            ng-model="Employer">
+                        <br>
+                        <small>Job Title</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="Job Title" ng-value="JobTitle"
+                            ng-model="JobTitle">
+                        <br>
+
+                    </div>
+                    <div class="col-md-6">
+                        <small>Total Experience(Year-Month)</small>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <select class="required form-control" id="TotalExperienceYr" name="TotalExperienceYr" data-style="btn-white" data-ng-model="TotalExperienceYr">
+                                    <option selected="selected" value="">Experience (Year)
+                                        <option value="0">0
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">3
+                                                        <option value="4">4
+                                                            <option value="5">5
+                                                                <option value="6">6
+                                                                    <option value="7">7
+                                                                        <option value="8">8
+                                                                            <option value="9">9
+                                                                                <option value="10">10
+                                                                                    <option value="11">11
+                                                                                        <option value="12">12
+                                                                                            <option value="13"> 13
+                                                                                                <option value="14">14
+                                                                                                    <option value="15">15
+                                                                                                        <option value="16">16
+
+
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <select class="required form-control" id="expinmonth" name="currency" data-style="btn-white" data-ng-model="expinmonth">
+                                    <option selected="selected" value="">Experience (month)
+                                        <option value="0">0
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">3
+                                                        <option value="4">4
+                                                            <option value="5">5
+                                                                <option value="6">6
+                                                                    <option value="7">7
+                                                                        <option value="8">8
+                                                                            <option value="9">9
+                                                                                <option value="10">10
+                                                                                    <option value="11">11
+                                                                                        <option value="12">12
+
+                                </select>
                             </div>
                         </div>
+
+                        <br>
+                        <small>Current CTC</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="CTC" ng-value="CTC" ng-model="CTC">
+                        <br>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+                <br/>
+                <hr/>
+                <!-- end row -->
+                <div class="row">
+                    <label class="control-label"> My Resume</label>
+                    <div class="col-md-12 col-sm-12">
+
+                        <input type="text" class="form-control" id="ResumeSkills" placeholder="Resume.pdf" ng-value="Resume" ng-model="Resume">
                     </div>
                 </div>
-            </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-7">
+                        <button class="btn btn-primary" ng-click="updateJobSeekerProfileInfo()">Update Profile</button>
+
+                    </div>
+                </div>
+
+
+
+            </form>
         </div>
+        <!-- end post-padding -->
+
+
     </div>
+    <!-- end col -->
 </div>
 <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA_vK8rD7pbv4QMoGId65-9K_qxd5_apfE&libraries=places" async defer></script> -->
 <!-- End row -->
@@ -233,4 +268,9 @@
 
     });
 
+    function call1() {
+        var places1 = new google.maps.places.Autocomplete(document.getElementById('location'));
+        google.maps.event.addListener(places1, 'place_changed', function () {
+        });
+    }
 </script>

@@ -134,7 +134,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group clearfix">
                                                     <div class="">
-                                                        <input class="form-control required" id="location" onclick="call1()" placeholder="Cuurent Location *" name="location " ng-model="location"
+                                                        <input class="form-control required" id="location" onclick="call1()" placeholder="Current Location *" name="location " ng-model="location"
                                                             type="text">
                                                     </div>
                                                 </div>
@@ -147,7 +147,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group clearfix">
                                                     <div class="">
-                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text">
+                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text" pattern="^[A-PR-WYa-pr-wy][1-9]\d\s?\d{4}[1-9]$">
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,34 +211,7 @@
                                                 <div class="form-group clearfix">
                                                     <select class="required form-control" id="PassoutYr" name="PassoutYr" data-style="btn-white">
                                                         <option selected="selected" value=""> Passout Year
-                                                            <option>1990
-                                                                <option>1991
-                                                                    <option>1992
-                                                                            <option>1993
-                                                                                    <option>1994
-                                                                                            <option>1995
-                                                                                                    <option>1996
-                                                                                                            <option>1997
-                                                                                                                    <option>1998
-                                                                                                                            <option>1999
-                                                                                                                                    <option>2000
-                                                                                                                                            <option>2001
-                                                                                                                                                    <option>2002
-                                                                                                                                                            <option>2003
-                                                                                                                                                                    <option>2004
-                                                                                                                                                                            <option>2005
-                                                                                                                                                                                    <option>2006
-                                                                                                                                                                                            <option>2007
-                                                                                                                                                                                                    <option>2008
-                                                                                                                                                                                                            <option>2010
-                                                                                                                                                                                                                    <option>2011
-                                                                                                                                                                                                                            <option>2012
-                                                                                                                                                                                                                                    <option>2013
-                                                                                                                                                                                                                                            <option>2014
-                                                                                                                                                                                                                                                    <option>2015
-                                                                                                                                                                                                                                                            <option>2016
-                                                                                                                                                                                                                                                                    <option>2017
-                                                                                                                                                                                                                                                                            <option>2018
+                                                        <option ng-repeat="year in years">{{year}}</option>                                                                                                                                                                                                          
 
 
                                                     </select>
@@ -455,7 +428,7 @@
 
                                                         <div class="row">
 
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="monthfrom_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Month
@@ -475,19 +448,17 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="yearFrom_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Year
-                                                                            <option>2017
-                                                                                <option>2016
-                                                                                    <option>2015
+                                                                            <option ng-repeat="year in years">{{year}}</option>    
 
                                                                     </select>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="monthto_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Month
@@ -507,13 +478,11 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="yearto_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Year
-                                                                            <option>2017
-                                                                                <option>2016
-                                                                                    <option>2015
+                                                                            <option ng-repeat="year in years">{{year}}</option>    
 
                                                                     </select>
                                                                 </div>
@@ -718,16 +687,51 @@
 
     id = 1;
 
-    function addnewskill() {
+    function addnewskill() 
+    {
 
         if (id < 30) {
             //   alert(id);
             $('#newskill').append(
-                '<content> <div class="row"><div class="col-md-5"><div class=""><select class="required" id="skill_' +
-                id +
-                '" name="skill" data-style="btn-white"> <option selected="selected" value="">skill<option>java<option>c<option>c++</select> </div> </div><div class="col-md-5"> <div class=""><select class="required" id="skillexp_' +
-                id +
-                '" name="skillexp" data-style="btn-white"><option selected="selected" value="">Experience in Year  <option>0  <option>1<option>2</select></div> </div> <div class="col-md-2"><label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label></div></div></content>'
+                '<content> \
+                    <div class="row">\
+                        <div class="col-md-5">\
+                            <div class="">\
+                                <select class="required" id="skill_' +id +'" name="skill" data-style="btn-white"> \
+                                    <option selected value="Select Role">skill</option>\
+                                    <option ng-repeat="skill in skills" value="{{skill.SkillSetName}}">{{skill.SkillSetName}}</option>\
+                                </select> \
+                            </div> \
+                        </div>\
+                        <div class="col-md-5"> \
+                            <div class="">\
+                                <select class="required" id="skillexp_' + id +'" name="skillexp" data-style="btn-white">\
+                                    <option selected="selected" value="">Experience in Year  \
+                                        <option>0  \
+                                            <option>1\
+                                                <option>2\
+                                                    <option>3\
+                                                        <option>4\
+                                                            <option>5\
+                                                                <option>6\
+                                                                    <option>7\
+                                                                        <option>8\
+                                                                            <option>9\
+                                                                                <option>10\
+                                                                                    <option>11\
+                                                                                        <option>12\
+                                                                                            <option>13\
+                                                                                                <option>14\
+                                                                                                    <option>15\
+                                                                                                        <option>16\
+                                </select>\
+                            </div> \
+                        </div> \
+                        <div class="col-md-2">\
+                            <label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label>\
+                        </div>\
+                    </div>\
+                </content>'
             );
             //alert();
             id++;
@@ -774,97 +778,112 @@
         if (id < 5) {
             //   alert(id);
             $('#addexp').append(
-                '<content><div class="row">\
-                                                    <div class="col-md-4">\
-                                                        Total Experience\
-                                                    </div>\
-                                                    <div class="col-md-4">\
-                                                        <div class="">\
-                                                            <select class="required" id="expinyr_' +
-                id +
-                '" name="currency" data-style="btn-white">\
-                                                                                                <option selected="selected" value="">Experience in Year\
-                                                                                                <option>0\
-                                                                                                <option>1\
-                                                                                                <option>2\
+                '<content>\
+                    <div class="row">\
+                        <div class="col-md-4">\
+                            Total Experience\
+                         </div>\
+                        <div class="col-md-4">\
+                            <div class="">\
+                                <select class="required" id="expinyr_' +id +'" name="currency" data-style="btn-white">\
+                                    <option selected="selected" value="">Experience in Year\
+                                        <option>0\
+                                            <option>1\
+                                                <option>2\
+                                                    <option>3\
+                                                    <option>4\
+                                                                                                            <option>5\
+                                                                                                                <option>6\
+                                                                                                                    <option>7\
+                                                                                                                        <option>8\
+                                                                                                                            <option>9\
+                                                                                                                                <option>10\
+                                                                                                                                    <option>10\
+                                                                                                                                        <option>11\
+                                                                                                                                            <option>12\
+                                                                                                                                                <option>13\
+                                                                                                                                                    <option>14\
+                                                                                                                                                        <option>15\
+                                                                                                                                                            <option>16\
                                                                                                 \
-                                                                </select>\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="col-md-4">\
-                                                        <div class="">\
-                                                            <select class="required" id="expinmonth_' +
-                id +
-                '" name="currency" data-style="btn-white">\
+                                </select>\
+                            </div>\
+                        </div>\
+                        <div class="col-md-4">\
+                            <div class="">\
+                                <select class="required" id="expinmonth_' +id +'" name="currency" data-style="btn-white">\
                                                                                                 <option selected="selected" value="">Experience in month\
                                                                                                 <option>0\
                                                                                                 <option>1\
                                                                                                 <option>2\
+                                                                                                    <option>3\
+                                                                                                        <option>4\
+                                                                                                            <option>5\
+                                                                                                                <option>6\
+                                                                                                                    <option>7\
+                                                                                                                        <option>8\
+                                                                                                                            <option>9\
+                                                                                                                                <option>10\
+                                                                                                                                    <option>10\
+                                                                                                                                        <option>11\
+                                                                                                                                            <option>12\
                                                                                                 \
-                                                                    </select>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
+                                </select>\
+                             </div>\
+                         </div>\
+                    </div>\
                                                 \
-                                                <div class="row">\
-                                                    <div class="col-md-4">\
-                                                        Cuurent Annual Salary\
-                                                    </div>\
-                                                    <div class="col-md-8">\
-                                                        <div class="form-group clearfix">\
-                                                            <input class="required form-control" id="Salary_' +
-                id +
-                '" ng-model="Salary" name="Salary" type="text">\
+                    <div class="row">\
+                        <div class="col-md-4">\
+                            Cuurent Annual Salary\
+                        </div>\
+                        <div class="col-md-8">\
+                            <div class="form-group clearfix">\
+                                <input class="required form-control" id="Salary_' +id +'" ng-model="Salary" name="Salary" type="text">\
                                                             \
-                                                        </div>\
-                                                            </div>\
+                            </div>\
+                        </div>\
                                                                 \
-                                                </div>\
+                    </div>\
                                                 \
-                                                <div class="row">\
-                                                    <div class="col-md-4">\
-                                                        Job Title\
-                                                    </div>\
-                                                    <div class="col-md-8">\
-                                                        <input class="required form-control" id="jobtitle_' +
-                id +
-                '" ng-model="jobtitle" name="jobtitle" type="text">\
+                    <div class="row">\
+                        <div class="col-md-4">\
+                            Job Title\
+                        </div>\
+                        <div class="col-md-8">\
+                            <input class="required form-control" id="jobtitle_' +id +'" ng-model="jobtitle" name="jobtitle" type="text">\
                                                         \
-                                                    </div>\
-                                                </div>\
+                        </div>\
+                    </div>\
                                                 \
-                                                <div class="row">\
-                                                    <div class="col-md-4">\
+                    <div class="row">\
+                        <div class="col-md-4">\
                                                     \
-                                                        Job Descripion\
-                                                    </div>\
-                                                    <div class="col-md-8">\
-                                                        <input class="required form-control" id="JobDescripion_' +
-                id +
-                '" ng-model="JobDescripion" name="JobDescripion" type="text">\
+                            Job Descripion\
+                        </div>\
+                        <div class="col-md-8">\
+                            <input class="required form-control" id="JobDescripion_' +id +'" ng-model="JobDescripion" name="JobDescripion" type="text">\
                                                         \
-                                                    </div>\
-                                                </div>\
+                        </div>\
+                    </div>\
                                                 \
                                                 \
                                                 \
-                                                <div class="row">\
-                                                    <div class="col-md-4">\
-                                                        Company Name\
-                                                    </div>\
-                                                    <div class="col-md-8">\
-                                                        <input class="required form-control" id="companyname_' +
-                id +
-                '" ng-model="companyname" name="companyname" type="text">\
+                    <div class="row">\
+                        <div class="col-md-4">\
+                             Company Name\
+                        </div>\
+                        <div class="col-md-8">\
+                            <input class="required form-control" id="companyname_' +id +'" ng-model="companyname" name="companyname" type="text">\
                                                         \
-                                                    </div>\
-                                                </div>\
+                        </div>\
+                    </div>\
                                                 \
-                                                <div class="row">\
-                                                    <div class="col-md-4">\
-                                                        Industry of Company\
-                                                    </div>\
-                                                    <div class="col-md-8">\
+                    <div class="row">\
+                        <div class="col-md-4">\
+                            Industry of Company\
+                        </div>\
+                    <div class="col-md-8">\
                                                         <div class="form-group clearfix">\
                                                                 <input class="required form-control" placeholder="Industry'+ id +'" id="Industry_0" name="currency" type="text">\
                                                         </div>\
@@ -913,9 +932,8 @@
                 id +
                 '" name="currency" data-style="btn-white">\
                                                                                                             <option selected="selected" value="">Year\
-                                                                                                            <option>2017\
-                                                                                                            <option>2016\
-                                                                                                            <option>2015\
+                                                                                                                <option ng-repeat="year in years">{{year}}</option>    \
+                                                                                                           \
                                                                                                             \
                                                                             </select>\
                                                         </div>\
@@ -949,9 +967,7 @@
                 id +
                 '" name="currency" data-style="btn-white">\
                                                                                                             <option selected="selected" value="">Year\
-                                                                                                            <option>2017    \
-                                                                                                            <option>2016\
-                                                                                                            <option>2015\
+                                                                                                                <option ng-repeat="year in years">{{year}}</option>    \
                                                                                                             \
                                                                             </select>\
                                                         </div>\

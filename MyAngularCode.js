@@ -162,6 +162,19 @@ iComissionapp.config(function ($routeProvider) {
 			}
 		})
 
+
+		.when('/ChangePassword', {
+			templateUrl: 'ChangePassword.htm',
+			controller: 'ChangePasswordController',
+			resolve: {
+				"check": function () {
+					$('#preloader').delay(350).show();
+				}
+			}
+		})
+
+
+
 		.otherwise({
 
 			redirectTo: $routeProvider
@@ -169,25 +182,35 @@ iComissionapp.config(function ($routeProvider) {
 
 });
 
-iComissionapp.controller('MainController', function ($scope, $http, $timeout) {
+iComissionapp.controller('MainController', function ($scope, $http, $timeout) 
+{
 
-	$scope.IsLoggedIn = "";
-	if (localStorage.getItem('EndUserAccountID') != null) 
+	$scope.IsLoggedIn = "No";
+	//alert("1"+$scope.IsLoggedIn);
+	$scope.init = function()
 	{
-		
-		$scope.IsLoggedIn = "Yes";
-		var profielpic = document.getElementById("profileimage");
-		if (localStorage.getItem('EndUserAccountID') == "5") {
-			profielpic.src = "iComissionAdmin/" + localStorage.getItem('ProfileImage');
+		if (localStorage.getItem('EndUserAccountID') != null) 
+		{
+			
+			$scope.IsLoggedIn = "Yes";
+			//alert("2"+$scope.IsLoggedIn);
+			var profielpic = document.getElementById("profileimage");
+			if (localStorage.getItem('EndUserAccountID') == "5") 
+			{
+				profielpic.src = "iComissionAdmin/" + localStorage.getItem('ProfileImage');
+			}
+			else 
+			{
+				profielpic.src = "iComissionAdmin/php/JobSeeker_Profile/user.PNG";
+			}
 		}
-		else {
-			profielpic.src = "iComissionAdmin/php/JobSeeker_Profile/user.PNG";
+		else 
+		{
+			$scope.IsLoggedIn = "No";
 		}
+
 	}
-	else 
-	{
-		$scope.IsLoggedIn = "No";
-	}
+
 
 	if (localStorage.getItem('UserTypeID') == "6") {
 		$scope.MyDashboard = "True";
@@ -210,9 +233,59 @@ iComissionapp.controller('MainController', function ($scope, $http, $timeout) {
 	}, 3600000);
 });
 
-iComissionapp.controller('RegistrationController', function ($scope, $http) 
+iComissionapp.controller('ChangePasswordController', function ($scope, $http) 
 {
+		$scope.changePassword = function (isValid) 
+		{
+			if (isValid) 
+			{
+				var id = localStorage.getItem('EndUserAccountID');
+				$http.post("iComissionAdmin/PHP/Save_ChangePassword.php", {
+					'UserID': id,
+					'NewPassword':$scope.Password,
+					'OldPassword':$scope.oldPassword
+				}).then(function (response) {
+					console.log(response.data);
+					if(response.data.data==true)
+					{
+						swal({
+							title: "Password Updated Successfully!",
+							text: "",
+							type: "success",
+							confirmButtonColor: '#3085d6',
+							cancelButtonColor: '#d33',
+							confirmButtonText: 'LogOut'
+						}).then((result) => {
+												if (result.value) 
+												{
+													
+																localStorage.clear();
+																window.location.href = "Index.html";
+														
+												}
+											})
 
+						
+	
+						
+						
+					}
+					else
+					{
+						$scope.reply = "error";
+					}
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be inserted!");
+					console.log(error);
+				});
+			}
+			else
+			{
+				//document.getElementById('errormsg').innerHTML = "Please enter all data";
+				
+			}
+
+		}
 });
 
 iComissionapp.controller('AssignmentSeekerRegController', function ($scope, $http, $location) {
@@ -734,7 +807,8 @@ iComissionapp.controller('LoginController', function ($scope, $http, $location)
 						localStorage.setItem('EndUserAccountID', response.data[0].UserAccountID);
 
 					}
-					else if (response.data[0].UserRoleName != "User") {
+					else if (response.data[0].UserRoleName != "User") 
+					{
 
 						if (response.data[0].UserTypeID == "7") {
 							window.location.href = "Admin/Main.htm";
@@ -751,7 +825,8 @@ iComissionapp.controller('LoginController', function ($scope, $http, $location)
 					}
 					else {
 						localStorage.setItem('EndUserAccountID', response.data[0].UserAccountID);
-						if (response.data[0].IsJobSeeker == "No") {
+						if (response.data[0].IsJobSeeker == "No") 
+						{
 							localStorage.setItem("IsRegistered", "No");
 							$location.path('JobSeekersProfile');
 						}
@@ -4016,6 +4091,7 @@ iComissionapp.controller('IndexController', function ($scope,$http, $location, $
         return input.slice(start);
     }
 });*/
+
 iComissionapp.controller('JobSearchController', function ($scope, $http, $location, $compile) 
 {
 	
@@ -4885,7 +4961,24 @@ iComissionapp.controller('ProjectSearchController', function ($scope, $http, $lo
 iComissionapp.controller('JobSeekersProfileController', function ($scope, $route, $http, $route, $templateCache) 
 {
 
-	$scope.Check = function () {
+
+	$scope.Check = function () 
+	{
+		/* auto dropdown list of passout year*/
+			var start = 1991;
+			var year = new Date().getFullYear();
+			var range = [];
+			
+			for (var i = start; i <= year; i++) 
+			{
+				//console.log(i);
+				range.push(i);
+			}
+			$scope.years = range;
+		/* auto dropdown list of passout year*/
+	
+
+
 
 		$scope.myImage = '';
 		$scope.myCroppedImage = '';
@@ -4948,6 +5041,27 @@ iComissionapp.controller('JobSeekersProfileController', function ($scope, $route
 		window.location.href = "Index.html";
 	}
 
+	var id =1;
+	$scope.addnewskill = function()
+	{
+		alert();
+		if (id < 30) 
+		{
+			var html = '<div class="row">\
+							<div class="col-md-5">\
+										<div class="">\
+											<select class="required" id="skill_' +id +'" name="skill" data-style="btn-white">\
+												 <option selected="selected" value="">skill\
+											</select> \
+										</div> \
+							</div>\
+							<div class="col-md-5"> <div class=""><select class="required" id="skillexp_' +
+		id +
+		'" name="skillexp" data-style="btn-white"><option selected="selected" value="">Experience in Year  <option>0  <option>1<option>2</select></div> </div> <div class="col-md-2"><label onclick="removenewskill()" style="color:#209eff" align="center">-Delete</label></div></div>'
+            //alert();
+            id++;
+		}
+	}
 	$scope.SavejobseekerProfileinfo = function () {
 
 		$('.cssload-container').delay(300).show();
@@ -5475,7 +5589,9 @@ iComissionapp.controller('ProjectDetailsController', function ($scope, $http, $l
 	}
 });
 
-iComissionapp.controller('ProfileController', function ($scope, $http, $location) {
+iComissionapp.controller('ProfileController', function ($scope, $http, $location) 
+{
+
 
 	//....................validation start...............
 	$scope.onlytext = '^[a-zA-Z._ -]+$';
@@ -5483,9 +5599,85 @@ iComissionapp.controller('ProfileController', function ($scope, $http, $location
 	$scope.Mobilenumber = "[0-9]{10}"; //
 	//....................validation end................
 
-	//$scope.CDate = new Date();
+	var id = localStorage.getItem('EndUserAccountID');
+	/* auto dropdown list of passout year*/
+	var start = 1991;
+	var year = new Date().getFullYear();
+	var range = [];
+	
+	for (var i = start; i <= year; i++) 
+	{
+		//console.log(i);
+		range.push(i);
+	}
+	$scope.years = range;
 
-	$scope.getmap = function () {
+	//get JobSeekersProfile 
+		$scope.getJobSeekersProfile = function()
+		{
+			$http.post("iComissionAdmin/PHP/Get_JobSeekerInfo.php", 
+			{
+				'JobSeekerID': id
+			}).then(function (response) {
+				console.log(response.data);
+		
+				$scope.JobSeekersProfile = response.data;
+				//$("#joblocation").val(response.data[0].JobLocation);
+			//	console.log(response.data[0].Skill.SkillSetID);
+				$scope.FirstName = response.data[0].FirstName;
+				$scope.Email = response.data[0].Email;
+				$scope.Contact = response.data[0].Contact;
+				$scope.PassportNo = response.data[0].PassportNo;
+				$scope.Address =response.data[0].Address;
+
+				$scope.PassoutYr = response.data[0].EducationDetails.PassoutYear;
+				$scope.HighestQualification = response.data[0].EducationDetails.HighestQualification;
+				$scope.InstituteName = response.data[0].EducationDetails.InstituteName;
+				$scope.CPI = response.data[0].EducationDetails.CPI;
+				
+				
+				$scope.ResumeSkills = response.data[0].Skill.SkillSetID;
+				
+				$scope.Employer = response.data[0].CompanyName;
+				$scope.JobTitle = response.data[0].JobTitle;
+				//$("#expinmonth_0 option[value='" + response.data[0].TotalExp_Year + "']").attr('selected', 'selected');
+
+				$scope.TotalExperienceYr = response.data[0].TotalExp_Year;
+				$scope.expinmonth = response.data[0].TotalExp_Month;
+				$scope.CTC = response.data[0].Salary;
+				$scope.JobSeekerType = response.data[0].JobSeekerType;
+				//document.querySelector('input[name=radioB4][value="response.data[0].JobSeekerType"]').checked = true;
+				/*$http.post("PHP/Get_JobSeekers_AppliedJobList.php", {
+					'JobSeekerID': id
+				}).then(function (response) {
+					console.log(response.data);
+					if (response.data.data != false) {
+						$scope.JobSeekers_AppliedJobList = response.data;
+					}
+		
+					$('#preloader').delay(350).fadeOut('slow');
+				}, function (error) {
+					console.log("Sorry! Data Couldn't be inserted!");
+					console.log(error);
+				});*/
+			}, function (error) {
+				console.log("Sorry! Data Couldn't be inserted!");
+				console.log(error);
+			});
+		}
+	
+
+		$scope.updateJobSeekerProfileInfo= function()
+		{
+
+		}
+
+
+
+
+
+
+	/*$scope.getmap = function () {
 		$('#preloader').delay(350).fadeOut('slow');
 		$scope.latitude = "";
 		$scope.langitude = "";
@@ -5641,7 +5833,7 @@ iComissionapp.controller('ProfileController', function ($scope, $http, $location
 			console.log("Sorry! Data Couldn't be inserted!");
 			console.log(error);
 		});
-	}
+	}*/
 });
 
 //save Assignment Seekers  Profile info 

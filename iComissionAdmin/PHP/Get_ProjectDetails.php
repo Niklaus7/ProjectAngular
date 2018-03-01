@@ -73,6 +73,26 @@ $ProjectID = $data->ProjectID;
                                     $output['CompanyLogo'] = $row6['CompanyLogo'];
                                 }
                             }
+                            $sql7 = "SELECT * From projectsecuritydepositeinfo where ProjectID = '$ProjectID' ";
+                            $result7 = $conn->query($sql7);
+                           // echo $sql7.$conn->error;
+                            if ($result7->num_rows > 0)
+                            {
+                                while($row7 = $result7->fetch_assoc())
+                                {  
+                                    $SecurityDepositeAmount = $row7['SecurityDepositeAmount'];
+                                    $PaymentStatus = $row7['PaymentStatus'];
+                                   
+                                }
+                            }
+                            else
+                            {
+                                $SecurityDepositeAmount = 0;
+                                $PaymentStatus = 'No';
+                            }
+                            $output['SecurityDepositeAmount']= $SecurityDepositeAmount;
+                            $output['PaymentStatus'] = $PaymentStatus;
+
 
                             $respone[]= $output;    
                 }

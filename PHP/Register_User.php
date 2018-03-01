@@ -27,7 +27,7 @@ $sql0 = "CALL usp_Insert_UserRegistration(?,?,?,?,?,?,?,?,?,?)";
 $stmt0 = $conn->prepare($sql0);
 
 //paramater bainding to stored procedure, insert data into useraccount table
-$stmt0->bind_param("isssssisss",$RoleType,$Name,$UserAccountcol,
+$stmt0->bind_param("isssssssss",$RoleType,$Name,$UserAccountcol,
                             $Email,$Password,$gender,
                             $Phone,$registrationdate,$IsActive,$ApprovedStatus);
 if($stmt0->execute()){
