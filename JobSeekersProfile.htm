@@ -62,19 +62,20 @@
     .wizard>.content>.body label>span {
         padding-top: 4px !important;
     }
-    a{
+
+    a {
         max-height: 60px !important;
         line-height: 1 !important;
     }
-   /* Styles go here */
 
-.cropArea {
-    background: #E4E4E4;
-    overflow: hidden;
-    width:500px;
-    height:350px;
-  }
-  
+    /* Styles go here */
+
+    .cropArea {
+        background: #E4E4E4;
+        overflow: hidden;
+        width: 500px;
+        height: 350px;
+    }
 </style>
 
 <link rel="stylesheet" type="text/css" href="iComissionAdmin\assets\plugins\jquery.steps\css\jquery.steps.css">
@@ -96,7 +97,7 @@
 
                             <div class="content">
                                 <div class="post-padding">
-                                <a href class="btn btn-primary btn-sm" ng-click="skip()" style="margin-bottom: 20px;">Skip</a>
+                                    <a href class="btn btn-primary btn-sm" ng-click="skip()" style="margin-bottom: 20px;">Skip</a>
                                     <br>
                                     <div class="submit-form">
                                         <div class="row">
@@ -147,7 +148,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group clearfix">
                                                     <div class="">
-                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text" pattern="^[A-PR-WYa-pr-wy][1-9]\d\s?\d{4}[1-9]$">
+                                                        <input class="form-control" placeholder="Passport No" id="Passportno" name="Passportno" ng-model="Passportno" type="text"
+                                                            pattern="^[A-PR-WYa-pr-wy][1-9]\d\s?\d{4}[1-9]$">
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,9 +166,11 @@
                                                 <div class="form-group clearfix">
                                                     <input type="file" name="file" id="profileImg" class="filestyle required" data-placeholder="Profile Picture">
                                                     <div class="cropArea" style="display: none">
-                                                            <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-                                                          </div>
-                                                          <div style="display: none"><img ng-src="{{myCroppedImage}}" /></div>
+                                                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                                                    </div>
+                                                    <div style="display: none">
+                                                        <img ng-src="{{myCroppedImage}}" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +215,7 @@
                                                 <div class="form-group clearfix">
                                                     <select class="required form-control" id="PassoutYr" name="PassoutYr" data-style="btn-white">
                                                         <option selected="selected" value=""> Passout Year
-                                                        <option ng-repeat="year in years">{{year}}</option>                                                                                                                                                                                                          
+                                                            <option ng-repeat="year in years">{{year}}</option>
 
 
                                                     </select>
@@ -283,66 +287,66 @@
                                                                 <div class="">
                                                                     <select class="required form-control" id="expinyr_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Experience (Year)
-                                                                                <option>0
-                                                                                        <option>1
-                                                                                            <option>2
-                                                                                                <option>3
-                                                                                                        <option>4
-                                                                                                            <option>6
-                                                                                                                <option>7
-                                                                                                                    <option>8
-                                                                                                                        <option>9
-                                                                                                                            <option>10
-                                                                                                                                <option>11
-                                                                                                                                    <option>12
-                                                                                                                                        <option>13
-                                                                                                                                            <option>14
-                                                                                                                                                <option>15
-                                                                                                                                                    <option>16
-                                                                                                                                                        <option>17
-                                                                                                                                                            <option>18
-                                                                                                                                                                <option>19
-                                                                                                                                                                    <option>20
-                                                                                                                                                                        <option>21
-                                                                                                                                                                            <option>22
-                                                                                                                                                                                <option>23
-                                                                                                                                                                                    <option>24
-                                                                                                                                                                                        <option>25
-                                                                                                                                                                                            <option>26
-                                                                                                                                                                                                    <option>27
-                                                                                                                                                                                                            <option>28
-                                                                                                                                                                                                                    <option>29
-                                                                                                                                                                                                                            <option>30
-                                                                                                                                                                                                                                    <option>31
-                                                                                                                                                                                                                                            <option>32
-                                                                                                                                                                                                                                                    <option>33
-                                                                                                                                                                                                                                                            <option>34
-                                                                                                                                                                                                                                                                    <option>35
-                                                                                                                                                                                                                                                                            <option>36
-                                                                                                                                                                                                                                                                                    <option>37
-                                                                                                                                                                                                                                                                                            <option>38
-                                                                                                                                                                                                                                                                                                    <option>39
-                                                                                                                                                                                                                                                                                                            <option>40
-                                                                                                                                                                                                                                                                                                                    <option>41
-                                                                                                                                                                                                                                                                                                                            <option>42
-                                                                                                                                                                                                                                                                                                                                    <option>43
-                                                                                                                                                                                                                                                                                                                                            <option>44
-                                                                                                                                                                                                                                                                                                                                                    <option>45
-                                                                                                                                                                                                                                                                                                                                                            <option>46
-                                                                                                                                                                                                                                                                                                                                                                    <option>47
-                                                                                                                                                                                                                                                                                                                                                                            <option>48
-                                                                                                                                                                                                                                                                                                                                                                                    <option>49
-                                                                                                                                                                                                                                                                                                                                                                                            <option>50
-                                                                                                                                                                                                                                                                                                                                                                                                    <option>51
-                                                                                                                                                                                                                                                                                                                                                                                                            <option>52
-                                                                                                                                                                                                                                                                                                                                                                                                                    <option>53
-                                                                                                                                                                                                                                                                                                                                                                                                                            <option>54
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>55
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>56
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>57
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>58
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>59
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>60
+                                                                            <option>0
+                                                                                <option>1
+                                                                                    <option>2
+                                                                                        <option>3
+                                                                                            <option>4
+                                                                                                <option>6
+                                                                                                    <option>7
+                                                                                                        <option>8
+                                                                                                            <option>9
+                                                                                                                <option>10
+                                                                                                                    <option>11
+                                                                                                                        <option>12
+                                                                                                                            <option>13
+                                                                                                                                <option>14
+                                                                                                                                    <option>15
+                                                                                                                                        <option>16
+                                                                                                                                            <option>17
+                                                                                                                                                <option>18
+                                                                                                                                                    <option>19
+                                                                                                                                                        <option>20
+                                                                                                                                                            <option>21
+                                                                                                                                                                <option>22
+                                                                                                                                                                    <option>23
+                                                                                                                                                                        <option>24
+                                                                                                                                                                            <option>25
+                                                                                                                                                                                <option>26
+                                                                                                                                                                                    <option>27
+                                                                                                                                                                                        <option>28
+                                                                                                                                                                                            <option>29
+                                                                                                                                                                                                <option>30
+                                                                                                                                                                                                    <option>31
+                                                                                                                                                                                                        <option>32
+                                                                                                                                                                                                            <option>33
+                                                                                                                                                                                                                <option>34
+                                                                                                                                                                                                                    <option>35
+                                                                                                                                                                                                                        <option>36
+                                                                                                                                                                                                                            <option>37
+                                                                                                                                                                                                                                <option>38
+                                                                                                                                                                                                                                    <option>39
+                                                                                                                                                                                                                                        <option>40
+                                                                                                                                                                                                                                            <option>41
+                                                                                                                                                                                                                                                <option>42
+                                                                                                                                                                                                                                                    <option>43
+                                                                                                                                                                                                                                                        <option>44
+                                                                                                                                                                                                                                                            <option>45
+                                                                                                                                                                                                                                                                <option>46
+                                                                                                                                                                                                                                                                    <option>47
+                                                                                                                                                                                                                                                                        <option>48
+                                                                                                                                                                                                                                                                            <option>49
+                                                                                                                                                                                                                                                                                <option>50
+                                                                                                                                                                                                                                                                                    <option>51
+                                                                                                                                                                                                                                                                                        <option>52
+                                                                                                                                                                                                                                                                                            <option>53
+                                                                                                                                                                                                                                                                                                <option>54
+                                                                                                                                                                                                                                                                                                    <option>55
+                                                                                                                                                                                                                                                                                                        <option>56
+                                                                                                                                                                                                                                                                                                            <option>57
+                                                                                                                                                                                                                                                                                                                <option>58
+                                                                                                                                                                                                                                                                                                                    <option>59
+                                                                                                                                                                                                                                                                                                                        <option>60
 
                                                                     </select>
                                                                 </div>
@@ -354,15 +358,15 @@
                                                                             <option>0
                                                                                 <option>1
                                                                                     <option>3
-                                                                                            <option>4
-                                                                                                    <option>5
-                                                                                                        <option>6
-                                                                                                                <option>7
-                                                                                                                        <option>8
-                                                                                                                            <option>9
-                                                                                                                                    <option>10
-                                                                                                                                            <option>11
-                                                                                                                                                <option>12
+                                                                                        <option>4
+                                                                                            <option>5
+                                                                                                <option>6
+                                                                                                    <option>7
+                                                                                                        <option>8
+                                                                                                            <option>9
+                                                                                                                <option>10
+                                                                                                                    <option>11
+                                                                                                                        <option>12
 
                                                                     </select>
                                                                 </div>
@@ -452,7 +456,7 @@
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="yearFrom_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Year
-                                                                            <option ng-repeat="year in years">{{year}}</option>    
+                                                                            <option ng-repeat="year in years">{{year}}</option>
 
                                                                     </select>
                                                                 </div>
@@ -482,7 +486,7 @@
                                                                 <div class="form-group clearfix">
                                                                     <select class="required form-control" id="yearto_0" name="currency" data-style="btn-white">
                                                                         <option selected="selected" value="">Year
-                                                                            <option ng-repeat="year in years">{{year}}</option>    
+                                                                            <option ng-repeat="year in years">{{year}}</option>
 
                                                                     </select>
                                                                 </div>
@@ -526,8 +530,8 @@
                                                     <div class="col-md-6">
                                                         <div class="">
                                                             <select id="skill_0" class="required form-control" data-style="btn-white">
-                                                                    <option selected value="Select Role">skill</option>
-                                                                    <option ng-repeat="skill in skills" value="{{skill.SkillSetName}}" >{{skill.SkillSetName}}</option>
+                                                                <option selected value="Select Role">skill</option>
+                                                                <option ng-repeat="skill in skills" value="{{skill.SkillSetName}}">{{skill.SkillSetName}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -535,66 +539,66 @@
                                                         <div class="">
                                                             <select class="required form-control" id="skillexp_0" name="skillexp" data-style="btn-white">
                                                                 <option selected="selected" value="">Experience in Year
-                                                                        <option>0
-                                                                                <option>1
-                                                                                    <option>2
-                                                                                        <option>3
-                                                                                                <option>4
-                                                                                                    <option>6
-                                                                                                        <option>7
-                                                                                                            <option>8
-                                                                                                                <option>9
-                                                                                                                    <option>10
-                                                                                                                        <option>11
-                                                                                                                            <option>12
-                                                                                                                                <option>13
-                                                                                                                                    <option>14
-                                                                                                                                        <option>15
-                                                                                                                                            <option>16
-                                                                                                                                                <option>17
-                                                                                                                                                    <option>18
-                                                                                                                                                        <option>19
-                                                                                                                                                            <option>20
-                                                                                                                                                                <option>21
-                                                                                                                                                                    <option>22
-                                                                                                                                                                        <option>23
-                                                                                                                                                                            <option>24
-                                                                                                                                                                                <option>25
-                                                                                                                                                                                    <option>26
-                                                                                                                                                                                            <option>27
-                                                                                                                                                                                                    <option>28
-                                                                                                                                                                                                            <option>29
-                                                                                                                                                                                                                    <option>30
-                                                                                                                                                                                                                            <option>31
-                                                                                                                                                                                                                                    <option>32
-                                                                                                                                                                                                                                            <option>33
-                                                                                                                                                                                                                                                    <option>34
-                                                                                                                                                                                                                                                            <option>35
-                                                                                                                                                                                                                                                                    <option>36
-                                                                                                                                                                                                                                                                            <option>37
-                                                                                                                                                                                                                                                                                    <option>38
-                                                                                                                                                                                                                                                                                            <option>39
-                                                                                                                                                                                                                                                                                                    <option>40
-                                                                                                                                                                                                                                                                                                            <option>41
-                                                                                                                                                                                                                                                                                                                    <option>42
-                                                                                                                                                                                                                                                                                                                            <option>43
-                                                                                                                                                                                                                                                                                                                                    <option>44
-                                                                                                                                                                                                                                                                                                                                            <option>45
-                                                                                                                                                                                                                                                                                                                                                    <option>46
-                                                                                                                                                                                                                                                                                                                                                            <option>47
-                                                                                                                                                                                                                                                                                                                                                                    <option>48
-                                                                                                                                                                                                                                                                                                                                                                            <option>49
-                                                                                                                                                                                                                                                                                                                                                                                    <option>50
-                                                                                                                                                                                                                                                                                                                                                                                            <option>51
-                                                                                                                                                                                                                                                                                                                                                                                                    <option>52
-                                                                                                                                                                                                                                                                                                                                                                                                            <option>53
-                                                                                                                                                                                                                                                                                                                                                                                                                    <option>54
-                                                                                                                                                                                                                                                                                                                                                                                                                            <option>55
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>56
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>57
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>58
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option>59
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option>60
+                                                                    <option>0
+                                                                        <option>1
+                                                                            <option>2
+                                                                                <option>3
+                                                                                    <option>4
+                                                                                        <option>6
+                                                                                            <option>7
+                                                                                                <option>8
+                                                                                                    <option>9
+                                                                                                        <option>10
+                                                                                                            <option>11
+                                                                                                                <option>12
+                                                                                                                    <option>13
+                                                                                                                        <option>14
+                                                                                                                            <option>15
+                                                                                                                                <option>16
+                                                                                                                                    <option>17
+                                                                                                                                        <option>18
+                                                                                                                                            <option>19
+                                                                                                                                                <option>20
+                                                                                                                                                    <option>21
+                                                                                                                                                        <option>22
+                                                                                                                                                            <option>23
+                                                                                                                                                                <option>24
+                                                                                                                                                                    <option>25
+                                                                                                                                                                        <option>26
+                                                                                                                                                                            <option>27
+                                                                                                                                                                                <option>28
+                                                                                                                                                                                    <option>29
+                                                                                                                                                                                        <option>30
+                                                                                                                                                                                            <option>31
+                                                                                                                                                                                                <option>32
+                                                                                                                                                                                                    <option>33
+                                                                                                                                                                                                        <option>34
+                                                                                                                                                                                                            <option>35
+                                                                                                                                                                                                                <option>36
+                                                                                                                                                                                                                    <option>37
+                                                                                                                                                                                                                        <option>38
+                                                                                                                                                                                                                            <option>39
+                                                                                                                                                                                                                                <option>40
+                                                                                                                                                                                                                                    <option>41
+                                                                                                                                                                                                                                        <option>42
+                                                                                                                                                                                                                                            <option>43
+                                                                                                                                                                                                                                                <option>44
+                                                                                                                                                                                                                                                    <option>45
+                                                                                                                                                                                                                                                        <option>46
+                                                                                                                                                                                                                                                            <option>47
+                                                                                                                                                                                                                                                                <option>48
+                                                                                                                                                                                                                                                                    <option>49
+                                                                                                                                                                                                                                                                        <option>50
+                                                                                                                                                                                                                                                                            <option>51
+                                                                                                                                                                                                                                                                                <option>52
+                                                                                                                                                                                                                                                                                    <option>53
+                                                                                                                                                                                                                                                                                        <option>54
+                                                                                                                                                                                                                                                                                            <option>55
+                                                                                                                                                                                                                                                                                                <option>56
+                                                                                                                                                                                                                                                                                                    <option>57
+                                                                                                                                                                                                                                                                                                        <option>58
+                                                                                                                                                                                                                                                                                                            <option>59
+                                                                                                                                                                                                                                                                                                                <option>60
 
 
                                                             </select>
@@ -687,8 +691,7 @@
 
     id = 1;
 
-    function addnewskill() 
-    {
+    function addnewskill() {
 
         if (id < 30) {
             //   alert(id);
@@ -697,7 +700,7 @@
                     <div class="row">\
                         <div class="col-md-5">\
                             <div class="">\
-                                <select class="required" id="skill_' +id +'" name="skill" data-style="btn-white"> \
+                                <select class="required" id="skill_' + id + '" name="skill" data-style="btn-white"> \
                                     <option selected value="Select Role">skill</option>\
                                     <option ng-repeat="skill in skills" value="{{skill.SkillSetName}}">{{skill.SkillSetName}}</option>\
                                 </select> \
@@ -705,7 +708,7 @@
                         </div>\
                         <div class="col-md-5"> \
                             <div class="">\
-                                <select class="required" id="skillexp_' + id +'" name="skillexp" data-style="btn-white">\
+                                <select class="required" id="skillexp_' + id + '" name="skillexp" data-style="btn-white">\
                                     <option selected="selected" value="">Experience in Year  \
                                         <option>0  \
                                             <option>1\
@@ -785,7 +788,7 @@
                          </div>\
                         <div class="col-md-4">\
                             <div class="">\
-                                <select class="required" id="expinyr_' +id +'" name="currency" data-style="btn-white">\
+                                <select class="required" id="expinyr_' + id + '" name="currency" data-style="btn-white">\
                                     <option selected="selected" value="">Experience in Year\
                                         <option>0\
                                             <option>1\
@@ -811,7 +814,7 @@
                         </div>\
                         <div class="col-md-4">\
                             <div class="">\
-                                <select class="required" id="expinmonth_' +id +'" name="currency" data-style="btn-white">\
+                                <select class="required" id="expinmonth_' + id + '" name="currency" data-style="btn-white">\
                                                                                                 <option selected="selected" value="">Experience in month\
                                                                                                 <option>0\
                                                                                                 <option>1\
@@ -839,7 +842,7 @@
                         </div>\
                         <div class="col-md-8">\
                             <div class="form-group clearfix">\
-                                <input class="required form-control" id="Salary_' +id +'" ng-model="Salary" name="Salary" type="text">\
+                                <input class="required form-control" id="Salary_' + id + '" ng-model="Salary" name="Salary" type="text">\
                                                             \
                             </div>\
                         </div>\
@@ -851,7 +854,7 @@
                             Job Title\
                         </div>\
                         <div class="col-md-8">\
-                            <input class="required form-control" id="jobtitle_' +id +'" ng-model="jobtitle" name="jobtitle" type="text">\
+                            <input class="required form-control" id="jobtitle_' + id + '" ng-model="jobtitle" name="jobtitle" type="text">\
                                                         \
                         </div>\
                     </div>\
@@ -862,7 +865,7 @@
                             Job Descripion\
                         </div>\
                         <div class="col-md-8">\
-                            <input class="required form-control" id="JobDescripion_' +id +'" ng-model="JobDescripion" name="JobDescripion" type="text">\
+                            <input class="required form-control" id="JobDescripion_' + id + '" ng-model="JobDescripion" name="JobDescripion" type="text">\
                                                         \
                         </div>\
                     </div>\
@@ -874,7 +877,7 @@
                              Company Name\
                         </div>\
                         <div class="col-md-8">\
-                            <input class="required form-control" id="companyname_' +id +'" ng-model="companyname" name="companyname" type="text">\
+                            <input class="required form-control" id="companyname_' + id + '" ng-model="companyname" name="companyname" type="text">\
                                                         \
                         </div>\
                     </div>\
@@ -885,7 +888,7 @@
                         </div>\
                     <div class="col-md-8">\
                                                         <div class="form-group clearfix">\
-                                                                <input class="required form-control" placeholder="Industry'+ id +'" id="Industry_0" name="currency" type="text">\
+                                                                <input class="required form-control" placeholder="Industry'+ id + '" id="Industry_0" name="currency" type="text">\
                                                         </div>\
                                                     </div>\
                                                 </div>\
@@ -896,7 +899,7 @@
                                                     </div>\
                                                     <div class="col-md-8">\
                                                         <div class="form-group clearfix">\
-                                                                <input class="required form-control" placeholder="Department" id="Department_' + id +'" name="currency" type="text">\
+                                                                <input class="required form-control" placeholder="Department" id="Department_' + id + '" name="currency" type="text">\
                                                         </div>\
                                                     </div>\
                                                 </div>\
@@ -1003,10 +1006,10 @@
     }
 
     function call1() {
-            var places1 = new google.maps.places.Autocomplete(document.getElementById('location'));
-            google.maps.event.addListener(places1, 'place_changed', function () {
-            });
-        }
+        var places1 = new google.maps.places.Autocomplete(document.getElementById('location'));
+        google.maps.event.addListener(places1, 'place_changed', function () {
+        });
+    }
 </script>
 <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script>

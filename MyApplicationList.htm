@@ -1,0 +1,48 @@
+
+
+        <div ng-controller="MyApplicationListController" ng-init="getMyAppicationList()">
+
+            <div class="section lb" style="padding-top: 0px;margin-top:0px">
+                <br/>
+                
+                <div class="container" style="padding-top:0px;margin-top:0px">
+                        <h4>My Apllication List</h4>    
+                   
+                    <div class="row">
+
+                        <div class="content">
+
+                            
+                            <div class="row">
+                                <div class="col-md-4" ng-repeat="x in JobSeekers_AppliedJobList">
+                                    <div class="post-padding" >
+
+                                            <h4 class="header-title">
+                                                    <b>{{x.JobTitle}}</b>
+                
+                                                </h4>
+                
+                                                <p style="margin-bottom: 0px !important;">Apply Date: {{x.ApplyDate}}</p>
+                                                <br/>
+                                                <div class="contact-action">
+                                                    <button href="#ViewProfile" title="View Details" class="btn btn-primary btn-sm">
+                                                        View Job Details
+                                                    </button>
+                                                </div>
+
+                                    </div>
+                                </div>
+                               
+
+                            </div>
+
+
+                            <!-- end post-padding -->
+                        </div>
+
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+        </div>

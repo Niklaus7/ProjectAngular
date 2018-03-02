@@ -38,7 +38,8 @@
     <link rel="stylesheet" src="assets/plugins/custombox/css/custombox.css">
     <!-- <link rel="stylesheet" src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker3.css"> -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css"
+    />
     <link rel="stylesheet" type="text/css" href="css\introjs.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -51,7 +52,7 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
     <script src="iComissionAdmin\assets\js\sweetalert2.all.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> -->
-    
+
     <style type="text/css">
         .carousel-inner img {
             width: 100%;
@@ -112,7 +113,8 @@
         .topbar {
             padding: 5px 0 !important;
         }
-        .cstmimg{
+
+        .cstmimg {
             background-image: url('images/phone_25.png');
             background-repeat: no-repeat;
         }
@@ -120,29 +122,29 @@
 
         @-webkit-keyframes pulse {
             25% {
-              -webkit-transform: scale(1.2);
-              transform: scale(1.2);
+                -webkit-transform: scale(1.2);
+                transform: scale(1.2);
             }
             75% {
-              -webkit-transform: scale(0.8);
-              transform: scale(0.8);
+                -webkit-transform: scale(0.8);
+                transform: scale(0.8);
             }
-          }
-          
-          @keyframes pulse {
+        }
+
+        @keyframes pulse {
             25% {
-              -webkit-transform: scale(1.2);
-              -ms-transform: scale(1.2);
-              transform: scale(1.2);
+                -webkit-transform: scale(1.2);
+                -ms-transform: scale(1.2);
+                transform: scale(1.2);
             }
             75% {
-              -webkit-transform: scale(0.8);
-              -ms-transform: scale(0.8);
-              transform: scale(0.8);
+                -webkit-transform: scale(0.8);
+                -ms-transform: scale(0.8);
+                transform: scale(0.8);
             }
-          }
-          
-          .pulse {
+        }
+
+        .pulse {
             display: inline-block;
             -webkit-transform: translateZ(0);
             -ms-transform: translateZ(0);
@@ -158,17 +160,17 @@
             animation-timing-function: linear;
             -webkit-animation-iteration-count: infinite;
             animation-iteration-count: infinite;
-          }
+        }
 
-        .swal2-styled{
+        .swal2-styled {
             background-color: #ff6200 !important;
             border-left-color: #fba86f !important;
             border-right-color: #fba86f !important;
         }
-        .swal2-buttonswrapper button{
+
+        .swal2-buttonswrapper button {
             max-height: 50px !important;
         }
-
     </style>
 
     <link rel="stylesheet" href="assets\css\angular-material.min.css">
@@ -217,7 +219,7 @@
                                 <li>
                                     <a title="" href>Features</a>
                                 </li>
-                                
+
                                 <!-- <li>
                                     <a id="jobsearch" title="" href>Search Jobs</a>
                                 </li>
@@ -300,10 +302,10 @@
                                 <li style="padding-top: 5px">
                                     <img src="images/phone_25.png">
                                 </li>
-                                    <li>
-                                            <a title="" href data-toggle="modal" style="padding-left: 0px;" data-target="#Downloadapp">
-                                               Download App</a>
-                                        </li>
+                                <li>
+                                    <a title="" href data-toggle="modal" style="padding-left: 0px;" data-target="#Downloadapp">
+                                        Download App</a>
+                                </li>
                                 <li>
                                     <a href="#Login" role="button" ng-show="IsLoggedIn == 'No'" style="
                                     font-size: 12px;
@@ -342,7 +344,7 @@
                                                 <span class="glyphicon glyphicon-bell"></span> Create Assignment Alert</a>
                                         </li>
                                         <li ng-show="IsJobseeker == 'True'">
-                                            <a>
+                                            <a href="#MyApplicationList">
                                                 <span class="glyphicon glyphicon-off"></span> Applied Jobs</a>
                                         </li>
                                         <li ng-show="IsJobseeker == 'True'">
@@ -655,46 +657,141 @@
             </div>
         </div>
 
-        
+
         <div id="Downloadapp" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
                     <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <img src="images/select.png" style="width: 100% !important">
-                          </div>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <h2>Find nearest jobs and assignments on your finger tips...</h2>
-                              <div class="clearfix">&nbsp;</div>
-                              <h5 class="text-muted">Search nearest jobs and assignments according to your skillsets and expectations.</h5>
-                              <div class="clearfix">&nbsp;</div>
-                              <div class="">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <img src="images/select.png" style="width: 100% !important">
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h2>Find nearest jobs and assignments on your finger tips...</h2>
+                                <div class="clearfix">&nbsp;</div>
+                                <h5 class="text-muted">Search nearest jobs and assignments according to your skillsets and expectations.</h5>
+                                <div class="clearfix">&nbsp;</div>
+                                <div class="">
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <img src="images/playstore.png" style="width: 100% !important">
+                                        <img src="images/playstore.png" style="width: 100% !important">
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <img src="images/mobile_01.png" style="width: 100% !important">
+                                        <img src="images/mobile_01.png" style="width: 100% !important">
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                            <img src="images/windows.jpg" style="width: 100% !important; border-radius: 5%">
+                                        <img src="images/windows.jpg" style="width: 100% !important; border-radius: 5%">
                                     </div>
-                              </div>
-                          </div>
-                      </div>
-                      
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
-                  </div>
-              
                 </div>
-              </div>
-              
-      
+
+            </div>
+        </div>
+
+        <div id="JobAlert" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title mt-0 text-center">Tell Us What Kind of Job you want?</h4>
+                    </div>
+                    <div class="modal-body submit-form">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="CreateJobAlert" ng-form="CreateJobAlert" name="CreateJobAlert" style="padding: 20px !Important"
+                            novalidate>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.JobalertName.$invalid && !CreateJobAlert.JobalertName.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlytext" id="JobalertName" name="JobalertName" ng-model="JobalertName"
+                                            placeholder="Name of Job Alert" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.skills.$invalid && !CreateJobAlert.skills.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlytext" id="skills" name="skills" ng-model="skills" placeholder="Skills"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.location.$invalid && !CreateJobAlert.location.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlytext" id="location" name="location" ng-model="location" placeholder="Location"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.MinExp.$invalid && !CreateJobAlert.MinExp.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlynumber" id="MinExp" name="MinExp" ng-model="MinExp" placeholder="Min Experience"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.MaxExp.$invalid && !CreateJobAlert.MaxExp.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlynumber" id="MaxExp" name="MaxExp" ng-model="MaxExp" placeholder="Max Experience"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.salary.$invalid && !CreateJobAlert.salary.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlynumber" id="salary" name="salary" ng-model="salary" placeholder="Salary"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" ng-class="{ 'has-error' : CreateJobAlert.industry.$invalid && !CreateJobAlert.industry.$pristine }">
+                                        <input type="text" class="form-control" ng-pattern="onlytext" id="industry" name="industry" ng-model="industry" placeholder="Industry"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <select id="alertpreference" class="form-control">
+                                            <option value="Select alert Preference">Select alert Preference</option>
+                                            <option value="Daily">Daily</option>
+                                            <option value="Weekly">Weekly</option>
+                                            <option value="Monthly">Monthly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label id="errormsg" class="help-block" style="color: #a94442"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="div_success" style="padding: 20px !Important; display:none">
+                            <div class="text-center">
+                                <img src="assets/images/checkmark.ico" style="width:30%" />
+                                <h4>Job alert created Successfully!</h4>
+                                <p>We will sen you the job relevant to your job alert!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info waves-effect waves-light" ng-click="create_JobAlert(CreateJobAlert.$valid)">Create Job Alert</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- <div class="contactme hidden-xs">
             <a href="page-contact.htm">
@@ -762,19 +859,19 @@
             // $('#carousel-example-generic').carousel('next');
             $('#carousel-example-generic').carousel(1);
         });
-        
+
     </script>
     <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/59f1a2d6c28eca75e4628510/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/59f1a2d6c28eca75e4628510/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
 </body>

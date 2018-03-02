@@ -20,9 +20,10 @@
         width: 400px;
     }
 </style>
-<div class="container" ng-controller="ProfileController" ng-init="getJobSeekersProfile()">
+<div class="container" ng-controller="ProfileController" ng-init="checkUserType();getJobSeekersProfile()">
     <div class="content col-md-12">
-        <div class="post-padding">
+        <div class="post-padding" id="JobSeekerInfo" style="display: none">
+           
             <form id="submit" class="submit-form" ng-repeat="x in JobSeekersProfile">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
@@ -236,7 +237,220 @@
             </form>
         </div>
         <!-- end post-padding -->
+        <div class="post-padding"id="AssignmentSeekerInfo" style="display: none">
+           
+            <form id="submit" class="submit-form" ng-repeat="x in JobSeekersProfile">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label">My Profile
 
+                        </label>
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-preview thumbnail">
+                                <img src="iComissionAdmin/PHP/{{x.ProfileImage}}" alt="User Profile Pic">
+                            </div>
+                            <br>
+                            <span class="btn btn-default btn-file">
+                                <span class="fileupload-new">Upload Photo</span>
+                                <span class="fileupload-exists">Change</span>
+                                <input type="file">
+                            </span>
+                            <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label"> My Name </label>
+                        <input type="text" class="form-control" placeholder="Your Name" ng-value="FirstName" ng-model="FirstName">
+                        <br>
+                        <label class="control-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" ng-value="Email" ng-model="Email">
+
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label">Contact No</label>
+                        <input type="text" class="form-control" placeholder="Contact No" ng-value="Contact" ng-model="Contact">
+                        <br>
+                        <label class="control-label">Passport No </label>
+                        <input type="text" class="form-control" placeholder="Passport No" ng-value="PassportNo" ng-model="PassportNo">
+
+                    </div>
+                </div>
+                <!-- end row -->
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <label class="control-label">Resume Skills</label>
+                        <input type="text" class="form-control" id="ResumeSkills" placeholder="Resume Skills" ng-value="ResumeSkills" ng-model="ResumeSkills">
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <label class="control-label">Location</label>
+                        <input type="text" class="form-control" id="location" onclick="call1()" placeholder="Location" ng-value="Address" ng-model="Address">
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+
+                <hr/>
+
+                <br/>
+                <label class="control-label">Education</label>
+                <br/>
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <small>Institute Name</small>
+                        <input type="text" class="form-control" placeholder="Institute Name" ng-value="InstituteName" ng-model="InstituteName">
+                        <br>
+                        <small>Passout Year</small>
+                        <select class="required form-control" id="PassoutYr" name="PassoutYr" data-style="btn-white" data-ng-model="PassoutYr">
+                            <option selected="selected" value=""> Passout Year
+                                <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+
+
+                        </select>
+
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+
+                        <small>Highest Qualification</small>
+                        <input type="text" class="form-control" placeholder="Highest Qualification" ng-value="HighestQualification" ng-model="HighestQualification">
+                        <br>
+                        <small>Percentage/CPI</small>
+                        <input type="text" class="form-control" placeholder="Percentage/CPI" ng-value="CPI" ng-model="CPI">
+
+                    </div>
+
+
+                </div>
+                <br/>
+                <hr/>
+                <br/>
+                <label class="control-label">Experience
+                </label>
+                <br/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <small>I am -</small>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label class="radio-inline">
+                            <input type="radio" class="required" name="radioB4" value="Freshers" ng-model="$parent.JobSeekerType">Freshers
+                            
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" class="required" name="radioB4" value="Experienced" ng-model="$parent.JobSeekerType">Experienced
+                        </label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        <small>Employer</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="Employer" ng-value="Employer"
+                            ng-model="Employer">
+                        <br>
+                        <small>Job Title</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="Job Title" ng-value="JobTitle"
+                            ng-model="JobTitle">
+                        <br>
+
+                    </div>
+                    <div class="col-md-6">
+                        <small>Total Experience(Year-Month)</small>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <select class="required form-control" id="TotalExperienceYr" name="TotalExperienceYr" data-style="btn-white" data-ng-model="TotalExperienceYr">
+                                    <option selected="selected" value="">Experience (Year)
+                                        <option value="0">0
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">3
+                                                        <option value="4">4
+                                                            <option value="5">5
+                                                                <option value="6">6
+                                                                    <option value="7">7
+                                                                        <option value="8">8
+                                                                            <option value="9">9
+                                                                                <option value="10">10
+                                                                                    <option value="11">11
+                                                                                        <option value="12">12
+                                                                                            <option value="13"> 13
+                                                                                                <option value="14">14
+                                                                                                    <option value="15">15
+                                                                                                        <option value="16">16
+
+
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <select class="required form-control" id="expinmonth" name="currency" data-style="btn-white" data-ng-model="expinmonth">
+                                    <option selected="selected" value="">Experience (month)
+                                        <option value="0">0
+                                            <option value="1">1
+                                                <option value="2">2
+                                                    <option value="3">3
+                                                        <option value="4">4
+                                                            <option value="5">5
+                                                                <option value="6">6
+                                                                    <option value="7">7
+                                                                        <option value="8">8
+                                                                            <option value="9">9
+                                                                                <option value="10">10
+                                                                                    <option value="11">11
+                                                                                        <option value="12">12
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <br>
+                        <small>Current CTC</small>
+                        <input ng-show="x.JobSeekerType!='Freshers'" type="text" class="form-control" placeholder="CTC" ng-value="CTC" ng-model="CTC">
+                        <br>
+
+                    </div>
+
+                </div>
+                <br/>
+                <hr/>
+                <!-- end row -->
+                <div class="row">
+                    <label class="control-label"> My Resume</label>
+                    <div class="col-md-12 col-sm-12">
+
+                        <input type="text" class="form-control" id="ResumeSkills" placeholder="Resume.pdf" ng-value="Resume" ng-model="Resume">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-7">
+                        <button class="btn btn-primary" ng-click="updateJobSeekerProfileInfo()">Update Profile</button>
+
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
 
     </div>
     <!-- end col -->
